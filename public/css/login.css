@@ -1,0 +1,13 @@
+.login-modal .modal-header {
+  border-bottom: none;
+  height: 30px;
+  padding-bottom: 0;
+}
+
+.login-modal .modal-body button {
+  width: 100%;
+}
+
+.login-modal {
+  padding-top: 120px;
+}

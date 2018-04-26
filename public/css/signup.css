@@ -1,0 +1,9 @@
+.signup-modal .modal-header {
+  border-bottom: none;
+  height: 30px;
+  padding-bottom: 0;
+}
+
+.btn {
+  width: 100%;
+}

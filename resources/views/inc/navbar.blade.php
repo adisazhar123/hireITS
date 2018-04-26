@@ -34,10 +34,10 @@
 
          <ul class="navbar-nav ml-auto">
            <li class="nav-item">
-              <a class="nav-link" href="#">Login</a>
+              <a class="nav-link login" href="#">Login</a>
             </li>
             <li class="nav-item">
-               <a class="nav-link" href="#">Sign Up</a>
+               <a class="nav-link signup" href="#">Sign Up</a>
              </li>
              <li class="nav-item">
                 <button class="nav-link btn btn-primary" style="font-weight:bold; color:white">Post a project</button>

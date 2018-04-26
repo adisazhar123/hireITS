@@ -16,3 +16,4 @@ Route::get('/', function () {
 });
 
 Route::get('jobs','ProjectsController@index')->name('browse-jobs');
+Route::get('profile', 'UsersController@index')->name('view-profile');
