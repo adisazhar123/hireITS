@@ -15,5 +15,17 @@ Route::get('/', function () {
     return view('index');
 });
 
-Route::get('jobs','ProjectsController@index')->name('browse-jobs');
-Route::get('profile', 'UsersController@index')->name('view-profile');
+Route::get('jobs','ProjectsController@index')->name('browse.jobs')->middleware('freelancer');
+Route::get('profile', 'UsersController@index')->name('view.profile');
+Route::get('projects', 'ProjectsController@viewProject')->name('view.project');
+Route::get('showcase', 'ProjectsController@browseShowcase')->name('browse.showcase');
+Route::post('test', 'UsersController@test')->name('test');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Auth::routes();
+
+
+Route::get('check', 'Auth\LoginController@check')->name('check');

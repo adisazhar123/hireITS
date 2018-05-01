@@ -17,7 +17,7 @@
                <div class="dropdown-divider"></div>
 
                <h6 class="" style="padding-left: 18px"><strong>DISCOVER</strong></h6>
-               <a class="dropdown-item" href="#">Showcase</a>
+               <a class="dropdown-item" href="{{route('browse.showcase')}}">Showcase</a>
              </div>
            </li>
            <li class="nav-item dropdown">
@@ -26,19 +26,35 @@
              </a>
              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                <h6 class="" style="padding-left: 18px"><strong>FIND WORK</strong></h6>
-               <a class="dropdown-item" href="{{route('browse-jobs')}}">Browse Projects</a>
+               <a class="dropdown-item" href="{{route('browse.jobs')}}">Browse Projects</a>
                <a class="dropdown-item" href="#">Browse Categories</a>
              </div>
            </li>
          </ul>
 
          <ul class="navbar-nav ml-auto">
-           <li class="nav-item">
-              <a class="nav-link login" href="#">Login</a>
-            </li>
-            <li class="nav-item">
-               <a class="nav-link signup" href="#">Sign Up</a>
+           @if(Auth::check())
+             <li class="nav-item">
+               <a href="{{ route('logout') }}" class="nav-link"
+                  onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+                   Logout
+               </a>
+               <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                     style="display: none;">
+                   {{ csrf_field() }}
+               </form>
              </li>
+           @else
+
+             <li class="nav-item">
+
+                <a class="nav-link login" href="#">Login</a>
+              </li>
+              <li class="nav-item">
+                 <a class="nav-link signup" href="#">Sign Up</a>
+               </li>
+           @endif
+
              <li class="nav-item">
                 <button class="nav-link btn btn-primary" style="font-weight:bold; color:white">Post a project</button>
               </li>

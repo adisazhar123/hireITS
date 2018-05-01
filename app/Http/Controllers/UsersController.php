@@ -9,4 +9,8 @@ class UsersController extends Controller
     public function index(){
       return view('users.profile');
     }
+
+    public function test(){
+      return $_POST["user-desc"];
+    }
 }

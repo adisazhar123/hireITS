@@ -4,7 +4,7 @@
 
 
   .highlights img{
-    height: 675px !important;
+    height: 630px !important;
   }
 
   .highlights-title{
@@ -88,6 +88,15 @@
     .highlights .btn{
       margin-bottom: 10px;
     }
+
+    .highlights img{
+      height: 450px !important;
+    }
+    .carousel-item .carousel-caption{
+      margin-bottom: 150px !important;
+    }
+
+
     .navbar-brand {
       padding-left: 10px;
     }
@@ -95,6 +104,7 @@
       height: 75px;
 
     }
+
   }
 
 </style>
@@ -102,6 +112,9 @@
 @extends('layouts.app')
 
 @section('content')
+  @if($errors->any())
+  <h4>{{$errors->first()}}</h4>
+  @endif
   <div class="highlights">
   <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
     <ol class="carousel-indicators">
@@ -114,7 +127,6 @@
         <div class="row">
           <div class="col-md-6 col-sm-6 col-lg-6">
             <button type="button" class="btn btn-seeker" name="button">I am a job seeker</button>
-
           </div>
           <div class="col-md-6 col-sm-6 col-lg-6">
              <button type="button" class="btn btn-maker" name="button">I am a job maker</button>
@@ -122,7 +134,7 @@
         </div>
       </div>
       <div class="carousel-item active">
-        <img class="d-block w-100" src="https://images.pexels.com/photos/6224/hands-people-woman-working.jpg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt="First slide">
+        <img class="d-block w-100" src="https://images.pexels.com/photos/276267/pexels-photo-276267.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt="First slide">
         <div class="carousel-caption" style="margin-bottom: 300px; color: black; text-transform: uppercase;">
           <h3>“There are three responses to a piece of design – yes, no, and WOW! Wow is the one to aim for.”</h3>
         </div>
