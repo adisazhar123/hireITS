@@ -7,7 +7,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <form class="form-horizontal" method="POST" action="{{ route('login') }}">
+        <form class="form-horizontal" method="POST" action="#" id="login-form">
             {{ csrf_field() }}
 
             <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
@@ -17,7 +17,7 @@
 
                     @if ($errors->has('email'))
                         <span class="help-block">
-                            <strong>{{ $errors->first('email') }}</strong>
+                            <strong id="email-error"></strong>
                         </span>
                     @endif
                 </div>
@@ -27,11 +27,9 @@
                 <div class="col-md-12">
                     <input placeholder="Password" id="password" type="password" class="form-control" name="password" required>
 
-                    @if ($errors->has('password'))
                         <span class="help-block">
-                            <strong>{{ $errors->first('password') }}</strong>
+                            <strong id="password-error"></strong>
                         </span>
-                    @endif
                 </div>
             </div>
 

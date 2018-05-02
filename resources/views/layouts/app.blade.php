@@ -86,6 +86,29 @@
       })
     });
 
+    $("#login-form").submit(function(e){
+      e.preventDefault();
+
+      $.ajax({
+        method: "POST",
+        url:"{{route('login')}}",
+        data: $(this).serialize(),
+        datatype: "json",
+        success: function(data){
+          if (data.auth)
+            console.log(data.auth)
+          window.location.replace(data.intended);
+        },
+        error: function(data){
+          if(data)
+            console.log(data.responseJSON.message)
+          else{
+            console.log("Error Ajax - Login")
+          }
+        }
+      });
+    });
+
   </script>
   @yield('script')
 
