@@ -1,112 +1,6 @@
 @section('style')
   <style media="screen">
     @import url('https://fonts.googleapis.com/css?family=Raleway');
-
-
-  .highlights img{
-    height: 630px !important;
-  }
-
-  .highlights-title{
-    padding-bottom: 100px !important;
-  }
-
-  .btn-seeker{
-    font-weight: bold;
-    font-size: 20px;
-    background-color: orange;
-    height: 60px;
-    width: 200px;
-  }
-
-  .btn-maker{
-    font-weight: bold;
-    font-size: 20px;
-    background-color: transparent;
-    border-color: white;
-    border-width: medium;
-    height: 60px;
-    width: 200px;
-  }
-
-  .btn-maker:hover{
-    background-color: rgba(0, 0, 0, 0.2);
-}
-
-  .btn-seeker:hover{
-    background-color: #f18903;
-  }
-
-  .sign-up{
-    background-color: #f0f0f0;
-    height: 60px;
-    text-align: center;
-    padding-top: 20px;
-  }
-
-  .sign-up a{
-    text-decoration: none;
-  }
-
-  .square, .info{
-    text-align: center;
-  }
-
-  .info i{
-    margin-right: 10px;
-    opacity: 0.5;
-  }
-
-  .info i:hover{
-    cursor: pointer;
-    transform: scale(1.1);
-  }
-
-  .info{
-    padding-top: 15px;
-    margin-bottom: 15px;
-    color: #2242a4;
-  }
-  i{
-    color: #243f8a;
-  }
-
-  .square:hover{
-    transform: scale(1.05);
-  }
-
-
-  @media only screen and (max-width: 990px) {
-
-    .highlights img{
-      min-height: 0px !important;
-    }
-  }
-
-  @media only screen and (max-width: 768px) {
-
-    .highlights .btn{
-      margin-bottom: 10px;
-    }
-
-    .highlights img{
-      height: 450px !important;
-    }
-    .carousel-item .carousel-caption{
-      margin-bottom: 150px !important;
-    }
-
-
-    .navbar-brand {
-      padding-left: 10px;
-    }
-    .sign-up{
-      height: 75px;
-
-    }
-
-  }
-
 </style>
 @endsection
 @extends('layouts.app')
@@ -117,13 +11,9 @@
   @endif
   <div class="highlights">
   <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-    <ol class="carousel-indicators">
-      <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-      <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-      <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-    </ol>
     <div class="carousel-inner">
       <div class="carousel-caption highlights-title">
+        <h1>WHO ARE YOU?</h1>
         <div class="row">
           <div class="col-md-6 col-sm-6 col-lg-6">
             <button type="button" class="btn btn-seeker" name="button">I am a job seeker</button>
@@ -134,16 +24,7 @@
         </div>
       </div>
       <div class="carousel-item active">
-        <img class="d-block w-100" src="https://images.pexels.com/photos/276267/pexels-photo-276267.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt="First slide">
-        <div class="carousel-caption" style="margin-bottom: 300px; color: black; text-transform: uppercase;">
-          <h3>“There are three responses to a piece of design – yes, no, and WOW! Wow is the one to aim for.”</h3>
-        </div>
-      </div>
-      <div class="carousel-item">
-        <img class="d-block w-100" src="https://images.pexels.com/photos/574073/pexels-photo-574073.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt="Second slide">
-      </div>
-      <div class="carousel-item">
-        <img class="d-block w-100" src="https://images.pexels.com/photos/545053/pexels-photo-545053.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt="Third slide">
+        <img class="d-block w-100">
       </div>
     </div>
 
@@ -227,9 +108,6 @@
 
   }
   });
-  $('.carousel').carousel({
-    interval: 2500
-  })
 
 </script>
 @endsection
