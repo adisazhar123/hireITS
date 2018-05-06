@@ -1,5 +1,5 @@
 nav.main {
-  background-color: #181618;
+  background-color: #FFF;
   min-height: 65px;
   z-index: 1;
 }
@@ -73,7 +73,7 @@ nav form .btn-search:hover {
   }
 }
 
-/*nav.navbar{
+nav.navbar{
   background-color: #1d2326;
   padding-bottom: 0;
   padding-top: 0;
@@ -106,4 +106,8 @@ a.navbar-brand{
   nav form button {
     width: 100% !important;
   }
-}*/
+}
+
+.modal-backdrop.show {
+    opacity: 0 !important;
+}

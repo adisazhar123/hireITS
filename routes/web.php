@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('index');
+    return view('homepage');
 });
 
 Route::get('jobs','ProjectsController@index')->name('browse.jobs')->middleware('freelancer');

@@ -1,5 +1,6 @@
+
 <nav class="main navbar navbar-expand-lg navbar-light">
-     <div class="container">
+<!--      <div class="container"> -->
        <a class="navbar-brand" href="{{url('/')}}">hire<strong>ITS</strong></a>
        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
          <span class="navbar-toggler-icon"></span>
@@ -55,12 +56,16 @@
            @endif
 
              <li class="nav-item">
-                <button class="nav-link btn btn-primary">HOW IT WORKS</button>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+  Login
+</button>
               </li>
          </ul>
+
        </div>
-     </div>
+<!--      </div> -->
    </nav>
+
 
 <!-- 
 <nav class="navbar navbar-light">
