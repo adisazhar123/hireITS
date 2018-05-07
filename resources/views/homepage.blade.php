@@ -8,7 +8,6 @@
 
 @section('content')
 
-
 <!-- Modal -->
 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
@@ -27,10 +26,10 @@
 				<div class="tab-pane active" id="login">
 					<form class="form-horizontal login-form">
 						<div class="form-group relative">
-							<input class="form-control input-lg" id="login_username" placeholder="E-mail Address" required="" type="email"> <i class="fa fa-user"></i>
+							<input class="form-control input-lg" id="login_username" placeholder="E-mail Address" required="" type="email" name ="email"> <i class="fa fa-user"></i>
 						</div>
 						<div class="form-group relative">
-							<input class="form-control input-lg" id="login_password" placeholder="Password" required="" type="password"> <i class="fa fa-lock"></i>
+							<input class="form-control input-lg" id="login_password" placeholder="Password" required="" type="password" name="password"> <i class="fa fa-lock"></i>
 						</div>
 						<div class="form-group">
 							<button class="btn btn-success btn-lg btn-block" type="submit">Login</button>
@@ -46,12 +45,13 @@
 					</form>
 				</div>
 				<div class="tab-pane" id="sign_up">
-					<form class="form-horizontal login-form">
+					<form class="form-horizontal login-form" method="post" action ="/store">
+					{{ csrf_field() }}
 						<div class="form-group relative">
-							<input class="form-control input-lg" id="login_username" placeholder="E-mail Address" required="" type="email"> <i class="fa fa-user"></i>
+							<input class="form-control input-lg" id="login_username" placeholder="E-mail Address" required="" type="email" name="email"> <i class="fa fa-user"></i>
 						</div>
 						<div class="form-group relative">
-							<input class="form-control input-lg" id="login_password" placeholder="Password" required="" type="password"> <i class="fa fa-lock"></i>
+							<input class="form-control input-lg" id="login_password" placeholder="Password" required="" type="password" name="password"> <i class="fa fa-lock"></i>
 						</div>
 						<div class="form-group relative">
 							<input class="form-control input-lg" id="login_password" placeholder="Repeat Password" required="" type="password"> <i class="fa fa-lock"></i>

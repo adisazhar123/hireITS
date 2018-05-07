@@ -15,6 +15,7 @@ Route::get('/', function () {
     return view('homepage');
 });
 
+Route::post('store', 'UsersController@store');
 Route::get('jobs','ProjectsController@index')->name('browse.jobs')->middleware('freelancer');
 Route::get('profile', 'UsersController@index')->name('view.profile');
 Route::get('projects', 'ProjectsController@viewProject')->name('view.project');
