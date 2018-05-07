@@ -12,8 +12,8 @@
 */
 
 Route::get('/', function () {
-    return view('index');
-})->name('index');
+    return view('homepage');
+});
 
 Route::get('jobs','ProjectsController@index')->name('browse.jobs')->middleware('freelancer');
 Route::get('profile', 'UsersController@index')->name('view.profile');

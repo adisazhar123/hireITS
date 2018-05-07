@@ -1,37 +1,41 @@
 nav.main {
-  background-color: #FFFFFF;
+  background-color: #FFF;
   min-height: 65px;
   z-index: 1;
 }
 
 .nav-item a {
-  color: black !important;
+  color: #EA9B25 !important;
 }
 
 .nav-link {
   text-transform: uppercase;
 }
 
-a.nav-link:hover {
-  color: #507aff !important;
-  transform: scale(1.1);
+.btn-primary {
+  background-color: #D66C44;
+  border: none;
+  color: #FFFFFF !important;
+  font-weight: bold;
 }
 
-.dropdown-item:hover {
-  color: #507aff !important;
+.btn-primary:hover {
+  background-color: #c95b30;
+}
+
+a.nav-link:hover {
+  border-top: 2px solid #2D3D19;
+  border-bottom: 2px solid #2D3D19;
 }
 
 .navbar-brand {
   transform: scale(1.5);
-  padding-right: 20px;
-}
-
-nav form .btn-search {
-  border: solid #2242a4;
+  padding-right: 2em;
+  color: #6da768 !important;
 }
 
 nav form .btn-search:hover {
-  background-color: #6185f3;
+  background-color: #E99A24;
 }
 
 .dropdown:hover .dropdown-menu {
@@ -39,9 +43,18 @@ nav form .btn-search:hover {
 }
 
 .dropdown-menu {
-  background-color: #f0f0f0;
+  background-color: #EA9B25;
   padding: 10px;
-  box-shadow: 5px 10px 18px #324253;
+  text-align: center;
+  align-content: right;
+}
+
+.dropdown-menu a {
+  color: #FFFFFF !important;
+}
+
+.dropdown-menu a:hover {
+  background-color: #ECB021 !important;
 }
 
 @media only screen and (max-width: 990px) {
@@ -58,4 +71,47 @@ nav form .btn-search:hover {
   nav form button {
     width: 100% !important;
   }
+}
+
+nav.navbar {
+  background-color: #1d2326;
+  padding-bottom: 0;
+  padding-top: 0;
+}
+
+a.navbar-brand {
+  color: #6da768 !important;
+  font-size: 1.75em;
+}
+
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+.dropdown-header {
+  font-size: 1em;
+}
+
+.navbar-toggler {
+  color: white !important;
+}
+
+@media only screen and (max-width: 990px) {
+  a.nav-link:hover {
+    transform: scale(1);
+  }
+  .navbar-brand {
+    padding-left: 15px;
+  }
+  nav input {
+    width: 100% !important;
+    margin-bottom: 10px;
+  }
+  nav form button {
+    width: 100% !important;
+  }
+}
+
+.modal-backdrop.show {
+  opacity: 0 !important;
 }
