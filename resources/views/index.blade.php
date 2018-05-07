@@ -194,9 +194,176 @@
 
   </div>
 </div>
+
+  <div class="container mb-5">
+    <form class="" action="{{route('paywithpaypal')}}" method="post">
+      {{ csrf_field() }}
+
+      <input type="email" name="payee" value="" placeholder="email">
+      <input type="text" name="amount" value="" placeholder="amount">
+      <button type="submit" name="button">Pay</button>
+    </form>
+  </div>
+
+
+  <div class="">
+    @if ($message = Session::get('success'))
+
+        <p>{!! $message !!}</p>
+    <?php Session::forget('success');?>
+    @endif
+
+@if ($message = Session::get('error'))
+
+        <p>{!! $message !!}</p>
+    <?php Session::forget('error');?>
+    @endif
+  </div>
+
+  <div id="paypal-button-container"></div>
+
 @endsection
 
 @section('script')
+  <script>/*
+          paypal.Button.render({
+
+              env: 'sandbox', // sandbox | production
+
+              // PayPal Client IDs - replace with your own
+              // Create a PayPal app: https://developer.paypal.com/developer/applications/create
+              client: {
+                  sandbox:    'AXQng1S57K1sm5SMXOdmlnKC_Yy72kVz4Ot4jvZK64wGIOWoxO-YwJMjBX5bNaEA6qFZE9McM0sB6iXz',
+                  production: 'AQ5HlYqMX5QOYKL0xc0FH_zqKzaXuUSLqapzohQjzUNMTa-cdII1EfQjkStI5vXPC8kTNwoymi5TFppq'
+              },
+
+              // Show the buyer a 'Pay Now' button in the checkout flow
+              commit: true,
+
+              // payment() is called when the button is clicked
+              payment: function(data, actions) {
+
+                  // Make a call to the REST api to create the payment
+                  return actions.payment.create({
+                      payment: {
+                        "transactions": [
+     {
+       "amount": {
+         "total": "0.01",
+         "currency": "USD",
+         "details": {
+           "subtotal": "0.01"
+         }
+       },
+       "description": "Uber",
+       "item_list": {
+         "items": [
+           {
+             "currency": "USD",
+             "name": "iPad",
+             "price": "0.01",
+             "quantity": "1"
+           }
+         ],
+         "shipping_address": {
+           "recipient_name": "Anna Gruneberg",
+           "line1": "Kathwarinenhof 1",
+           "city": "Flensburg",
+           "postal_code": "24939",
+           "country_code": "DE"
+         }
+       },
+       "payee": {
+         "email": "adisazhar123@gmail.com"
+       }
+     }
+   ]
+                      }
+                  });
+              },
+
+              // onAuthorize() is called when the buyer approves the payment
+              onAuthorize: function(data, actions) {
+
+                  // Make a call to the REST api to execute the payment
+                  return actions.payment.execute().then(function() {
+                      window.alert('Payment Complete!');
+                  });
+              },
+
+        onCancel: function(data, actions) {
+          alert("CANCEL")
+        }
+
+      }, '#paypal-button-container');*/
+
+
+      paypal.Button.render({
+
+          env: 'sandbox', // sandbox | production
+
+          // PayPal Client IDs - replace with your own
+          // Create a PayPal app: https://developer.paypal.com/developer/applications/create
+          client: {
+              sandbox:    'AXQng1S57K1sm5SMXOdmlnKC_Yy72kVz4Ot4jvZK64wGIOWoxO-YwJMjBX5bNaEA6qFZE9McM0sB6iXz',
+              production: 'AQ5HlYqMX5QOYKL0xc0FH_zqKzaXuUSLqapzohQjzUNMTa-cdII1EfQjkStI5vXPC8kTNwoymi5TFppq'
+          },
+
+          // Show the buyer a 'Pay Now' button in the checkout flow
+          commit: true,
+
+          // payment() is called when the button is clicked
+          payment: function(data, actions) {
+            //This is your own API's endpoint
+            var CREATE_PAYMENT_URL = 'create';
+
+
+
+            return paypal.request({
+                method: 'post',
+                url: CREATE_PAYMENT_URL,
+                headers: {
+                    'x-csrf-token': $('meta[name="csrf-token"]').attr('content')
+                }
+            }).then(function(data) {
+                return data.id;
+            });
+
+
+
+            //Hit the endpoint with a request
+            /*paypal.request.post(CREATE_PAYMENT_URL)
+                    .then(function(data) { resolve(data.id); })
+                    .catch(function(err) { reject(err); });
+*/
+          },
+
+          // onAuthorize() is called when the buyer approves the payment
+          onAuthorize: function(data) {
+
+//Your own API endpoint for executing an authorized payment
+    var EXECUTE_PAYMENT_URL ='execute';
+
+    //
+    paypal.request.post(EXECUTE_PAYMENT_URL,
+            { paymentID: data.paymentID, payerID: data.payerID }, {headers: {
+                'x-csrf-token': $('meta[name="csrf-token"]').attr('content')
+            }})
+            .then(function(data) { /* Say thanks to the user */
+              alert("THANK YOU")
+
+            })
+            .catch(function(err) { /* Deal with the error however you like */
+
+            });
+},
+
+      onCancel: function(data, actions) {
+      alert("CANCEL")
+      }
+
+      }, '#paypal-button-container');
+      </script>
 <script type="text/javascript">
 
   $(".btn-seeker").click(function(){

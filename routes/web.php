@@ -13,7 +13,7 @@
 
 Route::get('/', function () {
     return view('index');
-});
+})->name('index');
 
 Route::get('jobs','ProjectsController@index')->name('browse.jobs')->middleware('freelancer');
 Route::get('profile', 'UsersController@index')->name('view.profile');
@@ -29,3 +29,8 @@ Auth::routes();
 
 
 Route::get('check', 'Auth\LoginController@check')->name('check');
+Route::post('pay', 'PaymentController@payWithpaypal')->name('paywithpaypal');
+Route::get('status', 'PaymentController@getPaymentStatus')->name('status');
+Route::post('create', 'PaymentController@getCheckout')->name('create');
+Route::post('execute', 'PaymentController@getDone')->name('execute');
+Route::post('cancel', 'PaymentController@getCancel')->name('cancel');

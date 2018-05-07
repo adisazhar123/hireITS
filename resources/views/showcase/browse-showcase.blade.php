@@ -85,8 +85,8 @@
   width: 100%;
 }
 
-.card:hover .text {
-  opacity: 1;
+.card:hover .text{
+  opacity: 0.8;
 }
 
 .card:hover .middle{

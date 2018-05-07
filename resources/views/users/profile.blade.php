@@ -188,10 +188,10 @@
               <h2>Adis A.</h2>
               <h3>Software Engineer</h3>
 
-              <form action="{{route('test')}}" method="post">
+              <form action="#" method="post">
                 {{ csrf_field() }}
                 <input id="user-title" type="text" name="user-title" value="">
-                <input id="user-desc" name="user-desc" type="hidden">
+                <input id="user-desc" name="user-desc" type="hidden" value="">
                 <div class="editor">
 
                 </div>
@@ -199,8 +199,10 @@
 
               </form>
 
+              <div class="profile-details">
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+              </div>
             </div>
           </div>
           <div class="col-md-3">
@@ -383,7 +385,7 @@
     $(".editor").css("display","block");
     $(".ql-toolbar.ql-snow").css("display", "block");
     $(".profile-desc h3").css("display", "none");
-    $(".profile-desc p").css("display", "none");
+    $(".profile-desc .profile-details").css("display", "none");
 
   });
 
@@ -410,8 +412,16 @@
   $(".editor").css("display","none");
   $(".ql-toolbar.ql-snow").css("display", "none");
 
-  $("form").submit(function(){
+  $("form").submit(function(e){
+    e.preventDefault();
     var desc = $("#user-desc").val(quill.root.innerHTML)
+    $("input#user-title").css("display", "none");
+    $(".editor").css("display","none");
+    $(".ql-toolbar.ql-snow").css("display", "none");
+    $(".profile-desc h3").css("display", "block");
+    $(".profile-desc .profile-details").css("display", "block");
+    $(".profile-details").html(desc.val())
+
   });
 
 
