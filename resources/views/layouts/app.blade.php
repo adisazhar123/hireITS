@@ -31,8 +31,8 @@
   <body>
     @include('inc.navbar')
     <div class="container">
-      @include('inc.login-modal')
-      @include('inc.signup-modal')
+      @include('inc.login-signup-modal')
+
     </div>
     @yield('content')
     <div id="ohsnap"></div>
@@ -48,6 +48,7 @@
 
   <script type="text/javascript">
     $(".login").click(function(){
+      alert("hi")
       $('.login-modal').fadeIn().modal('show')
     });
     $(".signup").click(function(){
@@ -109,6 +110,20 @@
         }
       });
     });
+
+    $(document).ready(function(){
+  
+  $('ul.switcher li').click(function(){
+    var tab_id = $(this).attr('data-tab');
+
+    $('li').removeClass('active');
+    $('div.tab-pane').removeClass('active');
+
+    $(this).addClass('active');
+    $("#"+tab_id).addClass('active');
+  })
+
+})
 
   </script>
   @yield('script')

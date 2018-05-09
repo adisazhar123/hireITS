@@ -1,419 +1,393 @@
-@section('style')
-  <style media="screen">
-    .background-pic{
-      background-image: url('https://images.pexels.com/photos/735911/pexels-photo-735911.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');
-      height: 60%;
-      background-position: center;
-      background-repeat: no-repeat;
-      background-size: cover;
-      background-color: rgba(0,0,0,0);
-    }
-
-    .profile{
-      margin-top: -230px;
-      margin-bottom: 20px;
-      border-radius: 4px;
-    }
-
-    .profile-pic{
-      height: 240px;
-      margin-top: -20px;
-      background-color: white;
-      margin-left: 10px;
-      border: solid #E9E9E9;
-      border-width: 1px;
-    }
-
-    .profile-pic img{
-      border-radius: 5px;
-      display: block;
-      margin-left: auto;
-      margin-right: auto;
-      padding-top: 13px;
-      }
-
-    .profile-desc{
-      padding: 25px;
-    }
-
-    .info{
-      margin-top: 10px;
-      text-align: center;
-      line-height: 50%;
-    }
-
-    .profile-reputation{
-      border-left: solid #DEDEDE;
-      border-width: 1px;
-      padding: 30px;
-      height: 450px;
-      border-radius:5px;
-
-    }
-
-    .project{
-      margin-bottom: 20px;
-    }
-    .fa-star{
-      color: orange;
-    }
-
-    .profile-review{
-      background-color: #E9E9E9;
-      height: auto;
-    }
-
-    #department{
-      font-weight: bold;
-    }
-    #edit-profile{
-      width: 100%;
-    }
-    #user-title{
-      display: none;
-      margin-bottom: 20px;
-      width: 100%;
-    }
-    #user-desc{
-      display: none;
-      width: 100%;
-      max-height: 300px;
-    }
-
-    .profile-review .card{
-      border-radius: 0px;
-      width: 100%;
-    }
-
-    .profile-review{
-      border-radius:5px;
-      margin-bottom: 20px;
-      padding: 10px;
-    }
-
-    .profile-review .card{
-      border-left: none;
-      border-right: none;
-    }
-
-    #portfolio{
-      margin-bottom: 20px;
-    }
-
-    .portfolio{
-      background-color: white;
-      border-radius:5px;
-
-    }
-
-    .portfolio{
-      padding: 10px;
-    }
-
-    .skills{
-      border-radius: 5px;
-
-    }
-
-    .skills h3{
-      padding: 10px;
-    }
-
-    .skills .card{
-      border-radius: 0px;
-      width: 100%;
-      border-left: none;
-      border-right: none;
-    }
-
-    .showcase{
-      border-radius:5px;
-
-    }
-
-    .editor{
-      margin-bottom: 20px;
-    }
-
-    .editor.ql-container{
-      border: solid #7A7A7A;
-      border-top: none;
-      border-width: 1px;
-    }
-
-    .ql-toolbar.ql-snow{
-      border: solid #7A7A7A;
-      border-bottom: none;
-      border-width: 1px;
-    }
-
-
-    @media only screen and (max-width: 768px) {
-
-      .profile-pic{
-        margin-left: 0;
-      }
-      .profile-reputation{
-        height: auto;
-      }
-    }
-</style>
-
-
-@endsection
-
 @extends('layouts.app')
 
-@section('content')
-    <div class="background-pic">
-    </div>
-    <div class="container">
-      <div class="profile" style="background-color: white; height : auto; min-height: 400px">
-        <div class="row">
-          <div class="col-md-3">
-            <div class="profile-info">
-              <div class="profile-pic">
-                <img src="{{asset('adis.jpg')}}" style="height: 95%; width: 95%" alt="">
-              </div>
-            </div>
-                <div class="info">
-                  <p id="department">Informatics Department</p>
-                  <p>@adisazhar123</p>
-                  <p>Member since: 20-07-2017</p>
-                  <p>3 recommendations</p>
-                </div>
-          </div>
-          <div class="col-md-6">
-            <div class="profile-desc">
-              <h2>Adis A.</h2>
-              <h3>Software Engineer</h3>
-
-              <form action="{{route('test')}}" method="post">
-                {{ csrf_field() }}
-                <input id="user-title" type="text" name="user-title" value="">
-                <input id="user-desc" name="user-desc" type="hidden">
-                <div class="editor">
-
-                </div>
-                <button type="submit" id="save-profile" class="btn btn-primary">Save Profile</button>
-
-              </form>
+@section('style')
+<style>
 
 
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-            </div>
-          </div>
-          <div class="col-md-3">
-            <div class="profile-reputation" style="background-color: #F7F7F7;">
-              <button type="button" id="edit-profile" class="btn btn-primary" name="button">Edit Profile</button>
+.user-profile {
+  padding-bottom: 30px;
+}
 
-              <br><br><br><br><br>
-              <h3>$ 14 USD/hr</h3>
-              <i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i> 5 reviews
-              <br><br><br><br><br>
-               <p>5 Jobs Completed</p>
-               <p>5 On Time</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+.profile-header-background {
+  margin: -30px -30px 0 -30px;
+}
+.profile-header-background img {
+  width: 100%;
+  height: 310px;
+}
 
-      <section id="portfolio">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-12">
-              <div class="portfolio">
-                <h3>Portfolio</h3>
+.profile-info-left {
+  position: relative;
+  top: -92px;
+}
+.profile-info-left img.avatar {
+  border: 2px solid #fff;
+}
+.profile-info-left h2 {
+  font-family: "josefinslab-semibold";
+  margin-bottom: 30px;
+}
+.profile-info-left .section {
+  margin-top: 50px;
+}
+.profile-info-left .section h3 {
+  font-size: 1.1em;
+  font-weight: 700;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 10px;
+}
+.profile-info-left ul.list-social > li {
+  line-height: 2.3;
+}
+.profile-info-left ul.list-social > li i {
+  display: inline-block;
+  vertical-align: middle;
+  *vertical-align: auto;
+  *zoom: 1;
+  *display: inline;
+  position: relative;
+  top: 1px;
+  font-size: 16px;
+  min-width: 16px;
+  line-height: 1;
+}
+.profile-info-left ul.list-social > li a {
+  color: #696565;
+}
 
-                <div class="row">
-                  <div class="col-md-4">
-                    <div class="card project">
-                      <div class="card-body">
-                        project 1
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-4">
-                    <div class="card project">
-                      <div class="card-body">
-                        project 2
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-4">
-                    <div class="card project">
-                      <div class="card-body">
-                        project 3
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-4">
-                    <div class="card project">
-                      <div class="card-body">
-                        project 4
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-4">
-                    <div class="card project">
-                      <div class="card-body">
-                        project 5
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-4">
-                    <div class="card project">
-                      <div class="card-body">
-                        project 6
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+.profile-info-right .tab-content {
+  padding: 30px 0;
+  background-color: transparent;
+}
+@media screen and (max-width: 768px) {
+  .profile-info-right {
+    position: relative;
+    top: -70px;
+  }
+}
 
-      <section id="showcase">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-12">
-              <div class="portfolio">
-                <h3>Showcase</h3>
-                <div class="row">
-                  <div class="col-md-4">
-                    <div class="card project">
-                      <div class="card-body">
-                        project 1
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-4">
-                    <div class="card project">
-                      <div class="card-body">
-                        project 2
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-4">
-                    <div class="card project">
-                      <div class="card-body">
-                        project 3
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-4">
-                    <div class="card project">
-                      <div class="card-body">
-                        project 4
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-4">
-                    <div class="card project">
-                      <div class="card-body">
-                        project 5
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-4">
-                    <div class="card project">
-                      <div class="card-body">
-                        project 6
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+.user-follower,
+.user-following {
+  position: relative;
+  margin-bottom: 40px;
+}
+.user-follower img,
+.user-following img {
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+  width: 40px;
+}
+.user-follower a,
+.user-following a {
+  font-size: 1.1em;
+  line-height: 1;
+}
+.user-follower .username,
+.user-following .username {
+  font-size: 0.9em;
+  line-height: 1.5;
+}
+.user-follower .btn,
+.user-following .btn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  min-width: 92px;
+}
 
-      <section id="review">
-        <div class="container">
-          <br>
-          <div class="row">
-            <div class="col-md-9">
-              <div class="profile-review" style="background-color: white">
-                <h3>Reviews</h3>
+.btn-toggle-following {
+  background-color: #7bae16;
+  color: #fff;
+}
+.btn-toggle-following:hover {
+  background-color: #ef2020;
+  color: #fff;
+}
+.btn-toggle-following:hover span {
+  display: none;
+}
+.btn-toggle-following:hover:after {
+  content: 'Unfollow';
+  display: inline;
+}
+.btn-toggle-following:hover i:before {
+  content: '\f129';
+}
 
-                <div class="card">
-                  <div class="card-body">
-                    <i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i>
-                    <br><strong>Joni</strong>
-                    <p>This guy is awesome!! work is always on time</p>
-                  </div>
-                </div>
-                <div class="card">
-                  <div class="card-body">
-                    <i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i>
-                    <br><strong>Joni</strong> Project mobile app
-                    <p>This guy is awesome!! work is always on time</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-3">
-              <div class="skills" style="background-color: white; width: 100%; height:200px">
-                <h3>My Skills</h3>
-                <div class="card">
-                  <div class="card-body">
-                    <ul>
-                      <li>C++</li>
-                      <li>Photoshop</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
-      <br>
+/* list icons */
+.list-icons-demo li {
+  margin-bottom: 20px;
+  text-align: center;
+}
+.list-icons-demo li i {
+  font-size: 24px;
+}
+
+.list-icons-demo2 li {
+  margin-bottom: 10px;
+}
+
+.activity-item {
+  overflow: visible;
+  position: relative;
+  margin: 15px 0;
+  border-top: 1px dashed #ccc;
+  padding-top: 15px;
+}
+.activity-item:first-child {
+  border-top: none;
+}
+.activity-item .avatar {
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+  width: 32px;
+}
+.activity-item > i {
+  font-size: 18px;
+  line-height: 1;
+}
+.activity-item .media-body {
+  position: relative;
+}
+.activity-item .activity-title {
+  margin-bottom: 0;
+  line-height: 1.3;
+}
+.activity-item .activity-attachment {
+  padding-top: 20px;
+}
+.activity-item .well {
+  -moz-border-radius: 0;
+  -webkit-border-radius: 0;
+  border-radius: 0;
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  border: none;
+  border-left: 2px solid #cfcfcf;
+  background: #fff;
+  margin-left: 20px;
+  font-size: 0.85em;
+}
+.activity-item .thumbnail {
+  display: inline;
+  border: none;
+  padding: 0;
+}
+.activity-item .thumbnail img {
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+  width: auto;
+  margin: 0;
+}
+.activity-item .activity-actions {
+  position: absolute;
+  top: 15px;
+  right: 0;
+}
+.activity-item .activity-actions .btn i {
+  margin: 0;
+}
+.activity-item .activity-actions .dropdown-menu > li > a {
+  font-size: 0.9em;
+  padding: 3px 10px;
+}
+.activity-item + .btn {
+  margin-bottom: 15px;
+}
+
+
+.nav-tabs > li > a {
+  -moz-border-radius-topleft: 2px;
+  -webkit-border-top-left-radius: 2px;
+  border-top-left-radius: 2px;
+  -moz-border-radius-topright: 2px;
+  -webkit-border-top-right-radius: 2px;
+  border-top-right-radius: 2px;
+}
+.nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
+  cursor: pointer;
+}
+
+.nav-pills > li > a {
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+}
+.nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
+  background-color: #1688ae;
+}
+
+.nav-tabs.tabs-iconized > li a,
+.nav-pills.tabs-iconized > li a {
+  padding-top: 0;
+  padding-bottom: 5px;
+}
+.nav-tabs.tabs-iconized > li i,
+.nav-pills.tabs-iconized > li i {
+  position: relative;
+  margin-right: 3px;
+  top: 4px;
+  font-size: 24px;
+}
+
+.tab-content {
+  padding: 30px 15px 15px 15px;
+  background-color: #fff;
+}
+
+.nav.nav-tabs-custom-colored > li > a {
+  border-color: #ccc;
+  border-bottom: transparent;
+}
+.nav.nav-tabs-custom-colored > li > a:hover, .nav.nav-tabs-custom-colored > li > a:focus {
+  background-color: #1688ae;
+}
+
+.nav-tabs.nav-tabs-custom-colored {
+  border-bottom-color: #1688ae;
+}
+.nav-tabs.nav-tabs-custom-colored > li {
+  z-index: 0;
+  margin-bottom: 0;
+  background-color: #fff;
+}
+.nav-tabs.nav-tabs-custom-colored > li > a {
+  -moz-border-radius-topleft: 2px;
+  -webkit-border-top-left-radius: 2px;
+  border-top-left-radius: 2px;
+  -moz-border-radius-topright: 2px;
+  -webkit-border-top-right-radius: 2px;
+  border-top-right-radius: 2px;
+  color: #696565;
+  margin-right: 0;
+}
+.nav-tabs.nav-tabs-custom-colored > li > a:hover, .nav-tabs.nav-tabs-custom-colored > li > a:focus {
+  color: #fff;
+  border-color: #1688ae;
+}
+.nav-tabs.nav-tabs-custom-colored > li.active > a, .nav-tabs.nav-tabs-custom-colored > li.active > a:hover, .nav-tabs.nav-tabs-custom-colored > li.active > a:focus {
+  color: #fff;
+  background-color: #1688ae;
+  border-color: #1688ae;
+  border-bottom: transparent;
+}
+.nav-tabs > li.active {
+  z-index: 1;
+}
+
+.nav-pills-custom-minimal {
+  border-bottom: 1px solid #ccc;
+}
+.nav-pills-custom-minimal > li > a {
+  -moz-border-radius: 0;
+  -webkit-border-radius: 0;
+  border-radius: 0;
+  padding: 10px;
+  border-top: 4px solid transparent;
+  color: #696565;
+}
+.nav-pills-custom-minimal > li > a:hover, .nav-pills-custom-minimal > li > a:focus {
+  background-color: transparent;
+  color: #4f4c4c;
+}
+.nav-pills-custom-minimal > li.active > a, .nav-pills-custom-minimal > li.active > a:hover, .nav-pills-custom-minimal > li.active > a:focus {
+  background-color: transparent;
+  border-top-color: #94c632;
+  color: #696565;
+}
+.nav-pills-custom-minimal > li + li {
+  margin-left: 30px;
+}
+@media screen and (max-width: 480px) {
+  .nav-pills-custom-minimal > li + li {
+    margin-left: 0;
+  }
+}
+.nav-pills-custom-minimal.custom-minimal-bottom > li a {
+  border-top: none;
+  border-bottom: 4px solid transparent;
+}
+.nav-pills-custom-minimal.custom-minimal-bottom > li.active > a, .nav-pills-custom-minimal.custom-minimal-bottom > li.active > a:hover, .nav-pills-custom-minimal.custom-minimal-bottom > li.active > a:focus {
+  border-bottom-color: #94c632;
+}
+</style>
+
 @endsection
 
-@section('script')
-  <script type="text/javascript">
-  $("#edit-profile").click(function(){
-    $("input#user-title").css("display", "block");
-    $(".editor").css("display","block");
-    $(".ql-toolbar.ql-snow").css("display", "block");
-    $(".profile-desc h3").css("display", "none");
-    $(".profile-desc p").css("display", "none");
-
-  });
-
-  var toolbarOptions = [
-    ['bold', 'italic', 'underline'],
-    [{ 'list': 'ordered'}, { 'list': 'bullet' }]
-  ];
-
-  var formats = [
-  'bold',
-  'italic',
-  'underline',
-  'list',
-  ];
-
-  var quill = new Quill('.editor', {
-    modules: {
-      toolbar: toolbarOptions
-    },
-    theme: 'snow',
-    formats: formats
-  });
-
-  $(".editor").css("display","none");
-  $(".ql-toolbar.ql-snow").css("display", "none");
-
-  $("form").submit(function(){
-    var desc = $("#user-desc").val(quill.root.innerHTML)
-  });
-
-
-  </script>
+@section('content')
+<div class="container">
+    <div class="user-profile">
+        <div class="profile-header-background"><img src="http://demo.thedevelovers.com/dashboard/queenadmin-1.2/assets/img/city.jpg" alt="Profile Header Background"></div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="profile-info-left">
+                    <div class="text-center">
+                        <img src="http://bootdey.com/img/Content/avatar/avatar1.png" alt="Avatar" class="avatar img-circle">
+                        <h2>Jack Bay</h2>
+                    </div>
+                    <div class="action-buttons">
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <a href="#" class="btn btn-success btn-block"><i class="fa fa-plus-round"></i> Follow</a>
+                            </div>
+                            <div class="col-xs-6">
+                                <a href="#" class="btn btn-primary btn-block"><i class="fa fa-android-mail"></i> Message</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="section">
+                        <h3>About Me</h3>
+                        <p>Energistically administrate 24/7 portals and enabled catalysts for change. Objectively revolutionize client-centered e-commerce via covalent scenarios. Continually envisioneer.</p>
+                    </div>
+                    <div class="section">
+                        <h3>Statistics</h3>
+                        <p><span class="badge">332</span> Following</p>
+                        <p><span class="badge">124</span> Followers</p>
+                        <p><span class="badge">620</span> Likes</p>
+                    </div>
+                    <div class="section">
+                        <h3>Social</h3>
+                        <ul class="list-unstyled list-social">
+                            <li><a href="#"><i class="fa fa-twitter"></i> @jackbay</a></li>
+                            <li><a href="#"><i class="fa fa-facebook"></i> Jack Bay</a></li>
+                            <li><a href="#"><i class="fa fa-dribbble"></i> jackdribs</a></li>
+                            <li><a href="#"><i class="fa fa-linkedin"></i> Jack Bay</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="profile-info-right">
+                    <ul class="nav nav-pills nav-pills-custom-minimal custom-minimal-bottom">
+                        <li class="active"><a href="#activities" data-toggle="tab">ACTIVITIES</a></li>
+                        <li><a href="#followers" data-toggle="tab">FOLLOWERS</a></li>
+                        <li><a href="#following" data-toggle="tab">FOLLOWING</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <!-- activities -->
+                        <div class="tab-pane fade in active" id="activities">
+                           <h1>TESSS</h1>
+                        </div>
+                        <!-- end activities -->
+                        <!-- followers -->
+                        <div class="tab-pane fade" id="followers">
+                            <h1>TESSS salaa</h1>
+                        </div>
+                        <!-- end followers -->
+                        <!-- following -->
+                        <div class="tab-pane fade" id="following">
+                            <h1>TESSS jfnkjnk</h1>
+                        </div>
+                        <!-- end following -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 @endsection

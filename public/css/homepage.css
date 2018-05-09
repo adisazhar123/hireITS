@@ -1,3 +1,4 @@
+
 .laptop {
 	-webkit-perspective: 1800px;
 	-moz-perspective: 1800px;
@@ -212,6 +213,18 @@
 
 /* button div */
 #buttons {
+  /*padding-top: 235px;*/
+  text-align: center;
+  align-items: center;
+  position: relative;
+}
+.backgg h4{
+  text-align: center;
+  align-items: center;
+  position: relative;
+}
+
+.backgg h2{
   padding-top: 235px;
   text-align: center;
   align-items: center;
@@ -271,9 +284,10 @@
 .howto{
   padding: 2em;
   background: #FFFFFF;
+  min-height: 100vh;
 }
 
-.howto h2 {
+.howto h2{
   text-align: center;
   text-rendering: optimizeLegibility;
   font-size: 3em;
@@ -496,3 +510,17 @@ input[type="checkbox"]:checked + label::before,
   color: #FFF !important;
   outline:none;
 }
+
+  .info img{
+    margin-right: 10px;
+    opacity: 0.5;
+  }
+
+  .info{
+    padding-top: 15px;
+    margin-bottom: 15px;
+    color: #2242a4;
+  }
+  i{
+    color: #243f8a;
+  }

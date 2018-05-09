@@ -7,75 +7,8 @@
 
 
 @section('content')
-
-
 <!-- Modal -->
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content modal-body login-container-wrapper clearfix">
-      <div class="">
-        <div class="">
-			<ul class="switcher clearfix">
-				<li class="first logo active" data-tab="login">					
-						<a>Login</a>			
-				</li>
-				<li class="second logo" data-tab="sign_up">
-						<a>Sign Up</a>	
-				</li>
-			</ul>
-			<div class="tab-content">
-				<div class="tab-pane active" id="login">
-					<form class="form-horizontal login-form">
-						<div class="form-group relative">
-							<input class="form-control input-lg" id="login_username" placeholder="E-mail Address" required="" type="email"> <i class="fa fa-user"></i>
-						</div>
-						<div class="form-group relative">
-							<input class="form-control input-lg" id="login_password" placeholder="Password" required="" type="password"> <i class="fa fa-lock"></i>
-						</div>
-						<div class="form-group">
-							<button class="btn btn-success btn-lg btn-block" type="submit">Login</button>
-						</div>
-						<div class="checkbox checkbox-success">
-							<input id="stay-sign" type="checkbox">
-              <label for="stay-sign">Stay signed in</label>
-						</div>
-            <hr />
-						<div class="text-center">
-							<label><a href="#">Forgot your password?</a></label>
-						</div>
-					</form>
-				</div>
-				<div class="tab-pane" id="sign_up">
-					<form class="form-horizontal login-form">
-						<div class="form-group relative">
-							<input class="form-control input-lg" id="login_username" placeholder="E-mail Address" required="" type="email"> <i class="fa fa-user"></i>
-						</div>
-						<div class="form-group relative">
-							<input class="form-control input-lg" id="login_password" placeholder="Password" required="" type="password"> <i class="fa fa-lock"></i>
-						</div>
-						<div class="form-group relative">
-							<input class="form-control input-lg" id="login_password" placeholder="Repeat Password" required="" type="password"> <i class="fa fa-lock"></i>
-						</div>
-						<div class="form-group">
-							<button class="btn btn-success btn-lg btn-block" type="submit">Sign Up</button>
-						</div>
-						<div class="checkbox checkbox-success">
-							<input id="agree-terms" type="checkbox">
-              <label for="agree-terms"> Agree our terms</label>
-						</div>
-						<hr>
-						<div class="text-center">
-							<label><a href="#">Already Member?</a></label>
-						</div>
-					</form>
-				</div>
-			</div>
-		</div>
-      </div>
 
-    </div>
-  </div>
-</div>
 
 <div class="backgg">
   	<div class="laptop">
@@ -88,18 +21,20 @@
 		</div>
 		<div class="bottom"></div>
 	</div>
-	<div id="buttons">
-    	<a href="#" class="butn green">I'm a job maker</a>
-		<a href="#" class="butn orange">I'm a job seeker</a>
-	</div>
+	<h2>What's hireITS?</h2>
+	<h4>hireITS adalah website yang blablablablablablablablab untuk anak ITS yang ingin mencari uang hajajaj</h4>
 </div>
 
 <div class="howto">
 	<h2>How to use hireITS?</h2>
 	<div class="">
       <div class="info">
-          <i class="fa fa-suitcase" val="maker" style="font-size:60px;" data-toggle="tooltop" title="Job Maker"></i>
-          <i class="fa fa-user" val="seeker" style="font-size:60px;" data-toggle="tooltop" title="Students"></i>
+      	<div id="buttons">
+    		<a class="butn green" val="maker" >I'm a job maker</a>
+			<a class="butn orange" val="seeker">I'm a job seeker</a>
+		</div>
+         <!--  <i class="" val="maker" style="font-size:60px;" data-toggle="tooltop" title="Job Maker"></i>
+          <i class="fa fa-user" val="seeker" style="font-size:60px;" data-toggle="tooltop" title="Students"></i> -->
       </div>
     </div>
     <div class="row">
@@ -120,8 +55,8 @@
       <div class="col-md-4 seeker" style="display:none">
         <div class="square">
         	<h3>Search</h3>
-        	<!-- <img class="fa fa-search" aria-hidden="true" src="followers.png" alt="" width="170"> -->
-          <i class="fa fa-search" aria-hidden="true" style="font-size:89px;"></i>
+        	<img class="fa fa-search" aria-hidden="true" src="search.png" alt="" width="170">
+          <!-- <i class="fa fa-search" aria-hidden="true" style="font-size:89px;"></i> -->
           <p>Browse freely through many projects available accustomed to your likings.</p>
         </div>
       </div>
@@ -143,39 +78,27 @@
 
   $('[data-toggle="tooltip"]').tooltip();
 
-  $(".info i.fa-suitcase").css('opacity','1');
+  $(".info a.green").css('opacity','1');
 
-  $('.info i').click(function(){
+  $('.info a').click(function(){
   var role = $(this).attr('val');
 
   if(role == "seeker"){
-    $(".info i.fa-user").css('opacity','1');
-    $(".info i.fa-suitcase").css('opacity','0.5');
-    $(".how-to-use .maker").css('display','none');
-    $(".how-to-use .seeker").css('display','block');
+    $(".info a.orange").css('opacity','1');
+    $(".info a.green").css('opacity','0.5');
+    $(".howto .maker").css('display','none');
+    $(".howto .seeker").css('display','block');
 
   }else{
-    $(".info i.fa-user").css('opacity','0.5');
-    $(".info i.fa-suitcase").css('opacity','1');
-    $(".how-to-use .maker").css('display','block');
-    $(".how-to-use .seeker").css('display','none');
+    $(".info a.orange").css('opacity','0.5');
+    $(".info a.green").css('opacity','1');
+    $(".howto .maker").css('display','block');
+    $(".howto .seeker").css('display','none');
 
   }
   });
 
-$(document).ready(function(){
-	
-	$('ul.switcher li').click(function(){
-		var tab_id = $(this).attr('data-tab');
 
-		$('li').removeClass('active');
-    $('div.tab-pane').removeClass('active');
-
-		$(this).addClass('active');
-		$("#"+tab_id).addClass('active');
-	})
-
-})
 </script>
 @endsection
 

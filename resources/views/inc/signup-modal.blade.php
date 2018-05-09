@@ -14,7 +14,7 @@
 
           <div class="alert alert-success" role="alert" style="display: none">
             Register successful. Please login to complete profile.
-    </div>
+      </div>
           <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
 
               <div class="col-md-12">
