@@ -1,5 +1,4 @@
 nav.main {
-  background-color: #FFF;
   min-height: 65px;
   z-index: 1;
 }
@@ -30,7 +29,8 @@ a.nav-link:hover {
 
 .navbar-brand {
   transform: scale(1.5);
-  padding-right: 2em;
+  margin-left : 25px;
+  margin-right : 2em;
   color: #6da768 !important;
 }
 
@@ -74,7 +74,6 @@ nav form .btn-search:hover {
 }
 
 nav.navbar{
-  background-color: #1d2326;
   padding-bottom: 0;
   padding-top: 0;
 }
