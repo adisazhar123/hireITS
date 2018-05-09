@@ -12,8 +12,8 @@ class UsersController extends Controller
       return view('users.profile');
     }
 
-    public function test(){
-      return $_POST["user-desc"];
+    public function test(Request $request){
+      return $request;
     }
 
     /**

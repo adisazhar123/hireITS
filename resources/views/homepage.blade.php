@@ -96,10 +96,8 @@
     $(".howto .seeker").css('display','none');
 
   }
-  });
+});
 
 
 </script>
 @endsection
-
-

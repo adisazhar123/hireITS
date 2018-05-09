@@ -6,6 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Freelancer extends Model
 {
-    protected $table = "tes";
+    protected $table = "freelancer";
+    protected $primaryKey = "freelancer_id";
     public $timestamps = false;
+
+    public function portfolio(){
+      return $this->hasMany('App\Portfolio', 'freelancer_id');
+    }
 }

@@ -11,14 +11,14 @@ nav.main {
   text-transform: uppercase;
 }
 
-.btn-primary{
+.btn-primary {
   background-color: #D66C44;
   border: none;
   color: #FFFFFF !important;
   font-weight: bold;
 }
 
-.btn-primary:hover{
+.btn-primary:hover {
   background-color: #c95b30;
 }
 
@@ -29,8 +29,8 @@ a.nav-link:hover {
 
 .navbar-brand {
   transform: scale(1.5);
-  margin-left : 25px;
-  margin-right : 2em;
+  margin-left: 25px;
+  margin-right: 2em;
   color: #6da768 !important;
 }
 
@@ -49,20 +49,17 @@ nav form .btn-search:hover {
   align-content: right;
 }
 
-.dropdown-menu a{
+.dropdown-menu a {
   color: #FFFFFF !important;
 }
 
-.dropdown-menu a:hover{
+.dropdown-menu a:hover {
   background-color: #ECB021 !important;
 }
 
 @media only screen and (max-width: 990px) {
   a.nav-link:hover {
     transform: scale(1);
-  }
-  .navbar-brand {
-    padding-left: 15px;
   }
   nav input {
     width: 100% !important;
@@ -73,12 +70,13 @@ nav form .btn-search:hover {
   }
 }
 
-nav.navbar{
+nav.navbar {
+  background-color: #1d2326;
   padding-bottom: 0;
   padding-top: 0;
 }
 
-a.navbar-brand{
+a.navbar-brand {
   color: #6da768 !important;
   font-size: 1.75em;
 }
@@ -87,8 +85,13 @@ a.navbar-brand{
   display: block;
 }
 
-.dropdown-header{
+.dropdown-header {
   font-size: 1em;
+}
+
+button.navbar-toggler {
+  background-color: #FF983C !important;
+  border-color: white;
 }
 
 @media only screen and (max-width: 990px) {
@@ -96,7 +99,7 @@ a.navbar-brand{
     transform: scale(1);
   }
   .navbar-brand {
-    padding-left: 15px;
+    padding-left: 20px;
   }
   nav input {
     width: 100% !important;
@@ -105,8 +108,14 @@ a.navbar-brand{
   nav form button {
     width: 100% !important;
   }
+  nav .btn {
+    margin-bottom: 10px;
+  }
+  #login-btn {
+    width: 100%;
+  }
 }
 
 .modal-backdrop.show {
-    opacity: 0 !important;
+  opacity: 0 !important;
 }
