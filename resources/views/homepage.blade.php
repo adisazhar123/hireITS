@@ -195,7 +195,7 @@
     $(".howto .seeker").css('display','none');
 
   }
-  });
+});
 
 $(document).ready(function(){
 

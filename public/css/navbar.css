@@ -61,9 +61,6 @@ nav form .btn-search:hover {
   a.nav-link:hover {
     transform: scale(1);
   }
-  .navbar-brand {
-    padding-left: 15px;
-  }
   nav input {
     width: 100% !important;
     margin-bottom: 10px;
@@ -92,8 +89,9 @@ a.navbar-brand {
   font-size: 1em;
 }
 
-.navbar-toggler {
-  color: white !important;
+button.navbar-toggler {
+  background-color: #FF983C !important;
+  border-color: white;
 }
 
 @media only screen and (max-width: 990px) {
@@ -101,7 +99,7 @@ a.navbar-brand {
     transform: scale(1);
   }
   .navbar-brand {
-    padding-left: 15px;
+    padding-left: 20px;
   }
   nav input {
     width: 100% !important;
@@ -109,6 +107,9 @@ a.navbar-brand {
   }
   nav form button {
     width: 100% !important;
+  }
+  nav .btn {
+    margin-bottom: 10px;
   }
 }
 
