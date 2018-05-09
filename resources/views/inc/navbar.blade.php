@@ -1,6 +1,6 @@
 
-<nav class="main navbar navbar-expand-lg navbar-light">
-<div class="container">
+<nav class="main navbar navbar-expand-lg navbar-light" >
+    <div class="container">
        <a class="navbar-brand" href="{{url('/')}}">hire<strong>ITS</strong></a>
        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
          <span class="navbar-toggler-icon"></span>
@@ -46,47 +46,15 @@
                </form>
              </li>
            @else
-
-            <!--  <li class="nav-item">
-                <a class="nav-link login" href="#">Login</a>
+             <li class="nav-item">
+                <button type="button" id="login-btn" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+             Login
+             </button>
               </li>
-              <li class="nav-item">
-                 <a class="nav-link signup" href="#">Sign Up</a>
-               </li> -->
            @endif
-           <li class="nav-item">
-              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
-Login
-</button>
-            </li>
-
 
          </ul>
 
        </div>
-    </div>
-   </nav>
-
-
-<!--
-<nav class="navbar navbar-light">
-  <div class="container">
-    <a class="navbar-brand" href="{{url('/')}}">hire<strong>ITS</strong></a>
-
-    <a class="dropdown-item" href="#">How It Works</a>
-
-    <div class="dropdown">
-      <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Find Work
-      </a>
-      <div class="dropdown-menu">
-        <h2 class="dropdown-header">Find Work</h2>
-        <a class="dropdown-item" href="#">Browse Projects</a>
-        <a class="dropdown-item" href="#">Browse Categories</a>
       </div>
-    </div>
-
-
-  </div>
-
-
-</nav> -->
+   </nav>

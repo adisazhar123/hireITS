@@ -221,7 +221,6 @@ i{
   <script>
 
       paypal.Button.render({
-
           env: 'sandbox', // sandbox | production
 
           // PayPal Client IDs - replace with your own
@@ -239,8 +238,6 @@ i{
             //This is your own API's endpoint
             var CREATE_PAYMENT_URL = 'create';
 
-
-
             return paypal.request({
                 method: 'post',
                 url: CREATE_PAYMENT_URL,
@@ -251,34 +248,27 @@ i{
                 return data.id;
             });
 
-
-
-            //Hit the endpoint with a request
-            /*paypal.request.post(CREATE_PAYMENT_URL)
-                    .then(function(data) { resolve(data.id); })
-                    .catch(function(err) { reject(err); });
-*/
           },
 
           // onAuthorize() is called when the buyer approves the payment
           onAuthorize: function(data) {
 
-//Your own API endpoint for executing an authorized payment
-    var EXECUTE_PAYMENT_URL ='execute';
+          //Your own API endpoint for executing an authorized payment
+          var EXECUTE_PAYMENT_URL ='execute';
 
-    //
-    paypal.request.post(EXECUTE_PAYMENT_URL,
-            { paymentID: data.paymentID, payerID: data.payerID }, {headers: {
-                'x-csrf-token': $('meta[name="csrf-token"]').attr('content')
-            }})
+          //
+          paypal.request.post(EXECUTE_PAYMENT_URL,{ paymentID: data.paymentID, payerID: data.payerID },
+            {headers: {
+                      'x-csrf-token': $('meta[name="csrf-token"]').attr('content')
+                  }})
             .then(function(data) { /* Say thanks to the user */
-              alert("THANK YOU")
+                    alert("THANK YOU")
 
-            })
-            .catch(function(err) { /* Deal with the error however you like */
+          })
+          .catch(function(err) { /* Deal with the error however you like */
 
-            });
-},
+        });
+      },
 
       onCancel: function(data, actions) {
       alert("CANCEL")

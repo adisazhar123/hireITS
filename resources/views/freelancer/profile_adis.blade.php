@@ -188,10 +188,10 @@
               <h2>Adis A.</h2>
               <h3>Software Engineer</h3>
 
-              <form action="#" method="post">
+              <form action="{{route('test')}}" method="post">
                 {{ csrf_field() }}
                 <input id="user-title" type="text" name="user-title" value="">
-                <input id="user-desc" name="user-desc" type="hidden" value="">
+                <input id="user-desc" name="user-desc" type="hidden">
                 <div class="editor">
 
                 </div>
@@ -199,10 +199,8 @@
 
               </form>
 
-              <div class="profile-details">
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 
-              </div>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
             </div>
           </div>
           <div class="col-md-3">
@@ -228,62 +226,6 @@
               <div class="portfolio">
                 <h3>Portfolio</h3>
 
-                <div class="row">
-                  <div class="col-md-4">
-                    <div class="card project">
-                      <div class="card-body">
-                        project 1
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-4">
-                    <div class="card project">
-                      <div class="card-body">
-                        project 2
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-4">
-                    <div class="card project">
-                      <div class="card-body">
-                        project 3
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-4">
-                    <div class="card project">
-                      <div class="card-body">
-                        project 4
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-4">
-                    <div class="card project">
-                      <div class="card-body">
-                        project 5
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-4">
-                    <div class="card project">
-                      <div class="card-body">
-                        project 6
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="showcase">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-12">
-              <div class="portfolio">
-                <h3>Showcase</h3>
                 <div class="row">
                   <div class="col-md-4">
                     <div class="card project">
@@ -385,7 +327,7 @@
     $(".editor").css("display","block");
     $(".ql-toolbar.ql-snow").css("display", "block");
     $(".profile-desc h3").css("display", "none");
-    $(".profile-desc .profile-details").css("display", "none");
+    $(".profile-desc p").css("display", "none");
 
   });
 
@@ -412,16 +354,8 @@
   $(".editor").css("display","none");
   $(".ql-toolbar.ql-snow").css("display", "none");
 
-  $("form").submit(function(e){
-    e.preventDefault();
+  $("form").submit(function(){
     var desc = $("#user-desc").val(quill.root.innerHTML)
-    $("input#user-title").css("display", "none");
-    $(".editor").css("display","none");
-    $(".ql-toolbar.ql-snow").css("display", "none");
-    $(".profile-desc h3").css("display", "block");
-    $(".profile-desc .profile-details").css("display", "block");
-    $(".profile-details").html(desc.val())
-
   });
 
 

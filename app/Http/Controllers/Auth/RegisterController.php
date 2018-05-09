@@ -56,10 +56,11 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\User
      */
+
     protected function create(array $data)
     {
         return User::create([
-            'name' => $data['name'],
+            'username' => $data['username'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
             'role'=> $data['role'],
@@ -69,22 +70,23 @@ class RegisterController extends Controller
     public function register(Request $request)
     {
         $validator = Validator::make($request->all(), [
-             'name' => 'required|max:255',
+             'username' => 'required|max:50|unique:users',
              'email' => 'required|email|max:255|unique:users',
              'password' => 'required|min:6|confirmed',
          ]);
 
 
         if ($validator->passes()) {
-          if ($request->role === "freelancer"){
-            $freelancer = new Freelancer;
-            $freelancer->id = "5";
-            if ($freelancer->save())
-              return response()->json(['success' => '1']);
-          }
-          else{
-            
-          }
+          event(new Registered($user = $this->create($request->all())));
+
+          //$this->guard()->login($user);
+
+          $freelancer = new Freelancer();
+          $freelancer->freelancer_id = $user->id;
+          $freelancer->save();
+
+          return response()->json(['success' => "Registration succesful"]);
+
 
         }
 

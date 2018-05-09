@@ -9,9 +9,13 @@
       <div class="modal-body">
         <form class="form-horizontal" method="POST" action="#" id="login-form">
             {{ csrf_field() }}
-
             <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+              <div class="alert alert-danger" role="alert" style="display: none">
 
+              </div>
+              <div class="alert alert-success" role="alert" style="display: none">
+
+              </div>
                 <div class="col-md-12">
                     <input placeholder="Email" id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autofocus>
 

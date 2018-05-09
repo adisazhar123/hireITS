@@ -11,23 +11,29 @@
 |
 */
 
+Auth::routes();
+
+
 Route::get('/', function () {
     return view('homepage');
 });
 
-Route::get('jobs','ProjectsController@index')->name('browse.jobs')->middleware('freelancer');
-Route::get('profile', 'UsersController@index')->name('view.profile');
+//freelancer
+Route::get('jobs','ProjectsController@index')->name('browse.jobs');
+Route::get('/freelancer', 'FreelancerController@index')->name('view.freelancer.profile');
 Route::get('projects', 'ProjectsController@viewProject')->name('view.project');
 Route::get('showcase', 'ProjectsController@browseShowcase')->name('browse.showcase');
-Route::post('test', 'UsersController@test')->name('test');
+Route::get('freelancer/getprofile', 'FreelancerController@getProfile')->name('get.freelancer.profile');
+Route::put('freelancer/updateProfile', 'FreelancerController@updateProfile')->name('update.freelancer.profile');
+Route::get('/portfolio', 'FreelancerController@portfolio');
+Route::post('/addPortfolio', 'FreelancerController@addPortfolio')->name('add.portfolio');
+Route::delete('/deletePortfolio/{id}', 'FreelancerController@deletePortfolio')->name('delete.portfolio');
+Route::get('/getSkills', 'FreelancerController@getSkills')->name('search.skills');
 
-Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+//employer
 
-Auth::routes();
-
-
+//payment
 Route::get('check', 'Auth\LoginController@check')->name('check');
 Route::post('pay', 'PaymentController@payWithpaypal')->name('paywithpaypal');
 Route::get('status', 'PaymentController@getPaymentStatus')->name('status');
