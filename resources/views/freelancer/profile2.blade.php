@@ -400,7 +400,7 @@
         </div>
       </section>
 
-      <section id="showcase">
+     <!--  <section id="showcase">
         <div class="container">
           <div class="row">
             <div class="col-md-12">
@@ -454,7 +454,7 @@
             </div>
           </div>
         </div>
-      </section>
+      </section> -->
 
       <section id="review">
         <div class="container">

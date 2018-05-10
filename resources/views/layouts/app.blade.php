@@ -5,8 +5,8 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{config('app.name','hireITS')}}</title>
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/navbar.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/homepage.css') }}" rel="stylesheet">
+   <!--  <link href="{{ asset('css/navbar.css') }}" rel="stylesheet"> -->
+    <!-- <link href="{{ asset('css/homepage.css') }}" rel="stylesheet"> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="//cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
     <link href="//cdn.quilljs.com/1.3.6/quill.bubble.css" rel="stylesheet">
