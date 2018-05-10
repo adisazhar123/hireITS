@@ -29,6 +29,7 @@ Route::get('/portfolio', 'FreelancerController@portfolio');
 Route::post('/addPortfolio', 'FreelancerController@addPortfolio')->name('add.portfolio');
 Route::delete('/deletePortfolio/{id}', 'FreelancerController@deletePortfolio')->name('delete.portfolio');
 Route::get('/getSkills', 'FreelancerController@getSkills')->name('search.skills');
+Route::post('/bid-project', 'FreelancerController@bidProject')->name('bid.project');
 
 //employer
 Route::get('post-project', 'EmployerController@postProject')->name('post.project.page');

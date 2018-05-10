@@ -115,7 +115,7 @@ img {max-width: 100%;}
       }
       .text2{
         transition: .5s ease;
-        opacity: 1;
+        opacity: 0;
         position: absolute;
         top: 40%;
         left: 50%;
@@ -229,6 +229,33 @@ img {max-width: 100%;}
   border-left: solid #E9E9E9;
   border-width: 1px;
 }
+.text2:hover{
+  cursor: pointer;
+}
+
+.profile-pic:hover .text2{
+  opacity: 1;
+}
+
+#first-tab{
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+#second-tab{
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+#third-tab{
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+#tabs{
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
 
 @media only screen and (max-width: 990px) {
   .divider{
@@ -264,7 +291,7 @@ img {max-width: 100%;}
    <div class="profile-pic">
           <img src="{{asset('followers.png')}}" alt="">
           <div class="text2">
-            <i class="fa fa-wrench" style="font-size:24px"></i>
+            <i class="fa fa-wrench" style="font-size:24px;"></i>
           </div>
         </div>
         <div class="info">
@@ -447,6 +474,8 @@ img {max-width: 100%;}
 
     </section>
   </div>
+  <input type="file" name="upload_dp" id="upload_dp" value="" style="opacity:0">
+
 @endsection
 
 @section('script')
@@ -648,6 +677,11 @@ $('#search_skills').on('select2:unselect', function (e) {
 $(".new-skills").click(function(){
   $("#skills-form").css("opacity","1")
 })
+
+$(".text2").click(function(){
+ $("#upload_dp").trigger('click');
+});
+
 
 </script>
 

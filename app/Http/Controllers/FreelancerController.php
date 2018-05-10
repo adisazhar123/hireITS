@@ -7,6 +7,8 @@ use Auth;
 use DB;
 use App\Portfolio;
 use App\Skills;
+use App\Job;
+use App\Bid;
 use Illuminate\Http\Request;
 
 class FreelancerController extends Controller
@@ -88,6 +90,26 @@ class FreelancerController extends Controller
 
 
      return response()->json($tags);
- }
+   }
+
+    public function bidProject(Request $request){
+      $bid = Bid::where('job_id', $request->job_id)->where('freelancer_id', Auth::user()->id)->get();
+      if (!$bid->isNotEmpty()){
+        $bid = new Bid;
+        $job_id = $request->job_id;
+        $bid->job_id = $job_id;
+        $bid->freelancer_id = Auth::user()->id;
+        $bid->price = $request->bidding_price;
+        $bid->comment = $request->comment;
+        $bid->deadline = date_format(date_create( $request->deadline), 'Y-m-d');
+        if ($bid->save())
+          return response()->json(["success"=> 1]);
+        else {
+          return response()->json(["success"=> 0]);
+
+        }
+      }
+      return response()->json(["success"=> -1]);
+    }
 
 }

@@ -7,6 +7,8 @@
       padding: 10px;
       border-radius: 5px;
       margin-bottom: 20px;
+      box-shadow:  0px 0px 2px 0px  rgba(0, 0, 0, 0.3);
+      border-radius: 3px;
     }
 
     .info{
@@ -49,7 +51,15 @@
 
     .bidders{
       margin-bottom: 20px;
+      box-shadow:  0px 0px 2px 0px  rgba(0, 0, 0, 0.3);
+      border-radius: 3px;
     }
+
+    .project-desc{
+      box-shadow:  0px 0px 2px 0px  rgba(0, 0, 0, 0.3);
+      border-radius: 3px;
+    }
+
 
   </style>
 
@@ -124,10 +134,10 @@
               </div>
             </div>
             <div class="col-md-4">
-              <button type="button" name="button">Bid on this project</button>
+
+              <button id="bid-now" class="btn btn-primary" name="bid-now">Bid on this project</button>
             </div>
           </div>
-
         </div>
       </div>
     </div>
@@ -139,7 +149,7 @@
             <h3>Freelancers bidding</h3>
           </div>
           <div class="bidders-body">
-              <div class="card">
+              <div class="card bid">
                 <div class="card-body">
                   <div class="row">
                     <div class="col-md-2">
@@ -150,7 +160,6 @@
                         Adis
                       </div>
                       <div class="row" style="text-align: justify">
-
                         Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                         Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
                         in reprehenderit in voluptate velit esse cillum dolore eu.
@@ -161,16 +170,137 @@
                       my rating is five stars
                     </div>
                   </div>
-
                 </div>
             </div>
+            <div class="card bid">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-md-2">
+                    PROFILE PIC
+                  </div>
+                  <div class="col-md-6">
+                    <div class="row">
+                      Adis
+                    </div>
+                    <div class="row" style="text-align: justify">
+                      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                      Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
+                      in reprehenderit in voluptate velit esse cillum dolore eu.
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    £15 GBP / hour <br>
+                    my rating is five stars
+                  </div>
+                </div>
+              </div>
+          </div>
+          <div class="card bid">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-2">
+                  PROFILE PIC
+                </div>
+                <div class="col-md-6">
+                  <div class="row">
+                    Adis
+                  </div>
+                  <div class="row" style="text-align: justify">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
+                    in reprehenderit in voluptate velit esse cillum dolore eu.
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  £15 GBP / hour <br>
+                  my rating is five stars
+                </div>
+              </div>
+            </div>
+        </div>
           </div>
         </div>
       </div>
     </div>
+    <div class="modal bid-modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Bid on {{$job[0]->name}}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form action="#" id="bid-form">
+          {{ csrf_field() }}
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroupPrepend">$</span>
+              </div>
+              <input type="number" class="form-control" name="bidding_price" id="bidding_price" step=".01" placeholder="Bidding Price" min="0">
+            </div>
+            <small class="form-text text-muted">e.g. $35.00</small>
+          </div>
+          <div class="form-group">
+            <div class="input-group date" data-provide="datepicker">
+                <input type="text" class="form-control" name="deadline" placeholder="How long will it take to finish the project?">
+                <div class="input-group-addon">
+                    <span class="glyphicon glyphicon-th"></span>
+                </div>
+            </div>
+          </div>
+          <input type="hidden" name="job_id" value="{{$job[0]->job_id}}">
+          <div class="form-group">
+            <textarea class="form-control" name="comment" id="comment" placeholder="Tell the employer why you should be hired. What are your experiences and skills?"></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Bid Now</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
   </div>
 @endsection
 
 @section('script')
+  <script type="text/javascript">
+    $("#bid-now").click(function(){
+      $(".bid-modal").modal("show");
+    })
+    $('.datepicker').datepicker();
 
+    $("#bid-form").submit(function(e){
+      e.preventDefault()
+      $.ajax({
+        url: '{{route('bid.project')}}',
+        method: "post",
+        data: $(this).serialize(),
+        success: function(data){
+          if(data.success==1){
+            $(".bid-modal").modal("hide");
+
+            $("#bid-form")[0].reset()
+
+            alertify.success('Bid successful!');
+          }else if(data.success == -1){
+            $(".bid-modal").modal("hide");
+              alertify.warning('You have put a bid for this project!');
+          }
+          else{
+            $(".bid-modal").modal("hide");
+
+            alertify.error('Bid Error!');
+          }
+          console.log(data)
+        },
+        error: function(data){
+          console.log("ajax error - bid")
+        }
+      })
+
+    });
+
+  </script>
 @endsection
