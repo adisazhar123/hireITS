@@ -13,7 +13,7 @@ class ProjectsController extends Controller
       else{
         $jobs = Job::where('name', 'like', '%'.$request->keywords.'%')->orWhere('description', 'like', '%'.$request->keywords.'%')->get();
       }
-      return view('projects.browse-projects')->with('jobs', $jobs);
+      return view('projects.browse-projects')->with('jobs', $jobs)->with('keyword', $request->keywords);
     }
 
     public function viewProject($slug){

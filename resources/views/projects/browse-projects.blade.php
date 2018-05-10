@@ -288,7 +288,21 @@
         </div>
       </form>
     </div>
+    <div class="container">
+      @php
+      $result = count($jobs);
+      @endphp
 
+      @if ($result && empty($keyword))
+        <p>{{$result}} result/s found</p>
+      @elseif ($result)
+        <p>{{$result}} result/s found for {{$keyword}}</p>
+      @else
+        <p>0 result/s found for {{$keyword}}</p>
+
+      @endif
+
+    </div>
   </div>
   <div class="jobs-content">
     <div class="container">
@@ -376,7 +390,7 @@
         </div>
       </div>
     </div>
-    
+
   </div>
 @endsection
 
