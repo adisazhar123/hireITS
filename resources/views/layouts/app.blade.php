@@ -18,7 +18,9 @@
   </head>
   @yield('style')
   <style media="screen">
-  @import url('https://fonts.googleapis.com/css?family=Raleway');
+  @php
+    //@import url('https://fonts.googleapis.com/css?family=Raleway');
+  @endphp
   body {
     font-family: 'Raleway', sans-serif;
     background-color: #E9E9E9;

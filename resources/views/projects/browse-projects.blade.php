@@ -271,17 +271,19 @@
       <form>
         <div class="row">
           <div class="col-md-12">
-            <div class="input-group mb-3">
-              <div class="input-group-prepend">
-                <button class="btn" disabled id="search-logo" type="button" name="button"><i class="fa fa-search fa-lg" aria-hidden="true"></i>
-                </button>
-          </div>
-            <input type="text" class="form-control mb-2" id="inlineFormInput" placeholder="Search Keywords">
+            <form class="" action="{{route('browse.jobs')}}" method="get">
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <button class="btn" disabled id="search-logo" type="button" name="button"><i class="fa fa-search fa-lg" aria-hidden="true"></i>
+                  </button>
+                </div>
+              <input type="text" class="form-control mb-2" id="keywords" name="keywords" placeholder="Search Keywords">
 
-            <div class="input-group-append">
-              <button type="submit" class="btn btn-primary mb-2">Search</button>
-          </div>
-          </div>
+              <div class="input-group-append">
+                <button type="submit" class="btn btn-primary mb-2">Search</button>
+            </div>
+            </div>
+            </form>
         </div>
         </div>
       </form>
@@ -374,10 +376,7 @@
         </div>
       </div>
     </div>
-    <form class="" action="{{route('store.project')}}" method="post">
-      {{ csrf_field() }}
-      <button type="submit" name="button">go</button>
-    </form>
+    
   </div>
 @endsection
 

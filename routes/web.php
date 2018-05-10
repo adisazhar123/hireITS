@@ -20,6 +20,7 @@ Route::get('/', function () {
 
 //freelancer
 Route::get('jobs','ProjectsController@index')->name('browse.jobs');
+
 Route::get('/freelancer', 'FreelancerController@index')->name('view.freelancer.profile');
 Route::get('showcase', 'ProjectsController@browseShowcase')->name('browse.showcase');
 Route::get('freelancer/getprofile', 'FreelancerController@getProfile')->name('get.freelancer.profile');

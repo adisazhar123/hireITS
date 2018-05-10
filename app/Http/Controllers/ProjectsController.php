@@ -7,8 +7,12 @@ use Illuminate\Http\Request;
 
 class ProjectsController extends Controller
 {
-    public function index(){
-      $jobs = Job::all();
+    public function index(Request $request){
+      if (!isset($request->keywords) && empty($request->keywords) )
+        $jobs = Job::all();
+      else{
+        $jobs = Job::where('name', 'like', '%'.$request->keywords.'%')->orWhere('description', 'like', '%'.$request->keywords.'%')->get();
+      }
       return view('projects.browse-projects')->with('jobs', $jobs);
     }
 

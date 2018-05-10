@@ -21,6 +21,7 @@
     border-top-right-radius: 4px;
     background-color: white;
   }
+  
   </style>
 @endsection
 
@@ -115,7 +116,7 @@
     });
 
 
-  
+
 
   </script>
 @endsection

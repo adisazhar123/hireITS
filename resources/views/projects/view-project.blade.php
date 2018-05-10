@@ -25,13 +25,22 @@
     }
 
     .bidders-header{
-      height: 20px;
+      height: 45px;
       background-color: grey;
+      padding: 10px;
+      border-top-left-radius: 5px;
+      border-top-right-radius: 5px;
     }
 
     .bidders-body{
       background-color: white;
-
+      border-bottom-left-radius: 5px;
+      border-bottom-right-radius: 5px;
+      padding: 0;
+    }
+    .bidders .card{
+      border-radius: 0px;
+      padding: 0;
     }
 
   </style>

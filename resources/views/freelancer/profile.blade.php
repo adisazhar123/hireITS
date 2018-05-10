@@ -120,25 +120,93 @@ img {max-width: 100%;}
       .portfolio .card:hover .middle{
         opacity: 0.1;
       }
+      .new-skills{
+        display: none;
+      }
+
+      .skills:hover .new-skills{
+        display: block;
+        margin-top: -45px;
+
+      }
+      .editor{
+        margin-bottom: 10px;
+      }
+      .editor.ql-container{
+        border: 1px solid #ccd0d2;
+        border-top: none;
+        border-width: 1px;
+        border-bottom-left-radius: 4px;
+        border-bottom-right-radius: 4px;
+        background-color: white;
+      }
 
 
+      .ql-editor:focus{
+        color:#495057;
+        background-color:#fff;
+        border-color:#98cbe8;
+        outline:0;
+        box-shadow:0 0 0 .2rem rgba(0,123,255,.25);
+
+      }
+      .ql-toolbar.ql-snow{
+        border: 1px solid #ccd0d2;
+        border-bottom: none;
+        border-width: 1px;
+        border-top-left-radius: 4px;
+        border-top-right-radius: 4px;
+        background-color: white;
+      }
+      .fa-star{
+        color:yellow;
+      }
+      #user-title{
+        height: 40px;
+        display: none;
+        margin-bottom: 20px;
+        width: 100%;
+        font-size: 28px;
+      }
+      #user-name{
+        height: 40px;
+        display: none;
+        margin-bottom: 20px;
+        width: 100%;
+        font-size: 28px;
+
+      }
+      #user-desc{
+        display: none;
+        width: 100%;
+        max-height: 300px;
+      }
+
+      #user-price{
+        display: none;
+
+        height: 40px;
+        margin-bottom: 20px;
+        width: 100%;
+        font-size: 28px;
+      }
 /*Generic styles*/
 #wrapper{ max-width: 800px; width:100%; margin:0 auto;}
 #generic-tabs{ width:100%; padding:20px;}
 
 /*Tab styles*/
-#generic-tabs ul { overflow: hidden; margin:0; padding:0;}
-#generic-tabs ul li{ float:left; display:inline-block; width:25%; background:#EDEDED; border-top:4px solid #CCCCCC; border-right:1px solid #CCCCCC;}
-#generic-tabs ul li:last-child {border-right:none;}
-#generic-tabs ul li:first-child { padding-left:0; }
+#generic-tabs ul#tabs { overflow: hidden; margin:0; padding:0;}
+#generic-tabs ul#tabs li{ float:left; display:inline-block; width:25%; background:#EDEDED; border-top:4px solid #CCCCCC; border-right:1px solid #CCCCCC;}
+#generic-tabs ul#tabs li:last-child {border-right:none;}
+#generic-tabs ul#tabs li:first-child { padding-left:0; }
 
 /*Tab link styles*/
-#generic-tabs ul li a {text-align:center; display:block; font-size: 1.2em; text-decoration: none; padding: 1.2em 1em; line-height: 16px; color:#BBBBBB;}
+#generic-tabs ul#tabs li a {text-align:center; display:block; font-size: 1.2em; text-decoration: none; padding: 1.2em 1em; line-height: 16px; color:#BBBBBB;}
 
 /*Active tab styles*/
-#generic-tabs ul li.active {background:#FFFFFF; border-top:4px solid #3d82ab;}
-#generic-tabs ul li.active a { color:#333333;}
-#generic-tabs ul li.active a i {color:#85b8cb;}
+#generic-tabs ul#tabs li.active {background:#FFFFFF; border-top:4px solid #3d82ab;}
+#generic-tabs ul#tabs li.active a { color:#333333;}
+#generic-tabs ul#tabs li.active a i {color:#85b8cb;}
 
 /*Tab content styles*/
 
@@ -150,7 +218,7 @@ img {max-width: 100%;}
   h1{font-size:2em;}
   h1.callout{font-size:3em;}
   p{font-size:1.4em;}
-  #generic-tabs ul li a { font-size:1.6em; padding: 1.2em 2em; line-height: 16px; }
+  #generic-tabs ul#tabs li a { font-size:1.6em; padding: 1.2em 2em; line-height: 16px; }
 }
 
 </style>
@@ -204,70 +272,67 @@ img {max-width: 100%;}
             </li>
         </ul>
 
-        <div id="first-tab" class="tab-content">
-             <button type="button" id="edit-profile" class="btn btn-warning" name="button">Edit Profile</button>
-          <h2><i class="profile-user fa fa-user"></i> Information</h2>
+        <div id="first-tab" class="tab-content animated fadeIn">
+          <button type="button" id="edit-profile" class="btn btn-warning" name="button">Edit Profile</button>
+          <div class="row">
+            <div class="col-md-6">
+              <h2><i class="profile-user fa fa-user"></i> Information</h2>
 
-          <h2 id="name2">@if (!Auth::user()->hassetprofile)
-                Please set your name.
-              @else
-                {{$freelancer->name}}
-              @endif
-
-              </h2>
-              <h3 id="title">@if (!Auth::user()->hassetprofile)
-                What is your title?
-              @else
-                {{$freelancer->title}}
-              @endif
-
-              </h3>
-
-          <form action="#" method="post" class="form-profile">
-                {{ csrf_field() }}
-                <input id="user-name" type="text" name="user-name" value="" style="display: none">
-                <input id="user-title" type="text" name="user-title" value="" style="display: none">
-                <input id="user-desc" name="user-desc" type="hidden" value="">
-                <div class="editor">
-
-                </div>
-                <button type="submit" id="save-profile" class="btn btn-primary" style="display: none">Save Profile</button>
-
-              </form>
-
-              <div class="profile-details">
-                <p>
-                @if (!Auth::user()->hassetprofile)
-                  We want to know a little bit more of you. What are your mastery? Do you like to draw?
+              <h2 id="name2">@if (!Auth::user()->hassetprofile)
+                    Please set your name.
                   @else
-                    {!! $freelancer->description !!}
+                    {{$freelancer->name}}
+                  @endif
 
-                @endif
+                  </h2>
+                  <h3 id="title">@if (!Auth::user()->hassetprofile)
+                    What is your title?
+                  @else
+                    {{$freelancer->title}}
+                  @endif
+                </h3>
 
-              </div>
+                  <form action="#" method="post" class="form-profile">
+                    {{ csrf_field() }}
+                    <input class="animated fadeIn form-control" id="user-name" type="text" name="user-name" value="" style="display: none">
+                    <input class="animated fadeIn form-control" id="user-title" type="text" name="user-title" value="" style="display: none">
+                    <input id="user-desc" name="user-desc" type="hidden" value="">
+                    <div class="editor animated fadeIn">
 
+                    </div>
+                    <button type="submit" id="save-profile" class="btn btn-primary" style="display: none">Save Profile</button>
 
+                  </form>
 
-              <br><br><br><br><br>
+                  <div class="profile-details">
+                    <p>
+                    @if (!Auth::user()->hassetprofile)
+                      We want to know a little bit more of you. What are your mastery? Do you like to draw?
+                      @else
+                        {!! $freelancer->description !!}
+
+                    @endif
+                  </div>
+            </div>
+            <div class="col-md-6" style="border-left: solid #E9E9E9; border-width: 1px">
               <h3 id="freelancer-price"> $ {{$freelancer->price}} USD/hr</h3>
-              <input id="user-price" type="text" name="user-price" placeholder="Price per hour" value="{{$freelancer->price}}" style="display: none">
-          <!--
-              <br><br><br><br> -->
-
-
-              <h2><i class="profile-user fa fa-user"></i> Skills</h2>
-                <button class="btn btn-default float-right new-skills edit-skills" style="width: auto" type="button" name="button">New Skills</button>
-
-                    <form>
-                      <div class="">
-                        <label for="tag_list">Tags:</label>
-                        <select id="search_skills" name="search_skills[]" class="" multiple></select>
-                      </div>
-                    </form>
-                    <ul>
-                      <li>C++</li>
-                      <li>Photoshop</li>
-                    </ul>
+              <input class="form-control" id="user-price" type="text" name="user-price" placeholder="Price per hour" value="{{$freelancer->price}}" style="display: none">
+              <div class="skills">
+                <h2><i class="profile-user fa fa-user"></i> Skills</h2>
+                  <button class="btn btn-default float-right new-skills edit-skills" style="width: auto" type="button" name="button">New Skills</button>
+                  <form id="skills-form" style="opacity:0">
+                    <div class="form-group">
+                      <label for="tag_list">Tags:</label>
+                      <select class="form-control col-md-4" id="search_skills" name="search_skills[]" multiple></select>
+                    </div>
+                  </form>
+                  <ul>
+                    <li>C++</li>
+                    <li>Photoshop</li>
+                  </ul>
+              </div>
+            </div>
+          </div>
         </div>
 
         <div id="second-tab" class="tab-content portfolio">
@@ -305,8 +370,7 @@ img {max-width: 100%;}
                     @endforeach
                   </div>
                   @endif
-                  <div class="container">
-                    <div class="modal portfolio animated fadeIn" tabindex="-1" role="dialog">
+                    <div class="modal portfolio" tabindex="-1" role="dialog">
                       <div class="modal-dialog" role="document">
                         <div class="modal-content">
                           <div class="modal-header">
@@ -322,7 +386,7 @@ img {max-width: 100%;}
                                 <input type="text" class="form-control" id="port_name" name="port_name" placeholder="Portfolio Name">
                               </div>
                               <div class="form-group">
-                                <input type="text" class="form-control" id="port_desc" name="port_desc" placeholder="Portfolio Description">
+                                <textarea class="form-control" id="port_desc" name="port_desc" placeholder="Portfolio Description"></textarea>
                               </div>
                               <div class="form-group">
                                 <input type="file" class="form-control" name="image" id="port_img">
@@ -334,10 +398,9 @@ img {max-width: 100%;}
                         </div>
                       </div>
                     </div>
-                  </div>
         </div>
 
-        <div id="third-tab" class="tab-content">
+        <div id="third-tab" class="tab-content animated fadeIn">
 
 
                     <i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i>
@@ -350,7 +413,7 @@ img {max-width: 100%;}
                     <p>This guy is awesome!! work is always on time</p>
 
         </div>
-        <div id="fourth-tab" class="tab-content">
+        <div id="fourth-tab" class="tab-content animated fadeIn">
           <h1>Contact</h1>
           <p>Lorem ipsum dolor sit amet, utroque splendide an quo. Omnesque pertinacia efficiantur vix at, soleat quaeque assueverit et vis. Te sit tale eripuit corrumpit, cum ea case graeci legimus. Sea ex assentior honestatis adversarium. Mei ea dico meis instructior, no eum ipsum voluptatum, quodsi pertinax postulant in sed. Te eum pertinacia suscipiantur, sea eirmod sanctus ea. Vel habeo feugait ea, an apeirian adversarium nam.</p>
         </div>
@@ -526,6 +589,38 @@ img {max-width: 100%;}
   });
 })(window.jQuery);
 
+$('#search_skills').select2({
+  placeholder: 'Select an item',
+  ajax: {
+    url: '/getSkills',
+    dataType: 'json',
+    delay: 250,
+    processResults: function (data) {
+      return {
+        results:  $.map(data, function (item) {
+              return {
+                  text: item.name,
+                  id: item.skills_id
+              }
+          })
+      };
+    },
+    cache: true
+  }
+});
+
+$('#search_skills').on('select2:select', function (e) {
+    var data = e.params.data;
+    console.log(data);
+});
+$('#search_skills').on('select2:unselect', function (e) {
+    var data = e.params.data;
+    console.log(data);
+});
+
+$(".new-skills").click(function(){
+  $("#skills-form").css("opacity","1")
+})
 
 </script>
 
