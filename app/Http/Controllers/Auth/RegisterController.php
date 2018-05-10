@@ -84,12 +84,8 @@ class RegisterController extends Controller
           $freelancer = new Freelancer();
           $freelancer->freelancer_id = $user->id;
           $freelancer->save();
-
           return response()->json(['success' => "Registration succesful"]);
-
-
         }
-
         return response()->json(['errors' => $validator->errors()]);
     }
 }

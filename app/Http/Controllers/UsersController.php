@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Users;
+use App\User;
 use DB;
 
 class UsersController extends Controller
@@ -35,24 +35,27 @@ class UsersController extends Controller
     public function store(Request $request)
     {
         /*$this->validate($request,[
-            'login_username' => 'required',
-            'login_password' => 'required'
+            'username' => 'required',
+            'password' => 'required',
+            'email' => 'required',
+            'password_confirmation' => 'required'
         ]);
 
-        $user = new Users([
-            'email' => $request->get('login_username'),
-            'password' => $request->get('login_password')
+        $user = new User([
+        	'username' => $request->input('username'),
+            'email' => $request->input('email'),
+            'password' => $request->input('password')
         ]);
-        $user->save();*/
+        $user->save();
 
-        $mail = $request->input('email');
+        /*$mail = $request->input('email');
         $passwd = $request->input('password');
         $name = ''; $role ='';
         $data = array('name'=>$name, 'email'=>$mail, 'password'=>$passwd, 'role'=>$role);
 
         echo $mail; echo '<br>';
         echo $passwd;
-        DB::table('users')->insert($data);
+        DB::table('users')->insert($data);*/
         echo 'Insert success';
     }
 

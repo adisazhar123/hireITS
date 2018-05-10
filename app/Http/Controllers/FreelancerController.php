@@ -112,4 +112,24 @@ class FreelancerController extends Controller
       return response()->json(["success"=> -1]);
     }
 
-}
+     	public function freeget(){
+     		return view('freelancer.fgetdata');
+     	}
+
+     	public function getData(Request $request){
+     		$id = Auth::user()->id;
+     		$fl = Freelancer::find($id);
+     		$fl->name = $request->input('nama');
+     		$fl->age = $request->input('age');
+     		$fl->major = $request->input('major');
+     		$fl->description = $request->input('description');
+     		$fl->title = $request->input('title');
+    		$user = Auth::user();
+         	$user->hassetprofile = 1;
+
+     		if($fl->save() && $user->save()){
+     			return view('freelancer.profile');
+     		}
+     	}
+
+	 }

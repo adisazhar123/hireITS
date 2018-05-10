@@ -597,25 +597,6 @@ img {max-width: 100%;}
     $(".modal.portfolio").modal('show')
   });
 
-  // $('#search_skills').select2({
-  //     placeholder: "Choose tags...",
-  //     minimumInputLength: 2,
-  //     ajax: {
-  //         url: '/getSkills',
-  //         dataType: 'json',
-  //         data: function (params) {
-  //             return {
-  //                 q: $.trim(params.term)
-  //             };
-  //         },
-  //         processResults: function (data) {
-  //             return {
-  //                 results: data
-  //             };
-  //         },
-  //         cache: true
-  //     }
-  // });
 (function($){
   /* trigger when page is ready */
   $(document).ready(function (){
