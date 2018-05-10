@@ -113,6 +113,18 @@ img {max-width: 100%;}
         height: 95%;
         width: 95%;
       }
+      .text2{
+        transition: .5s ease;
+        opacity: 1;
+        position: absolute;
+        top: 40%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        text-align: center;
+        height: 10%;
+        width: 10%;
+      }
       .portfolio .card:hover .text{
         opacity: 0.8;
       }
@@ -196,12 +208,12 @@ img {max-width: 100%;}
 
 /*Tab styles*/
 #generic-tabs ul#tabs { overflow: hidden; margin:0; padding:0;}
-#generic-tabs ul#tabs li{ float:left; display:inline-block; width:25%; background:#EDEDED; border-top:4px solid #CCCCCC; border-right:1px solid #CCCCCC;}
+#generic-tabs ul#tabs li{min-height: 100px; float:left; display:inline-block; width:25%; background:#EDEDED; border-top:4px solid #CCCCCC; border-right:1px solid #CCCCCC; }
 #generic-tabs ul#tabs li:last-child {border-right:none;}
 #generic-tabs ul#tabs li:first-child { padding-left:0; }
 
 /*Tab link styles*/
-#generic-tabs ul#tabs li a {text-align:center; display:block; font-size: 1.2em; text-decoration: none; padding: 1.2em 1em; line-height: 16px; color:#BBBBBB;}
+#generic-tabs ul#tabs li a { text-align:center; display:block; font-size: 1.2em; text-decoration: none; padding: 1.2em 1em; line-height: 16px; color:#BBBBBB;}
 
 /*Active tab styles*/
 #generic-tabs ul#tabs li.active {background:#FFFFFF; border-top:4px solid #3d82ab;}
@@ -213,13 +225,25 @@ img {max-width: 100%;}
 #generic-tabs .tab-content{ background:#FFFFFF; padding:3em 2em;}
 #generic-tabs .tab-content h1 {margin-top:0;}
 
+.divider{
+  border-left: solid #E9E9E9;
+  border-width: 1px;
+}
 
+@media only screen and (max-width: 990px) {
+  .divider{
+    border-left: none;
+  }
+
+  }
 @media only screen and (min-width: 650px) {
   h1{font-size:2em;}
   h1.callout{font-size:3em;}
   p{font-size:1.4em;}
   #generic-tabs ul#tabs li a { font-size:1.6em; padding: 1.2em 2em; line-height: 16px; }
 }
+
+
 
 </style>
 @endsection
@@ -238,7 +262,10 @@ img {max-width: 100%;}
 
         @endif
    <div class="profile-pic">
-                <img src="{{asset('followers.png')}}" alt="">
+          <img src="{{asset('followers.png')}}" alt="">
+          <div class="text2">
+            <i class="fa fa-wrench" style="font-size:24px"></i>
+          </div>
         </div>
         <div class="info">
             <p class="cant">@ {{Auth::user()->username}} </p>
@@ -275,7 +302,7 @@ img {max-width: 100%;}
         <div id="first-tab" class="tab-content animated fadeIn">
           <button type="button" id="edit-profile" class="btn btn-warning" name="button">Edit Profile</button>
           <div class="row">
-            <div class="col-md-6">
+            <div class="col-lg-8">
               <h2><i class="profile-user fa fa-user"></i> Information</h2>
 
               <h2 id="name2">@if (!Auth::user()->hassetprofile)
@@ -314,7 +341,7 @@ img {max-width: 100%;}
                     @endif
                   </div>
             </div>
-            <div class="col-md-6" style="border-left: solid #E9E9E9; border-width: 1px">
+            <div class="col-lg-4 divider">
               <h3 id="freelancer-price"> $ {{$freelancer->price}} USD/hr</h3>
               <input class="form-control" id="user-price" type="text" name="user-price" placeholder="Price per hour" value="{{$freelancer->price}}" style="display: none">
               <div class="skills">

@@ -26,10 +26,11 @@
 
     .bidders-header{
       height: 45px;
-      background-color: grey;
       padding: 10px;
+      background-color: white;
       border-top-left-radius: 5px;
       border-top-right-radius: 5px;
+
     }
 
     .bidders-body{
@@ -41,6 +42,13 @@
     .bidders .card{
       border-radius: 0px;
       padding: 0;
+      border-top: solid grey;
+      border-width: 1px;
+      width: 100%;
+    }
+
+    .bidders{
+      margin-bottom: 20px;
     }
 
   </style>
@@ -99,7 +107,7 @@
 
           <div class="row">
             <div class="col-md-8">
-              <div class="desc">
+              <div class="desc" style="text-align: justify">
                  @php
                   echo $job[0]->description;
                  @endphp
@@ -133,6 +141,26 @@
           <div class="bidders-body">
               <div class="card">
                 <div class="card-body">
+                  <div class="row">
+                    <div class="col-md-2">
+                      PROFILE PIC
+                    </div>
+                    <div class="col-md-6">
+                      <div class="row">
+                        Adis
+                      </div>
+                      <div class="row" style="text-align: justify">
+
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
+                        in reprehenderit in voluptate velit esse cillum dolore eu.
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      £15 GBP / hour <br>
+                      my rating is five stars
+                    </div>
+                  </div>
 
                 </div>
             </div>
