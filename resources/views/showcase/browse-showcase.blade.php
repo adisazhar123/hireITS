@@ -10,8 +10,8 @@
     width: 100%;
   }
   .backround{
-    /*background-image: url("https://images.pexels.com/photos/207665/pexels-photo-207665.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");*/
-    /*height: 50%;*/
+    background-image: url("https://images.pexels.com/photos/207665/pexels-photo-207665.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");*/
+    height: 50%;
     padding-top: 300px;
     background-position: center;
     background-repeat: no-repeat;
@@ -269,7 +269,7 @@ body {
 
             <img class="card-img-top" src="https://cdn-images-1.medium.com/max/2000/1*TRn9ZGNdHaXN0qDdri5bjw@2x.gif" alt="Card image cap">
 
-            <div class="card-body">
+            <div class="card-body" style="background-color: white">
               <p class="card-text">Bussiness card design</p>
               <h4 class="card-text">$200</h4>
 

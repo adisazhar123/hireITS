@@ -87,6 +87,7 @@
 
     .job-tags a{
       margin-right: 8px;
+      color: grey;
     }
 
     .bid-btn{
@@ -126,6 +127,93 @@
     .body-link:active {
         text-decoration: none;
     }
+
+    input[type=range] {
+  -webkit-appearance: none;
+  width: 100%;
+  margin: 4.8px 0;
+    }
+    input[type=range]:focus {
+      outline: none;
+    }
+    input[type=range]::-webkit-slider-runnable-track {
+      width: 100%;
+      height: 8.4px;
+      cursor: pointer;
+      box-shadow: 0.5px 0.5px 1px rgba(0, 0, 0, 0.44), 0px 0px 0.5px rgba(13, 13, 13, 0.44);
+      background: #006da9;
+      border-radius: 1.3px;
+      border: 0.2px solid #010101;
+    }
+    input[type=range]::-webkit-slider-thumb {
+      box-shadow: 1px 1px 1px rgba(0, 0, 0, 0), 0px 0px 1px rgba(13, 13, 13, 0);
+      border: 1.5px solid #000000;
+      height: 18px;
+      width: 14px;
+      border-radius: 50px;
+      background: #ff9621;
+      cursor: pointer;
+      -webkit-appearance: none;
+      margin-top: -5px;
+    }
+    input[type=range]:focus::-webkit-slider-runnable-track {
+      background: #0077b8;
+    }
+    input[type=range]::-moz-range-track {
+      width: 100%;
+      height: 8.4px;
+      cursor: pointer;
+      box-shadow: 0.5px 0.5px 1px rgba(0, 0, 0, 0.44), 0px 0px 0.5px rgba(13, 13, 13, 0.44);
+      background: #006da9;
+      border-radius: 1.3px;
+      border: 0.2px solid #010101;
+    }
+    input[type=range]::-moz-range-thumb {
+      box-shadow: 1px 1px 1px rgba(0, 0, 0, 0), 0px 0px 1px rgba(13, 13, 13, 0);
+      border: 1.5px solid #000000;
+      height: 18px;
+      width: 14px;
+      border-radius: 50px;
+      background: #ff9621;
+      cursor: pointer;
+    }
+    input[type=range]::-ms-track {
+      width: 100%;
+      height: 8.4px;
+      cursor: pointer;
+      background: transparent;
+      border-color: transparent;
+      color: transparent;
+    }
+    input[type=range]::-ms-fill-lower {
+      background: #00639a;
+      border: 0.2px solid #010101;
+      border-radius: 2.6px;
+      box-shadow: 0.5px 0.5px 1px rgba(0, 0, 0, 0.44), 0px 0px 0.5px rgba(13, 13, 13, 0.44);
+    }
+    input[type=range]::-ms-fill-upper {
+      background: #006da9;
+      border: 0.2px solid #010101;
+      border-radius: 2.6px;
+      box-shadow: 0.5px 0.5px 1px rgba(0, 0, 0, 0.44), 0px 0px 0.5px rgba(13, 13, 13, 0.44);
+    }
+    input[type=range]::-ms-thumb {
+      box-shadow: 1px 1px 1px rgba(0, 0, 0, 0), 0px 0px 1px rgba(13, 13, 13, 0);
+      border: 1.5px solid #000000;
+      height: 18px;
+      width: 14px;
+      border-radius: 50px;
+      background: #ff9621;
+      cursor: pointer;
+      height: 8.4px;
+    }
+    input[type=range]:focus::-ms-fill-lower {
+      background: #006da9;
+    }
+    input[type=range]:focus::-ms-fill-upper {
+      background: #0077b8;
+    }
+
 
     @media only screen and (max-width: 992px) {
       .jobs-body{
@@ -205,8 +293,8 @@
       <div class="row">
         <div class="col-md-3">
           <div class="filter" style="background-color: white;">
-            <div class="toggle-filter" style="width: 100%; padding-left: 20px" data-toggle="collapse" data-target=".multi-collapse" aria-expanded="false" aria-controls="multiCollapseExample2">
-                <i class="fa fa-wrench fa-lg"></i>
+            <div class="toggle-filter" style="width: 100%; padding-left: 20px; padding-top: 2px; cursor: pointer" data-toggle="collapse" data-target=".multi-collapse" aria-expanded="false" aria-controls="multiCollapseExample2">
+                <i class="fa fa-wrench fa-lg" style='color: black;'></i>
             </div>
             <div class="filter-content show multi-collapse" id="multiCollapseExample2">
               <h5>Filter by:</h5>
@@ -229,155 +317,67 @@
               </select>
             </div>
 
-            <div class="jobs-body">
-              <a class="body-link" href="#" style="display: block">
-                <div class="row">
-                  <div class="col-md-10">
-                    <div class="row">
-                      <h4>PHP Developer</h4>
-                      <h6>100 days left</h6>
-                    </div>
-                    <div class="row">
-                      <div class="job-desc">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</p>
+            @foreach ($jobs as $job)
+              <div class="jobs-body">
+                <a class="body-link" href="{{route('view.project',['slug' => $job->slug])}}" style="display: block">
+                  <div class="row">
+                    <div class="col-md-10">
+                      <div class="row">
+                        <h4>{{$job->name}}</h4>
+                        <h6>
+                          @php
+                            $now = date_create(date("d-m-Y"));
+                            $end = date_create(date_format(date_create($job->deadline), "d-m-Y"));
+                            $diff=date_diff($now, $end);
+                            echo $diff->format('%d day/s left');
+                          @endphp
+                        </h6>
+                      </div>
+                      <div class="row">
+                        <div class="job-desc">
+                          <p>
+                            {{substr(strip_tags($job->description), 0, 300)}}
+                          </p>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="job-tags">
+                          <a href="#">php </a>
+                          <a href="#">photoshop </a>
+                          <a href="#">laravel </a>
+                        </div>
                       </div>
                     </div>
-                    <div class="row">
-                      <div class="job-tags">
-                        <a href="#">php </a>
-                        <a href="#">photoshop </a>
-                        <a href="#">laravel </a>
+                    <div class="col-md-2">
+                      <div class="row">
+                        <div class="job-price">
+                          <h4>
+                            ${{$job->price_min}}
+                            -
+                            ${{$job->price_max}}
+                          </h4>
+                          <small>(avg bid)</small>
+                          <p>{{$job->no_of_bids}} bids</p>
+                        </div>
                       </div>
-                    </div>
-                  </div>
-                  <div class="col-md-2">
-                    <div class="row">
-                      <div class="job-price">
-                        <h4>$11 - $23 </h4>
-                        <small>(avg bid)</small>
-                        <p>0 bids</p>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <a href="#" class="btn bid-btn" type="button" name="button">bid now</a>
-                    </div>
-                  </div>
-                </div>
-              </a>
-            </div>
-            <div class="jobs-body">
-              <a class="body-link" href="#" style="display: block">
-                <div class="row">
-                  <div class="col-md-10">
-                    <div class="row">
-                      <h4>PHP Developer</h4>
-                      <h6>100 days left</h6>
-                    </div>
-                    <div class="row">
-                      <div class="job-desc">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</p>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="job-tags">
-                        <a href="#">php </a>
-                        <a href="#">photoshop </a>
-                        <a href="#">laravel </a>
+                      <div class="row">
+                        <a href="#" class="btn bid-btn" type="button" name="button">bid now</a>
                       </div>
                     </div>
                   </div>
-                  <div class="col-md-2">
-                    <div class="row">
-                      <div class="job-price">
-                        <h4>$11 - $23 </h4>
-                        <small>(avg bid)</small>
-                        <p>0 bids</p>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <a href="#" class="btn bid-btn" type="button" name="button">bid now</a>
-                    </div>
-                  </div>
-                </div>
-              </a>
-            </div>
-            <div class="jobs-body">
-              <a class="body-link" href="#" style="display: block">
-                <div class="row">
-                  <div class="col-md-10">
-                    <div class="row">
-                      <h4>PHP Developer</h4>
-                      <h6>100 days left</h6>
-                    </div>
-                    <div class="row">
-                      <div class="job-desc">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</p>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="job-tags">
-                        <a href="#">php </a>
-                        <a href="#">photoshop </a>
-                        <a href="#">laravel </a>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-2">
-                    <div class="row">
-                      <div class="job-price">
-                        <h4>$11 - $23 </h4>
-                        <small>(avg bid)</small>
-                        <p>0 bids</p>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <a href="#" class="btn bid-btn" type="button" name="button">bid now</a>
-                    </div>
-                  </div>
-                </div>
-              </a>
-            </div>
-            <div class="jobs-body">
-              <a class="body-link" href="#" style="display: block">
-                <div class="row">
-                  <div class="col-md-10">
-                    <div class="row">
-                      <h4>PHP Developer</h4>
-                      <h6>100 days left</h6>
-                    </div>
-                    <div class="row">
-                      <div class="job-desc">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</p>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="job-tags">
-                        <a href="#">php </a>
-                        <a href="#">photoshop </a>
-                        <a href="#">laravel </a>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-2">
-                    <div class="row">
-                      <div class="job-price">
-                        <h4>$11 - $23 </h4>
-                        <small>(avg bid)</small>
-                        <p>0 bids</p>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <a href="#" class="btn bid-btn" type="button" name="button">bid now</a>
-                    </div>
-                  </div>
-                </div>
-              </a>
-            </div>
+                </a>
+              </div>
+            @endforeach
+
             </div>
           </div>
         </div>
       </div>
     </div>
+    <form class="" action="{{route('store.project')}}" method="post">
+      {{ csrf_field() }}
+      <button type="submit" name="button">go</button>
+    </form>
   </div>
 @endsection
 

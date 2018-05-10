@@ -1,6 +1,11 @@
 @section('style')
   <style media="screen">
     @import url('https://fonts.googleapis.com/css?family=Raleway');
+
+    .row {
+  -webkit-animation-duration: 0.8s;
+  -webkit-animation-delay: 0s;
+}
 </style>
 @endsection
 @extends('layouts.app')
@@ -10,7 +15,7 @@
 <!-- Modal -->
 
 
-<div class="backgg">
+<div class="backgg animated fadeInUpBig">
   	<div class="laptop">
 		<div class="laptop_a laptop_def">
 			<div class="front">
@@ -25,7 +30,7 @@
 	<h4>hireITS adalah website yang blablablablablablablablab untuk anak ITS yang ingin mencari uang hajajaj</h4>
 </div>
 
-<div class="howto">
+<div class="howto animated fadeInDownBig">
 	<h2>How to use hireITS?</h2>
 	<div class="">
       <div class="info">
@@ -83,6 +88,8 @@
   $('.info a').click(function(){
   var role = $(this).attr('val');
 
+  $('.row').animateCss('fadeIn');
+
   if(role == "seeker"){
     $(".info a.orange").css('opacity','1');
     $(".info a.green").css('opacity','0.5');
@@ -97,6 +104,7 @@
 
   }
 });
+
 
 
 </script>

@@ -155,15 +155,19 @@
     }
 
     .editor.ql-container{
-      border: solid #7A7A7A;
+      border: 1px solid #ccd0d2;
       border-top: none;
       border-width: 1px;
+      border-bottom-left-radius: 4px;
+      border-bottom-right-radius: 4px;
     }
 
     .ql-toolbar.ql-snow{
-      border: solid #7A7A7A;
+      border: 1px solid #ccd0d2;
       border-bottom: none;
       border-width: 1px;
+      border-top-left-radius: 4px;
+      border-top-right-radius: 4px;
     }
 
     .edit-portfolio{
@@ -220,9 +224,29 @@
     -ms-transform: translate(-50%, -50%);
     text-align: center;
     background-color: black;
-    height: 100%;
-    width: 100%;
+    height: 95%;
+    width: 95%;
   }
+
+
+.text2{
+  transition: .5s ease;
+  display: none;
+  position: absolute;
+  top: 19%;
+  left: 20%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+  background-color: rgba(0,0,0,0.0);
+  height: 40%;
+  width: 40%;
+}
+
+.profile-pic:hover .text2{
+  display: block;
+  cursor: pointer;
+}
 
   .portfolio .card:hover .text{
     opacity: 0.8;
@@ -241,7 +265,19 @@
     margin-top: -45px;
 
   }
+  .alert.alert-warning {
 
+      z-index: 10;
+      margin-bottom: 0px;
+  }
+
+  .show{
+    display: none;
+  }
+
+  .modal-open .portfolio.modal{
+    background-color: rgba(0,0,0,0.6);
+  }
     @media only screen and (max-width: 768px) {
 
       .profile-pic{
@@ -277,6 +313,12 @@
             <div class="profile-info">
               <div class="profile-pic">
                 <img src="{{asset('adis.jpg')}}" style="height: 95%; width: 95%" alt="">
+                <div class="middle2">
+
+                </div>
+                <div class="text2">
+                  <i class="fa fa-wrench" style="font-size:24px;"></i>
+                </div>
               </div>
             </div>
                 <div class="info">
@@ -305,14 +347,16 @@
 
               <form action="#" method="post" class="form-profile">
                 {{ csrf_field() }}
-                <input id="user-name" type="text" name="user-name" value="">
-                <input id="user-title" type="text" name="user-title" value="">
+                <div class="form-group">
+                  <input  class="form-control animated fadeIn" id="user-name" type="text" name="user-name" value="">
+                </div>
+                <div class="form-group">
+                  <input  class="form-control animated fadeIn" id="user-title" type="text" name="user-title" value="">
+                </div>
                 <input id="user-desc" name="user-desc" type="hidden" value="">
-                <div class="editor">
-
+                <div class="editor animated fadeIn" class="form-control">
                 </div>
                 <button type="submit" id="save-profile" class="btn btn-primary" style="display: none">Save Profile</button>
-
               </form>
 
               <div class="profile-details">
@@ -321,11 +365,7 @@
                   We want to know a little bit more of you. What are your mastery? Do you like to draw?
                   @else
                     {!! $freelancer->description !!}
-
                 @endif
-
-
-
               </div>
             </div>
           </div>
@@ -334,8 +374,9 @@
               <button type="button" id="edit-profile" class="btn btn-primary" name="button">Edit Profile</button>
 
               <br><br><br><br><br>
+              <label for="" class="show">What is your pricing?</label>
               <h3 id="freelancer-price">$ {{$freelancer->price}} USD/hr</h3>
-              <input id="user-price" type="text" name="user-price" placeholder="Price per hour" value="{{$freelancer->price}}">
+              <input class="animated fadeIn" id="user-price" type="text" name="user-price" placeholder="Price per hour" value="{{$freelancer->price}}">
               @if (!$freelancer->reviews)
                 <p class="cant">{{$freelancer->reviews}} reviews</p>
                 @else
@@ -359,15 +400,12 @@
 
                 </div>
                 <h3>Portfolio</h3>
+                <button class="btn btn-default float-right new-port edit-portfolio" style="width: auto" type="button" name="button">Add new portfolio</button>
+
                 @if (!count($portfolios))
                   <p>No portfolio</p>
-
                 @else
-                  <button class="btn btn-default float-right edit-portfolio">edit</button>
-                  <button class="btn btn-default float-right new-port edit-portfolio" style="width: auto" type="button" name="button">Add new portfolio</button>
-
                   <div class="row">
-
                     @foreach ($portfolios as $portfolio)
                       <div class="col-md-4">
                         <div class="card project">
@@ -391,8 +429,8 @@
                         </div>
                       </div>
                     @endforeach
-                  @endif
 
+                  @endif
                   </div>
               </div>
             </div>
@@ -487,11 +525,11 @@
                 <div class="card">
                   <div class="card-body">
                     <form>
-                <div class="">
-                    <label for="tag_list">Tags:</label>
-                    <select id="search_skills" name="search_skills[]" class="" multiple></select>
-                </div>
-            </form>
+                      <div class="form-group">
+                        <label for="tag_list">Tags:</label>
+                      <select class="form-control" id="search_skills" name="search_skills[]" multiple></select>
+                    </div>
+                </form>
                     <ul>
                       <li>C++</li>
                       <li>Photoshop</li>
@@ -507,7 +545,7 @@
       <br>
 
       <div class="container">
-        <div class="modal" tabindex="-1" role="dialog">
+        <div class="modal portfolio animated fadeIn" tabindex="-1" role="dialog">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
@@ -536,6 +574,8 @@
           </div>
         </div>
       </div>
+      <input type="file" name="upload_dp" id="upload_dp" value="" style="opacity:0">
+
 @endsection
 
 @section('script')
@@ -552,7 +592,7 @@
     $("#user-price").css("display",'block')
     $("#freelancer-price").css("display",'none')
     $(".cant").css("display", "none")
-
+    $(".show").css("display", "block")
     $.ajax({
       method: "GET",
       url: "{{route('get.freelancer.profile')}}",
@@ -625,10 +665,17 @@
         url: "{{route('update.freelancer.profile')}}",
         method: "PUT",
         data: {name: name, description: desc, title: title, id: id, price: price},
+        async: false,
         success: function(data){
-          if(data.success == 1)
+          if(data.success == 1){
+            $(".show").css("display",'none')
+            $(".profile-details").html(desc)
+            $("#name2").text(name);
+            $("#title").text(title);
+            $("#freelancer-price").html(price +" USD/hr")
+            $(".cant").css("display", "block")
             alertify.success('Profile Updated!');
-
+          }
           console.log(data)
         },
         error: function(data){
@@ -636,40 +683,48 @@
         }
       })
 
-      $(".profile-details").html(desc)
-      $("#name2").text(name);
-      $("#title").text(title);
-      $("#freelancer-price").html(price +" USD/hr")
-      $(".cant").css("display", "block")
+
     }
 
 
   });
 
   $(".new-port").click(function(){
-    $(".modal").modal('show')
+    $(".modal.portfolio").modal('show')
   });
 
   $('#search_skills').select2({
-      placeholder: "Choose tags...",
-      minimumInputLength: 2,
-      ajax: {
-          url: '/getSkills',
-          dataType: 'json',
-          data: function (params) {
-              return {
-                  q: $.trim(params.term)
-              };
-          },
-          processResults: function (data) {
-              return {
-                  results: data
-              };
-          },
-          cache: true
-      }
+    placeholder: 'Select an item',
+    ajax: {
+      url: '/getSkills',
+      dataType: 'json',
+      delay: 250,
+      processResults: function (data) {
+        return {
+          results:  $.map(data, function (item) {
+                return {
+                    text: item.name,
+                    id: item.skills_id
+                }
+            })
+        };
+      },
+      cache: true
+    }
   });
 
+  $('#search_skills').on('select2:select', function (e) {
+      var data = e.params.data;
+      console.log(data);
+  });
+  $('#search_skills').on('select2:unselect', function (e) {
+      var data = e.params.data;
+      console.log(data);
+  });
+
+  $(".text2").click(function(){
+   $("#upload_dp").trigger('click');
+  });
 
   </script>
 @endsection

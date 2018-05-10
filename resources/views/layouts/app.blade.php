@@ -10,7 +10,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="//cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
     <link href="//cdn.quilljs.com/1.3.6/quill.bubble.css" rel="stylesheet">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.1/build/css/alertify.min.css"/>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.1/build/css/themes/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker.min.css">
   </head>
   @yield('style')
   <style media="screen">
@@ -43,9 +47,9 @@
   <!-- Main Quill library -->
   <script src="//cdn.quilljs.com/1.3.6/quill.js"></script>
   <script src="//cdn.quilljs.com/1.3.6/quill.min.js"></script>
-  <script src="https://www.paypalobjects.com/api/checkout.js">
-
-  </script>
+  <script src="https://www.paypalobjects.com/api/checkout.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+   <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.11.1/build/alertify.min.js"></script>
   <script type="text/javascript">
 
     var action="";
@@ -68,22 +72,21 @@
           if(data.errors) {
             $(".alert-success").css("display", "none")
               if(data.errors.email){
-                $("#email-error").html( data.errors.email[0] );
+                $("#email-error2").html( data.errors.email[0] );
                 }
-              if(data.errors.name){
-                $("#name-error").html( data.errors.name[0] );
+              if(data.errors.username){
+                $("#name-error2").html( data.errors.username[0] );
               }
               if(data.errors.password){
-                $("#password-error").html( data.errors.password[0] );
+                $("#password-error2").html( data.errors.password[0] );
               }
           }
           else if (data.success){
-            $("#email-error").html("");
-            $("#password-error").html("");
-            $("#name-error").html("");
-            $(".alert-success").css("display", "block")
+            $("#email-error2").html("");
+            $("#password-error2").html("");
+            $("#username-error2").html("");
+            $(".alert-success").show().delay(5000).fadeOut();
           }
-
         },
         error: function(data){
           console.log("fail")
@@ -104,7 +107,7 @@
             $(".alert-danger").css("display", "none")
 
             $(".alert-success").html("Login successful")
-            $(".alert-success").css("display", "block")
+            $(".alert-success").show().delay(5000).fadeOut();
           }
           window.location.replace(data.intended);
 
@@ -139,7 +142,35 @@
     })
   })
 
+  $.fn.extend({
+  animateCss: function(animationName, callback) {
+    var animationEnd = (function(el) {
+      var animations = {
+        animation: 'animationend',
+        OAnimation: 'oAnimationEnd',
+        MozAnimation: 'mozAnimationEnd',
+        WebkitAnimation: 'webkitAnimationEnd',
+      };
+
+      for (var t in animations) {
+        if (el.style[t] !== undefined) {
+          return animations[t];
+        }
+      }
+    })(document.createElement('div'));
+
+    this.addClass('animated ' + animationName).one(animationEnd, function() {
+      $(this).removeClass('animated ' + animationName);
+
+      if (typeof callback === 'function') callback();
+    });
+
+    return this;
+  },
+});
+
   </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.min.js"></script>
   @yield('script')
 
 </html>

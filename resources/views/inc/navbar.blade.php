@@ -14,7 +14,7 @@
              </a>
              <div class="dropdown-menu" aria-labelledby="navbarDropdown" >
                <h6 class=""><strong>FIND A FREELANCER</strong></h6>
-               <a class="dropdown-item" href="#">Post a Project</a>
+               <a class="dropdown-item" href="{{route('post.project.page')}}">Post a Project</a>
                <div class="dropdown-divider"></div>
 
                <h6 class="" ><strong>DISCOVER</strong></h6>

@@ -50,7 +50,7 @@
     <div class="row">
 
       <div class="col-md-12">
-        <h2>Search Engine Optimization</h2>
+        <h2>{{$job[0]->name}}</h2>
         <div class="project-time">
           <div class="row">
             <div class="col-md-1">
@@ -63,11 +63,21 @@
             </div>
             <div class="col-md-2">
               <h4>Project Budget</h4>
-              <strong>$50.00</strong>
+              <strong>
+
+                ${{$job[0]->price_max}}.00
+              </strong>
             </div>
             <div class="col-md-2" style="float: right">
               <h4>Days left</h4>
-              <strong>4</strong>
+              <strong>
+                @php
+                  $now = date_create(date("d-m-Y"));
+                  $end = date_create(date_format(date_create($job[0]->deadline), "d-m-Y"));
+                  $diff=date_diff($now, $end);
+                  echo $diff->format('%d day/s left');
+                @endphp
+              </strong>
             </div>
           </div>
         </div>
@@ -81,7 +91,9 @@
           <div class="row">
             <div class="col-md-8">
               <div class="desc">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                 @php
+                  echo $job[0]->description;
+                 @endphp
               </div>
               <div class="employer-desc">
                 <strong>About the employer</strong>

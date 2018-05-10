@@ -17,10 +17,10 @@ class FreelancerController extends Controller
         $id = Auth::user()->id;
       else $id=9;
 
-
+      $skills = Skills::all();
       $portfolios = Freelancer::find($id)->portfolio;
       $freelancer = Freelancer::find($id);
-      return view('freelancer.profile')->with('freelancer', $freelancer)->with('portfolios', $portfolios);
+      return view('freelancer.profile')->with('freelancer', $freelancer)->with('portfolios', $portfolios)->with('skills', $skills);
     }
 
     public function getProfile(Request $request){
@@ -85,6 +85,7 @@ class FreelancerController extends Controller
          return \Response::json([]);
      }
      $tags = Skills::where('name','like','%'.$term.'%')->limit(5)->get();
+
 
      return response()->json($tags);
  }

@@ -24,13 +24,13 @@
 						<div class="form-group relative">
 							<input class="form-control input-lg" name="email" id="login_username" placeholder="E-mail Address" required="" type="email"> <i class="fa fa-user"></i>
                 <span class="help-block">
-                  <strong id="email-error"></strong>
+                  <strong style="color: red" id="email-error"></strong>
                 </span>
         		</div>
 						<div class="form-group relative">
 							<input class="form-control input-lg" name="password" id="login_password" placeholder="Password" required="" type="password"> <i class="fa fa-lock"></i>
               <span class="help-block">
-                  <strong id="password-error"></strong>
+                  <strong style="color: red" id="password-error"></strong>
               </span>
             </div>
             <div class="checkbox checkbox-success">
@@ -54,19 +54,19 @@
             <div class="form-group relative">
               <input class="form-control input-lg" id="username" name="username" placeholder="Username" required="" type="text"> <i class="fa fa-user"></i>
               <span class="help-block">
-                  <strong id="name-error2"></strong>
+                  <strong style="color: red" id="name-error2"></strong>
               </span>
             </div>
 						<div class="form-group relative">
 							<input class="form-control input-lg" name="email" id="login_username" placeholder="E-mail Address" required="" type="email"> <i class="fa fa-user"></i>
               <span class="help-block">
-                  <strong id="email-error"></strong>
+                  <strong style="color: red" id="email-error2"></strong>
               </span>
             </div>
 						<div class="form-group relative">
 							<input class="form-control input-lg" name="password" id="login_password" placeholder="Password" required="" type="password"> <i class="fa fa-lock"></i>
               <span class="help-block">
-                  <strong id="password-error2"></strong>
+                  <strong style="color: red" id="password-error2"></strong>
               </span>
             </div>
 						<div class="form-group relative">

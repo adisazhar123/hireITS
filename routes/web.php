@@ -21,7 +21,6 @@ Route::get('/', function () {
 //freelancer
 Route::get('jobs','ProjectsController@index')->name('browse.jobs');
 Route::get('/freelancer', 'FreelancerController@index')->name('view.freelancer.profile');
-Route::get('projects', 'ProjectsController@viewProject')->name('view.project');
 Route::get('showcase', 'ProjectsController@browseShowcase')->name('browse.showcase');
 Route::get('freelancer/getprofile', 'FreelancerController@getProfile')->name('get.freelancer.profile');
 Route::put('freelancer/updateProfile', 'FreelancerController@updateProfile')->name('update.freelancer.profile');
@@ -30,8 +29,13 @@ Route::post('/addPortfolio', 'FreelancerController@addPortfolio')->name('add.por
 Route::delete('/deletePortfolio/{id}', 'FreelancerController@deletePortfolio')->name('delete.portfolio');
 Route::get('/getSkills', 'FreelancerController@getSkills')->name('search.skills');
 
-
 //employer
+Route::get('post-project', 'EmployerController@postProject')->name('post.project.page');
+Route::post('post-project', 'EmployerController@storeProject')->name('store.project');
+Route::get('projects/{slug}', 'ProjectsController@viewProject')->name('view.project');
+
+
+
 
 //payment
 Route::get('check', 'Auth\LoginController@check')->name('check');
