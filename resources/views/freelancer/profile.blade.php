@@ -50,11 +50,77 @@ img {max-width: 100%;}
       opacity: 1;
     }
 .profile-header h2{
-   
+
           border-bottom: 1px solid #ddd;
           padding-bottom: 10px;
           color: #404040;
         }
+
+        .edit-portfolio{
+          margin-top: -43px;
+          display: none;
+          width: auto;
+        }
+
+        .portfolio:hover .edit-portfolio{
+          display: block;
+          animation: fade;
+        }
+        .card-img-top{
+          height: 250px;
+          width: 100%;
+        }
+
+        .portfolio .card{
+          width: auto;
+        }
+
+
+        .text {
+          padding-top: 120px;
+          color: white;
+          opacity: 1;
+        }
+
+        .text .btn{
+          width: auto;
+        }
+
+        .middle {
+        transition: .5s ease;
+        opacity: 0;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        text-align: center;
+        background-color: black;
+        height: 100%;
+        width: 100%;
+      }
+
+      .text{
+        transition: .5s ease;
+        opacity: 0;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        text-align: center;
+        background-color: black;
+        height: 95%;
+        width: 95%;
+      }
+      .portfolio .card:hover .text{
+        opacity: 0.8;
+      }
+
+      .portfolio .card:hover .middle{
+        opacity: 0.1;
+      }
+
 
 /*Generic styles*/
 #wrapper{ max-width: 800px; width:100%; margin:0 auto;}
@@ -84,7 +150,7 @@ img {max-width: 100%;}
   h1{font-size:2em;}
   h1.callout{font-size:3em;}
   p{font-size:1.4em;}
-  #generic-tabs ul li a { font-size:1.6em; padding: 1.2em 2em; line-height: 16px; }  
+  #generic-tabs ul li a { font-size:1.6em; padding: 1.2em 2em; line-height: 16px; }
 }
 
 </style>
@@ -94,7 +160,7 @@ img {max-width: 100%;}
 
 @section('content')
 
-<div id="wrapper">
+<div class="container">
   @if (Auth::check())
           @if (!Auth::user()->hassetprofile)
             <div class="alert alert-warning" role="alert">
@@ -110,13 +176,13 @@ img {max-width: 100%;}
             <p class="cant">@ {{Auth::user()->username}} </p>
             <p class="cant" id="department">{{$freelancer->major}} Department</p>
             <p class="cant">{{$freelancer->jobs_completed}} jobs completed, {{$freelancer->jobs_ontime}} on time</p>
-                  
+
                      @if (!$freelancer->reviews)
                 <p class="cant">{{$freelancer->reviews}} reviews</p>
                 @else
                   <i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i> 5 reviews
               @endif
-                  
+
                   <!-- <p class="cant">Member since: {{date_format(Auth::user()->created_at,"d/m/Y")}}</p>
                   <p class="cant">3 recommendations</p> -->
                 </div>
@@ -125,21 +191,21 @@ img {max-width: 100%;}
 
         <ul id="tabs">
             <li>
-                <a title="About" href="#first-tab"><i class="fa fa-home"></i> About</a>         
+                <a title="About" href="#first-tab"><i class="fa fa-home"></i> About</a>
             </li>
             <li>
-                <a title="Portfolio" href="#second-tab"><i class="fa fa-picture-o"></i> Portfolio</a> 
+                <a title="Portfolio" href="#second-tab"><i class="fa fa-picture-o"></i> Portfolio</a>
             </li>
             <li>
-                <a title="Reviews" href="#third-tab"><i class="fa fa-info-circle"></i> Reviews </a>  
-            </li>         
+                <a title="Reviews" href="#third-tab"><i class="fa fa-info-circle"></i> Reviews </a>
+            </li>
             <li>
-                <a title="Contact" href="#fourth-tab"><i class="fa fa-envelope"></i> Contact</a>      
+                <a title="Contact" href="#fourth-tab"><i class="fa fa-envelope"></i> Contact</a>
             </li>
         </ul>
-       
+
         <div id="first-tab" class="tab-content">
-             <button type="button" id="edit-profile" class="btn btn-primary" name="button">Edit Profile</button>
+             <button type="button" id="edit-profile" class="btn btn-warning" name="button">Edit Profile</button>
           <h2><i class="profile-user fa fa-user"></i> Information</h2>
 
           <h2 id="name2">@if (!Auth::user()->hassetprofile)
@@ -155,12 +221,12 @@ img {max-width: 100%;}
                 {{$freelancer->title}}
               @endif
 
-              </h3>           
+              </h3>
 
           <form action="#" method="post" class="form-profile">
                 {{ csrf_field() }}
-                <input id="user-name" type="text" name="user-name" value="">
-                <input id="user-title" type="text" name="user-title" value="">
+                <input id="user-name" type="text" name="user-name" value="" style="display: none">
+                <input id="user-title" type="text" name="user-title" value="" style="display: none">
                 <input id="user-desc" name="user-desc" type="hidden" value="">
                 <div class="editor">
 
@@ -180,18 +246,18 @@ img {max-width: 100%;}
 
               </div>
 
-              
+
 
               <br><br><br><br><br>
-              <h3 id="freelancer-price">$ {{$freelancer->price}} USD/hr</h3>
-              <input id="user-price" type="text" name="user-price" placeholder="Price per hour" value="{{$freelancer->price}}">
-          <!--  
+              <h3 id="freelancer-price"> $ {{$freelancer->price}} USD/hr</h3>
+              <input id="user-price" type="text" name="user-price" placeholder="Price per hour" value="{{$freelancer->price}}" style="display: none">
+          <!--
               <br><br><br><br> -->
-               
+
 
               <h2><i class="profile-user fa fa-user"></i> Skills</h2>
                 <button class="btn btn-default float-right new-skills edit-skills" style="width: auto" type="button" name="button">New Skills</button>
-                
+
                     <form>
                       <div class="">
                         <label for="tag_list">Tags:</label>
@@ -204,7 +270,7 @@ img {max-width: 100%;}
                     </ul>
         </div>
 
-        <div id="second-tab" class="tab-content">        
+        <div id="second-tab" class="tab-content portfolio">
           @if (!count($portfolios))
                   <p>No portfolio</p>
 
@@ -239,32 +305,63 @@ img {max-width: 100%;}
                     @endforeach
                   </div>
                   @endif
+                  <div class="container">
+                    <div class="modal portfolio animated fadeIn" tabindex="-1" role="dialog">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title">Add Portfolio</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body">
+                            <form enctype="multipart/form-data" method="post" action="{{route('add.portfolio')}}">
+                              {{ csrf_field() }}
+                              <div class="form-group">
+                                <input type="text" class="form-control" id="port_name" name="port_name" placeholder="Portfolio Name">
+                              </div>
+                              <div class="form-group">
+                                <input type="text" class="form-control" id="port_desc" name="port_desc" placeholder="Portfolio Description">
+                              </div>
+                              <div class="form-group">
+                                <input type="file" class="form-control" name="image" id="port_img">
+                              </div>
+                              <button type="submit" class="btn btn-primary">Submit</button>
+                            </form>
+                          </div>
+
+                        </div>
+                      </div>
+                    </div>
+                  </div>
         </div>
 
         <div id="third-tab" class="tab-content">
 
-                  
+
                     <i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i>
                     <br><strong>Joni</strong>
                     <p>This guy is awesome!! work is always on time</p>
-                  
-            
+
+
                     <i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i>
                     <br><strong>Joni</strong> Project mobile app
                     <p>This guy is awesome!! work is always on time</p>
-                 
+
         </div>
-        <div id="fourth-tab" class="tab-content">   
+        <div id="fourth-tab" class="tab-content">
           <h1>Contact</h1>
           <p>Lorem ipsum dolor sit amet, utroque splendide an quo. Omnesque pertinacia efficiantur vix at, soleat quaeque assueverit et vis. Te sit tale eripuit corrumpit, cum ea case graeci legimus. Sea ex assentior honestatis adversarium. Mei ea dico meis instructior, no eum ipsum voluptatum, quodsi pertinax postulant in sed. Te eum pertinacia suscipiantur, sea eirmod sanctus ea. Vel habeo feugait ea, an apeirian adversarium nam.</p>
         </div>
 
-    </section>  
+    </section>
   </div>
 @endsection
 
 @section('script')
 <script type="text/javascript">
+
     $("#edit-profile").click(function(){
     $("input#user-title").css("display", "block");
     $("input#user-name").css("display", "block");
@@ -351,8 +448,18 @@ img {max-width: 100%;}
         method: "PUT",
         data: {name: name, description: desc, title: title, id: id, price: price},
         success: function(data){
-          if(data.success == 1)
+          if(data.success == 1){
+
+            $(".profile-details").html(desc)
+            $("#name2").text(name);
+            $("#title").text(title);
+            $("#freelancer-price").html("$ " +price +" USD/hr")
+            $(".cant").css("display", "block")
+            $("#title").css("display", "block")
+            $(".profile-details").css("display", "block")
             alertify.success('Profile Updated!');
+
+          }
 
           console.log(data)
         },
@@ -361,18 +468,14 @@ img {max-width: 100%;}
         }
       })
 
-      $(".profile-details").html(desc)
-      $("#name2").text(name);
-      $("#title").text(title);
-      $("#freelancer-price").html(price +" USD/hr")
-      $(".cant").css("display", "block")
+
     }
 
 
   });
 
   $(".new-port").click(function(){
-    $(".modal").modal('show')
+    $(".modal.portfolio").modal('show')
   });
 
   // $('#search_skills').select2({
@@ -397,7 +500,7 @@ img {max-width: 100%;}
 (function($){
   /* trigger when page is ready */
   $(document).ready(function (){
-    
+
         //Tabs functionality
         //Firstly hide all content divs
         $('#generic-tabs .tab-content').hide();
@@ -414,12 +517,12 @@ img {max-width: 100%;}
             //Set currentTab to this link
             var currentTab = $(this).attr('href');
             //Hide away all tabs
-            $('#generic-tabs .tab-content').hide();            
+            $('#generic-tabs .tab-content').hide();
             //show the current tab
             $(currentTab).show();
             //Stop default link action from happening
             return false;
-        }); 
+        });
   });
 })(window.jQuery);
 
