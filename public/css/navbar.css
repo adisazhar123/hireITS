@@ -1,6 +1,7 @@
-nav.main {
+/*nav.main {
   min-height: 65px;
   z-index: 1;
+  background: #85b8cb;
 }
 
 .nav-item a {
@@ -29,9 +30,14 @@ a.nav-link:hover {
 
 .navbar-brand {
   transform: scale(1.5);
+<<<<<<< Updated upstream
   margin-left: 25px;
   margin-right: 2em;
   color: #6da768 !important;
+=======
+  margin-left : 25px;
+  margin-right : 2em;
+>>>>>>> Stashed changes
 }
 
 nav form .btn-search:hover {
@@ -76,8 +82,13 @@ nav.navbar {
   padding-top: 0;
 }
 
+<<<<<<< Updated upstream
 a.navbar-brand {
   color: #6da768 !important;
+=======
+a.navbar-brand{
+  color: #FFFFFF !important;
+>>>>>>> Stashed changes
   font-size: 1.75em;
 }
 
@@ -118,4 +129,4 @@ button.navbar-toggler {
 
 .modal-backdrop.show {
   opacity: 0 !important;
-}
+}*/

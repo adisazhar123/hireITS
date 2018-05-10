@@ -1,4 +1,137 @@
+<style>
+nav.main {
+  min-height: 65px;
+  z-index: 1;
+  background: #85b8cb;
+}
 
+.nav-item a {
+  color: #EA9B25 !important;
+}
+
+.nav-link {
+  text-transform: uppercase;
+}
+
+.btn-primary {
+  background-color: #D66C44;
+  border: none;
+  color: #FFFFFF !important;
+  font-weight: bold;
+}
+
+.btn-primary:hover {
+  background-color: #c95b30;
+}
+
+a.nav-link:hover {
+  border-top: 2px solid #2D3D19;
+  border-bottom: 2px solid #2D3D19;
+}
+
+.navbar-brand {
+  transform: scale(1.5);
+<<<<<<< Updated upstream
+  margin-left: 25px;
+  margin-right: 2em;
+  color: #6da768 !important;
+=======
+  margin-left : 25px;
+  margin-right : 2em;
+>>>>>>> Stashed changes
+}
+
+nav form .btn-search:hover {
+  background-color: #E99A24;
+}
+
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+.dropdown-menu {
+  background-color: #EA9B25;
+  padding: 10px;
+  text-align: center;
+  align-content: right;
+}
+
+.dropdown-menu a {
+  color: #FFFFFF !important;
+}
+
+.dropdown-menu a:hover {
+  background-color: #ECB021 !important;
+}
+
+@media only screen and (max-width: 990px) {
+  a.nav-link:hover {
+    transform: scale(1);
+  }
+  nav input {
+    width: 100% !important;
+    margin-bottom: 10px;
+  }
+  nav form button {
+    width: 100% !important;
+  }
+}
+
+nav.navbar {
+  background-color: #1d2326;
+  padding-bottom: 0;
+  padding-top: 0;
+}
+
+<<<<<<< Updated upstream
+a.navbar-brand {
+  color: #6da768 !important;
+=======
+a.navbar-brand{
+  color: #FFFFFF !important;
+>>>>>>> Stashed changes
+  font-size: 1.75em;
+}
+
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+.dropdown-header {
+  font-size: 1em;
+}
+
+button.navbar-toggler {
+  background-color: #FF983C !important;
+  border-color: white;
+}
+
+@media only screen and (max-width: 990px) {
+  a.nav-link:hover {
+    transform: scale(1);
+  }
+  .navbar-brand {
+    padding-left: 20px;
+  }
+  nav input {
+    width: 100% !important;
+    margin-bottom: 10px;
+  }
+  nav form button {
+    width: 100% !important;
+  }
+  nav .btn {
+    margin-bottom: 10px;
+  }
+  #login-btn {
+    width: 100%;
+  }
+}
+
+.modal-backdrop.show {
+  opacity: 0 !important;
+}
+</style>
 <nav class="main navbar navbar-expand-lg navbar-light" >
     <div class="container">
        <a class="navbar-brand" href="{{url('/')}}">hire<strong>ITS</strong></a>
