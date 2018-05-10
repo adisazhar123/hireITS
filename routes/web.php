@@ -18,9 +18,11 @@ Route::get('/', function () {
     return view('homepage');
 });
 
+
 //freelancer
 Route::get('jobs','ProjectsController@index')->name('browse.jobs');
-
+Route::get('/fgetdata', 'FreelancerController@freeget')->name('view.freelancer.fgetdata');
+Route::post('dataupd', 'FreelancerController@getData');
 Route::get('/freelancer', 'FreelancerController@index')->name('view.freelancer.profile');
 Route::get('showcase', 'ProjectsController@browseShowcase')->name('browse.showcase');
 Route::get('freelancer/getprofile', 'FreelancerController@getProfile')->name('get.freelancer.profile');
@@ -34,7 +36,7 @@ Route::get('/getSkills', 'FreelancerController@getSkills')->name('search.skills'
 Route::get('post-project', 'EmployerController@postProject')->name('post.project.page');
 Route::post('post-project', 'EmployerController@storeProject')->name('store.project');
 Route::get('projects/{slug}', 'ProjectsController@viewProject')->name('view.project');
-
+Route::get('/egetdata', 'EmployerController@empget')->name('view.employer.egetdata');
 
 
 

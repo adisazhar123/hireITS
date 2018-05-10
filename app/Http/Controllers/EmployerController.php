@@ -23,4 +23,8 @@ class EmployerController extends Controller
     }
 
   }
+
+  public function empget(){
+  	return view('employer.egetdata');
+  }
 }
