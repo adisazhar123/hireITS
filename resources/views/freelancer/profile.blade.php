@@ -1,7 +1,6 @@
 @section('style')
 <style media="screen">
 
-body{font: 100% Helvetica, Arial, Sans-serif; background:#2c3e50;}
 /*Box sizing stuff*/
 * { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box;}
 /*Font styels*/
@@ -13,20 +12,46 @@ p strong{color:#555555;}
 p a{color:#27ae60; text-decoration:none;}
 
 /*img stuff*/
-img {max-width: 100%;}
-    .profile-pic img{
+  img {max-width: 100%;}
+  .background-pic{
+    @if ($cover->isEmpty())
+      background-image: url('https://images.pexels.com/photos/735911/pexels-photo-735911.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');
+    @else
+      background-image: url({{asset($cover)}});
+    @endif
+    height: 60%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: rgba(0,0,0,0);
+    margin-bottom: -400px;
+  }
+
+  .profile-pic{
+    margin-top: 20px;
+    justify-content: center;  margin-left: auto;
+    margin-right: auto;
+    width: 300px;
+    height: 100%;
+  }
+      .profile-pic img{
       border-radius: 5px;
       display: block;
       margin-left: auto;
       margin-right: auto;
-      padding-top: 13px;
-      height: 240px;
+      height: 100%;
+      width: auto;
+      border: solid #85b8cb;
+      border-width: 1px;
+      border-radius: 5px;
       }
 
-        .info{
+      .info p{
       margin-top: 10px;
       text-align: center;
-      line-height: 50%;
+      line-height: 10px;
+      color: white;
+      font-size: 18px;
     }
 
     .skills{
@@ -44,12 +69,12 @@ img {max-width: 100%;}
       border-left: none;
       border-right: none;
     }
-.text {
-      padding-top: 120px;
-      color: white;
-      opacity: 1;
-    }
-.profile-header h2{
+    .text {
+          padding-top: 120px;
+          color: white;
+          opacity: 1;
+        }
+        .profile-header h2{
 
           border-bottom: 1px solid #ddd;
           padding-bottom: 10px;
@@ -117,7 +142,7 @@ img {max-width: 100%;}
         transition: .5s ease;
         opacity: 0;
         position: absolute;
-        top: 40%;
+        top: 30%;
         left: 50%;
         transform: translate(-50%, -50%);
         -ms-transform: translate(-50%, -50%);
@@ -132,15 +157,7 @@ img {max-width: 100%;}
       .portfolio .card:hover .middle{
         opacity: 0.1;
       }
-      .new-skills{
-        display: none;
-      }
 
-      .skills:hover .new-skills{
-        display: block;
-        margin-top: -45px;
-
-      }
       .editor{
         margin-bottom: 10px;
       }
@@ -173,6 +190,19 @@ img {max-width: 100%;}
       .fa-star{
         color:yellow;
       }
+
+      .divider{
+        border-left: solid #E9E9E9;
+        border-width: 1px;
+      }
+      .text2:hover{
+        cursor: pointer;
+      }
+
+      .profile-pic:hover .text2{
+        opacity: 1;
+      }
+
       #user-title{
         height: 40px;
         display: none;
@@ -202,9 +232,29 @@ img {max-width: 100%;}
         width: 100%;
         font-size: 28px;
       }
+
+      #search_skills{
+        width: 100%;
+      }
+      span.select2.select2-container{
+        width: 100%;
+
+      }
+
+      #upload{
+        opacity: 0.6;
+      }
+
 /*Generic styles*/
 #wrapper{ max-width: 800px; width:100%; margin:0 auto;}
-#generic-tabs{ width:100%; padding:20px;}
+#generic-tabs{
+  width:100%; padding:20px;
+}
+
+#first-tab,#second-tab,#third-tab{
+  box-shadow:  0px 0px 2px 0px  rgba(0, 0, 0, 0.3);
+  border-radius: 3px;
+}
 
 /*Tab styles*/
 #generic-tabs ul#tabs { overflow: hidden; margin:0; padding:0;}
@@ -224,18 +274,6 @@ img {max-width: 100%;}
 
 #generic-tabs .tab-content{ background:#FFFFFF; padding:3em 2em;}
 #generic-tabs .tab-content h1 {margin-top:0;}
-
-.divider{
-  border-left: solid #E9E9E9;
-  border-width: 1px;
-}
-.text2:hover{
-  cursor: pointer;
-}
-
-.profile-pic:hover .text2{
-  opacity: 1;
-}
 
 #first-tab{
   border-bottom-left-radius: 5px;
@@ -257,12 +295,28 @@ img {max-width: 100%;}
   border-top-right-radius: 5px;
 }
 
+.delete-skills{
+  display: none;
+}
+
+.skills .card:hover .delete-skills{
+  display: block;
+}
+
+
+
 @media only screen and (max-width: 990px) {
   .divider{
     border-left: none;
   }
+  #generic-tabs ul#tabs li { font-size: 1.1em;width:100%;}
 
+  .text2{
+    top: 25%;
+    left: 50%;
   }
+  }
+
 @media only screen and (min-width: 650px) {
   h1{font-size:2em;}
   h1.callout{font-size:3em;}
@@ -270,6 +324,65 @@ img {max-width: 100%;}
   #generic-tabs ul#tabs li a { font-size:1.6em; padding: 1.2em 2em; line-height: 16px; }
 }
 
+#edit-profile{
+  float: right;
+  padding: 10px;
+
+}
+
+#my_file {
+  visibility: hidden;
+  position: absolute;
+  left: -9999px;
+  top: -9999px
+}
+#save_skills{
+  display: none;
+}
+
+#save_skills{
+  margin-top: 10px;
+}
+
+
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+}
+
+.sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+}
+
+.sidenav a:hover {
+    color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
 
 
 </style>
@@ -278,7 +391,9 @@ img {max-width: 100%;}
 @extends('layouts.app')
 
 @section('content')
+<div class="background-pic">
 
+</div>
 <div class="container">
   @if (Auth::check())
           @if (!Auth::user()->hassetprofile)
@@ -288,14 +403,24 @@ img {max-width: 100%;}
           @endif
 
         @endif
-   <div class="profile-pic">
-          <img src="{{asset('followers.png')}}" alt="">
+        <div class="profile-pic">
+          @if ($pf->isEmpty())
+            <img src="{{asset('adis.jpg')}}" alt="profile_pic12">
+            @else
+              <img src="data:{{$pf[0]->img_type}};base64,{{base64_encode( $pf[0]->name )}}" alt="profile_pic">
+          @endif
           <div class="text2">
-            <i class="fa fa-wrench" style="font-size:24px;"></i>
+
+            <form action="#" enctype="multipart/form-data" id="upload-dp">
+              {{ csrf_field() }}
+                <input type="file" id="my_file" name="image"/>
+                <i class="fa fa-wrench" id="file_selector" style="font-size:60px;"></i>
+                <button id="upload" class="btn btn-default" type="submit" name="button">upload profile pic: </button>
+             </form>
           </div>
         </div>
         <div class="info">
-            <p class="cant">@ {{Auth::user()->username}} </p>
+            <p class="cant">{{"@".Auth::user()->username}} </p>
             <p class="cant" id="department">{{$freelancer->major}} Department</p>
             <p class="cant">{{$freelancer->jobs_completed}} jobs completed, {{$freelancer->jobs_ontime}} on time</p>
 
@@ -305,8 +430,8 @@ img {max-width: 100%;}
                   <i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i> 5 reviews
               @endif
 
-                  <!-- <p class="cant">Member since: {{date_format(Auth::user()->created_at,"d/m/Y")}}</p>
-                  <p class="cant">3 recommendations</p> -->
+                  <p class="cant">Member since: {{date_format(Auth::user()->created_at,"d/m/Y")}}</p>
+                  <!-- <p class="cant">3 recommendations</p> -->
                 </div>
       <section id="generic-tabs">
 
@@ -332,29 +457,31 @@ img {max-width: 100%;}
             <div class="col-lg-8">
               <h2><i class="profile-user fa fa-user"></i> Information</h2>
 
-              <h2 id="name2">@if (!Auth::user()->hassetprofile)
+              <h3 id="name2">@if (!Auth::user()->hassetprofile)
                     Please set your name.
                   @else
                     {{$freelancer->name}}
                   @endif
 
-                  </h2>
-                  <h3 id="title">@if (!Auth::user()->hassetprofile)
+                </h3>
+                  <h5 id="title">@if (!Auth::user()->hassetprofile)
                     What is your title?
                   @else
                     {{$freelancer->title}}
                   @endif
-                </h3>
+                </h5>
 
                   <form action="#" method="post" class="form-profile">
                     {{ csrf_field() }}
-                    <input class="animated fadeIn form-control" id="user-name" type="text" name="user-name" value="" style="display: none">
-                    <input class="animated fadeIn form-control" id="user-title" type="text" name="user-title" value="" style="display: none">
+                    <input class="animated fadeIn form-control" id="user-name" type="text" placeholder="what is your name?" name="user-name" value="" style="display: none">
+                    <input class="animated fadeIn form-control" id="user-title" type="text" placeholder="what is your title?" name="user-title" value="" style="display: none">
+                    <h5 id="freelancer-price"> $ {{$freelancer->price}} USD/hr</h5>
+                    <input class="form-control" id="user-price" type="text" name="user-price" placeholder="Price per hour" value="{{$freelancer->price}}" style="display: none">
                     <input id="user-desc" name="user-desc" type="hidden" value="">
                     <div class="editor animated fadeIn">
 
                     </div>
-                    <button type="submit" id="save-profile" class="btn btn-primary" style="display: none">Save Profile</button>
+                    <button type="submit" id="save-profile" class="btn btn-success" style="display: none">Save Profile</button>
 
                   </form>
 
@@ -369,33 +496,45 @@ img {max-width: 100%;}
                   </div>
             </div>
             <div class="col-lg-4 divider">
-              <h3 id="freelancer-price"> $ {{$freelancer->price}} USD/hr</h3>
-              <input class="form-control" id="user-price" type="text" name="user-price" placeholder="Price per hour" value="{{$freelancer->price}}" style="display: none">
               <div class="skills">
                 <h2><i class="profile-user fa fa-user"></i> Skills</h2>
-                  <button class="btn btn-default float-right new-skills edit-skills" style="width: auto" type="button" name="button">New Skills</button>
                   <form id="skills-form" style="opacity:0">
                     <div class="form-group">
                       <label for="tag_list">Tags:</label>
-                      <select class="form-control col-md-4" id="search_skills" name="search_skills[]" multiple></select>
+                      <select class="form-control col-md-12" id="search_skills" name="search_skills[]" multiple></select>
+                      <button class="btn btn-success col-md-12 " id="save_skills" type="submit" name="button">Save Skills</button>
                     </div>
                   </form>
-                  <ul>
-                    <li>C++</li>
-                    <li>Photoshop</li>
-                  </ul>
+                  @foreach ($skills as $skill)
+                    <div class="card">
+                      <div class="card-body">
+                        <div class="row">
+                          <div class="col-md-6">
+                            {{$skill->name}}
+                          </div>
+                          <div class="col-md-6">
+                            <button type="button" class="btn btn-danger delete-skills" skill-id="{{$skill->skills_id}}" style="margin-left: 5px; margin-top:-5px" name="button">Delete</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  @endforeach
               </div>
             </div>
           </div>
+
         </div>
 
         <div id="second-tab" class="tab-content portfolio">
-          @if (!count($portfolios))
+          @if (!$portfolios->count())
                   <p>No portfolio</p>
+                  <button class="btn btn-default float-right new-port edit-portfolio" style="width: auto" type="button" name="button">Add new portfolio</button>
 
                 @else
                   <button class="btn btn-default float-right edit-portfolio">edit</button>
-                  <button class="btn btn-default float-right new-port edit-portfolio" style="width: auto" type="button" name="button">Add new portfolio</button>
+                  @if ($portfolios->count()<6)
+                    <button class="btn btn-default float-right new-port edit-portfolio" style="width: auto" type="button" name="button">Add new portfolio</button>
+                  @endif
 
                   <div class="row">
 
@@ -473,17 +612,36 @@ img {max-width: 100%;}
         </div>
 
     </section>
+    <div id="mySidenav" class="sidenav">
+      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+      <a href="#">About</a>
+      <a href="#">Services</a>
+      <a href="#">Clients</a>
+      <a href="#">Contact</a>
+    </div>
+
+    <h2>Animated Sidenav Example</h2>
+    <p>Click on the element below to open the side navigation menu.</p>
+    <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; open</span>
+
   </div>
-  <input type="file" name="upload_dp" id="upload_dp" value="" style="opacity:0">
 
 @endsection
 
 @section('script')
 <script type="text/javascript">
+function openNav() {
+    document.getElementById("mySidenav").style.width = "250px";
+}
 
+function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+}
     $("#edit-profile").click(function(){
     $("input#user-title").css("display", "block");
     $("input#user-name").css("display", "block");
+    $("#save_skills").css('display', 'block')
+    $("#skills-form").css("opacity","1")
     $(".editor").css("display","block");
     $(".ql-toolbar.ql-snow").css("display", "block");
     $("#name2").css("display", "none");
@@ -648,20 +806,70 @@ $('#search_skills').select2({
 
 $('#search_skills').on('select2:select', function (e) {
     var data = e.params.data;
-    console.log(data);
+    //console.log(data);
 });
 $('#search_skills').on('select2:unselect', function (e) {
     var data = e.params.data;
     console.log(data);
 });
 
-$(".new-skills").click(function(){
-  $("#skills-form").css("opacity","1")
-})
 
-$(".text2").click(function(){
+
+$(".text2").on('click',function(e){
  $("#upload_dp").trigger('click');
 });
+
+$(".text2").hover(function(){
+
+})
+
+	$('#file_selector').on('click', function(e) {
+  	$('#my_file').trigger('click');
+	});
+
+	$('#my_file').on('change', function() {
+  	$('#upload').html("upload: "+$(this).val());
+	});
+
+  $("#upload-dp").submit(function(){
+    if ($('#my_file').val() == ""){
+      alert("fill in a pic")
+      return false;
+    }else{
+      $("#upload-dp").attr('action', '{{route('store.freelancer.dp')}}');
+      $("#upload-dp").attr('method', 'post');
+
+      $("#upload-dp").trigger('submit');
+
+    }
+  })
+
+  $("#skills-form").submit(function(e){
+    e.preventDefault()
+    var mySkills = [];
+    var skills = $("#search_skills").select2('data')
+    for(var i=0; i<skills.length; i++)
+      mySkills.push(skills[i].id)
+
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
+    $.ajax({
+      url: '{{route('store.freelancer.skills')}}',
+      data: {skills: mySkills, id: '{{Auth::user()->id}}'},
+      method: "post",
+      success: function(data){
+        console.log(data)
+      },
+      error: function(data){
+        console.log("ajax error - adding skills")
+      }
+    })
+  })
+
 
 
 </script>

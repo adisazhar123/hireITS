@@ -64,19 +64,6 @@ nav form .btn-search:hover {
   background-color: #ECB021 !important;
 }
 
-@media only screen and (max-width: 990px) {
-  a.nav-link:hover {
-    transform: scale(1);
-  }
-  nav input {
-    width: 100% !important;
-    margin-bottom: 10px;
-  }
-  nav form button {
-    width: 100% !important;
-  }
-}
-
 nav.navbar {
   background-color: #1d2326;
   padding-bottom: 0;
@@ -101,9 +88,8 @@ a.navbar-brand{
   font-size: 1em;
 }
 
-button.navbar-toggler {
+.navbar-toggler {
   background-color: #FF983C !important;
-  border-color: white;
 }
 
 @media only screen and (max-width: 990px) {
@@ -123,7 +109,8 @@ button.navbar-toggler {
   nav .btn {
     margin-bottom: 10px;
   }
-  #login-btn {
+
+  #login-btn{
     width: 100%;
   }
 }
@@ -131,12 +118,14 @@ button.navbar-toggler {
 .modal-backdrop.show {
   opacity: 0 !important;
 }
+
 </style>
 <nav class="main navbar navbar-expand-lg navbar-light" >
     <div class="container">
        <a class="navbar-brand" href="{{url('/')}}">hire<strong>ITS</strong></a>
-       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-         <span class="navbar-toggler-icon"></span>
+       <button class="navbar-toggler" style="background-color:#FF983C" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+         <span class="navbar-toggler-icon">
+         </span>
        </button>
 
        <div class="collapse navbar-collapse" id="navbarSupportedContent">
