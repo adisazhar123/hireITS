@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\User;
 use App\Freelancer;
+use App\Employer;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -75,17 +76,30 @@ class RegisterController extends Controller
              'password' => 'required|min:6|confirmed',
          ]);
 
+        $role = $request->input('role');
+        if($role == "freelancer"){
+	        if ($validator->passes()) {
+	          event(new Registered($user = $this->create($request->all())));
 
-        if ($validator->passes()) {
-          event(new Registered($user = $this->create($request->all())));
+	          //$this->guard()->login($user);
 
-          //$this->guard()->login($user);
-
-          $freelancer = new Freelancer();
-          $freelancer->freelancer_id = $user->id;
-          $freelancer->save();
-          return response()->json(['success' => "Registration succesful"]);
+	          $freelancer = new Freelancer();
+	          $freelancer->freelancer_id = $user->id;
+	          $freelancer->save();
+	          return response()->json(['success' => "Registration succesful"]);
+	        }
+	        return response()->json(['errors' => $validator->errors()]);
         }
-        return response()->json(['errors' => $validator->errors()]);
+        else if($role == "employer"){
+        	if($validator->passes()){
+        		event(new Registered($user = $this->create($request->all())));
+
+        		$employer = new Employer();
+        		$employer->employer_id = $user->id;
+        		$employer->save();
+	         	return response()->json(['success' => "Registration succesful"]);
+        	}
+        	return response()->json(['errors' => $validator->errors()]);
+        }
     }
 }
