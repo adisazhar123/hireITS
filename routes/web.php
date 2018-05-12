@@ -42,7 +42,8 @@ Route::get('post-project', 'EmployerController@postProject')->name('post.project
 Route::post('post-project', 'EmployerController@storeProject')->name('store.project')->middleware('employer');
 Route::get('projects/{slug}', 'ProjectsController@viewProject')->name('view.project');
 Route::get('/employer/fill-data', 'EmployerController@empget')->name('employer.fill.data');
-
+Route::post('empupd', 'EmployerController@getData');
+Route::get('employer', 'EmployerController@index');
 
 
 //payment

@@ -76,26 +76,23 @@ class RegisterController extends Controller
              'password' => 'required|min:6|confirmed',
          ]);
 
-
-        if ($validator->passes()) {
-          event(new Registered($user = $this->create($request->all())));
-
-          //$this->guard()->login($user);
-
-          if($user->role==="freelancer"){
-            $freelancer = new Freelancer();
-            $freelancer->freelancer_id = $user->id;
-            $freelancer->username = $user->username;
-            if ($freelancer->save())
-              return response()->json(['success' => "Registration succesful"]);
-          }else{
-            $employer = new Employer();
-            $employer->employer_id = $user->id;
-            $employer->username = $user->username;
-            if($employer->save())
-              return response()->json(['success' => "Registration succesful"]);
-          }
+        $role = $request->input('role');
+	        if ($validator->passes()) {
+	          event(new Registered($user = $this->create($request->all())));
+            if($user->role==="freelancer"){
+              $freelancer = new Freelancer();
+              $freelancer->freelancer_id = $user->id;
+              $freelancer->username = $user->username;
+              if ($freelancer->save())
+                return response()->json(['success' => "Registration succesful"]);
+            }else{
+              $employer = new Employer();
+              $employer->employer_id = $user->id;
+              $employer->username = $user->username;
+              if($employer->save())
+                return response()->json(['success' => "Registration succesful"]);
+            }
+	        }
+	        return response()->json(['errors' => $validator->errors()]);
+        	}
         }
-        return response()->json(['errors' => $validator->errors()]);
-    }
-}
