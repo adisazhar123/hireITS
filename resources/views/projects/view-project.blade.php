@@ -92,7 +92,7 @@
               <h4>Project Budget</h4>
               <strong>
 
-                ${{$job[0]->price_max}}.00
+                ${{number_format($job[0]->price_max,2)}}
               </strong>
             </div>
             <div class="col-md-2" style="float: right">
@@ -130,7 +130,10 @@
               <div class="project-skills">
                 <strong>Skills required</strong>
                 <br>
-                  <a href="#">php</a><a href="#">photoshop</a>
+                @foreach ($skills as $skill)
+                  <a href="#">{{$skill->name}}</a>
+
+                @endforeach
               </div>
             </div>
             <div class="col-md-4">
@@ -148,77 +151,32 @@
           <div class="bidders-header">
             <h3>Freelancers bidding</h3>
           </div>
-          <div class="bidders-body">
-              <div class="card bid">
-                <div class="card-body">
-                  <div class="row">
-                    <div class="col-md-2">
-                      PROFILE PIC
-                    </div>
-                    <div class="col-md-6">
+          @foreach ($bids as $bid)
+            <div class="bidders-body">
+                <div class="card bid">
+                    <div class="card-body">
                       <div class="row">
-                        Adis
+                        <div class="col-md-2">
+                          PROFILE PIC
+                        </div>
+                        <div class="col-md-6">
+                          <div class="row">
+                            {{$bid->freelancer->name}}
+                          </div>
+                          <div class="row" style="text-align: justify">
+                            {{$bid->comment}}
+                          </div>
+                        </div>
+                        <div class="col-md-4">
+                          ${{number_format($bid->price,2)}}
+                          <br>
+                          my rating is five stars
+                        </div>
                       </div>
-                      <div class="row" style="text-align: justify">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-                        in reprehenderit in voluptate velit esse cillum dolore eu.
-                      </div>
                     </div>
-                    <div class="col-md-4">
-                      £15 GBP / hour <br>
-                      my rating is five stars
-                    </div>
-                  </div>
-                </div>
-            </div>
-            <div class="card bid">
-              <div class="card-body">
-                <div class="row">
-                  <div class="col-md-2">
-                    PROFILE PIC
-                  </div>
-                  <div class="col-md-6">
-                    <div class="row">
-                      Adis
-                    </div>
-                    <div class="row" style="text-align: justify">
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                      Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-                      in reprehenderit in voluptate velit esse cillum dolore eu.
-                    </div>
-                  </div>
-                  <div class="col-md-4">
-                    £15 GBP / hour <br>
-                    my rating is five stars
-                  </div>
-                </div>
-              </div>
-          </div>
-          <div class="card bid">
-            <div class="card-body">
-              <div class="row">
-                <div class="col-md-2">
-                  PROFILE PIC
-                </div>
-                <div class="col-md-6">
-                  <div class="row">
-                    Adis
-                  </div>
-                  <div class="row" style="text-align: justify">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-                    in reprehenderit in voluptate velit esse cillum dolore eu.
-                  </div>
-                </div>
-                <div class="col-md-4">
-                  £15 GBP / hour <br>
-                  my rating is five stars
-                </div>
               </div>
             </div>
-        </div>
-          </div>
+          @endforeach
         </div>
       </div>
     </div>
@@ -286,7 +244,7 @@
             alertify.success('Bid successful!');
           }else if(data.success == -1){
             $(".bid-modal").modal("hide");
-              alertify.warning('You have put a bid for this project!');
+              alertify.warning('You already have an ongoing bid for this project!');
           }
           else{
             $(".bid-modal").modal("hide");

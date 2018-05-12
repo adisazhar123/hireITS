@@ -5,6 +5,8 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{config('app.name','hireITS')}}</title>
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/navbar.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/login-signup.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="//cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
     <link href="//cdn.quilljs.com/1.3.6/quill.bubble.css" rel="stylesheet">
@@ -16,9 +18,9 @@
   </head>
   @yield('style')
   <style media="screen">
-  @php
-    //@import url('https://fonts.googleapis.com/css?family=Raleway');
-  @endphp
+
+  @import url('https://fonts.googleapis.com/css?family=Raleway');
+
   body {
     font-family: 'Raleway', sans-serif;
     background-color: #E9E9E9;
@@ -28,8 +30,11 @@
     height: 100%;
     margin: 0;
 }
+body { padding-top: 65px; }
 
   </style>
+
+
   <body>
     @include('inc.navbar')
     <div class="container">

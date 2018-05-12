@@ -161,6 +161,15 @@ i {
   display:block;
 }
   
+  .ql-toolbar.ql-snow{
+    border: 1px solid #ccd0d2;
+    border-bottom: none;
+    border-width: 1px;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    background-color: white;
+  }
+
   </style>
 @endsection
 
@@ -195,7 +204,7 @@ i {
             <div class="input-group-prepend">
               <span class="input-group-text" id="inputGroupPrepend">Rp</span>
             </div>
-            <input type="number" name="min_price" class="form-control" id="price1" placeholder="Enter min. price" min="0">
+            <input type="number" name="min_price" class="form-control" id="price1" placeholder="Enter min. price" min="0" step="0.1">
           </div>
       </div>  
 
@@ -205,7 +214,7 @@ i {
             <div class="input-group-prepend">
               <span class="input-group-text" id="inputGroupPrepend">Rp</span>
             </div>
-            <input type="number" name="max_price" class="form-control" id="price2" placeholder="Enter max. price" min="0">
+            <input type="number" name="max_price" class="form-control" id="price2" placeholder="Enter max. price" min="0" step="0.1">
           </div>
       </div>
 
@@ -219,6 +228,22 @@ i {
               </div>
           </div>
       </div>
+        </div>
+          <div class="form-group">
+            <label for="tag_list">Tags:</label>
+            <select class="form-control col-md-12" id="search_skills" name="search_skills[]" multiple></select>
+          </div>
+        <div class="form-group">
+          <label for="">Images</label>
+          <input type="file" name="photos[]" multiple />
+          <br>
+          <small>Drag & drop any images or documents that might be helpful in explaining your project brief here.</small>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </div>
+  </div>
+@endsection
 
 
         
@@ -257,6 +282,25 @@ i {
 <button type="submit" class="btn btn-primary bouton-contact">Submit</button>
   
 </form> 
+    $('#search_skills').select2({
+      placeholder: 'Select an item',
+      ajax: {
+        url: '/getSkills',
+        dataType: 'json',
+        delay: 250,
+        processResults: function (data) {
+          return {
+            results:  $.map(data, function (item) {
+                  return {
+                      text: item.name,
+                      id: item.skills_id
+                  }
+              })
+          };
+        },
+        cache: true
+      }
+    });
 
   
 </body>

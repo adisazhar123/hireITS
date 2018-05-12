@@ -13,4 +13,7 @@ class Freelancer extends Model
     public function portfolio(){
       return $this->hasMany('App\Portfolio', 'freelancer_id');
     }
+    public function bid(){
+      return $this->hasMany('App\Bid', 'freelancer_id');
+    }
 }

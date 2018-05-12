@@ -59,13 +59,15 @@
       border-bottom: solid #E9E9E9;
       border-width: 1px;
       padding: 30px;
-      height: 177.867px;
+      height: 190px;
       white-space: initial;
     }
 
     .jobs-body:hover{
       background-color: #F7F7F7;
     }
+
+
     .jobs-body h4{
       font-weight: bold;
     }
@@ -98,6 +100,7 @@
       background-color: rgba(79,181,93,0.8);
       text-decoration: none;
       display: none;
+      margin-left: 10px;
     }
 
     .bid-btn:hover{
@@ -214,6 +217,21 @@
       background: #0077b8;
     }
 
+    .job-desc{
+      text-align: justify;
+    }
+
+    .job-price{
+      padding-left: 10px;
+    }
+
+    @media only screen and (min-width: 768px) {
+      .jobs-body:hover .bid-btn{
+        display: block;
+      }
+    }
+
+
 
     @media only screen and (max-width: 992px) {
       .jobs-body{
@@ -232,6 +250,7 @@
       .filter .toggle-filter{
         display: block;
       }
+
     }
 
 
@@ -322,71 +341,10 @@
           </div>
         </div>
         <div class="col-md-9">
-          <div class="available-jobs mb-3" style="background-color: white;">
-            <div class="jobs-head mb-3" style="padding: 20px">
-              <select class="" name="">
-                <option value="">Newest First</option>
-                <option value="">Lowest Budget First</option>
-                <option value="">Highest Budget First</option>
-                <option value="">Lowest bid/entries</option>
-                <option value="">Highest bid/entries</option>
-              </select>
-            </div>
-
-            @foreach ($jobs as $job)
-              <div class="jobs-body">
-                <a class="body-link" href="{{route('view.project',['slug' => $job->slug])}}" style="display: block">
-                  <div class="row">
-                    <div class="col-md-10">
-                      <div class="row">
-                        <h4>{{$job->name}}</h4>
-                        <h6>
-                          @php
-                            $now = date_create(date("d-m-Y"));
-                            $end = date_create(date_format(date_create($job->deadline), "d-m-Y"));
-                            $diff=date_diff($now, $end);
-                            echo $diff->format('%d day/s left');
-                          @endphp
-                        </h6>
-                      </div>
-                      <div class="row">
-                        <div class="job-desc">
-                          <p>
-                            {{substr(strip_tags($job->description), 0, 300)}}
-                          </p>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="job-tags">
-                          <a href="#">php </a>
-                          <a href="#">photoshop </a>
-                          <a href="#">laravel </a>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-md-2">
-                      <div class="row">
-                        <div class="job-price">
-                          <h4>
-                            ${{$job->price_min}}
-                            -
-                            ${{$job->price_max}}
-                          </h4>
-                          <small>(avg bid)</small>
-                          <p>{{$job->no_of_bids}} bids</p>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <a href="#" class="btn bid-btn" type="button" name="button">bid now</a>
-                      </div>
-                    </div>
-                  </div>
-                </a>
-              </div>
-            @endforeach
-
-            </div>
+          <div class="jobss">
+            @include('projects.project-list')
           </div>
+        </div>
         </div>
       </div>
     </div>
@@ -404,10 +362,6 @@
     $(".filter-content").addClass("show");
   }
 
-  $(".jobs-body").hover(function(){
-    if ($(document).width()>768)
-      $(this).find('.bid-btn').toggle();
-  });
 
   $(window).resize(function(){
     if ($(document).width()<=768){
@@ -418,6 +372,28 @@
       $(".filter-content").addClass("show");
     }
   });
+
+  $('body').on('click', '.pagination a', function(e) {
+    e.preventDefault();
+    $('#load a').css('color', '#dfecf6');
+     $('#load').append('<img style="position: absolute; left: 30%; top: 0; z-index: 100000;" src="{{asset('loading.gif')}}" alt="haha" />');
+
+    var url = $(this).attr('href');
+    getJobs(url);
+    window.history.pushState("", "", url);
+});
+
+function getJobs(url){
+  $.ajax({
+            url : url
+        }).done(function (data) {
+            $('.jobss').html(data);
+        }).fail(function () {
+            alert('jobs could not be loaded.');
+        });
+    }
+
+
 
 
   </script>
