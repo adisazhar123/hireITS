@@ -1,11 +1,5 @@
 @section('style')
   <style media="screen">
-body {
-  margin: auto;
-  background: #eaeaea;  
-  font-family: 'Open Sans', sans-serif;
-}
-
 .info p {
   text-align:center;
   color: #999;
@@ -18,21 +12,20 @@ body {
 .info i {
   color:#F6AA93;
 }
-form h1 {
-  font-size: 18px;
+
+
+.title{
   background: #D66C44 ;
-  color: #FFF;
-  padding: 22px 25px;
-  border-radius: 5px 5px 0px 0px;
-  margin: auto;
-  text-shadow: none; 
+  text-shadow: none;
   text-align:center;
   text-transform: uppercase;
+  font-size: 18px;
+  color: #FFF;
+
 }
 
 form {
   border-radius: 5px;
-  max-width:700px;
   width:100%;
   margin: 5% auto;
   background-color: #FFFFFF;
@@ -48,15 +41,9 @@ p {
   font-weight: 500;
   line-height: 2;
   color:#333;
-  text-align:justify; 
+  text-align:justify;
 }
 
-h1 {
-  text-align:center; 
-  color: #666;
-  text-shadow: 1px 1px 0px #FFF;
-  margin:50px 0px 0px 0px
-}
 
 input {
   border-radius: 0px 5px 5px 0px;
@@ -72,20 +59,6 @@ a {
   text-decoration:inherit
 }
 
-textarea {
-  border-radius: 0px 5px 5px 0px;
-  border: 1px solid #EEE;
-  margin: 0;
-  width: 75%;
-  height: 130px; 
-  float: left;
-  padding: 0px 15px;
-}
-
-.form-group {
-  overflow: hidden;
-  clear: both;
-}
 
 .icon-case {
   width: 35px;
@@ -120,7 +93,7 @@ i {
 }
 
 .leftcontact {
-  width:49.5%; 
+  width:49.5%;
   float:left;
   border-right: 1px dotted #CCC;
   box-sizing: border-box;
@@ -157,10 +130,10 @@ i {
   box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.03);
 }
 
-#sendmessage.show,.show  {
-  display:block;
-}
-  
+  #sendmessage.show,.show  {
+    display:block;
+  }
+
   .ql-toolbar.ql-snow{
     border: 1px solid #ccd0d2;
     border-bottom: none;
@@ -170,145 +143,165 @@ i {
     background-color: white;
   }
 
+  .editor{
+    margin-bottom: 10px;
+  }
+  .editor.ql-container{
+    border: 1px solid #ccd0d2;
+    border-top: none;
+    border-width: 1px;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+    background-color: white;
+  }
+
+
+  .ql-editor:focus{
+    color:#495057;
+    background-color:#fff;
+    border-color:#98cbe8;
+    outline:0;
+    box-shadow:0 0 0 .2rem rgba(0,123,255,.25);
+
+  }
+
+
+  .files{
+    display: none;
+}
   </style>
 @endsection
 
 @extends('layouts.app')
 
 @section('content')
-<body>
-   <!--  <h1>Tell us what you need done</h1> -->
-   <!-- <div class="info"><a href="https://www.grandvincent-marion.fr" target="_blank"><p> Made with <i class="fa fa-heart"></i> by Marion Grandvincent </p></a></div> -->
-  
-  <form action="{{route('store.project')}}" method="POST" enctype="multipart/form-data">
-      <h1>Tell us what you need done</h1>
-      <div class="contentform">
-        <div id="sendmessage"> Your message has been sent successfully. Thank you. </div>
-          <input type="hidden" name="_token" value="{{ csrf_token() }}">
-            <div class="form-group">
-              <h5>Choose a name for your project<span>*</span></h5>
-              <span class="icon-case"><i class="fa fa-file-code-o"></i></span>
-                <input type="text" name="name" id="name" aria-describedby="emailHelp" placeholder="e.g. Build me a website">
-            </div> 
+  <div class="container">
+    <form action="{{route('store.project')}}" method="POST" enctype="multipart/form-data" class="animated fadeIn">
+      <div class="title">
+        <h1>Tell us what you need done</h1>
 
-            <div class="form-group">
-            <h5>Name <span>*</span></h5>
-            <p>Great project descriptions include a little bit about yourself, details of what you are trying to achieve, and any decisions that you have already made about your project. If there are things you are unsure of, don't worry, a freelancer will be able to help you fill in the blanks.</p>
-            <span class="icon-case"><i class="fa fa-user"></i></span>
-            <input name="description" value="" id="description">
       </div>
+        <div class="contentform">
+            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+              <div class="form-group">
+                <h5>Choose a name for your project <span>*</span></h5>
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="icon-case"><i class="fa fa-file-code-o"></i></span>
 
-      <div class="form-group">
-      <h5>Minimum budget <span>*</span></h5>  
-      <div class="input-group">
-            <div class="input-group-prepend">
-              <span class="input-group-text" id="inputGroupPrepend">Rp</span>
-            </div>
-            <input type="number" name="min_price" class="form-control" id="price1" placeholder="Enter min. price" min="0" step="0.1">
-          </div>
-      </div>  
-
-      <div class="form-group">
-      <h5>Maximum budget <span>*</span></h5>
-      <div class="input-group">
-            <div class="input-group-prepend">
-              <span class="input-group-text" id="inputGroupPrepend">Rp</span>
-            </div>
-            <input type="number" name="max_price" class="form-control" id="price2" placeholder="Enter max. price" min="0" step="0.1">
-          </div>
-      </div>
-
-      <div class="form-group">
-      <h5>Deadline<span>*</span></h5>
-      <span class="icon-case"><i class="fa fa-calendar"></i></span>
-        <div class="input-group date" data-provide="datepicker">
-              <input type="text" class="form-control" name="date" placeholder="Deadline">
-              <div class="input-group-addon">
-                  <span class="glyphicon glyphicon-th"></span>
+                  </div>
+                  <input type="text" name="name" id="name" class="form-control" placeholder="e.g. Build me a website">
+                </div>
               </div>
-          </div>
-      </div>
+
+              <div class="form-group">
+              <h5>Description <span>*</span></h5>
+              <p>Great project descriptions include a little bit about yourself, details of what you are trying to achieve, and any decisions that you have already made about your project. If there are things you are unsure of, don't worry, a freelancer will be able to help you fill in the blanks.</p>
+              <div class="editor animated fadeIn">
+
+              </div>
+              <input type="hidden" name="description" value="" id="description">
         </div>
-          <div class="form-group">
-            <label for="tag_list">Tags:</label>
-            <select class="form-control col-md-12" id="search_skills" name="search_skills[]" multiple></select>
-          </div>
+
         <div class="form-group">
-          <label for="">Images</label>
-          <input type="file" name="photos[]" multiple />
-          <br>
-          <small>Drag & drop any images or documents that might be helpful in explaining your project brief here.</small>
+        <h5>Minimum budget <span>*</span></h5>
+        <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroupPrepend">Rp</span>
+              </div>
+              <input type="number" name="min_price" class="form-control" id="price1" placeholder="Enter min. price" min="0" step="0.1">
+            </div>
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-      </form>
-    </div>
-  </div>
-@endsection
 
+        <div class="form-group">
+        <h5>Maximum budget <span>*</span></h5>
+        <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroupPrepend">Rp</span>
+              </div>
+              <input type="number" name="max_price" class="form-control" id="price2" placeholder="Enter max. price" min="0" step="0.1">
+            </div>
+        </div>
 
-        
-          
-       
+        <div class="form-group">
+        <h5>Deadline<span>*</span></h5>
+          <div class="input-group date" data-provide="datepicker">
+            <span class="icon-case"><i class="fa fa-calendar"></i></span>
+                <input type="text" class="form-control" name="date" placeholder="Deadline">
+                <div class="input-group-addon">
+                    <span class="glyphicon glyphicon-th"></span>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+          <label for="tag_list">Tags:</label>
+          <select class="form-control" id="search_skills" name="search_skills[]" multiple></select>
+        </div>
 
-      <div class="form-group">
-        <h5>Images <span>*</span></h5>
+      <button type="submit" class="btn btn-primary">Submit</button>
+      </div>
+    </form>
+    <div class=" files">
+      <label for="">Files:</label><br>
+      <input type="file" class="form-control" name="photos[]" multiple id="my_files">
       <small>Drag & drop any images or documents that might be helpful in explaining your project brief here.</small>
-      <div class="input-group mb-3">
-  <div class="input-group-prepend">
-    <span class="input-group-text">Upload</span>
-  </div>
-  <div class="custom-file">
-    <input type="file" name="photos[]" multiple />
-    <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
-  </div>
-</div>
-</div> 
+    </div>
+      </div>
 
 
-      <div class="form-group">
-      <p>City <span>*</span></p>
-      <span class="icon-case"><i class="fa fa-building-o"></i></span>
-        <input type="text" name="ville" id="ville" data-rule="required" data-msg="Vérifiez votre saisie sur les champs : Le champ 'Ville' doit être renseigné."/>
-                <div class="validation"></div>
-      </div>  
-      <div class="form-group">
-      <p>Message <span>*</span></p>
-      <span class="icon-case"><i class="fa fa-comments-o"></i></span>
-                <textarea name="message" rows="14" data-rule="required" data-msg="Vérifiez votre saisie sur les champs : Le champ 'Message' doit être renseigné."></textarea>
-                <div class="validation"></div>
-      </div>  
-  </div>
 
-<button type="submit" class="btn btn-primary bouton-contact">Submit</button>
-  
-</form> 
-    $('#search_skills').select2({
-      placeholder: 'Select an item',
-      ajax: {
-        url: '/getSkills',
-        dataType: 'json',
-        delay: 250,
-        processResults: function (data) {
-          return {
-            results:  $.map(data, function (item) {
-                  return {
-                      text: item.name,
-                      id: item.skills_id
-                  }
-              })
-          };
-        },
-        cache: true
-      }
-    });
 
-  
-</body>
-</html>
 @endsection
 
 @section('script')
+
   <script type="text/javascript">
+
+  $("form").submit(function(){
+    var desc =   quill.root.innerHTML
+    $("#description").val(desc)
+
+  });
+
+  $('#search_skills').select2({
+    placeholder: 'Select an item',
+    ajax: {
+      url: '/getSkills',
+      dataType: 'json',
+      delay: 250,
+      processResults: function (data) {
+        return {
+          results:  $.map(data, function (item) {
+                return {
+                    text: item.name,
+                    id: item.skills_id
+                }
+            })
+        };
+      },
+      cache: true
+    }
+  });
+
+  var toolbarOptions = [
+    ['bold', 'italic', 'underline'],
+    [{ 'list': 'ordered'}, { 'list': 'bullet' }]
+  ];
+
+  var formats = [
+  'bold',
+  'italic',
+  'underline',
+  'list',
+  ];
+
+  var quill = new Quill('.editor', {
+    modules: {
+      toolbar: toolbarOptions
+    },
+    theme: 'snow',
+    formats: formats
+  });
 
 
   </script>

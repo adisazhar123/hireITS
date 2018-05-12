@@ -401,6 +401,10 @@ p a{color:#27ae60; text-decoration:none;}
   .sidenav a {font-size: 18px;}
 }
 
+.modal{
+  top: 20%;
+}
+
 
 </style>
 @endsection
@@ -449,7 +453,6 @@ p a{color:#27ae60; text-decoration:none;}
               @endif
 
                   <p class="cant">Member since: {{date_format(Auth::user()->created_at,"d/m/Y")}}</p>
-                  <!-- <p class="cant">3 recommendations</p> -->
                 </div>
       <section id="generic-tabs">
 
@@ -470,7 +473,7 @@ p a{color:#27ae60; text-decoration:none;}
         </ul>
 
         <div id="first-tab" class="tab-content animated fadeIn">
-          
+
           <div class="row">
             <div class="col-lg-8">
               <h2><i class="profile-user fa fa-address-card-o"></i> Information</h2>
@@ -499,11 +502,7 @@ p a{color:#27ae60; text-decoration:none;}
                     <div class="editor animated fadeIn">
 
                     </div>
-
-                    <button type="button" id="edit-profile" class="btn btn-warning" name="button">Edit Profile</button>
                     <button type="submit" id="save-profile" class="btn btn-primary" style="display: none">Save Profile</button>
-                    <button type="submit" id="save-profile" class="btn btn-success" style="display: none">Save Profile</button>
-
                   </form>
 
                   <div class="profile-details">
@@ -518,10 +517,9 @@ p a{color:#27ae60; text-decoration:none;}
 
             </div>
             <div class="col-lg-4 divider">
-              <div class="skills">
+              <div class="skills">                <button type="button" id="edit-profile" class="btn btn-warning" name="button" style="float: right">Edit Profile</button>
+
                 <h2><i class="profile-user fa fa-cogs"></i> Skills</h2>
-                  <button class="btn btn-default float-right new-skills edit-skills" style="width: auto" type="button" name="button">New Skills</button>
-                <h2><i class="profile-user fa fa-user"></i> Skills</h2>
                   <form id="skills-form" style="opacity:0">
                     <div class="form-group">
                       <label for="tag_list">Tags:</label>
@@ -591,7 +589,7 @@ p a{color:#27ae60; text-decoration:none;}
                     @endforeach
                   </div>
                   @endif
-                    <div class="modal portfolio" tabindex="-1" role="dialog">
+                    <div class="modal portfolio animated fadeIn" tabindex="-1" role="dialog">
                       <div class="modal-dialog" role="document">
                         <div class="modal-content">
                           <div class="modal-header">
@@ -634,11 +632,6 @@ p a{color:#27ae60; text-decoration:none;}
                     <p>This guy is awesome!! work is always on time</p>
 
         </div>
-<!--         <div id="fourth-tab" class="tab-content animated fadeIn">
-          <h1>Contact</h1>
-          <p>Lorem ipsum dolor sit amet, utroque splendide an quo. Omnesque pertinacia efficiantur vix at, soleat quaeque assueverit et vis. Te sit tale eripuit corrumpit, cum ea case graeci legimus. Sea ex assentior honestatis adversarium. Mei ea dico meis instructior, no eum ipsum voluptatum, quodsi pertinax postulant in sed. Te eum pertinacia suscipiantur, sea eirmod sanctus ea. Vel habeo feugait ea, an apeirian adversarium nam.</p>
-        </div> -->
-
     </section>
     <div id="mySidenav" class="sidenav">
       <span>
@@ -671,7 +664,7 @@ p a{color:#27ae60; text-decoration:none;}
     $("#user-price").css("display",'block')
     $("#freelancer-price").css("display",'none')
     $(".cant").css("display", "none")
-
+    $(this).hide();
     $.ajax({
       method: "GET",
       url: "{{route('get.freelancer.profile')}}",
@@ -761,6 +754,7 @@ p a{color:#27ae60; text-decoration:none;}
             $(".cant").css("display", "block")
             $("#title").css("display", "block")
             $(".profile-details").css("display", "block")
+            $("#edit-profile").show()
             for(var i=0; i<skills.length; i++){
               $(".skills").append(        "<div class=card>"+
                         "<div class=card-body>"+
@@ -790,6 +784,7 @@ p a{color:#27ae60; text-decoration:none;}
 
   $(".new-port").click(function(){
     $(".modal.portfolio").modal('show')
+    $(".modal-backdrop.show").css("opacity", "0.5")
   });
 
 (function($){

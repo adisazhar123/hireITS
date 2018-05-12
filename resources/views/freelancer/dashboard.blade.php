@@ -15,11 +15,11 @@
 /*  width:15%;
   float: left;*/
   background-color: #111;
-height:100%;
+  height:100%;
     width: 160px;
     position: fixed;
     z-index: 1;
-    top: 0em;
+    top: 65px;
     left: 0;
     background-color: #111;
     overflow-x: hidden;
@@ -110,7 +110,7 @@ li {
             <li><a href="" name="tab6"><i class="fa fa-wrench"></i>Advanced</a></li> -->
         </ul>
     </div>
-  
+
     <div class="main1">
          <div class="apa" id="tab1"><h2 class="header">Dashboard</h2>
            <p><h1>fffmkssssssssssssssss</h1><h1>fffmkssssssssssssssss</h1><h1>fffmkssssssssssssssss</h1><h1>fffmkssssssssssssssss</h1><h1>fffmkssssssssssssssss</h1><h1>fffmkssssssssssssssss</h1><h1>fffmkssssssssssssssss</h1><h1>fffmkssssssssssssssss</h1><h1>fffmkssssssssssssssss</h1><h1>fffmkssssssssssssssss</h1><h1>fffmkssssssssssssssss</h1><h1>fffmkssssssssssssssss</h1><h1>fffmkssssssssssssssss</h1><h1>fffmkssssssssssssssss</h1><h1>fffmkssssssssssssssss</h1><h1>fffmkssssssssssssssss</h1><h1>fffmkssssssssssssssss</h1><h1>fffmkssssssssssssssss</h1><h1>fffmkssssssssssssssss</h1><h1>fffmkssssssssssssssss</h1><h1>fffmkssssssssssssssss</h1><h1>fffmkssssssssssssssss</h1><h1>fffmkssssssssssssssss</h1><h1>fffmkssssssssssssssss</h1><h1>fffmkssssssssssssssss</h1><h1>fffmkssssssssssssssss</h1></p>
@@ -120,46 +120,46 @@ li {
          <div id="tab3"><h2 class="header">Finished Projects</h2></div>
          <!-- <div id="tab4"><h2 class="header">Portfolio</h2></div>
          <div id="tab5"><h2 class="header">Blog /news</h2></div>
-         <div id="tab6"><h2 class="header">Advanced</h2></div>    --> 
+         <div id="tab6"><h2 class="header">Advanced</h2></div>    -->
     </div>
-  
- 
+
+
 </div>
 @endsection
 
 @section('script')
 <script type="text/javascript">
   $(document).ready(function() {
-  $(".main1 div").hide(); 
+  $(".main1 div").hide();
   // Cache tout les textes et les sous-menu
 
-  $(".slidebar li:first").attr("id","active"); 
+  $(".slidebar li:first").attr("id","active");
   // Ajoute la class active au premier menu
- 
-  $(".main1 div:first").fadeIn(); 
+
+  $(".main1 div:first").fadeIn();
   // Montre le premier texte à l'apparition de la page
-  
+
 
   $('.slidebar a').click(function(e) {
       e.preventDefault();
-     if ($(this).closest("li").attr("id") == "active"){ 
+     if ($(this).closest("li").attr("id") == "active"){
           //si le menu cliquer est déjà ouvert.
-       return       
-     }else{             
-       $(".main1 div").hide(); 
+       return
+     }else{
+       $(".main1 div").hide();
           // Cache tous les éléments
 
-        $(".slidebar li").attr("id","");  
+        $(".slidebar li").attr("id","");
           // Rénitialise tout les menu active
-   
-        $(this).parent().attr("id","active"); 
+
+        $(this).parent().attr("id","active");
           // active le parent du li selectionner
-             
-        $('#' + $(this).attr('name')).fadeIn(); 
+
+        $('#' + $(this).attr('name')).fadeIn();
           // Montre le texte
         }
-     
-    
+
+
   });
 
 });
