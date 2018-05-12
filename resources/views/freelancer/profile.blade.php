@@ -136,7 +136,7 @@ img {max-width: 100%;}
         display: none;
       }
 
-      .skills:hover .new-skills{
+      .new-skills{
         display: block;
         margin-top: -45px;
 
@@ -202,13 +202,31 @@ img {max-width: 100%;}
         width: 100%;
         font-size: 28px;
       }
+
+      .user-tags {
+    margin: 20px 0 0 0;
+    padding: 0;
+    list-style: none;
+    cursor: default;
+}
+.user-tags .tag {
+    display: inline-block;
+    /*font-size: 8pt;
+    text-transform: lowercase;*/
+   /* background: rgba(255,255,255,.07);*/
+    height: 20px;
+    line-height: 20px;
+    padding: 0 10px;
+    border-radius: 10px;
+    box-shadow: 0 1.5px 4px rgba(0, 0, 0, 0.24), 0 1.5px 6px rgba(0, 0, 0, 0.12);
+}
 /*Generic styles*/
 #wrapper{ max-width: 800px; width:100%; margin:0 auto;}
 #generic-tabs{ width:100%; padding:20px;}
 
 /*Tab styles*/
 #generic-tabs ul#tabs { overflow: hidden; margin:0; padding:0;}
-#generic-tabs ul#tabs li{min-height: 100px; float:left; display:inline-block; width:25%; background:#EDEDED; border-top:4px solid #CCCCCC; border-right:1px solid #CCCCCC; }
+#generic-tabs ul#tabs li{min-height: 100px; float:left; display:inline-block; width:33.33%; background:#EDEDED; border-top:4px solid #CCCCCC; border-right:1px solid #CCCCCC; }
 #generic-tabs ul#tabs li:last-child {border-right:none;}
 #generic-tabs ul#tabs li:first-child { padding-left:0; }
 
@@ -293,6 +311,7 @@ img {max-width: 100%;}
           <div class="text2">
             <i class="fa fa-wrench" style="font-size:24px;"></i>
           </div>
+
         </div>
         <div class="info">
             <p class="cant">@ {{Auth::user()->username}} </p>
@@ -321,16 +340,16 @@ img {max-width: 100%;}
             <li>
                 <a title="Reviews" href="#third-tab"><i class="fa fa-info-circle"></i> Reviews </a>
             </li>
-            <li>
+<!--             <li>
                 <a title="Contact" href="#fourth-tab"><i class="fa fa-envelope"></i> Contact</a>
-            </li>
+            </li> -->
         </ul>
 
         <div id="first-tab" class="tab-content animated fadeIn">
-          <button type="button" id="edit-profile" class="btn btn-warning" name="button">Edit Profile</button>
+          
           <div class="row">
             <div class="col-lg-8">
-              <h2><i class="profile-user fa fa-user"></i> Information</h2>
+              <h2><i class="profile-user fa fa-address-card-o"></i> Information</h2>
 
               <h2 id="name2">@if (!Auth::user()->hassetprofile)
                     Please set your name.
@@ -354,6 +373,8 @@ img {max-width: 100%;}
                     <div class="editor animated fadeIn">
 
                     </div>
+
+                    <button type="button" id="edit-profile" class="btn btn-warning" name="button">Edit Profile</button>
                     <button type="submit" id="save-profile" class="btn btn-primary" style="display: none">Save Profile</button>
 
                   </form>
@@ -367,12 +388,13 @@ img {max-width: 100%;}
 
                     @endif
                   </div>
+
             </div>
             <div class="col-lg-4 divider">
               <h3 id="freelancer-price"> $ {{$freelancer->price}} USD/hr</h3>
               <input class="form-control" id="user-price" type="text" name="user-price" placeholder="Price per hour" value="{{$freelancer->price}}" style="display: none">
               <div class="skills">
-                <h2><i class="profile-user fa fa-user"></i> Skills</h2>
+                <h2><i class="profile-user fa fa-cogs"></i> Skills</h2>
                   <button class="btn btn-default float-right new-skills edit-skills" style="width: auto" type="button" name="button">New Skills</button>
                   <form id="skills-form" style="opacity:0">
                     <div class="form-group">
@@ -380,9 +402,9 @@ img {max-width: 100%;}
                       <select class="form-control col-md-4" id="search_skills" name="search_skills[]" multiple></select>
                     </div>
                   </form>
-                  <ul>
-                    <li>C++</li>
-                    <li>Photoshop</li>
+                  <ul class="user-tags">
+                    <li class="tag">C++</li>
+                    <li class="tag">Photoshop</li>
                   </ul>
               </div>
             </div>
@@ -467,10 +489,10 @@ img {max-width: 100%;}
                     <p>This guy is awesome!! work is always on time</p>
 
         </div>
-        <div id="fourth-tab" class="tab-content animated fadeIn">
+<!--         <div id="fourth-tab" class="tab-content animated fadeIn">
           <h1>Contact</h1>
           <p>Lorem ipsum dolor sit amet, utroque splendide an quo. Omnesque pertinacia efficiantur vix at, soleat quaeque assueverit et vis. Te sit tale eripuit corrumpit, cum ea case graeci legimus. Sea ex assentior honestatis adversarium. Mei ea dico meis instructior, no eum ipsum voluptatum, quodsi pertinax postulant in sed. Te eum pertinacia suscipiantur, sea eirmod sanctus ea. Vel habeo feugait ea, an apeirian adversarium nam.</p>
-        </div>
+        </div> -->
 
     </section>
   </div>

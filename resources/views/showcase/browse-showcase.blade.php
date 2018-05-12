@@ -1,16 +1,14 @@
 @section('style')
   <style media="screen">
 
-  .card{
-    margin-bottom: 20px;
-  }
+
 
   .card-img-top{
     height: 210px;
     width: 100%;
   }
   .backround{
-    background-image: url("https://images.pexels.com/photos/207665/pexels-photo-207665.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");*/
+    /*background-image: url("https://images.pexels.com/photos/207665/pexels-photo-207665.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");*/
     height: 50%;
     padding-top: 300px;
     background-position: center;
@@ -199,6 +197,10 @@
   opacity: 1;
 }
 
+.card-body{
+  background: #fff;
+
+}
 
 /* Demo purposes only */
 
@@ -300,7 +302,7 @@ body {
               <figcaption>
                 <h3>Hire Me</h3>
               </figcaption>
-              <a href="/"></a>
+              <a href="#"></a>
             </div>
           </div>
         </div>

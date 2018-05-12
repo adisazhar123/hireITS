@@ -92,6 +92,10 @@ class FreelancerController extends Controller
      return response()->json($tags);
    }
 
+   public function dashboard(){
+      return view('freelancer.dashboard');
+    }
+
     public function bidProject(Request $request){
       $bid = Bid::where('job_id', $request->job_id)->where('freelancer_id', Auth::user()->id)->get();
       if (!$bid->isNotEmpty()){
