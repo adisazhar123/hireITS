@@ -1,7 +1,7 @@
 <style>
 nav.main {
   min-height: 65px;
-  z-index: 1;
+  z-index: 10000;
   background: #85b8cb;
 }
 
@@ -70,13 +70,12 @@ nav.navbar {
   padding-top: 0;
 }
 
-<<<<<<< Updated upstream
+
 a.navbar-brand {
   color: #6da768 !important;
-=======
+}
 a.navbar-brand{
   color: #FFFFFF !important;
->>>>>>> Stashed changes
   font-size: 1.75em;
 }
 
@@ -120,7 +119,7 @@ a.navbar-brand{
 }
 
 </style>
-<nav class="main navbar navbar-expand-lg navbar-light" >
+<nav class="main navbar navbar-expand-lg navbar-light fixed-top" >
     <div class="container">
        <a class="navbar-brand" href="{{url('/')}}">hire<strong>ITS</strong></a>
        <button class="navbar-toggler" style="background-color:#FF983C" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -175,6 +174,18 @@ a.navbar-brand{
               </li>
            @endif
 
+           <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Dropdown
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="#">Action</a>
+              <a class="dropdown-item" href="#">Another action</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#">Something else here</a>
+            </div>
+          </li>
+            
          </ul>
 
        </div>

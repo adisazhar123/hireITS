@@ -21,7 +21,7 @@
     border-top-right-radius: 4px;
     background-color: white;
   }
-  
+
   </style>
 @endsection
 
@@ -53,7 +53,7 @@
             <div class="input-group-prepend">
               <span class="input-group-text" id="inputGroupPrepend">$</span>
             </div>
-            <input type="number" name="min_price" class="form-control" id="price1" placeholder="Enter min. price" min="0">
+            <input type="number" name="min_price" class="form-control" id="price1" placeholder="Enter min. price" min="0" step="0.1">
           </div>
         </div>
         <div class="form-group">
@@ -62,7 +62,7 @@
             <div class="input-group-prepend">
               <span class="input-group-text" id="inputGroupPrepend">$</span>
             </div>
-            <input type="number" name="max_price" class="form-control" id="price2" placeholder="Enter max. price" min="0">
+            <input type="number" name="max_price" class="form-control" id="price2" placeholder="Enter max. price" min="0" step="0.1">
           </div>
         </div>
         <div class="form-group">
@@ -74,6 +74,10 @@
               </div>
           </div>
         </div>
+          <div class="form-group">
+            <label for="tag_list">Tags:</label>
+            <select class="form-control col-md-12" id="search_skills" name="search_skills[]" multiple></select>
+          </div>
         <div class="form-group">
           <label for="">Images</label>
           <input type="file" name="photos[]" multiple />
@@ -115,6 +119,25 @@
       $("#description").val(desc);
     });
 
+    $('#search_skills').select2({
+      placeholder: 'Select an item',
+      ajax: {
+        url: '/getSkills',
+        dataType: 'json',
+        delay: 250,
+        processResults: function (data) {
+          return {
+            results:  $.map(data, function (item) {
+                  return {
+                      text: item.name,
+                      id: item.skills_id
+                  }
+              })
+          };
+        },
+        cache: true
+      }
+    });
 
 
 

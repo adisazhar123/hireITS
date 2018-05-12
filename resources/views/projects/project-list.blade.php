@@ -44,9 +44,9 @@
                 <div class="row">
                   <div class="job-price">
                     <h4>
-                      ${{$job->price_min}}
+                      ${{number_format($job->price_min,2)}}
                       -
-                      ${{$job->price_max}}
+                      ${{number_format($job->price_max,2  )}}
                     </h4>
                     <small>(avg bid)</small>
                     <p>{{$job->no_of_bids}} bids</p>

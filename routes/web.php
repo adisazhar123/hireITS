@@ -23,7 +23,7 @@ Route::get('/', function () {
 Route::get('jobs','ProjectsController@index')->name('browse.jobs');
 Route::get('/freelancer/fill-data', 'FreelancerController@freeget')->name('freelancer.fill.data');
 Route::post('dataupd', 'FreelancerController@getData');
-Route::get('/freelancer', 'FreelancerController@index')->name('view.freelancer.profile');
+Route::get('/freelancer', 'FreelancerController@index')->name('view.freelancer.profile')->middleware('freelancer');
 Route::get('showcase', 'ProjectsController@browseShowcase')->name('browse.showcase');
 Route::get('freelancer/getprofile', 'FreelancerController@getProfile')->name('get.freelancer.profile');
 Route::put('freelancer/updateProfile', 'FreelancerController@updateProfile')->name('update.freelancer.profile');
@@ -34,11 +34,12 @@ Route::get('/getSkills', 'FreelancerController@getSkills')->name('search.skills'
 Route::post('/bid-project', 'FreelancerController@bidProject')->name('bid.project');
 Route::post('/freelancer/store-dp' ,'FreelancerController@storeProfilePic')->name('store.freelancer.dp');
 Route::post('/freelancer/store-skills', 'FreelancerController@addnewSkills')->name('store.freelancer.skills');
-
+Route::delete('/freelancer/delete-skill', 'FreelancerController@deleteSkill')->name('delete.skill');
+Route::get('/freelancer/{username}','FreelancerController@viewFreelancer')->name('view.freelancer');
 
 //employer
 Route::get('post-project', 'EmployerController@postProject')->name('post.project.page');
-Route::post('post-project', 'EmployerController@storeProject')->name('store.project');
+Route::post('post-project', 'EmployerController@storeProject')->name('store.project')->middleware('employer');
 Route::get('projects/{slug}', 'ProjectsController@viewProject')->name('view.project');
 Route::get('/employer/fill-data', 'EmployerController@empget')->name('employer.fill.data');
 

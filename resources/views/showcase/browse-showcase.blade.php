@@ -10,7 +10,7 @@
     width: 100%;
   }
   .backround{
-    background-image: url("https://images.pexels.com/photos/207665/pexels-photo-207665.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");*/
+    background-image: url("https://images.pexels.com/photos/187334/pexels-photo-187334.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
     height: 50%;
     padding-top: 300px;
     background-position: center;

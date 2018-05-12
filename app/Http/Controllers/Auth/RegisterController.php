@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\User;
 use App\Freelancer;
+use App\Employer;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -81,10 +82,19 @@ class RegisterController extends Controller
 
           //$this->guard()->login($user);
 
-          $freelancer = new Freelancer();
-          $freelancer->freelancer_id = $user->id;
-          $freelancer->save();
-          return response()->json(['success' => "Registration succesful"]);
+          if($user->role==="freelancer"){
+            $freelancer = new Freelancer();
+            $freelancer->freelancer_id = $user->id;
+            $freelancer->username = $user->username;
+            if ($freelancer->save())
+              return response()->json(['success' => "Registration succesful"]);
+          }else{
+            $employer = new Employer();
+            $employer->employer_id = $user->id;
+            $employer->username = $user->username;
+            if($employer->save())
+              return response()->json(['success' => "Registration succesful"]);
+          }
         }
         return response()->json(['errors' => $validator->errors()]);
     }

@@ -60,16 +60,16 @@ class LoginController extends Controller
           ]);
         }else{
         	$employer = DB::table('employer')->where('employer_id', $user->id)->first();
-        	if($employer->age){
-        		$x = '/employer';
-        	}
-        	else{
-        		$x = '/employer/fill-data';
-        	}
+        	//if($employer->age){
+        	//	$x = '/employer';
+        	//}
+        	//else{
+        	//	$x = '/employer/fill-data';
+        	//}
           return response()->json([
             'auth' => auth()->check(),
             'user' => $user,
-            'intended' => $x,
+            'intended' => '/',
           ]);
         }
     }

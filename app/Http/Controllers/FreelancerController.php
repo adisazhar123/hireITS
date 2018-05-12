@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Freelancer;
 use Auth;
+use App\User;
 use DB;
 use App\Portfolio;
 use App\Skills;
@@ -51,6 +52,13 @@ class FreelancerController extends Controller
       $freelancer->price = $request->input('price');
       $user = Auth::user();
       $user->hassetprofile = 1;
+
+      for ($i=0; $i <count($request->skills) ; $i++) {
+        $diberkati = new Diberkati;
+        $diberkati->freelancer_id=$request->input('id');
+        $diberkati->skills_id = $request->skills[$i];
+        $diberkati->save();
+      }
 
       if ($freelancer->save() && $user->save())
         return response()->json(["success"=>1]);
@@ -175,6 +183,31 @@ class FreelancerController extends Controller
           $diberkati->save();
         }
         return "OK";
+      }
+      public function deleteSkill(Request $request){
+        $skill = Diberkati::where('skills_id', $request->skill_id)->where('freelancer_id', Auth::user()->id);
+        if($skill->delete())
+          return "ok";
+        return "fail";
+      }
+
+      public function viewFreelancer($username){
+        $id = User::where('username', $username)->get();
+        $freelancer = Freelancer::find($id);
+        $portfolios = Freelancer::find($freelancer[0]->freelancer_id)->portfolio;
+
+
+        $skills = DB::table('skills')
+                  ->join('diberkati', 'skills.skills_id', '=', 'diberkati.skills_id')
+                  ->where('diberkati.freelancer_id', $freelancer[0]->freelancer_id)
+                  ->select('diberkati.skills_id', 'diberkati.freelancer_id', 'skills.name')
+                  ->get();
+
+        $pf = ProfileFiles::where('freelancer_id', $id)->where('role', 'dp')->get();
+        $cover=ProfileFiles::where('freelancer_id', $id)->where('role', 'cover')->get();
+
+        return view('freelancer.view-freelancer')->with('freelancer', $freelancer)->with('portfolios',$portfolios)->with('skills', $skills)->with('pf', $pf)
+        ->with('cover', $cover);
       }
 
 	 }

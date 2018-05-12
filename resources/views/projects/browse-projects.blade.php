@@ -59,13 +59,15 @@
       border-bottom: solid #E9E9E9;
       border-width: 1px;
       padding: 30px;
-      height: 177.867px;
+      height: 190px;
       white-space: initial;
     }
 
     .jobs-body:hover{
       background-color: #F7F7F7;
     }
+
+
     .jobs-body h4{
       font-weight: bold;
     }
@@ -98,6 +100,7 @@
       background-color: rgba(79,181,93,0.8);
       text-decoration: none;
       display: none;
+      margin-left: 10px;
     }
 
     .bid-btn:hover{
@@ -214,6 +217,21 @@
       background: #0077b8;
     }
 
+    .job-desc{
+      text-align: justify;
+    }
+
+    .job-price{
+      padding-left: 10px;
+    }
+
+    @media only screen and (min-width: 768px) {
+      .jobs-body:hover .bid-btn{
+        display: block;
+      }
+    }
+
+
 
     @media only screen and (max-width: 992px) {
       .jobs-body{
@@ -232,6 +250,7 @@
       .filter .toggle-filter{
         display: block;
       }
+
     }
 
 
@@ -324,12 +343,8 @@
         <div class="col-md-9">
           <div class="jobss">
             @include('projects.project-list')
-
           </div>
-
         </div>
-
-
         </div>
       </div>
     </div>
@@ -347,10 +362,6 @@
     $(".filter-content").addClass("show");
   }
 
-  $(".jobs-body").hover(function(){
-    if ($(document).width()>768)
-      $(this).find('.bid-btn').toggle();
-  });
 
   $(window).resize(function(){
     if ($(document).width()<=768){

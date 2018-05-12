@@ -24,7 +24,7 @@ p a{color:#27ae60; text-decoration:none;}
     background-repeat: no-repeat;
     background-size: cover;
     background-color: rgba(0,0,0,0);
-    margin-bottom: -400px;
+    margin-bottom: -375px;
   }
 
   .profile-pic{
@@ -246,9 +246,6 @@ p a{color:#27ae60; text-decoration:none;}
         opacity: 0.6;
       }
 
-      .skills .card{
-        top: -53px;
-      }
 
 /*Generic styles*/
 #wrapper{ max-width: 800px; width:100%; margin:0 auto;}
@@ -389,43 +386,25 @@ p a{color:#27ae60; text-decoration:none;}
 
 </div>
 <div class="container">
-  @if (Auth::check())
-          @if (!Auth::user()->hassetprofile)
-            <div class="alert alert-warning" role="alert">
-              You must complete your basic details before you can go anywhere.
-            </div>
-          @endif
 
-        @endif
         <div class="profile-pic">
           @if ($pf->isEmpty())
             <img class="rounded" src="{{asset('adis.jpg')}}" alt="profile_pic12">
             @else
               <img class="rounded" src="data:{{$pf[0]->img_type}};base64,{{base64_encode( $pf[0]->name )}}" alt="profile_pic">
           @endif
-          <div class="text2">
-
-            <form action="#" enctype="multipart/form-data" id="upload-dp">
-              {{ csrf_field() }}
-                <input type="file" id="my_file" name="image"/>
-                <i class="fa fa-wrench" id="file_selector" style="font-size:60px;"></i>
-                <button id="upload" class="btn btn-default" type="submit" name="button">upload profile pic: </button>
-             </form>
-          </div>
         </div>
         <div class="info">
-            <p class="cant">{{"@".Auth::user()->username}} </p>
-            <p class="cant" id="department">{{$freelancer->major}} Department</p>
-            <p class="cant">{{$freelancer->jobs_completed}} jobs completed, {{$freelancer->jobs_ontime}} on time</p>
+            <p class="cant">{{"@".$freelancer[0]->username}} </p>
+            <p class="cant" id="department">{{$freelancer[0]->major}} Department</p>
 
-                     @if (!$freelancer->reviews)
-                <p class="cant">{{$freelancer->reviews}} reviews</p>
+                     @if (!$freelancer[0]->reviews)
+                <p class="cant">{{$freelancer[0]->reviews}} reviews</p>
                 @else
                   <i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i> 5 reviews
               @endif
 
-                  <p class="cant">Member since: {{date_format(Auth::user()->created_at,"d/m/Y")}}</p>
-                  <!-- <p class="cant">3 recommendations</p> -->
+                  <p class="cant">Member since: {{date_format(date_create($freelancer[0]->created_at), "d-m-Y")}}</p>
                 </div>
       <section id="generic-tabs">
 
@@ -446,59 +425,29 @@ p a{color:#27ae60; text-decoration:none;}
         </ul>
 
         <div id="first-tab" class="tab-content animated fadeIn">
-          <button type="button" id="edit-profile" class="btn btn-warning" name="button">Edit Profile</button>
           <div class="row">
             <div class="col-lg-8">
               <h2><i class="profile-user fa fa-user"></i> Information</h2>
 
-              <h3 id="name2">@if (!Auth::user()->hassetprofile)
-                    Please set your name.
-                  @else
-                    {{$freelancer->name}}
-                  @endif
+              <h3 id="name2">
+                    {{$freelancer[0]->name}}
 
                 </h3>
-                  <h5 id="title">@if (!Auth::user()->hassetprofile)
-                    What is your title?
-                  @else
-                    {{$freelancer->title}}
-                  @endif
+                  <h5 id="title">
+                    {{$freelancer[0]->title}}
                 </h5>
 
-                  <form action="#" method="post" class="form-profile">
-                    {{ csrf_field() }}
-                    <input class="animated fadeIn form-control" id="user-name" type="text" placeholder="what is your name?" name="user-name" value="" style="display: none">
-                    <input class="animated fadeIn form-control" id="user-title" type="text" placeholder="what is your title?" name="user-title" value="" style="display: none">
-                    <h5 id="freelancer-price"> $ {{$freelancer->price}} USD/hr</h5>
-                    <input class="form-control" id="user-price" type="text" name="user-price" placeholder="Price per hour" value="{{$freelancer->price}}" style="display: none">
-                    <input id="user-desc" name="user-desc" type="hidden" value="">
-                    <div class="editor animated fadeIn">
 
-                    </div>
-                    <button type="submit" id="save-profile" class="btn btn-success" style="display: none">Save Profile</button>
-
-                  </form>
 
                   <div class="profile-details">
-                    <p>
-                    @if (!Auth::user()->hassetprofile)
-                      We want to know a little bit more of you. What are your mastery? Do you like to draw?
-                      @else
-                        {!! $freelancer->description !!}
 
-                    @endif
+                        {!! $freelancer[0]->description !!}
+
                   </div>
             </div>
             <div class="col-lg-4 divider">
               <div class="skills">
                 <h2><i class="profile-user fa fa-user"></i> Skills</h2>
-                  <form id="skills-form" style="opacity:0">
-                    <div class="form-group">
-                      <label for="tag_list">Tags:</label>
-                      <select class="form-control col-md-12" id="search_skills" name="search_skills[]" multiple></select>
-
-                    </div>
-                  </form>
                   @foreach ($skills as $skill)
                     <div class="card">
                       <div class="card-body">
@@ -507,7 +456,6 @@ p a{color:#27ae60; text-decoration:none;}
                             {{$skill->name}}
                           </div>
                           <div class="col-md-6">
-                            <button type="button" class="btn btn-danger delete-skills" skill-id="{{$skill->skills_id}}" style="margin-left: 5px; margin-top:-5px" name="button">Delete</button>
                           </div>
                         </div>
                       </div>
@@ -522,15 +470,8 @@ p a{color:#27ae60; text-decoration:none;}
         <div id="second-tab" class="tab-content portfolio">
           @if (!$portfolios->count())
                   <p>No portfolio</p>
-                  <button class="btn btn-default float-right new-port edit-portfolio" style="width: auto" type="button" name="button">Add new portfolio</button>
-
                 @else
-                  <button class="btn btn-default float-right edit-portfolio">edit</button>
-                  @if ($portfolios->count()<6)
-                    <button class="btn btn-default float-right new-port edit-portfolio" style="width: auto" type="button" name="button">Add new portfolio</button>
-                  @endif
-
-                  <div class="row">
+              <div class="row">
 
                      @foreach ($portfolios as $portfolio)
                       <div class="col-md-4">
@@ -545,11 +486,7 @@ p a{color:#27ae60; text-decoration:none;}
                             <div class="text">
                               <h3>{{$portfolio->name}}</h3>
                               <p>{{$portfolio->description}}</p>
-                              <form class="" action="{{route('delete.portfolio',$portfolio->portfolio_id)}}" method="post">
-                                {{ csrf_field() }}
-                                {{ method_field('delete') }}
-                                <button type="submit" class="btn btn-danger">Delete</button>
-                              </form>
+
                             </div>
                           </div>
                         </div>
@@ -557,35 +494,10 @@ p a{color:#27ae60; text-decoration:none;}
                     @endforeach
                   </div>
                   @endif
-                    <div class="modal portfolio" tabindex="-1" role="dialog">
-                      <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <h5 class="modal-title">Add Portfolio</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                              <span aria-hidden="true">&times;</span>
-                            </button>
-                          </div>
-                          <div class="modal-body">
-                            <form enctype="multipart/form-data" method="post" action="{{route('add.portfolio')}}">
-                              {{ csrf_field() }}
-                              <div class="form-group">
-                                <input type="text" class="form-control" id="port_name" name="port_name" placeholder="Portfolio Name">
-                              </div>
-                              <div class="form-group">
-                                <textarea class="form-control" id="port_desc" name="port_desc" placeholder="Portfolio Description"></textarea>
-                              </div>
-                              <div class="form-group">
-                                <input type="file" class="form-control" name="image" id="port_img">
-                              </div>
-                              <button type="submit" class="btn btn-primary">Submit</button>
-                            </form>
-                          </div>
 
-                        </div>
-                      </div>
-                    </div>
         </div>
+
+
 
         <div id="third-tab" class="tab-content animated fadeIn">
 
@@ -606,13 +518,6 @@ p a{color:#27ae60; text-decoration:none;}
         </div>
 
     </section>
-    <div id="mySidenav" class="sidenav">
-      <span>
-        <a href="#" data-toggle="tooltip" data-placement="bottom" title="Check all your ongoing bids">Dashboard</a>
-      </span>
-    </div>
-
-    <span id="sidenav-toggler" style="font-size:30px;cursor:pointer"></span>
 
   </div>
 
@@ -620,144 +525,6 @@ p a{color:#27ae60; text-decoration:none;}
 
 @section('script')
 <script type="text/javascript">
-    $(function () {
-      $('[data-toggle="tooltip"]').tooltip()
-    })
-
-    $("#edit-profile").click(function(){
-    $("input#user-title").css("display", "block");
-    $("input#user-name").css("display", "block");
-    $("#skills-form").css("opacity","1")
-    $(".editor").css("display","block");
-    $(".ql-toolbar.ql-snow").css("display", "block");
-    $("#name2").css("display", "none");
-    $("#title").css("display", "none");
-    $("#save-profile").css("display", "block")
-    $(".profile-details").css("display", "none")
-    $("#user-price").css("display",'block')
-    $("#freelancer-price").css("display",'none')
-    $(".cant").css("display", "none")
-
-    $.ajax({
-      method: "GET",
-      url: "{{route('get.freelancer.profile')}}",
-      dataType: "json",
-      success: function(data){
-        console.log(data)
-        $("input#user-name").val(data.name);
-        $("input#user-title").val(data.title);
-        $("#user-price").val(data.price)
-        quill.root.innerHTML = data.description
-      }
-    });
-
-  });
-
-  var toolbarOptions = [
-    ['bold', 'italic', 'underline'],
-    [{ 'list': 'ordered'}, { 'list': 'bullet' }]
-  ];
-
-  var formats = [
-  'bold',
-  'italic',
-  'underline',
-  'list',
-  ];
-
-  var quill = new Quill('.editor', {
-    modules: {
-      toolbar: toolbarOptions
-    },
-    theme: 'snow',
-    formats: formats
-  });
-
-  $(".editor").css("display","none");
-  $(".ql-toolbar.ql-snow").css("display", "none");
-
-  $(".form-profile").submit(function(e){
-    e.preventDefault();
-    var desc =   quill.root.innerHTML
-    var name = $("input#user-name").val();
-    var title = $("input#user-title").val();
-    var id = '{{Auth::user()->id}}'
-    var price =   $("#user-price").val()
-
-    if (desc=="" || name=="" || title=="")
-      alert("Fields cannot be empty!")
-    else{
-      //css
-      $("input#user-title").css("display", "none");
-      $("input#user-name").css("display", "none");
-      $(".editor").css("display","none");
-      $(".ql-toolbar.ql-snow").css("display", "none");
-      $(".profile-desc h3").css("display", "block");
-      $(".profile-desc .profile-details").css("display", "block");
-      $("#save-profile").css("display", "none")
-      $("#name2").css("display", "block")
-      $("#user-price").css("display",'none')
-      $("#freelancer-price").css("display",'block')
-      $("#skills-form").css("opacity","0")
-
-
-      $.ajaxSetup({
-      headers: {
-          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-          }
-      });
-
-      var mySkills = [];
-      var skills = $("#search_skills").select2('data')
-      console.log(skills)
-      for(var i=0; i<skills.length; i++)
-        mySkills.push(skills[i].id)
-
-      $.ajax({
-        url: "{{route('update.freelancer.profile')}}",
-        method: "PUT",
-        data: {name: name, description: desc, title: title, id: id, price: price, skills: mySkills},
-        success: function(data){
-          if(data.success == 1){
-
-            $(".profile-details").html(desc)
-            $("#name2").text(name);
-            $("#title").text(title);
-            $("#freelancer-price").html("$ " +price +" USD/hr")
-            $(".cant").css("display", "block")
-            $("#title").css("display", "block")
-            $(".profile-details").css("display", "block")
-            for(var i=0; i<skills.length; i++){
-              $(".skills").append(        "<div class=card>"+
-                        "<div class=card-body>"+
-                          "<div class=row>"+
-                            "<div class=col-md-6>"+
-                              skills[i].text+
-                            "</div>"+
-                            "<div class=col-md-6>"+
-                              "<button type=button class='btn btn-danger delete-skills' skill-id="+skills[i].id+"style=margin-left: 5px; margin-top:-5px name=button>Delete</button>"
-                            +"</div>"+
-                          "</div>"+
-                        "</div>"+
-                      "</div>")
-            }
-            alertify.success('Profile Updated!');
-
-          }
-
-          console.log(data)
-        },
-        error: function(data){
-          console.log(data)
-        }
-      })
-    }
-  });
-
-  $(".new-port").click(function(){
-    $(".modal.portfolio").modal('show')
-  });
-
 (function($){
   /* trigger when page is ready */
   $(document).ready(function (){
@@ -786,106 +553,5 @@ p a{color:#27ae60; text-decoration:none;}
         });
   });
 })(window.jQuery);
-
-$('#search_skills').select2({
-  placeholder: 'Select an item',
-  ajax: {
-    url: '/getSkills',
-    dataType: 'json',
-    delay: 250,
-    processResults: function (data) {
-      return {
-        results:  $.map(data, function (item) {
-              return {
-                  text: item.name,
-                  id: item.skills_id
-              }
-          })
-      };
-    },
-    cache: true
-  }
-});
-
-$('#search_skills').on('select2:select', function (e) {
-    var data = e.params.data;
-    //console.log(data);
-});
-$('#search_skills').on('select2:unselect', function (e) {
-    var data = e.params.data;
-    console.log(data);
-});
-
-
-
-$(".text2").on('click',function(e){
- $("#upload_dp").trigger('click');
-});
-
-$(".text2").hover(function(){
-
-})
-
-	$('#file_selector').on('click', function(e) {
-  	$('#my_file').trigger('click');
-	});
-
-	$('#my_file').on('change', function() {
-  	$('#upload').html("upload: "+$(this).val());
-	});
-
-  $("#upload-dp").submit(function(){
-    if ($('#my_file').val() == ""){
-      alert("fill in a pic")
-      return false;
-    }else{
-      $("#upload-dp").attr('action', '{{route('store.freelancer.dp')}}');
-      $("#upload-dp").attr('method', 'post');
-
-      $("#upload-dp").trigger('submit');
-
-    }
-  })
-
-
-
-  $(document).on('mousemove', function(e){
-    if(e.pageX<=250)
-      document.getElementById("mySidenav").style.width = "250px";
-      else{
-        document.getElementById("mySidenav").style.width = "0px";
-
-      }
-  })
-
-  $(document).on('click','.delete-skills', function(){
-    var skill_id = $(this).attr('skill-id');
-    var this2 = $(this);
-
-    $.ajaxSetup({
-    headers: {
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });
-
-    $.ajax({
-      url: '{{route('delete.skill')}}',
-      method: "DELETE",
-      data:{skill_id: skill_id},
-      success:function(data){
-        if (data=="ok"){
-          this2.closest(".card").remove()
-          alertify.success('Skill Deleted!');
-
-        }
-        console.log(data)
-      },
-      error: function(data){
-        console.log("AJAX ERROR - DELETE")
-      }
-    });
-  });
-
 </script>
-
 @endsection
