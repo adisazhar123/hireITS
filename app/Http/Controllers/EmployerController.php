@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Auth;
 use App\Job;
+use App\Employer;
 use App\HarusBisaSkill;
 use Illuminate\Http\Request;
 
