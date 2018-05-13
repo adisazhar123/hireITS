@@ -13,6 +13,7 @@ use App\Bid;
 use App\ProfileFiles;
 use App\Diberkati;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class FreelancerController extends Controller
 {
@@ -137,18 +138,26 @@ class FreelancerController extends Controller
      	}
 
      	public function getData(Request $request){
-     		$id = Auth::user()->id;
-     		$fl = Freelancer::find($id);
-     		$fl->name = $request->input('nama');
-     		$fl->age = $request->input('age');
-     		$fl->major = $request->input('major');
-     		$fl->description = $request->input('description');
-     		$fl->title = $request->input('title');
-    		$user = Auth::user();
-         	$user->hassetprofile = 1;
+     		$validator = Validator::make($request->all(), [
+             'nama' => 'required',
+             'age' => 'required',
+             'major' => 'required',
+         	]);
 
-     		if($fl->save() && $user->save()){
-     			return view('freelancer.profile');
+     		if($validator->passes()){
+     			$id = Auth::user()->id;
+	     		$fl = Freelancer::find($id);
+	     		$fl->name = $request->input('nama');
+	     		$fl->age = $request->input('age');
+	     		$fl->major = $request->input('major');
+	     		$fl->description = $request->input('description');
+	     		$fl->title = $request->input('title');
+	    		$user = Auth::user();
+	         	$user->hassetprofile = 1;
+
+	     		if($fl->save() && $user->save()){
+	     			return view('freelancer.profile');
+	     		}
      		}
      	}
 
