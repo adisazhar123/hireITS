@@ -1,6 +1,6 @@
 nav.main {
   min-height: 65px;
-  z-index: 1;
+  z-index: 99999999999999999999999999999999;
   background: #85b8cb;
 }
 
@@ -66,6 +66,12 @@ nav.navbar {
   padding-top: 0;
 }
 
+nav img {
+  height: 40px;
+  width: 45px;
+  border-radius: 3px;
+}
+
 a.navbar-brand {
   color: #6da768 !important;
   color: #FFFFFF !important;
@@ -82,10 +88,6 @@ a.navbar-brand {
 
 .navbar-toggler {
   background-color: #FF983C !important;
-}
-
-.modal-backdrop.show {
-  opacity: 0 !important;
 }
 
 @media only screen and (max-width: 990px) {

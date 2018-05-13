@@ -1,124 +1,4 @@
-<style>
-nav.main {
-  min-height: 65px;
-  z-index: 10000;
-  background: #85b8cb;
-}
 
-.nav-item a {
-  color: #EA9B25 !important;
-}
-
-.nav-link {
-  text-transform: uppercase;
-}
-
-.btn-primary {
-  background-color: #D66C44;
-  border: none;
-  color: #FFFFFF !important;
-  font-weight: bold;
-}
-
-.btn-primary:hover {
-  background-color: #c95b30;
-}
-
-a.nav-link:hover {
-  border-top: 2px solid #2D3D19;
-  border-bottom: 2px solid #2D3D19;
-}
-
-.navbar-brand {
-  transform: scale(1.5);
-<<<<<<< Updated upstream
-  margin-left: 25px;
-  margin-right: 2em;
-  color: #6da768 !important;
-=======
-  margin-left : 25px;
-  margin-right : 2em;
->>>>>>> Stashed changes
-}
-
-nav form .btn-search:hover {
-  background-color: #E99A24;
-}
-
-.dropdown:hover .dropdown-menu {
-  display: block;
-}
-
-.dropdown-menu {
-  background-color: #EA9B25;
-  padding: 10px;
-  text-align: center;
-  align-content: right;
-}
-
-.dropdown-menu a {
-  color: #FFFFFF !important;
-}
-
-.dropdown-menu a:hover {
-  background-color: #ECB021 !important;
-}
-
-nav.navbar {
-  background-color: #1d2326;
-  padding-bottom: 0;
-  padding-top: 0;
-}
-
-
-a.navbar-brand {
-  color: #6da768 !important;
-}
-a.navbar-brand{
-  color: #FFFFFF !important;
-  font-size: 1.75em;
-}
-
-.dropdown:hover .dropdown-menu {
-  display: block;
-}
-
-.dropdown-header {
-  font-size: 1em;
-}
-
-.navbar-toggler {
-  background-color: #FF983C !important;
-}
-
-@media only screen and (max-width: 990px) {
-  a.nav-link:hover {
-    transform: scale(1);
-  }
-  .navbar-brand {
-    padding-left: 20px;
-  }
-  nav input {
-    width: 100% !important;
-    margin-bottom: 10px;
-  }
-  nav form button {
-    width: 100% !important;
-  }
-  nav .btn {
-    margin-bottom: 10px;
-  }
-
-  #login-btn{
-    width: 100%;
-  }
-}
-
-.modal-backdrop.show {
-  opacity: 0 !important;
-}
-
-</style>
 <nav class="main navbar navbar-expand-lg navbar-light fixed-top" >
     <div class="container">
        <a class="navbar-brand" href="{{url('/')}}">hire<strong>ITS</strong></a>
@@ -157,17 +37,25 @@ a.navbar-brand{
          <ul class="navbar-nav ml-auto">
            @if(Auth::check())
 
-             <li class="nav-item">
-               <a href="{{ route('logout') }}" class="nav-link"
-                  onclick="event.preventDefault();document.getElementById('logout-form').submit();">
-                   Logout
-               </a>
+             <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbar-pic" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <img src="" alt="My Account">
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="{{route('view.freelancer.profile')}}">Profile</a>
+                <a class="dropdown-item" href="{{route('view.freelancer.dashboard')}}">Dashboard</a>
+                <div class="dropdown-divider"></div>
+                <a href="{{ route('logout') }}" class="dropdown-item"
+                   onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+                    Logout
+                </a>
 
-               <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                     style="display: none;">
-                   {{ csrf_field() }}
-               </form>
-             </li>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                      style="display: none;">
+                    {{ csrf_field() }}
+                </form>
+              </div>
+            </li>
            @else
              <li class="nav-item">
                 <button type="button" id="login-btn" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
@@ -175,19 +63,6 @@ a.navbar-brand{
              </button>
               </li>
            @endif
-
-           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Dropdown
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="#">Action</a>
-              <a class="dropdown-item" href="#">Another action</a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">Something else here</a>
-            </div>
-          </li>
-            
          </ul>
 
        </div>

@@ -31,7 +31,6 @@ class FreelancerController extends Controller
       $freelancer = Freelancer::find($id);
       $pf = ProfileFiles::where('freelancer_id', $id)->where('role', 'dp')->get();
       $cover=ProfileFiles::where('freelancer_id', $id)->where('role', 'cover')->get();
-
       return view('freelancer.profile')->with('freelancer', $freelancer)->with('portfolios', $portfolios)->with('skills', $skills)->with('pf', $pf)
       ->with('cover', $cover);
     }
@@ -169,12 +168,11 @@ class FreelancerController extends Controller
             return redirect()->route('view.freelancer.profile');
           }
         }else{
-          $pf->name = $contents;
-          $pf->img_type = $extension;
-          $pf->role = "dp";
-          if ($pf->save()){
+          $pf=ProfileFiles::where('freelancer_id',Auth::user()->id)->where('role','dp')->update([
+            'name'=>$contents,
+            'img_type'=>$extension
+          ]);
             return redirect()->route('view.freelancer.profile');
-          }
         }
       }
 
@@ -207,11 +205,9 @@ class FreelancerController extends Controller
                   ->select('diberkati.skills_id', 'diberkati.freelancer_id', 'skills.name')
                   ->get();
 
-        $pf = ProfileFiles::where('freelancer_id', $id)->where('role', 'dp')->get();
-        $cover=ProfileFiles::where('freelancer_id', $id)->where('role', 'cover')->get();
-
+        $pf = ProfileFiles::where('freelancer_id',$id[0]->id)->where('role', 'dp')->get();
+        $cover=ProfileFiles::where('freelancer_id', $id[0]->id)->where('role', 'cover')->get();
         return view('freelancer.view-freelancer')->with('freelancer', $freelancer)->with('portfolios',$portfolios)->with('skills', $skills)->with('pf', $pf)
         ->with('cover', $cover);
       }
-
 	 }

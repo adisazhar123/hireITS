@@ -8,13 +8,48 @@ use DB;
 use Auth;
 use Illuminate\Http\Request;
 
-class ProjectsController extends Controller
-{
+class ProjectsController extends Controller{
+
     public function index(Request $request){
-      if (!isset($request->keywords) && empty($request->keywords) )
-        $jobs = Job::where('active','1')->paginate(5);
-      else{
-        $jobs = Job::where('name', 'like', '%'.$request->keywords.'%')->orWhere('description', 'like', '%'.$request->keywords.'%')->where('active','1')->paginate(5);
+      //gak ada keyword dan filter defaultnya gini
+      if (empty($request->keywords) && empty($request->filter) ){
+        $jobs = Job::orderBy('job_id','DESC')->where('active',1)->with(['harusbisaskill','harusbisaskill.skills'])->paginate(1);
+      }
+      //gak ada keyword tapi ada filter//
+      else if (empty($request->keywords) && !empty($request->filter)){
+        if ($request->filter === "newest-first")
+          $jobs = Job::orderBy('job_id', 'DESC')->where('active',1)->with(['harusbisaskill','harusbisaskill.skills'])->paginate(1);
+        else if ($request->filter === "lowest-budget-first")
+          $jobs = Job::orderBy('price_max','ASC')->where('active',1)->with(['harusbisaskill','harusbisaskill.skills'])->paginate(1);
+        else if($request->filter === "highest-budget-first")
+          $jobs = Job::orderBy('price_max','DESC')->where('active',1)->with(['harusbisaskill','harusbisaskill.skills'])->paginate(1);
+        else if($request->filter === "lowest-bid")
+          $jobs = Job::orderBy('no_of_bids','ASC')->where('active',1)->with(['harusbisaskill','harusbisaskill.skills'])->paginate(1);
+        else if($request->filter === "highest-bid")
+          $jobs = Job::orderBy('no_of_bids','DESC')->where('active',1)->with(['harusbisaskill','harusbisaskill.skills'])->paginate(1);
+      }
+      //ada keyword dan filter
+      else if(!empty($request->keywords) && !empty($request->filter)){
+        if ($request->filter === "newest-first")
+          $jobs = Job::orderBy('job_id', 'DESC')->where('name', 'like', '%'.$request->keywords.'%')->where('active', 1)->orWhere('description', 'like', '%'.$request->keywords.'%')
+          ->where('active',1)->with(['harusbisaskill','harusbisaskill.skills'])->paginate(1);
+        else if ($request->filter === "lowest-budget-first")
+          $jobs = Job::orderBy('price_max','ASC')->where('name', 'like', '%'.$request->keywords.'%')->where('active', 1)->orWhere('description', 'like', '%'.$request->keywords.'%')
+          ->where('active',1)->with(['harusbisaskill','harusbisaskill.skills'])->paginate(1);
+        else if ($request->filter === "highest-budget-first")
+          $jobs = Job::orderBy('price_max','DESC')->where('name', 'like', '%'.$request->keywords.'%')->where('active', 1)->orWhere('description', 'like', '%'.$request->keywords.'%')
+          ->where('active',1)->with(['harusbisaskill','harusbisaskill.skills'])->paginate(1);
+        else if ($request->filter === "lowest-bid")
+          $jobs = Job::orderBy('no_of_bids','ASC')->where('name', 'like', '%'.$request->keywords.'%')->where('active', 1)->orWhere('description', 'like', '%'.$request->keywords.'%')
+          ->where('active',1)->with(['harusbisaskill','harusbisaskill.skills'])->paginate(1);
+        else if ($request->filter === "highest-bid")
+          $jobs = Job::orderBy('no_of_bids','DESC')->where('name', 'like', '%'.$request->keywords.'%')->where('active', 1)->orWhere('description', 'like', '%'.$request->keywords.'%')
+          ->where('active',1)->with(['harusbisaskill','harusbisaskill.skills'])->paginate(1);
+      }
+      //ada keyword gak ada filter
+      else if (!empty($request->keywords)){
+        $jobs = Job::where('name', 'like', '%'.$request->keywords.'%')->where('active', 1)->orWhere('description', 'like', '%'.$request->keywords.'%')
+        ->where('active', 1)->with(['harusbisaskill','harusbisaskill.skills'])->paginate(1);
       }
       if($request->ajax()){
         return view('projects.project-list')->with('jobs', $jobs)->with('keyword', $request->keywords)->render();
@@ -29,7 +64,6 @@ class ProjectsController extends Controller
                 ->where('harus_bisa_skill.job_id', $job[0]->job_id)
                 ->select('harus_bisa_skill.skills_id', 'skills.name')
                 ->get();
-
       $bids=$job[0]->bid;
       return view('projects.view-project')->with('job', $job)->with('skills', $skills)->with('bids', $bids);
     }

@@ -26,7 +26,7 @@
     background-color: #E9E9E9;
   }
 
-  body, html {
+  html {
     height: 100%;
     margin: 0;
 }
@@ -44,7 +44,6 @@ body { padding-top: 65px; }
 
     </div>
     @yield('content')
-    <div id="ohsnap"></div>
   </body>
   <script src="{{ asset('js/jquery.min.js') }}"></script>
   <script src="{{ asset('js/popper.min.js') }}"></script>
@@ -175,6 +174,25 @@ body { padding-top: 65px; }
     return this;
   },
 });
+
+  function getNavbarPic(){
+    var id = "";
+    @if (Auth::check())
+      id = {{Auth::user()->id}}
+    @endif
+    $.ajax({
+      url: '{{route('get.navbar.pic')}}',
+      method: "GET",
+      data: {id: id},
+      success: function(data){
+        $("#navbar-pic").html(data)
+        //console.log(data)
+      }
+    })
+  }
+  @if (Auth::check())
+    getNavbarPic()
+  @endif
 
   </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.min.js"></script>

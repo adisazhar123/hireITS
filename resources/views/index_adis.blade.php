@@ -257,10 +257,11 @@ i{
           var EXECUTE_PAYMENT_URL ='execute';
 
           //
-          paypal.request.post(EXECUTE_PAYMENT_URL,{ paymentID: data.paymentID, payerID: data.payerID },
-            {headers: {
-                      'x-csrf-token': $('meta[name="csrf-token"]').attr('content')
-                  }})
+          paypal.request.post(EXECUTE_PAYMENT_URL,
+            { paymentID: data.paymentID, payerID: data.payerID },
+            {headers:
+              {'x-csrf-token': $('meta[name="csrf-token"]').attr('content')}
+            })
             .then(function(data) { /* Say thanks to the user */
                     alert("THANK YOU")
 

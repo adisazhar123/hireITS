@@ -59,9 +59,10 @@
       border-bottom: solid #E9E9E9;
       border-width: 1px;
       padding: 30px;
-      height: 190px;
+      height: 220px;
       white-space: initial;
     }
+
 
     .jobs-body:hover{
       background-color: #F7F7F7;
@@ -221,8 +222,13 @@
       text-align: justify;
     }
 
+    .job-price h4{
+      padding-right: 15px;
+      font-size: 18px;
+    }
+
     .job-price{
-      padding-left: 10px;
+      padding-left: 20px;
     }
 
     @media only screen and (min-width: 768px) {
@@ -341,15 +347,27 @@
           </div>
         </div>
         <div class="col-md-9">
-          <div class="jobss">
-            @include('projects.project-list')
+          <div class="available-jobs mb-2" style="background-color: white;">
+            <div class="jobs-head mb-2" style="padding: 20px">
+              <form class="" action="index.html" method="post">
+                <select class="" name="order">
+                  <option value="newest-first">Newest First</option>
+                  <option value="lowest-budget-first">Lowest Budget First</option>
+                  <option value="highest-budget-first">Highest Budget First</option>
+                  <option value="lowest-bid">Lowest bid/entries</option>
+                  <option value="highest-bid">Highest bid/entries</option>
+                </select>
+              </form>
+            </div>
           </div>
-        </div>
-        </div>
+              <div class="here">
+                @include('projects.project-list')
+              </div>
       </div>
     </div>
 
   </div>
+</div>
 @endsection
 
 @section('script')
@@ -362,6 +380,13 @@
     $(".filter-content").addClass("show");
   }
 
+  var lowestBudget="?filter=lowestbudget";
+  var highestBudget="?filter=highestbudget";
+  var lowestBid="?filter=lowestbid";
+  var highestBid="?filter=highestbid";
+  var filter="";
+  var keywords="";
+  var appendUrl="";
 
   $(window).resize(function(){
     if ($(document).width()<=768){
@@ -376,25 +401,73 @@
   $('body').on('click', '.pagination a', function(e) {
     e.preventDefault();
     $('#load a').css('color', '#dfecf6');
-     $('#load').append('<img style="position: absolute; left: 30%; top: 0; z-index: 100000;" src="{{asset('loading.gif')}}" alt="haha" />');
+    $('#load').append('<img style="position: absolute; left: 30%; top: 0; z-index: 100000;" src="{{asset('loading.gif')}}" alt="haha" />');
+    var pageNo = $(this).text()
+    //if (appendUrl=="")
+      if (!$(location).attr('search').includes('page'))
+        appendUrl = "&"+$(location).attr('search').slice(1)
 
-    var url = $(this).attr('href');
-    getJobs(url);
-    window.history.pushState("", "", url);
+    var temp = $(location).attr('search');
+    if(!appendUrl.includes('filter'))
+    if (temp.includes('filter')){
+      if(temp.includes('highest-budget'))
+        appendUrl+="&filter=highest-budget-first";
+      else if (temp.includes('lowest-budget'))
+        appendUrl+="&filter=lowest-budget-first";
+      else if (temp.includes('lowest-bid'))
+        appendUrl+="&filter=lowest-bid";
+      else if (temp.includes('highest-bid'))
+        appendUrl+="&filter=highest-bid";
+      else if (temp.includes('newest-first'))
+        appendUrl+="&filter=newest-first";
+    }
+
+    url="/jobs?page="+pageNo;
+    getJobs(url+appendUrl);
+    window.history.pushState("", "", url+appendUrl);
+
 });
 
 function getJobs(url){
   $.ajax({
             url : url
         }).done(function (data) {
-            $('.jobss').html(data);
+            $('.here').html(data);
         }).fail(function () {
             alert('jobs could not be loaded.');
         });
     }
 
+    $(document).on('change','select',function(){
+      //utk dapetin variable keyword di URL
+      keywords = $(location).attr('search')
+      //kalo gak keyword
+      if(!keywords.includes('keywords'))
+        keywords="";
+      //kalo gada keyword harus di-set ?
+      if(keywords=="")
+        filter="?filter="+$(this).find('option:selected').val();
+      //kalo ada keyword maka di-set & biar lgsg disambungin di URL
+      else filter="&filter="+$(this).find('option:selected').val();
 
 
+      //if ($(location).attr('search').includes('filter'))
+
+      $('#load').append('<img style="position: absolute; left: 30%; top: 0; z-index: 100000;" src="{{asset('loading.gif')}}" alt="haha" />');
+
+      $.ajax({
+        url :"/jobs"+keywords+filter,
+        success: function(data){
+          console.log("/jobs"+keywords+filter)
+          window.history.pushState("","","/jobs"+keywords+filter);
+          $('#load').html(data);
+        },
+        error: function(data){
+          console.log(data);
+        }
+      })
+      //alert(keywords)
+    })
 
   </script>
 @endsection

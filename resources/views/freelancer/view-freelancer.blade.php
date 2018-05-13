@@ -13,20 +13,18 @@ p a{color:#27ae60; text-decoration:none;}
 
 /*img stuff*/
   img {max-width: 100%;}
-  .background-pic{
+
+  body{
     @if ($cover->isEmpty())
       background-image: url('https://images.pexels.com/photos/735911/pexels-photo-735911.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');
     @else
       background-image: url({{asset($cover)}});
     @endif
-    height: 60%;
-    background-position: center;
     background-repeat: no-repeat;
-    background-size: cover;
-    background-color: rgba(0,0,0,0);
-    margin-bottom: -375px;
-  }
+    background-size: 100% 465px;
+    background-position: top;
 
+  }
   .profile-pic{
     margin-top: 20px;
     justify-content: center;  margin-left: auto;
@@ -34,17 +32,15 @@ p a{color:#27ae60; text-decoration:none;}
     width: 300px;
     height: 100%;
   }
-      .profile-pic img{
-      border-radius: 5px;
-      display: block;
-      margin-left: auto;
-      margin-right: auto;
-      height: 100%;
-      width: 100%;
-      border: solid #85b8cb;
-      border-width: 1px;
-      border-radius: 5px;
-      }
+  .profile-pic img{
+  border-radius: 5px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  height: 224.467px;
+  width: 300px;
+
+  }
 
       .info p{
       margin-top: 10px;
@@ -251,6 +247,7 @@ p a{color:#27ae60; text-decoration:none;}
 #wrapper{ max-width: 800px; width:100%; margin:0 auto;}
 #generic-tabs{
   width:100%; padding:20px;
+  margin-top: 43px;
 }
 
 #first-tab,#second-tab,#third-tab{
@@ -260,7 +257,7 @@ p a{color:#27ae60; text-decoration:none;}
 
 /*Tab styles*/
 #generic-tabs ul#tabs { overflow: hidden; margin:0; padding:0;}
-#generic-tabs ul#tabs li{min-height: 100px; float:left; display:inline-block; width:25%; background:#EDEDED; border-top:4px solid #CCCCCC; border-right:1px solid #CCCCCC; }
+#generic-tabs ul#tabs li{min-height: 100px; float:left; display:inline-block; width:33.33%; background:#EDEDED; border-top:4px solid #CCCCCC; border-right:1px solid #CCCCCC; }
 #generic-tabs ul#tabs li:last-child {border-right:none;}
 #generic-tabs ul#tabs li:first-child { padding-left:0; }
 
@@ -382,9 +379,7 @@ p a{color:#27ae60; text-decoration:none;}
 @extends('layouts.app')
 
 @section('content')
-<div class="background-pic">
 
-</div>
 <div class="container">
 
         <div class="profile-pic">
@@ -419,9 +414,7 @@ p a{color:#27ae60; text-decoration:none;}
             <li>
                 <a title="Reviews" href="#third-tab"><i class="fa fa-info-circle"></i> Reviews </a>
             </li>
-            <li>
-                <a title="Contact" href="#fourth-tab"><i class="fa fa-envelope"></i> Contact</a>
-            </li>
+
         </ul>
 
         <div id="first-tab" class="tab-content animated fadeIn">
@@ -511,10 +504,6 @@ p a{color:#27ae60; text-decoration:none;}
                     <br><strong>Joni</strong> Project mobile app
                     <p>This guy is awesome!! work is always on time</p>
 
-        </div>
-        <div id="fourth-tab" class="tab-content animated fadeIn">
-          <h1>Contact</h1>
-          <p>Lorem ipsum dolor sit amet, utroque splendide an quo. Omnesque pertinacia efficiantur vix at, soleat quaeque assueverit et vis. Te sit tale eripuit corrumpit, cum ea case graeci legimus. Sea ex assentior honestatis adversarium. Mei ea dico meis instructior, no eum ipsum voluptatum, quodsi pertinax postulant in sed. Te eum pertinacia suscipiantur, sea eirmod sanctus ea. Vel habeo feugait ea, an apeirian adversarium nam.</p>
         </div>
 
     </section>

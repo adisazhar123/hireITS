@@ -44,7 +44,7 @@
     .bidders .card{
       border-radius: 0px;
       padding: 0;
-      border-top: solid grey;
+      border-bottom: solid grey;
       border-width: 1px;
       width: 100%;
     }
@@ -60,6 +60,9 @@
       border-radius: 3px;
     }
 
+    .modal{
+      top: 20%;
+    }
 
   </style>
 

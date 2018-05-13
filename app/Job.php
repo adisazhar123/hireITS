@@ -13,4 +13,7 @@ class Job extends Model
   public function bid(){
     return $this->hasMany('App\Bid', 'job_id');
   }
+  public function harusbisaskill(){
+    return $this->hasMany('App\HarusBisaSkill', 'job_id');
+  }
 }

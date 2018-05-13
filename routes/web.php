@@ -18,6 +18,8 @@ Route::get('/', function () {
     return view('homepage');
 });
 
+Route::get('get-image','UsersController@getImage')->name('get.navbar.pic');
+
 
 //freelancer
 Route::get('jobs','ProjectsController@index')->name('browse.jobs');

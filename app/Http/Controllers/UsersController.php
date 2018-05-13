@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\ProfileFiles;
 use DB;
 
 class UsersController extends Controller
@@ -102,5 +103,13 @@ class UsersController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function getImage(Request $request){
+      $id = $request->id;
+      $pf = ProfileFiles::where('freelancer_id', $id)->where('role', 'dp')->get();
+      $name = base64_encode($pf[0]->name);
+      $type = $pf[0]->img_type;
+      return '<img src="data:'.$type.';base64,'.$name.'"/>';
     }
 }

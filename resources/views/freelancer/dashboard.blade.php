@@ -12,11 +12,9 @@
 }
 
 .slidebar {
-/*  width:15%;
-  float: left;*/
   background-color: #111;
   height:100%;
-    width: 160px;
+    width: 0;
     position: fixed;
     z-index: 1;
     top: 65px;
@@ -161,6 +159,15 @@ li {
 
 
   });
+
+  $(document).on('mousemove', function(e){
+    if(e.pageX<=250)
+      document.getElementByClas("slidebar").style.width = "250px";
+      else{
+        document.getElementById("mySidenav").style.width = "0px";
+
+      }
+  })
 
 });
 </script>

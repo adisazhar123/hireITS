@@ -10,8 +10,6 @@ h1.callout{color:#FFFFFF; font-size:2em; margin:1em 0;}
 p{font-size: 1.2em; color:#a3a3a3 ; line-height: 1.5;}
 p strong{color:#555555;}
 p a{color:#27ae60; text-decoration:none;}
-
-/*img stuff*/
   img {max-width: 100%;}
   .background-pic{
     @if ($cover->isEmpty())
@@ -20,11 +18,24 @@ p a{color:#27ae60; text-decoration:none;}
       background-image: url({{asset($cover)}});
     @endif
     height: 60%;
+    top: 100%;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     background-color: rgba(0,0,0,0);
-    margin-bottom: -400px;
+    //margin-bottom: -400px;
+  }
+
+  body{
+    @if ($cover->isEmpty())
+      background-image: url('https://images.pexels.com/photos/735911/pexels-photo-735911.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');
+    @else
+      background-image: url({{asset($cover)}});
+    @endif
+    background-repeat: no-repeat;
+    background-size: 100% 465px;
+    background-position: top;
+
   }
 
   .profile-pic{
@@ -39,11 +50,9 @@ p a{color:#27ae60; text-decoration:none;}
       display: block;
       margin-left: auto;
       margin-right: auto;
-      height: 100%;
-      width: 100%;
-      border: solid #85b8cb;
-      border-width: 1px;
-      border-radius: 5px;
+      height: 224.467px;
+      width: 300px;
+
       }
 
       .info p{
@@ -270,7 +279,7 @@ p a{color:#27ae60; text-decoration:none;}
       }
 
       .skills .card{
-        top: -53px;
+        top: -15px;
       }
 
 /*Generic styles*/
@@ -343,13 +352,14 @@ p a{color:#27ae60; text-decoration:none;}
     top: 25%;
     left: 50%;
   }
+
   }
 
 @media only screen and (min-width: 650px) {
   h1{font-size:2em;}
   h1.callout{font-size:3em;}
   p{font-size:1.4em;}
-  #generic-tabs ul#tabs li a { font-size:1.6em; padding: 1.2em 2em; line-height: 16px; }
+  #generic-tabs ul#tabs li a { font-size:1.6em; padding: 1.2em 2em ; line-height: 16px; }
 }
 
 #edit-profile{
@@ -404,7 +414,21 @@ p a{color:#27ae60; text-decoration:none;}
 .modal{
   top: 20%;
 }
+#second-tab{
+  padding-top: 51px !important;
+}
 
+#edit-profile{
+  display: none;
+}
+
+#first-tab:hover #edit-profile{
+  display: block;
+}
+
+.oke{
+  position: relative;
+}
 
 </style>
 @endsection
@@ -412,236 +436,229 @@ p a{color:#27ae60; text-decoration:none;}
 @extends('layouts.app')
 
 @section('content')
-<div class="background-pic">
 
-</div>
-<div class="container">
-  @if (Auth::check())
-          @if (!Auth::user()->hassetprofile)
-            <div class="alert alert-warning" role="alert">
-              You must complete your basic details before you can go anywhere.
-            </div>
-          @endif
-
-        @endif
-        <div class="profile-pic">
-          @if ($pf->isEmpty())
-            <img class="rounded" src="{{asset('adis.jpg')}}" alt="profile_pic12">
-            @else
-              <img class="rounded" src="data:{{$pf[0]->img_type}};base64,{{base64_encode( $pf[0]->name )}}" alt="profile_pic">
-          @endif
-          <div class="text2">
-
-            <form action="#" enctype="multipart/form-data" id="upload-dp">
-              {{ csrf_field() }}
-                <input type="file" id="my_file" name="image"/>
-                <i class="fa fa-wrench" id="file_selector" style="font-size:60px;"></i>
-                <button id="upload" class="btn btn-default" type="submit" name="button">upload profile pic: </button>
-             </form>
-          </div>
-
-        </div>
-        <div class="info">
-            <p class="cant">{{"@".Auth::user()->username}} </p>
-            <p class="cant" id="department">{{$freelancer->major}} Department</p>
-            <p class="cant">{{$freelancer->jobs_completed}} jobs completed, {{$freelancer->jobs_ontime}} on time</p>
-
-                     @if (!$freelancer->reviews)
-                <p class="cant">{{$freelancer->reviews}} reviews</p>
-                @else
-                  <i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i> 5 reviews
+    <div class="container">
+      @if (Auth::check())
+              @if (!Auth::user()->hassetprofile)
+                <div class="alert alert-warning" role="alert">
+                  You must complete your basic details before you can go anywhere.
+                </div>
               @endif
 
-                  <p class="cant">Member since: {{date_format(Auth::user()->created_at,"d/m/Y")}}</p>
-                </div>
-      <section id="generic-tabs">
-
-
-        <ul id="tabs">
-            <li>
-                <a title="About" href="#first-tab"><i class="fa fa-home"></i> About</a>
-            </li>
-            <li>
-                <a title="Portfolio" href="#second-tab"><i class="fa fa-picture-o"></i> Portfolio</a>
-            </li>
-            <li>
-                <a title="Reviews" href="#third-tab"><i class="fa fa-info-circle"></i> Reviews </a>
-            </li>
-<!--             <li>
-                <a title="Contact" href="#fourth-tab"><i class="fa fa-envelope"></i> Contact</a>
-            </li> -->
-        </ul>
-
-        <div id="first-tab" class="tab-content animated fadeIn">
-
-          <div class="row">
-            <div class="col-lg-8">
-              <h2><i class="profile-user fa fa-address-card-o"></i> Information</h2>
-
-              <h3 id="name2">@if (!Auth::user()->hassetprofile)
-                    Please set your name.
-                  @else
-                    {{$freelancer->name}}
-                  @endif
-
-                </h3>
-                  <h5 id="title">@if (!Auth::user()->hassetprofile)
-                    What is your title?
-                  @else
-                    {{$freelancer->title}}
-                  @endif
-                </h5>
-
-                  <form action="#" method="post" class="form-profile">
-                    {{ csrf_field() }}
-                    <input class="animated fadeIn form-control" id="user-name" type="text" placeholder="what is your name?" name="user-name" value="" style="display: none">
-                    <input class="animated fadeIn form-control" id="user-title" type="text" placeholder="what is your title?" name="user-title" value="" style="display: none">
-                    <h5 id="freelancer-price"> $ {{$freelancer->price}} USD/hr</h5>
-                    <input class="form-control" id="user-price" type="text" name="user-price" placeholder="Price per hour" value="{{$freelancer->price}}" style="display: none">
-                    <input id="user-desc" name="user-desc" type="hidden" value="">
-                    <div class="editor animated fadeIn">
-
-                    </div>
-                    <button type="submit" id="save-profile" class="btn btn-primary" style="display: none">Save Profile</button>
-                  </form>
-
-                  <div class="profile-details">
-                    <p>
-                    @if (!Auth::user()->hassetprofile)
-                      We want to know a little bit more of you. What are your mastery? Do you like to draw?
-                      @else
-                        {!! $freelancer->description !!}
-
-                    @endif
-                  </div>
-
-            </div>
-            <div class="col-lg-4 divider">
-              <div class="skills">                <button type="button" id="edit-profile" class="btn btn-warning" name="button" style="float: right">Edit Profile</button>
-
-                <h2><i class="profile-user fa fa-cogs"></i> Skills</h2>
-                  <form id="skills-form" style="opacity:0">
-                    <div class="form-group">
-                      <label for="tag_list">Tags:</label>
-                      <select class="form-control col-md-12" id="search_skills" name="search_skills[]" multiple></select>
-
-                    </div>
-                  </form>
-                  <ul class="user-tags">
-                    <li class="tag">C++</li>
-                    <li class="tag">Photoshop</li>
-                  </ul>
-                  @foreach ($skills as $skill)
-                    <div class="card">
-                      <div class="card-body">
-                        <div class="row">
-                          <div class="col-md-6">
-                            {{$skill->name}}
-                          </div>
-                          <div class="col-md-6">
-                            <button type="button" class="btn btn-danger delete-skills" skill-id="{{$skill->skills_id}}" style="margin-left: 5px; margin-top:-5px" name="button">Delete</button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  @endforeach
-              </div>
-            </div>
-          </div>
-
-        </div>
-
-        <div id="second-tab" class="tab-content portfolio">
-          @if (!$portfolios->count())
-                  <p>No portfolio</p>
-                  <button class="btn btn-default float-right new-port edit-portfolio" style="width: auto" type="button" name="button">Add new portfolio</button>
-
+            @endif
+            <div class="profile-pic">
+              @if ($pf->isEmpty())
+                <img class="rounded" src="{{asset('img/avatar.png')}}" alt="profile_pic12">
                 @else
-                  <button class="btn btn-default float-right edit-portfolio">edit</button>
-                  @if ($portfolios->count()<6)
-                    <button class="btn btn-default float-right new-port edit-portfolio" style="width: auto" type="button" name="button">Add new portfolio</button>
+                  <img class="rounded" src="data:{{$pf[0]->img_type}};base64,{{base64_encode( $pf[0]->name )}}" alt="profile_pic">
+              @endif
+              <div class="text2">
+
+                <form action="#" enctype="multipart/form-data" id="upload-dp">
+                  {{ csrf_field() }}
+                    <input type="file" id="my_file" name="image"/>
+                    <i class="fa fa-wrench" id="file_selector" style="font-size:60px;"></i>
+                    <button id="upload" class="btn btn-default" type="submit" name="button">upload profile pic: </button>
+                 </form>
+              </div>
+
+            </div>
+            <div class="info">
+                <p class="cant">{{"@".Auth::user()->username}} </p>
+                <p class="cant" id="department">{{$freelancer->major}} Department</p>
+                <p class="cant">{{$freelancer->jobs_completed}} jobs completed, {{$freelancer->jobs_ontime}} on time</p>
+
+                         @if (!$freelancer->reviews)
+                    <p class="cant">{{$freelancer->reviews}} reviews</p>
+                    @else
+                      <i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i> 5 reviews
                   @endif
 
-                  <div class="row">
-
-                     @foreach ($portfolios as $portfolio)
-                      <div class="col-md-4">
-                        <div class="card project">
-
-                          <div class="card-body">
-                            <img class="card-img-top" src="data:{{$portfolio->img_type}};base64,{{base64_encode( $portfolio->img_name )}}"/>
-
-                            <div class="middle">
-
-                            </div>
-                            <div class="text">
-                              <h3>{{$portfolio->name}}</h3>
-                              <p>{{$portfolio->description}}</p>
-                              <form class="" action="{{route('delete.portfolio',$portfolio->portfolio_id)}}" method="post">
-                                {{ csrf_field() }}
-                                {{ method_field('delete') }}
-                                <button type="submit" class="btn btn-danger">Delete</button>
-                              </form>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    @endforeach
-                  </div>
-                  @endif
-                    <div class="modal portfolio animated fadeIn" tabindex="-1" role="dialog">
-                      <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <h5 class="modal-title">Add Portfolio</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                              <span aria-hidden="true">&times;</span>
-                            </button>
-                          </div>
-                          <div class="modal-body">
-                            <form enctype="multipart/form-data" method="post" action="{{route('add.portfolio')}}">
-                              {{ csrf_field() }}
-                              <div class="form-group">
-                                <input type="text" class="form-control" id="port_name" name="port_name" placeholder="Portfolio Name">
-                              </div>
-                              <div class="form-group">
-                                <textarea class="form-control" id="port_desc" name="port_desc" placeholder="Portfolio Description"></textarea>
-                              </div>
-                              <div class="form-group">
-                                <input type="file" class="form-control" name="image" id="port_img">
-                              </div>
-                              <button type="submit" class="btn btn-primary">Submit</button>
-                            </form>
-                          </div>
-
-                        </div>
-                      </div>
+                      <p class="cant">Member since: {{date_format(Auth::user()->created_at,"d/m/Y")}}</p>
                     </div>
+          <section id="generic-tabs">
+
+
+            <ul id="tabs">
+                <li>
+                    <a title="About" href="#first-tab"><i class="fa fa-home"></i> About</a>
+                </li>
+                <li>
+                    <a title="Portfolio" href="#second-tab"><i class="fa fa-picture-o"></i> Portfolio</a>
+                </li>
+                <li>
+                    <a title="Reviews" href="#third-tab"><i class="fa fa-info-circle"></i> Reviews </a>
+                </li>
+            </ul>
+
+            <div id="first-tab" class="tab-content animated fadeIn">
+
+              <div class="row">
+                <div class="col-lg-8">
+                  <h2><i class="profile-user fa fa-address-card-o"></i> Information</h2>
+
+                  <h3 id="name2">@if (!Auth::user()->hassetprofile)
+                        Please set your name.
+                      @else
+                        {{$freelancer->name}}
+                      @endif
+
+                    </h3>
+                      <h5 id="title">@if (!Auth::user()->hassetprofile)
+                        What is your title?
+                      @else
+                        {{$freelancer->title}}
+                      @endif
+                    </h5>
+
+                      <form action="#" method="post" class="form-profile">
+                        {{ csrf_field() }}
+                        <input class="animated fadeIn form-control" id="user-name" type="text" placeholder="what is your name?" name="user-name" value="" style="display: none">
+                        <input class="animated fadeIn form-control" id="user-title" type="text" placeholder="what is your title?" name="user-title" value="" style="display: none">
+                        <h5 id="freelancer-price"> $ {{$freelancer->price}} USD/hr</h5>
+                        <input class="form-control" id="user-price" type="text" name="user-price" placeholder="Price per hour" value="{{$freelancer->price}}" style="display: none">
+                        <input id="user-desc" name="user-desc" type="hidden" value="">
+                        <div class="editor animated fadeIn">
+
+                        </div>
+                        <button type="submit" id="save-profile" class="btn btn-primary" style="display: none">Save Profile</button>
+                      </form>
+
+                      <div class="profile-details">
+                        <p>
+                        @if (!Auth::user()->hassetprofile)
+                          We want to know a little bit more of you. What are your mastery? Do you like to draw?
+                          @else
+                            {!! $freelancer->description !!}
+
+                        @endif
+                      </div>
+
+                </div>
+                <div class="col-lg-4 divider">
+                  <div class="skills">                <button type="button" id="edit-profile" class="btn btn-warning" name="button" style="float: right">Edit Profile</button>
+
+                    <h2><i class="profile-user fa fa-cogs"></i> Skills</h2>
+                      <form id="skills-form" style="opacity:0">
+                        <div class="form-group">
+                          <label for="tag_list">Tags:</label>
+                          <select class="form-control col-md-12" id="search_skills" name="search_skills[]" multiple></select>
+
+                        </div>
+                      </form>
+
+                      @foreach ($skills as $skill)
+                        <div class="card">
+                          <div class="card-body">
+                            <div class="row">
+                              <div class="col-md-6">
+                                {{$skill->name}}
+                              </div>
+                              <div class="col-md-6">
+                                <button type="button" class="btn btn-danger delete-skills" skill-id="{{$skill->skills_id}}" style="margin-left: 5px; margin-top:-5px" name="button">Delete</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      @endforeach
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+            <div id="second-tab" class="tab-content portfolio">
+              @if (!$portfolios->count())
+                      <p>No portfolio</p>
+                      <button class="btn btn-default float-right new-port edit-portfolio" style="width: auto" type="button" name="button">Add new portfolio</button>
+
+                    @else
+                      @if ($portfolios->count()<6)
+                        <button class="btn btn-default float-right new-port edit-portfolio" style="width: auto" type="button" name="button">Add new portfolio</button>
+                      @endif
+
+                      <div class="row">
+
+                         @foreach ($portfolios as $portfolio)
+                          <div class="col-md-4">
+                            <div class="card project">
+
+                              <div class="card-body">
+                                <img class="card-img-top" src="data:{{$portfolio->img_type}};base64,{{base64_encode( $portfolio->img_name )}}"/>
+
+                                <div class="middle">
+
+                                </div>
+                                <div class="text">
+                                  <h3>{{$portfolio->name}}</h3>
+                                  <p>{{$portfolio->description}}</p>
+                                  <form class="" action="{{route('delete.portfolio',$portfolio->portfolio_id)}}" method="post">
+                                    {{ csrf_field() }}
+                                    {{ method_field('delete') }}
+                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                  </form>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        @endforeach
+                      </div>
+                      @endif
+                        <div class="modal portfolio animated fadeIn" tabindex="-1" role="dialog">
+                          <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title">Add Portfolio</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                              </div>
+                              <div class="modal-body">
+                                <form enctype="multipart/form-data" method="post" action="{{route('add.portfolio')}}">
+                                  {{ csrf_field() }}
+                                  <div class="form-group">
+                                    <input type="text" class="form-control" id="port_name" name="port_name" placeholder="Portfolio Name">
+                                  </div>
+                                  <div class="form-group">
+                                    <textarea class="form-control" id="port_desc" name="port_desc" placeholder="Portfolio Description"></textarea>
+                                  </div>
+                                  <div class="form-group">
+                                    <input type="file" class="form-control" name="image" id="port_img">
+                                  </div>
+                                  <button type="submit" class="btn btn-primary">Submit</button>
+                                </form>
+                              </div>
+
+                            </div>
+                          </div>
+                        </div>
+            </div>
+
+            <div id="third-tab" class="tab-content animated fadeIn">
+
+
+                        <i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i>
+                        <br><strong>Joni</strong>
+                        <p>This guy is awesome!! work is always on time</p>
+
+
+                        <i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i>
+                        <br><strong>Joni</strong> Project mobile app
+                        <p>This guy is awesome!! work is always on time</p>
+
+            </div>
+        </section>
+        <div id="mySidenav" class="sidenav">
+          <span>
+            <a href="#" data-toggle="tooltip" data-placement="bottom" title="Check all your ongoing bids">Dashboard</a>
+          </span>
         </div>
 
-        <div id="third-tab" class="tab-content animated fadeIn">
+        <span id="sidenav-toggler" style="font-size:30px;cursor:pointer"></span>
+
+      </div>
 
 
-                    <i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i>
-                    <br><strong>Joni</strong>
-                    <p>This guy is awesome!! work is always on time</p>
-
-
-                    <i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i>
-                    <br><strong>Joni</strong> Project mobile app
-                    <p>This guy is awesome!! work is always on time</p>
-
-        </div>
-    </section>
-    <div id="mySidenav" class="sidenav">
-      <span>
-        <a href="#" data-toggle="tooltip" data-placement="bottom" title="Check all your ongoing bids">Dashboard</a>
-      </span>
-    </div>
-
-    <span id="sidenav-toggler" style="font-size:30px;cursor:pointer"></span>
-
-  </div>
 
 @endsection
 
@@ -784,7 +801,6 @@ p a{color:#27ae60; text-decoration:none;}
 
   $(".new-port").click(function(){
     $(".modal.portfolio").modal('show')
-    $(".modal-backdrop.show").css("opacity", "0.5")
   });
 
 (function($){
