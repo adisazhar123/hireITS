@@ -293,25 +293,24 @@
 
   <div class="search-jobs">
     <div class="container">
-      <form>
         <div class="row">
           <div class="col-md-12">
-            <form class="" action="{{route('browse.jobs')}}" method="get">
+            <form class="search-project" action="{{route('browse.jobs')}}" method="get">
               <div class="input-group mb-3">
                 <div class="input-group-prepend">
                   <button class="btn" disabled id="search-logo" type="button" name="button"><i class="fa fa-search fa-lg" aria-hidden="true"></i>
                   </button>
                 </div>
-              <input type="text" class="form-control mb-2" id="keywords" name="keywords" placeholder="Search Keywords">
-
-              <div class="input-group-append">
-                <button type="submit" class="btn btn-primary mb-2">Search</button>
-            </div>
-            </div>
+                <input type="text" class="form-control mb-2" id="keywords" name="keywords" placeholder="Search Keywords">
+                <input type="hidden" id="min_price" name="min_price" value="">
+                <input type="hidden" id="max_price" name="max_price" value="">
+                <div class="input-group-append">
+                  <button type="submit" class="btn btn-primary mb-2">Search</button>
+                </div>
+              </div>
             </form>
         </div>
-        </div>
-      </form>
+      </div>
     </div>
     <div class="container">
       @php
@@ -341,9 +340,38 @@
               <h5>Filter by:</h5>
               <h6><strong>Budget</strong></h6>
               <input type="checkbox" name="" value=""> Average Bid <br>
-              Min   <input type="range" min="1" max="100" value="50"> <br>
-              Max   <input type="range" min="1" max="100" value="50">
-            </div>
+              <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id="inputGroupPrepend">$</span>
+                    </div>
+                    @if (isset($_GET['min_price']))
+                      @php
+                        $min=$_GET['min_price'];
+                      @endphp
+                      @else
+                        @php
+                          $min="";
+                        @endphp
+                    @endif
+
+                    @if (isset($_GET['max_price']))
+                      @php
+                        $max=$_GET['max_price'];
+                      @endphp
+                      @else
+                        @php
+                          $max="";
+                        @endphp
+                    @endif
+                    <input class="form-control" id="min_price1" type="number" value="{{$min}}" placeholder="Min Price" min="1" max="9999999" step="0.50"> <br>
+                  </div>
+                  <div class="input-group">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text" id="inputGroupPrepend">$</span>
+                        </div>
+                        <input class="form-control" id="max_price1" type="number" value="{{$max}}" placeholder="Max Price" min="1" max="9999999" step="0.50"> <br>
+                      </div>
+                    </div>
           </div>
         </div>
         <div class="col-md-9">
@@ -403,11 +431,21 @@
     $('#load a').css('color', '#dfecf6');
     $('#load').append('<img style="position: absolute; left: 30%; top: 0; z-index: 100000;" src="{{asset('loading.gif')}}" alt="haha" />');
     var pageNo = $(this).text()
-    //if (appendUrl=="")
-      if (!$(location).attr('search').includes('page'))
-        appendUrl = "&"+$(location).attr('search').slice(1)
+
+    if (pageNo.includes('»')){
+      pageNo = $(".pagination").find(".page-item.active .page-link").text();
+      pageNo = parseInt(pageNo)+1
+    }
+    else if(pageNo.includes('«')){
+      pageNo = $(".pagination").find(".page-item.active .page-link").text();
+      pageNo = parseInt(pageNo)-1
+    }
+
+    if (!$(location).attr('search').includes('page'))
+      appendUrl = "&"+$(location).attr('search').slice(1)
 
     var temp = $(location).attr('search');
+
     if(!appendUrl.includes('filter'))
     if (temp.includes('filter')){
       if(temp.includes('highest-budget'))
@@ -440,10 +478,29 @@ function getJobs(url){
 
     $(document).on('change','select',function(){
       //utk dapetin variable keyword di URL
-      keywords = $(location).attr('search')
+      @if (isset($_GET['keywords']))
+        keywords = "?keywords="+'{{$_GET['keywords']}}';
+
+      @else
+        keywords = "";
+      @endif
+
+      @if (isset($_GET['min_price']))
+        min_price ="&min_price="+'{{$_GET['min_price']}}';
+      @else
+        min_price="";
+      @endif
+
+      @if (isset($_GET['max_price']))
+        max_price ="&max_price="+'{{$_GET['max_price']}}';
+      @else
+        max_price="";
+      @endif
+
+      //keywords = $(location).attr('search')
       //kalo gak keyword
-      if(!keywords.includes('keywords'))
-        keywords="";
+      //if(!keywords.includes('keywords'))
+      //  keywords="";
       //kalo gada keyword harus di-set ?
       if(keywords=="")
         filter="?filter="+$(this).find('option:selected').val();
@@ -458,8 +515,8 @@ function getJobs(url){
       $.ajax({
         url :"/jobs"+keywords+filter,
         success: function(data){
-          console.log("/jobs"+keywords+filter)
-          window.history.pushState("","","/jobs"+keywords+filter);
+          console.log("/jobs"+keywords+filter+min_price+max_price)
+          window.history.pushState("","","/jobs"+keywords+filter+min_price+max_price);
           $('#load').html(data);
         },
         error: function(data){
@@ -468,6 +525,11 @@ function getJobs(url){
       })
       //alert(keywords)
     })
+
+    $(".search-project").submit(function(){
+      $("#max_price").val($("#max_price1").val())
+      $("#min_price").val($("#min_price1").val())
+    });
 
   </script>
 @endsection

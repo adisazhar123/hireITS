@@ -95,7 +95,6 @@ class FreelancerController extends Controller
       $portfolio = Portfolio::find($id);
       if ($portfolio->delete())
         return "success";
-
     }
 
     public function getSkills(Request $request){
@@ -197,7 +196,6 @@ class FreelancerController extends Controller
         $id = User::where('username', $username)->get();
         $freelancer = Freelancer::find($id);
         $portfolios = Freelancer::find($freelancer[0]->freelancer_id)->portfolio;
-
 
         $skills = DB::table('skills')
                   ->join('diberkati', 'skills.skills_id', '=', 'diberkati.skills_id')

@@ -48,8 +48,10 @@ class ProjectsController extends Controller{
       }
       //ada keyword gak ada filter
       else if (!empty($request->keywords)){
-        $jobs = Job::where('name', 'like', '%'.$request->keywords.'%')->where('active', 1)->orWhere('description', 'like', '%'.$request->keywords.'%')
-        ->where('active', 1)->with(['harusbisaskill','harusbisaskill.skills'])->paginate(1);
+        if (empty($request->min_price)) $request->min_price=0;
+        if(empty($request->max_price)) $request->max_price=9999999999;
+        $jobs = Job::where('name', 'like', '%'.$request->keywords.'%')->where('active', 1)->where('price_min','>=',$request->min_price)->orWhere('description', 'like', '%'.$request->keywords.'%')
+        ->where('active', 1)->where('price_max','<=',$request->max_price)->with(['harusbisaskill','harusbisaskill.skills'])->paginate(1);
       }
       if($request->ajax()){
         return view('projects.project-list')->with('jobs', $jobs)->with('keyword', $request->keywords)->render();

@@ -207,7 +207,7 @@ i {
         <h5>Minimum budget <span>*</span></h5>
         <div class="input-group">
               <div class="input-group-prepend">
-                <span class="input-group-text" id="inputGroupPrepend">Rp</span>
+                <span class="input-group-text" id="inputGroupPrepend">$</span>
               </div>
               <input type="number" name="min_price" class="form-control" id="price1" placeholder="Enter min. price" min="0" step="0.1">
             </div>
@@ -217,7 +217,7 @@ i {
         <h5>Maximum budget <span>*</span></h5>
         <div class="input-group">
               <div class="input-group-prepend">
-                <span class="input-group-text" id="inputGroupPrepend">Rp</span>
+                <span class="input-group-text" id="inputGroupPrepend">$</span>
               </div>
               <input type="number" name="max_price" class="form-control" id="price2" placeholder="Enter max. price" min="0" step="0.1">
             </div>
