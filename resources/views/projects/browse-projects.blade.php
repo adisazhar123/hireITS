@@ -282,7 +282,7 @@
     <div class="container">
       <div class="row">
           <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="#">hireITS</a></li>
+            <li class="breadcrumb-item"><a href="{{url('/')}}">hireITS</a></li>
             <li class="breadcrumb-item active"><a href="#">Jobs</a></li>
           </ol>
       </div>
@@ -429,7 +429,7 @@
   $('body').on('click', '.pagination a', function(e) {
     e.preventDefault();
     $('#load a').css('color', '#dfecf6');
-    $('#load').append('<img style="position: absolute; left: 30%; top: 0; z-index: 100000;" src="{{asset('loading.gif')}}" alt="haha" />');
+    $('#load').append('<img style="position: absolute; left: 30%; top: 0; z-index: 100000;" src="{{asset('loading.gif')}}" alt="loading..." />');
     var pageNo = $(this).text()
 
     if (pageNo.includes('»')){

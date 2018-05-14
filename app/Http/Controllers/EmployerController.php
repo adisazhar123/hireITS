@@ -6,12 +6,21 @@ use Auth;
 use App\Job;
 use App\Employer;
 use App\HarusBisaSkill;
+use App\ProfileFiles;
 use Illuminate\Http\Request;
 
 class EmployerController extends Controller
 {
   public function index(){
-  	return view('employer.profile');
+    if (Auth::check())
+      $id = Auth::user()->id;
+    else $id=9;
+
+    $employer = Employer::find($id);
+    $pf = ProfileFiles::where('user_id', $id)->where('role', 'dp')->get();
+    $cover=ProfileFiles::where('user_id', $id)->where('role', 'cover')->get();
+
+  	return view('employer.profile')->with('employer', $employer)->with('pf', $pf)->with('cover', $cover);
   }
 
   public function postProject(){
@@ -54,5 +63,28 @@ class EmployerController extends Controller
      if($emp->save() && $user->save()){
      	return view('employer.profile');
      }
+  }
+
+  public function getProfile(Request $request){
+    if (Auth::check())
+      $id = Auth::user()->id;
+    else $id=9;
+    $employer = Employer::find($id);
+    return response()->json($employer);
+  }
+  public function updateProfile(Request $request){
+    $employer = Employer::find($request->input('id'));
+    $employer->name = $request->input('name');
+    $employer->title = $request->input('title');
+    $employer->description = $request->input('description');
+    $employer->price = $request->input('price');
+    $employer->address = $request->input('address');
+    $user = Auth::user();
+    $user->hassetprofile = 1;
+
+    if ($employer->save() && $user->save())
+      return response()->json(["success"=>1]);
+    else return response()->json(["success"=>0]);
+
   }
 }

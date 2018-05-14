@@ -22,23 +22,33 @@ Route::get('get-image','UsersController@getImage')->name('get.navbar.pic');
 
 
 //freelancer
+
+Route::middleware(['freelancer'])->group(function () {
+  Route::get('/freelancer', 'FreelancerController@index')->name('view.freelancer.profile');
+  Route::get('/freelancer/fill-data', 'FreelancerController@freeget')->name('freelancer.fill.data');
+  Route::put('freelancer/updateProfile', 'FreelancerController@updateProfile')->name('update.freelancer.profile');
+  Route::post('dataupd', 'FreelancerController@getData');
+  Route::post('/addPortfolio', 'FreelancerController@addPortfolio')->name('add.portfolio');
+  Route::delete('/deletePortfolio/{id}', 'FreelancerController@deletePortfolio')->name('delete.portfolio'); //harus di cek apakah portfolio milik user
+  Route::delete('/freelancer/delete-skill', 'FreelancerController@deleteSkill')->name('delete.skill'); //harus di cek apakah skill milik user
+  Route::post('/freelancer/store-dp' ,'FreelancerController@storeProfilePic')->name('store.freelancer.dp');
+  Route::post('/freelancer/store-skills', 'FreelancerController@addnewSkills')->name('store.freelancer.skills');
+  Route::get('freelancer/dashboard', 'FreelancerController@dashboard')->name('view.freelancer.dashboard');
+  Route::post('/bid-project', 'FreelancerController@bidProject')->name('bid.project');
+  Route::get('freelancer/getprofile', 'FreelancerController@getProfile')->name('get.freelancer.profile');
+
+
+});
+
+
 Route::get('jobs','ProjectsController@index')->name('browse.jobs');
-Route::get('/freelancer/fill-data', 'FreelancerController@freeget')->name('freelancer.fill.data');
-Route::post('dataupd', 'FreelancerController@getData');
-Route::get('/freelancer', 'FreelancerController@index')->name('view.freelancer.profile')->middleware('freelancer');
 Route::get('showcase', 'ProjectsController@browseShowcase')->name('browse.showcase');
-Route::get('freelancer/getprofile', 'FreelancerController@getProfile')->name('get.freelancer.profile');
-Route::put('freelancer/updateProfile', 'FreelancerController@updateProfile')->name('update.freelancer.profile');
-Route::get('/portfolio', 'FreelancerController@portfolio');
-Route::post('/addPortfolio', 'FreelancerController@addPortfolio')->name('add.portfolio');
-Route::delete('/deletePortfolio/{id}', 'FreelancerController@deletePortfolio')->name('delete.portfolio');
 Route::get('/getSkills', 'FreelancerController@getSkills')->name('search.skills');
-Route::post('/bid-project', 'FreelancerController@bidProject')->name('bid.project');
-Route::get('dashboard', 'FreelancerController@dashboard')->name('view.freelancer.dashboard');
-Route::post('/freelancer/store-dp' ,'FreelancerController@storeProfilePic')->name('store.freelancer.dp');
-Route::post('/freelancer/store-skills', 'FreelancerController@addnewSkills')->name('store.freelancer.skills');
-Route::delete('/freelancer/delete-skill', 'FreelancerController@deleteSkill')->name('delete.skill');
+
+
 Route::get('/freelancer/{username}','FreelancerController@viewFreelancer')->name('view.freelancer');
+
+
 
 //employer
 Route::get('post-project', 'EmployerController@postProject')->name('post.project.page');
@@ -47,7 +57,9 @@ Route::get('projects/{slug}', 'ProjectsController@viewProject')->name('view.proj
 Route::get('/employer/fill-data', 'EmployerController@empget')->name('employer.fill.data');
 Route::post('empupd', 'EmployerController@getData');
 Route::get('employer', 'EmployerController@index');
-
+Route::get('employer/getprofile', 'EmployerController@getProfile')->name('get.employer.profile');
+Route::put('employer/updateProfile', 'EmployerController@updateProfile')->name('update.employer.profile');
+Route::get('employer/{username}', 'EmployerController@viewEmployer')->name('view.employer');
 
 //payment
 Route::get('check', 'Auth\LoginController@check')->name('check');

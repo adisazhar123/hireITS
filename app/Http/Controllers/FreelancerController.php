@@ -30,8 +30,8 @@ class FreelancerController extends Controller
                 ->get();
       $portfolios = Freelancer::find($id)->portfolio;
       $freelancer = Freelancer::find($id);
-      $pf = ProfileFiles::where('freelancer_id', $id)->where('role', 'dp')->get();
-      $cover=ProfileFiles::where('freelancer_id', $id)->where('role', 'cover')->get();
+      $pf = ProfileFiles::where('user_id', $id)->where('role', 'dp')->get();
+      $cover=ProfileFiles::where('user_id', $id)->where('role', 'cover')->get();
       return view('freelancer.profile')->with('freelancer', $freelancer)->with('portfolios', $portfolios)->with('skills', $skills)->with('pf', $pf)
       ->with('cover', $cover);
     }
@@ -94,6 +94,7 @@ class FreelancerController extends Controller
 
     public function deletePortfolio($id){
       $portfolio = Portfolio::find($id);
+      if($portfolio->isEmprt()) return "gaono";
       if ($portfolio->delete())
         return "success";
     }
@@ -165,10 +166,10 @@ class FreelancerController extends Controller
         $file = $request->file('image');
         $contents = $file->openFile()->fread($file->getSize());
         $extension = "image/".$request->file('image')->extension();
-        $pf=ProfileFiles::where('freelancer_id',Auth::user()->id)->where('role','dp')->get();
+        $pf=ProfileFiles::where('user_id',Auth::user()->id)->where('role','dp')->get();
         if ($pf->isEmpty()){
           $pf = new ProfileFiles;
-          $pf->freelancer_id = Auth::user()->id;
+          $pf->user_id = Auth::user()->id;
           $pf->name = $contents;
           $pf->img_type = $extension;
           $pf->role = "dp";
@@ -176,7 +177,7 @@ class FreelancerController extends Controller
             return redirect()->route('view.freelancer.profile');
           }
         }else{
-          $pf=ProfileFiles::where('freelancer_id',Auth::user()->id)->where('role','dp')->update([
+          $pf=ProfileFiles::where('user_id',Auth::user()->id)->where('role','dp')->update([
             'name'=>$contents,
             'img_type'=>$extension
           ]);
@@ -202,7 +203,8 @@ class FreelancerController extends Controller
       }
 
       public function viewFreelancer($username){
-        $id = User::where('username', $username)->get();
+        $id = User::where('username', $username)->first();
+        if ($id === null) return "No freelancer found with the given username: ". $username;
         $freelancer = Freelancer::find($id);
         $portfolios = Freelancer::find($freelancer[0]->freelancer_id)->portfolio;
 
@@ -212,8 +214,8 @@ class FreelancerController extends Controller
                   ->select('diberkati.skills_id', 'diberkati.freelancer_id', 'skills.name')
                   ->get();
 
-        $pf = ProfileFiles::where('freelancer_id',$id[0]->id)->where('role', 'dp')->get();
-        $cover=ProfileFiles::where('freelancer_id', $id[0]->id)->where('role', 'cover')->get();
+        $pf = ProfileFiles::where('user_id',$id->id)->where('role', 'dp')->get();
+        $cover=ProfileFiles::where('user_id', $id->id)->where('role', 'cover')->get();
         return view('freelancer.view-freelancer')->with('freelancer', $freelancer)->with('portfolios',$portfolios)->with('skills', $skills)->with('pf', $pf)
         ->with('cover', $cover);
       }

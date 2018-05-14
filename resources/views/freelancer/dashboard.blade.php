@@ -3,7 +3,6 @@
 
 .admin-panel {
   width: 100%;
-  max-width:900px;
   margin: 50px auto;
   overflow: hidden;
   background-color:#fff;
@@ -13,8 +12,8 @@
 
 .slidebar {
   background-color: #111;
-  height:100%;
-    width: 0;
+    height:100%;
+    width: 10px;
     position: fixed;
     z-index: 1;
     top: 65px;
@@ -91,6 +90,24 @@ li {
   padding: 0px 0px 10px 0px;
 }
 
+table{
+  width: 100%;
+}
+
+.message-freelancer{
+  width: 100%;
+  border-color: green;
+}
+
+.message-employer{
+  width: 100%;
+  border-color: blue;
+}
+
+.discussion-history .modal-content{
+  width: 600px;
+}
+
 
 </style>
 @endsection
@@ -98,11 +115,11 @@ li {
 @extends('layouts.app')
 
 @section('content')
-<div class="admin-panel">
+
+<div class="container admin-panel">
     <div class="slidebar">
         <ul>
-            <li><a href="" name="tab1"><i class="fa fa-tachometer"></i>General</a></li>
-            <li><a href="" name="tab2"><i class="fa fa fa-gears"></i>On Going Projects</a></li>
+            <li><a href="" name="tab2"><i class="fa fa fa-tasks"></i>On Going Projects</a></li>
             <li><a href="" name="tab3"><i class="fa fa-check"></i>Finished Projects</a></li>
             <!-- <li><a href="" name="tab4"><i class="fa fa-picture-o"></i>Portfolio</a></li>
             <li><a href="" name="tab6"><i class="fa fa-wrench"></i>Advanced</a></li> -->
@@ -110,11 +127,42 @@ li {
     </div>
 
     <div class="main1">
-         <div class="apa" id="tab1"><h2 class="header">Dashboard</h2>
-           <p><h1>fffmkssssssssssssssss</h1><h1>fffmkssssssssssssssss</h1><h1>fffmkssssssssssssssss</h1><h1>fffmkssssssssssssssss</h1><h1>fffmkssssssssssssssss</h1><h1>fffmkssssssssssssssss</h1><h1>fffmkssssssssssssssss</h1><h1>fffmkssssssssssssssss</h1><h1>fffmkssssssssssssssss</h1><h1>fffmkssssssssssssssss</h1><h1>fffmkssssssssssssssss</h1><h1>fffmkssssssssssssssss</h1><h1>fffmkssssssssssssssss</h1><h1>fffmkssssssssssssssss</h1><h1>fffmkssssssssssssssss</h1><h1>fffmkssssssssssssssss</h1><h1>fffmkssssssssssssssss</h1><h1>fffmkssssssssssssssss</h1><h1>fffmkssssssssssssssss</h1><h1>fffmkssssssssssssssss</h1><h1>fffmkssssssssssssssss</h1><h1>fffmkssssssssssssssss</h1><h1>fffmkssssssssssssssss</h1><h1>fffmkssssssssssssssss</h1><h1>fffmkssssssssssssssss</h1><h1>fffmkssssssssssssssss</h1></p>
+
+         <div id="tab2"><h2 class="header">On Going Projects</h2>
+           <table class="table table-hover">
+             <thead>
+               <tr>
+                 <th scope="col">#</th>
+                 <th scope="col">Project name</th>
+                 <th scope="col">Deadline</th>
+                 <th scope="col">Action</th>
+               </tr>
+             </thead>
+             <tbody>
+               <tr>
+                 <th scope="row">1</th>
+                 <td>Mark</td>
+                 <td>Otto</td>
+                 <td><button class="btn btn-info mr-3 update-progress">Update Progress</button><button class="btn btn-warning view-history">View History</button></td>
+               </tr>
+               <tr>
+                 <th scope="row">2</th>
+                 <td>Jacob</td>
+                 <td>Thornton</td>
+                 <td>@fat</td>
+               </tr>
+               <tr>
+                 <th scope="row">3</th>
+                 <td colspan="2">Larry the Bird</td>
+                 <td>@twitter</td>
+               </tr>
+             </tbody>
+           </table>
+
+
+
 
          </div>
-         <div id="tab2"><h2 class="header">On Going Projects</h2></div>
          <div id="tab3"><h2 class="header">Finished Projects</h2></div>
          <!-- <div id="tab4"><h2 class="header">Portfolio</h2></div>
          <div id="tab5"><h2 class="header">Blog /news</h2></div>
@@ -123,41 +171,135 @@ li {
 
 
 </div>
+
+<div class="container">
+  <div class="modal progress2" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Update progress</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-md-6">
+              <form class="" action="index.html" method="post">
+                <label for="">Progress rate</label>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="25" checked>
+                  <label class="form-check-label" for="exampleRadios1">
+                    25%
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="50">
+                  <label class="form-check-label" for="exampleRadios2">
+                    50%
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" value="75">
+                  <label class="form-check-label" for="exampleRadios3">
+                    75%
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios4" value="100">
+                  <label class="form-check-label" for="exampleRadios4">
+                    100% (complete)
+                  </label>
+                </div>
+            </div>
+            <div class="col-md-6">
+              Comments for employer
+              <textarea name="name" rows="5" cols="27">
+
+              </textarea>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                Attachments
+                <input class="form-control" type="file" name="" value="">
+
+              </div>
+            </div>
+
+          </div>
+          <div class="form-group">
+            <button type="submit" class="btn btn-success" name="button">Send to employer</button>
+
+          </div>
+        </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="container">
+  <div class="modal discussion-history animated fadeIn" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Discussion History</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="card message-freelancer">
+              <div class="card-body">
+                Name:
+                Progress: 25%
+                <p>Message is</p>
+                File:
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="card message-employer">
+              <div class="card-body">
+                Name
+                <p>Message is: Nice</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
 @endsection
 
 @section('script')
 <script type="text/javascript">
   $(document).ready(function() {
   $(".main1 div").hide();
-  // Cache tout les textes et les sous-menu
 
   $(".slidebar li:first").attr("id","active");
-  // Ajoute la class active au premier menu
 
   $(".main1 div:first").fadeIn();
-  // Montre le premier texte à l'apparition de la page
 
 
   $('.slidebar a').click(function(e) {
       e.preventDefault();
      if ($(this).closest("li").attr("id") == "active"){
-          //si le menu cliquer est déjà ouvert.
        return
      }else{
        $(".main1 div").hide();
-          // Cache tous les éléments
-
         $(".slidebar li").attr("id","");
-          // Rénitialise tout les menu active
-
         $(this).parent().attr("id","active");
-          // active le parent du li selectionner
-
         $('#' + $(this).attr('name')).fadeIn();
-          // Montre le texte
         }
-
-
   });
 
   $(document).on('mousemove', function(e){
@@ -167,6 +309,13 @@ li {
         document.getElementById("mySidenav").style.width = "0px";
 
       }
+  })
+
+  $(".update-progress").click(function(){
+    $(".modal.progress2").modal('show')
+  })
+  $(".view-history").click(function(){
+    $(".modal.discussion-history").modal('show')
   })
 
 });

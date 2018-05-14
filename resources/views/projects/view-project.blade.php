@@ -64,6 +64,30 @@
       top: 20%;
     }
 
+    .title{
+      min-height:100px;
+      background-color: #0087E0;
+      position: relative;
+      margin-bottom: 20px;
+     }
+
+    .title h3{
+      padding-top: 30px;
+      font-weight: bold;
+      color: white;
+      font-size: 35px;
+
+    }
+
+    .bidders .card #cancel-bid{
+      display: none;
+    }
+
+    .card:hover #cancel-bid{
+      display: block;
+
+    }
+
   </style>
 
 @endsection
@@ -74,13 +98,16 @@
 @endsection
 
 @section('content')
-  <div class="container">
-    <div class="row">
+
+  <div class="title">
+    <div class="container">
+      <h3>{{$job[0]->name}}</h3>
     </div>
+  </div>
+  <div class="container">
     <div class="row">
 
       <div class="col-md-12">
-        <h2>{{$job[0]->name}}</h2>
         <div class="project-time">
           <div class="row">
             <div class="col-md-1">
@@ -170,10 +197,20 @@
                             {{$bid->comment}}
                           </div>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-2">
                           ${{number_format($bid->price,2)}}
                           <br>
                           my rating is five stars
+                        </div>
+                        <div class="col-md-1">
+                          @if (Auth::check())
+                            @if ($bid->freelancer->freelancer_id == Auth::user()->id)
+                              <form class="" action="index.html" method="post">
+                                <button  id="cancel-bid" class="btn btn-danger" type="submit" name="button">Cancel bid</button>
+
+                              </form>
+                            @endif
+                          @endif
                         </div>
                       </div>
                     </div>
@@ -245,6 +282,7 @@
             $("#bid-form")[0].reset()
 
             alertify.success('Bid successful!');
+                location.reload();
           }else if(data.success == -1){
             $(".bid-modal").modal("hide");
               alertify.warning('You already have an ongoing bid for this project!');

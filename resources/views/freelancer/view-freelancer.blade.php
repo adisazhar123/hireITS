@@ -26,7 +26,7 @@ p a{color:#27ae60; text-decoration:none;}
 
   }
   .profile-pic{
-    margin-top: 20px;
+    margin-top: 28px;
     justify-content: center;  margin-left: auto;
     margin-right: auto;
     width: 300px;
@@ -246,7 +246,7 @@ p a{color:#27ae60; text-decoration:none;}
 /*Generic styles*/
 #wrapper{ max-width: 800px; width:100%; margin:0 auto;}
 #generic-tabs{
-  width:100%; padding:20px;
+  width:100%; padding:10px;
   margin-top: 43px;
 }
 
@@ -460,7 +460,7 @@ p a{color:#27ae60; text-decoration:none;}
 
         </div>
 
-        <div id="second-tab" class="tab-content portfolio">
+        <div id="second-tab" class="tab-content portfolio animated fadeIn">
           @if (!$portfolios->count())
                   <p>No portfolio</p>
                 @else

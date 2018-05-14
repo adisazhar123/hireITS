@@ -109,6 +109,10 @@ p a{color:#27ae60; text-decoration:none;}
           width: auto;
         }
 
+        .portfolio img{
+          border-radius: 4px;
+        }
+
 
         .text {
           padding-top: 120px;
@@ -648,13 +652,7 @@ p a{color:#27ae60; text-decoration:none;}
 
             </div>
         </section>
-        <div id="mySidenav" class="sidenav">
-          <span>
-            <a href="#" data-toggle="tooltip" data-placement="bottom" title="Check all your ongoing bids">Dashboard</a>
-          </span>
-        </div>
 
-        <span id="sidenav-toggler" style="font-size:30px;cursor:pointer"></span>
 
       </div>
 
@@ -892,16 +890,6 @@ $(".text2").hover(function(){
     }
   })
 
-
-
-  $(document).on('mousemove', function(e){
-    if(e.pageX<=250)
-      document.getElementById("mySidenav").style.width = "250px";
-      else{
-        document.getElementById("mySidenav").style.width = "0px";
-
-      }
-  })
 
   $(document).on('click','.delete-skills', function(){
     var skill_id = $(this).attr('skill-id');

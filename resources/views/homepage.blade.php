@@ -444,6 +444,9 @@ a:focus, a:hover {
 i {
   color: #243f8a;
 }
+
+
+
 </style>
 @endsection
 @extends('layouts.app')
@@ -512,6 +515,7 @@ i {
       </div>
   </div>
 </div>
+
 
 
 @endsection

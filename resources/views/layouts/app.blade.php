@@ -4,8 +4,11 @@
     <meta charset="utf-8">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{config('app.name','hireITS')}}</title>
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet">
+
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/navbar.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/navbar2.css') }}" rel="stylesheet">
+
     <link href="{{ asset('css/login-signup.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="//cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
@@ -15,11 +18,36 @@
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.1/build/css/alertify.min.css"/>
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.1/build/css/themes/bootstrap.min.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker.min.css">
+    <link rel="stylesheet" href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css">
+
   </head>
   @yield('style')
   <style media="screen">
+  .navbar-brand {
+    transform: scale(1.5);
+    margin-left: 25px;
+    margin-right: 2em;
+    margin-left: 25px;
+    margin-right: 2em;
+    color: white;
+  }
+  .navbar-brand:hover {
+    color: white;
+  }
+  #login-btn{
+    background-color: #f1c40f;
+    color: black;
+    width: auto;
+  }
 
-  @import url('https://fonts.googleapis.com/css?family=Raleway');
+  #login-btn:hover{
+    background-color: #f39c12;
+  }
+
+  #login-btn:hover{
+    color: white !important;
+  }
+
 
   body {
     font-family: 'Raleway', sans-serif;
@@ -35,8 +63,9 @@ body { padding-top: 65px; }
   </style>
 
 
+
   <body>
-    @include('inc.navbar')
+    @include('inc.navbar2')
     <div class="container">
     @if (!Auth::check())
       @include('inc.login-signup-modal')
@@ -48,7 +77,6 @@ body { padding-top: 65px; }
   <script src="{{ asset('js/jquery.min.js') }}"></script>
   <script src="{{ asset('js/popper.min.js') }}"></script>
   <script src="{{ asset('js/bootstrap.min.js') }}"></script>
-  <script src="{{ asset('js/ohsnap.min.js') }}"></script>
 
   <!-- Main Quill library -->
   <script src="//cdn.quilljs.com/1.3.6/quill.js"></script>
@@ -196,6 +224,13 @@ body { padding-top: 65px; }
 
   </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.min.js"></script>
+  <script src="{{asset('js/superfish.min.js')}}"></script>
+  <script src="{{asset('js/jquery.magnific-popup.min.js')}}"></script>
+  <script src="{{asset('js/owl.carousel.min.js')}}"></script>
+  <script src="{{asset('js/jquery.counterup.min.js')}}"></script>
+  <script src="{{asset('js/main.js')}}"></script>
+
+
   @yield('script')
 
 </html>

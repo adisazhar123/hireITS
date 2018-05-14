@@ -110,6 +110,6 @@ class UsersController extends Controller
       $pf = ProfileFiles::where('freelancer_id', $id)->where('role', 'dp')->get();
       $name = base64_encode($pf[0]->name);
       $type = $pf[0]->img_type;
-      return '<img src="data:'.$type.';base64,'.$name.'"/>';
+      return '<img style="height:30px; width:37px; border-radius: 3px" src="data:'.$type.';base64,'.$name.'"/>';
     }
 }
