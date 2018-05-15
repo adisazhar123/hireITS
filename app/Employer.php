@@ -9,4 +9,7 @@ class Employer extends Model
   protected $table = "employer";
   protected $primaryKey = "employer_id";
   public $timestamps = false;
-}
+
+  public function job(){
+    return $this->hasMany('App\Job', 'employer_id');
+  }}

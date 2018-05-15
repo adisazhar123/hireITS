@@ -12,6 +12,8 @@ use App\Job;
 use App\Bid;
 use App\ProfileFiles;
 use App\Diberkati;
+use App\WonBy;
+use App\Messages;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -111,7 +113,12 @@ class FreelancerController extends Controller
    }
 
    public function dashboard(){
-      return view('freelancer.dashboard');
+     $projects = DB::table('won_by')
+           ->join('job', 'won_by.job_id', '=', 'job.job_id')
+           ->join('bid', 'job.job_id', '=', 'bid.job_id')
+           ->select('*')->where('complete',0)->where('won_by.won_by_id', Auth::user()->id)
+           ->get();
+      return view('freelancer.dashboard')->with('projects', $projects);
     }
 
     public function bidProject(Request $request){
@@ -218,5 +225,50 @@ class FreelancerController extends Controller
         $cover=ProfileFiles::where('user_id', $id->id)->where('role', 'cover')->get();
         return view('freelancer.view-freelancer')->with('freelancer', $freelancer)->with('portfolios',$portfolios)->with('skills', $skills)->with('pf', $pf)
         ->with('cover', $cover);
+      }
+
+      public function getOngoingProjects(){
+      //  $projects = WonBy::where('won_by_id', Auth::user()->id)->get();
+        //$projects = WonBy::with('won_by_id', Auth::user()->id)->get();
+
+        $projects = DB::table('won_by')
+              ->join('job', 'won_by.job_id', '=', 'job.job_id')
+              ->join('bid', 'job.job_id', '=', 'bid.job_id')
+              ->select('*')->where('complete',0)
+              ->get();
+        return $projects;
+      }
+
+      public function sendProgress(Request $request){
+        $message = new Messages;
+        $message->from_id = $request->from_id;
+        $message->to_id = $request->to_id;
+        $message->job_id = $request->job_id;
+        $message->msg_text = $request->msg_text;
+        $message->progress = $request->exampleRadios;
+        if ($message->save())
+          return redirect()->back()->with('success', 'Progress sent to employer.');
+        return redirect()->back()->with('error', 'Failed sending progress.');
+      }
+
+      public function getJobDetails(Request $request){
+        $job = Job::find($request->job_id);
+        return $job;
+      }
+
+      public function getMessages(Request $request){
+        $messages = Messages::where('job_id', $request->job_id)->get();
+        if(User::find($messages[0]->to_id)->role === "freelancer"){
+          $name['freelancer_name']= User::find($messages[0]->to_id)->username;
+          $name['freelancer_id']= User::find($messages[0]->to_id)->id;
+          $name['employer_name'] = User::find($messages[0]->from_id)->username;
+          $name['employer_id'] = User::find($messages[0]->from_id)->id;
+        }else{
+          $name['employer_name']= User::find($messages[0]->to_id)->username;
+          $name['employer_id']= User::find($messages[0]->to_id)->id;
+          $name['freelancer_name'] = User::find($messages[0]->from_id)->username;
+          $name['freelancer_id'] = User::find($messages[0]->from_id)->id;
+        }
+        return response()->json([$messages, $name]);
       }
 	 }

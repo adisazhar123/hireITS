@@ -107,7 +107,8 @@ class UsersController extends Controller
 
     public function getImage(Request $request){
       $id = $request->id;
-      $pf = ProfileFiles::where('freelancer_id', $id)->where('role', 'dp')->get();
+      $pf = ProfileFiles::where('user_id', $id)->where('role', 'dp')->get();
+      if (!count($pf)) return "My Account";
       $name = base64_encode($pf[0]->name);
       $type = $pf[0]->img_type;
       return '<img style="height:30px; width:37px; border-radius: 3px" src="data:'.$type.';base64,'.$name.'"/>';

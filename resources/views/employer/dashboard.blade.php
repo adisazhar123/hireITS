@@ -13,10 +13,10 @@
 .slidebar {
   background-color: #111;
     height:100%;
-    width: 150px;
+    width: 10px;
     position: fixed;
     z-index: 1;
-    top: 45px;
+    top: 65px;
     left: 0;
     background-color: #111;
     overflow-x: hidden;
@@ -193,47 +193,22 @@ table{
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title">Update progress</h5>
+          <h5 class="modal-title">Update feedback</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
           <div class="row">
-            <div class="col-md-6">
-              <form class="" action="{{route('send.progress')}}" method="post">
-                {{ csrf_field() }}
-                <label for="">Progress rate</label>
-                <div class="form-check">
-                  <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="25" checked>
-                  <label class="form-check-label" for="exampleRadios1">
-                    25%
-                  </label>
-                </div>
-                <div class="form-check">
-                  <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="50">
-                  <label class="form-check-label" for="exampleRadios2">
-                    50%
-                  </label>
-                </div>
-                <div class="form-check">
-                  <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" value="75">
-                  <label class="form-check-label" for="exampleRadios3">
-                    75%
-                  </label>
-                </div>
-                <div class="form-check">
-                  <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios4" value="100">
-                  <label class="form-check-label" for="exampleRadios4">
-                    100% (complete)
-                  </label>
-                </div>
-            </div>
-            <div class="col-md-6">
-              Comments for employer
-              <textarea name="msg_text" rows="5" cols="27">
+            <form class="" action="{{route('send.progress.employer')}}" method="post">
+              {{ csrf_field() }}
 
-              </textarea>
+            <div class="col-md-12">
+              Comments for freelancer
+
+              <div class="form-group">
+                <textarea name="msg_text" rows="5" cols="65">              </textarea>
+              </div>
             </div>
           </div>
           <div class="row">
@@ -244,15 +219,13 @@ table{
 
               </div>
             </div>
-
           </div>
           <div class="form-group">
-            <button type="submit" class="btn btn-success" name="button">Send to employer</button>
+            <button type="submit" class="btn btn-success" name="button">Send to freelancer</button>
 
           </div>
           <input type="hidden" id="job_id" name="job_id" value="">
           <input type="hidden" id="from_id" name="from_id" value="{{Auth::user()->id}}">
-          <input type="hidden" id="to_id" name="to_id" value="">
         </form>
 
         </div>
@@ -274,20 +247,7 @@ table{
           </button>
         </div>
         <div class="modal-body">
-            <div class="card message-freelancer">
-              <div class="card-body">
-                Name:
-                Progress: 25%
-                <p>Message is</p>
-                File:
-              </div>
-            </div>
-            <div class="card message-employer">
-              <div class="card-body">
-                Name
-                <p>Message is: Nice</p>
-              </div>
-            </div>
+
         </div>
 
       </div>
@@ -337,10 +297,9 @@ table{
     var job_id = $(this).attr('job-id')
 
     $.ajax({
-      url: '{{route('get.job.details')}}',
+      url: '{{route('get.job.details.employer')}}',
       data: {job_id: job_id},
       success: function(data){
-        $("#to_id").val(data.employer_id)
         $("#job_id").val(data.job_id)
         console.log(data)
       },
@@ -349,14 +308,13 @@ table{
         console.log("Ajax Error - get job details")
       }
     })
-
   });
 
   $(document).on('click', '.view-history', function(){
     var job_id = $(this).attr('job-id');
     var content ="";
     $.ajax({
-      url: '{{route('get.messages.freelancer')}}',
+      url: '{{route('get.messages.employer')}}',
       data: {job_id: job_id},
       success: function(data){
         for(var i=0; i<data[0].length; i++){

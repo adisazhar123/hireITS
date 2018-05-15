@@ -165,10 +165,6 @@ i {
 
   }
 
-
-  .files{
-    display: none;
-}
   </style>
 @endsection
 
@@ -176,6 +172,28 @@ i {
 
 @section('content')
   <div class="container">
+    @if ($errors->any())
+      <br>
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+    @if(session()->has('success'))
+      <br>
+      <div class="alert alert-success">
+        {{ session()->get('success') }}
+      </div>
+    @endif
+    @if(session()->has('error'))
+      <br>
+      <div class="alert alert-danger">
+        {{ session()->get('error') }}
+      </div>
+    @endif
     <form action="{{route('store.project')}}" method="POST" enctype="multipart/form-data" class="animated fadeIn">
       <div class="title">
         <h1>Tell us what you need done</h1>
@@ -237,15 +255,15 @@ i {
           <label for="tag_list">Tags:</label>
           <select class="form-control" id="search_skills" name="search_skills[]" multiple></select>
         </div>
-
+        <div class="form-group">
+          <label for="">Files:</label><br>
+          <input type="file" class="form-control" name="photos[]" multiple>
+          <small>Drag & drop any images that might be helpful in explaining your project brief here.</small>
+        </div>
       <button type="submit" class="btn btn-primary">Submit</button>
       </div>
     </form>
-    <div class=" files">
-      <label for="">Files:</label><br>
-      <input type="file" class="form-control" name="photos[]" multiple id="my_files">
-      <small>Drag & drop any images or documents that might be helpful in explaining your project brief here.</small>
-    </div>
+
       </div>
 
 

@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Job;
 use App\Bid;
+use App\WonBy;
+use App\ProfileFiles;
+use App\JobFiles;
 use DB;
 use Auth;
 use Illuminate\Http\Request;
@@ -66,8 +69,13 @@ class ProjectsController extends Controller{
                 ->where('harus_bisa_skill.job_id', $job[0]->job_id)
                 ->select('harus_bisa_skill.skills_id', 'skills.name')
                 ->get();
+      $job_images = JobFiles::where('job_id', $job[0]->job_id)->get();
       $bids=$job[0]->bid;
-      return view('projects.view-project')->with('job', $job)->with('skills', $skills)->with('bids', $bids);
+      if (!$bids->isEmpty())
+        $pf = $bids[0]->freelancer->ProfileFiles;
+      else $pf="";
+      return view('projects.view-project')->with('job', $job)->with('skills', $skills)->with('bids', $bids)->with('pics', $pf)
+                                          ->with('job_images', $job_images);
     }
 
     public function browseShowcase(){

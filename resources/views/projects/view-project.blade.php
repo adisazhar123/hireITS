@@ -88,6 +88,21 @@
 
     }
 
+    .fa-star{
+      color: yellow;
+    }
+
+    .card-body{
+      justify-content: center;
+    }
+
+    .card-body img{
+      border-radius: 4px;
+    }
+
+
+
+
   </style>
 
 @endsection
@@ -99,6 +114,8 @@
 
 @section('content')
 
+
+
   <div class="title">
     <div class="container">
       <h3>{{$job[0]->name}}</h3>
@@ -106,13 +123,17 @@
   </div>
   <div class="container">
     <div class="row">
-
+      @if(session()->has('success'))
+          <div class="alert alert-success">
+              {{ session()->get('success') }}
+          </div>
+      @endif
       <div class="col-md-12">
         <div class="project-time">
           <div class="row">
             <div class="col-md-1">
               <h4>Bids</h4>
-              <strong>5</strong>
+              <strong>{{count($bids)}}</strong>
             </div>
             <div class="col-md-1">
               <h4>Bids</h4>
@@ -136,6 +157,11 @@
                 @endphp
               </strong>
             </div>
+            <div class="col-md-2">
+              @if (Auth::check() && Auth::user()->role==="freelancer")
+                <button id="bid-now" class="btn btn-primary" name="bid-now">Bid on this project</button>
+              @endif
+            </div>
           </div>
         </div>
       </div>
@@ -151,9 +177,12 @@
                  @php
                   echo $job[0]->description;
                  @endphp
+
               </div>
+
               <div class="employer-desc">
-                <strong>About the employer</strong>
+                <strong>About the employer</strong><br>
+                <a href="#">{{$job[0]->employer->username}}</a>
                 <br>
                 <i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i>
               </div>
@@ -165,10 +194,63 @@
 
                 @endforeach
               </div>
+
             </div>
             <div class="col-md-4">
+              <div class="ok">
+                <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                 <ol class="carousel-indicators">
+                   @php
+                     $x=0;
+                   @endphp
+                   @foreach ($job_images as $job_img)
+                     @if ($x==0)
+                       <li data-target="#carouselExampleIndicators" data-slide-to={{$x}} class="active"></li>
+                       @php
+                         $x++;
+                       @endphp
+                      @else
+                        <li data-target="#carouselExampleIndicators" data-slide-to={{$x}}></li>
+                        @php
+                          $x++;
+                        @endphp
+                     @endif
 
-              <button id="bid-now" class="btn btn-primary" name="bid-now">Bid on this project</button>
+                   @endforeach
+
+                 </ol>
+                 <div class="carousel-inner">
+                   @php
+                     $a=0;
+                   @endphp
+                   @foreach ($job_images as $job_img)
+                     @if ($a == 0)
+                       <div class="carousel-item active">
+                         <img class="img-fluid" src="data:{{$job_img->img_type}};base64,{{base64_encode( $job_img->name )}}"/>
+                       </div>
+                       @php
+                         $a++;
+                       @endphp
+                      @else
+                        <div class="carousel-item">
+                          <img class="img-fluid" src="data:{{$job_img->img_type}};base64,{{base64_encode( $job_img->name )}}"/>
+                        </div>
+                     @endif
+
+                   @endforeach
+                 </div>
+                 <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                   <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                   <span class="sr-only">Previous</span>
+                 </a>
+                 <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                   <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                   <span class="sr-only">Next</span>
+                 </a>
+                </div>
+              </div>
+
+
             </div>
           </div>
         </div>
@@ -181,19 +263,36 @@
           <div class="bidders-header">
             <h3>Freelancers bidding</h3>
           </div>
-          @foreach ($bids as $bid)
+          @if ($bids->isEmpty())
+            <div class="bidders-body">
+                <div class="card bid">
+                    <div class="card-body">
+                      No bids
+                    </div>
+                  </div>
+                </div>
+          @else
+            @foreach ($bids as $bid)
             <div class="bidders-body">
                 <div class="card bid">
                     <div class="card-body">
                       <div class="row">
                         <div class="col-md-2">
-                          PROFILE PIC
+                          @foreach ($pics as $pic)
+                            @if ($bid->freelancer->freelancer_id == $pic->user_id)
+                              @if (empty($pic->img_type))
+                                <img class="img-fluid" src="{{asset('img/avatar.png')}}"/>
+                              @else
+                                <img class="img-fluid" src="data:{{$pic->img_type}};base64,{{base64_encode( $pic->name )}}"/>
+                              @endif
+                            @endif
+                          @endforeach
                         </div>
-                        <div class="col-md-6">
-                          <div class="row">
-                            {{$bid->freelancer->name}}
+                        <div class="col-md-5">
+                          <div class="">
+                            <a href="/freelancer/{{$bid->freelancer->username}}">{{$bid->freelancer->name}}</a>
                           </div>
-                          <div class="row" style="text-align: justify">
+                          <div class="" style="text-align: justify">
                             {{$bid->comment}}
                           </div>
                         </div>
@@ -202,14 +301,38 @@
                           <br>
                           my rating is five stars
                         </div>
-                        <div class="col-md-1">
+                        <div class="col-md-2">
                           @if (Auth::check())
-                            @if ($bid->freelancer->freelancer_id == Auth::user()->id)
-                              <form class="" action="index.html" method="post">
-                                <button  id="cancel-bid" class="btn btn-danger" type="submit" name="button">Cancel bid</button>
+                            @foreach ($bid->job->wonby as $wonby)
+                              @if ($wonby->won_by_id == Auth::user()->id)
+                                <div class="alert alert-success">
+                                  You are working on this project now.
 
-                              </form>
-                            @endif
+                                </div>
+                                @break
+                              @elseif ($bid->freelancer->freelancer_id == Auth::user()->id)
+                                <form class="" action="index.html" method="post">
+                                  <button  id="cancel-bid" class="btn btn-danger animated fadeIn" type="submit" name="button">Cancel bid</button>
+
+                                </form>
+                              @endif
+                            @endforeach
+                          @endif
+                          @if (Auth::check() && Auth::user()->id == $job[0]->employer_id)
+                            <form class="" action="{{route('hire.freelancer')}}" method="post">
+                              {{ csrf_field() }}
+                              <input type="hidden" name="won_by_id" value="{{$bid->freelancer_id}}">
+                              <input type="hidden" name="job_id" value="{{$bid->job_id}}">
+                              @foreach ($job[0]->wonby as $wonby)
+                                @if ($bid->freelancer_id == $wonby->won_by_id)
+                                  <h6>I am already hired!</h6>
+                                  @break
+                                  @else
+                                    <button type="submit" class="btn btn-success hire-me" name="button">Hire me</button>
+                                    @break
+                                @endif
+                              @endforeach
+                            </form>
                           @endif
                         </div>
                       </div>
@@ -217,6 +340,8 @@
               </div>
             </div>
           @endforeach
+        @endif
+
         </div>
       </div>
     </div>

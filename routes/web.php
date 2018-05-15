@@ -22,6 +22,8 @@ Route::get('get-image','UsersController@getImage')->name('get.navbar.pic');
 
 
 //freelancer
+Route::get('freelancer/get/job-details', 'FreelancerController@getJobDetails')->name('get.job.details');
+Route::get('freelancer/get/messages', 'FreelancerController@getMessages')->name('get.messages.freelancer');
 
 Route::middleware(['freelancer'])->group(function () {
   Route::get('/freelancer', 'FreelancerController@index')->name('view.freelancer.profile');
@@ -40,26 +42,38 @@ Route::middleware(['freelancer'])->group(function () {
 
 });
 
+Route::get('freelancer/get-my-projects', 'FreelancerController@getOngoingProjects')->name('get.ongoing.projects');
+
 
 Route::get('jobs','ProjectsController@index')->name('browse.jobs');
 Route::get('showcase', 'ProjectsController@browseShowcase')->name('browse.showcase');
 Route::get('/getSkills', 'FreelancerController@getSkills')->name('search.skills');
-
+Route::post('freelancer/send-progress', 'FreelancerController@sendProgress')->name('send.progress');
 
 Route::get('/freelancer/{username}','FreelancerController@viewFreelancer')->name('view.freelancer');
 
 
-
 //employer
+Route::post('/employer/store-dp' ,'EmployerController@storeProfilePic')->name('store.employer.dp');
+Route::post('employer/send-progress', 'EmployerController@sendProgress')->name('send.progress.employer');
+Route::get('employer/get/job-details', 'EmployerController@getJobDetails')->name('get.job.details.employer');
+Route::get('employer/get/messages', 'EmployerController@getMessages')->name('get.messages.employer');
+
+Route::get('employer/dashboard', 'EmployerController@dashboard')->name('view.employer.dashboard');
+
 Route::get('post-project', 'EmployerController@postProject')->name('post.project.page');
 Route::post('post-project', 'EmployerController@storeProject')->name('store.project')->middleware('employer');
 Route::get('projects/{slug}', 'ProjectsController@viewProject')->name('view.project');
 Route::get('/employer/fill-data', 'EmployerController@empget')->name('employer.fill.data');
 Route::post('empupd', 'EmployerController@getData');
-Route::get('employer', 'EmployerController@index');
+Route::get('employer', 'EmployerController@index')->name('view.employer.profile');
 Route::get('employer/getprofile', 'EmployerController@getProfile')->name('get.employer.profile');
 Route::put('employer/updateProfile', 'EmployerController@updateProfile')->name('update.employer.profile');
-Route::get('employer/{username}', 'EmployerController@viewEmployer')->name('view.employer');
+Route::post('employer/hire-freelancer', 'EmployerController@hireFreelancer')->name('hire.freelancer');
+
+
+Route::get('employer/{username}', 'EmployerController@viewEmployer')->name('view.employer');  //MASIH BELOM
+
 
 //payment
 Route::get('check', 'Auth\LoginController@check')->name('check');

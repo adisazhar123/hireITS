@@ -629,7 +629,7 @@ $(".text2").hover(function(){
       alert("fill in a pic")
       return false;
     }else{
-      $("#upload-dp").attr('action', '{{route('store.freelancer.dp')}}');
+      $("#upload-dp").attr('action', '{{route('store.employer.dp')}}');
       $("#upload-dp").attr('method', 'post');
 
       $("#upload-dp").trigger('submit');

@@ -26,9 +26,13 @@
           @if(Auth::check())
             <li class="menu-has-children"><a id="navbar-pic" href="#"><img src=""  alt="">My Account</a>
               <ul>
-
-                <li><a href="{{route('view.freelancer.profile')}}">Profile</a></li>
-                <li><a href="{{route('view.freelancer.dashboard')}}">Dashboard</a></li>
+                @if (Auth::user()->role === "freelancer")
+                  <li><a href="{{route('view.freelancer.profile')}}">Profile</a></li>
+                  <li><a href="{{route('view.freelancer.dashboard')}}">Dashboard</a></li>
+                @else
+                  <li><a href="{{route('view.employer.profile')}}">Profile</a></li>
+                  <li><a href="{{route('view.employer.dashboard')}}">Dashboard</a></li>
+                @endif
                 <div class="dropdown-divider"></div>
                 <li><a href="{{ route('logout') }}" class="dropdown-item"
                    onclick="event.preventDefault();document.getElementById('logout-form').submit();">

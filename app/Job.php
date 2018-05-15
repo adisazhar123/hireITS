@@ -16,4 +16,11 @@ class Job extends Model
   public function harusbisaskill(){
     return $this->hasMany('App\HarusBisaSkill', 'job_id');
   }
+  public function wonby(){
+    return $this->hasMany('App\WonBy', 'job_id');
+  }
+  public function employer()
+  {
+      return $this->belongsTo('App\Employer', 'employer_id');
+  }
 }
