@@ -124,8 +124,11 @@
   <div class="container">
     <div class="row">
       @if(session()->has('success'))
-          <div class="alert alert-success">
+          <div class="alert alert-success alert-dismissable">
               {{ session()->get('success') }}
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
           </div>
       @endif
       <div class="col-md-12">
@@ -305,9 +308,11 @@
                           @if (Auth::check())
                             @foreach ($bid->job->wonby as $wonby)
                               @if ($wonby->won_by_id == Auth::user()->id)
-                                <div class="alert alert-success">
+                                <div class="alert alert-success alert-dismissable">
                                   You are working on this project now.
-
+                                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                                </button>
                                 </div>
                                 @break
                               @elseif ($bid->freelancer->freelancer_id == Auth::user()->id)

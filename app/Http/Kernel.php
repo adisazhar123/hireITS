@@ -59,5 +59,6 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'freelancer' => \App\Http\Middleware\FreelancerMiddleware::class,
         'employer' => \App\Http\Middleware\EmployerMiddleware::class,
-    ];
+        'cors' => \App\Http\Middleware\Cors::class, 
+      ];
 }

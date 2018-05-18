@@ -226,8 +226,7 @@ i{
           // PayPal Client IDs - replace with your own
           // Create a PayPal app: https://developer.paypal.com/developer/applications/create
           client: {
-              sandbox:    'AXQng1S57K1sm5SMXOdmlnKC_Yy72kVz4Ot4jvZK64wGIOWoxO-YwJMjBX5bNaEA6qFZE9McM0sB6iXz',
-              production: 'AQ5HlYqMX5QOYKL0xc0FH_zqKzaXuUSLqapzohQjzUNMTa-cdII1EfQjkStI5vXPC8kTNwoymi5TFppq'
+              sandbox:    'AXQng1S57K1sm5SMXOdmlnKC_Yy72kVz4Ot4jvZK64wGIOWoxO-YwJMjBX5bNaEA6qFZE9McM0sB6iXz'
           },
 
           // Show the buyer a 'Pay Now' button in the checkout flow
@@ -258,12 +257,13 @@ i{
 
           //
           paypal.request.post(EXECUTE_PAYMENT_URL,
-            { paymentID: data.paymentID, payerID: data.payerID },
+            { paymentID: data.paymentID, payerID: data.payerID, hehe: "OKEEEEE" },
             {headers:
               {'x-csrf-token': $('meta[name="csrf-token"]').attr('content')}
             })
             .then(function(data) { /* Say thanks to the user */
                     alert("THANK YOU")
+                    console.log(data)
 
           })
           .catch(function(err) { /* Deal with the error however you like */

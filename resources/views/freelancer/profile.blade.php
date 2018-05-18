@@ -33,7 +33,13 @@ p a{color:#27ae60; text-decoration:none;}
       background-image: url({{asset($cover)}});
     @endif
     background-repeat: no-repeat;
-    background-size: 100% 465px;
+    @if (!Auth::user()->hassetprofile)
+      background-size: 100% 510px;
+
+    @else
+      background-size: 100% 465px;
+
+    @endif
     background-position: top;
 
   }

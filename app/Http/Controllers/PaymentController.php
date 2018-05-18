@@ -24,11 +24,16 @@ use PayPal\Rest\ApiContext;
 use Illuminate\Support\Facades\Input;
 use PayPal\Common\PayPalModel;
 use PayPal\Auth\OAuthTokenCredential;
+use PayPal\Api\FlowConfig;
+use PayPal\Api\Presentation;
+use PayPal\Api\InputFields;
+use PayPal\Api\WebProfile;
 use URL;
 use Session;
 use Redirect;
 use PayPal;
 use Response;
+
 class PaymentController extends Controller
 {
 
@@ -54,30 +59,76 @@ class PaymentController extends Controller
 
     }
 
-    public function getCheckout()
-{
+
+    public function createWebProfile(){
+
+    	$flowConfig = new FlowConfig();
+    	$presentation = new Presentation();
+    	$inputFields = new InputFields();
+    	$webProfile = new WebProfile();
+    	$flowConfig->setLandingPageType("Billing"); //Set the page type
+
+    	$presentation->setLogoImage("http://seekvectorlogo.com/wp-content/uploads/2018/01/pak-elektron-limited-pel-vector-logo-small.png")->setBrandName("hireITS"); //NB: Paypal recommended to use https for the logo's address and the size set to 190x60.
+
+    	$inputFields->setAllowNote(true)->setNoShipping(1)->setAddressOverride(0);
+
+    	$webProfile->setName("Example " . uniqid())
+    		->setFlowConfig($flowConfig)
+    		// Parameters for style and presentation.
+    		->setPresentation($presentation)
+    		// Parameters for input field customization.
+    		->setInputFields($inputFields)
+        ->setTemporary(true);
+
+    	$createProfileResponse = $webProfile->create($this->_apiContext);
+
+    	return $createProfileResponse->getId(); //The new webprofile's id
+    }
+
+
+    public function getCheckout(){
 
         //Setup Payer
         $payer = new Payer();
         $payer->setPaymentMethod('paypal');
 
+        //setup payee
+        $payee = new Payee();
+        $payee->setEmail("payee_123@gmail.com");
+
+
         //Setup Amount
+
+
+        //Item
+        $item = new Item();
+        $item->setName('Make me a website')
+        ->setCurrency("USD")
+        ->setQuantity(1)
+        ->setPrice(23);
+
+        $itemList = new ItemList();
+        $itemList->setItems(array($item));
+
         $amount = new Amount();
         $amount->setCurrency('USD');
-        $amount->setTotal(20);
+        $amount->setTotal(23);
 
          //Setup Transaction
         $transaction = new Transaction();
         $transaction->setAmount($amount);
-        $transaction->setDescription('Your awesome Product!');
+        $transaction->setDescription('hireITS Payment!');
+        $transaction->setPayee($payee);
+        $transaction->setItemList($itemList);
 
          //List redirect URLS
         $redirectUrls = new RedirectUrls();
         $redirectUrls->setReturnUrl(action('PaymentController@getDone'));
         $redirectUrls->setCancelUrl(action('PaymentController@getCancel'));
 
-//And finally set all the prerequisites and create the payment
+        //And finally set all the prerequisites and create the payment
         $payment = new Payment();
+        $payment->setExperienceProfileId($this->createWebProfile());
         $payment->setIntent('sale');
         $payment->setPayer($payer);
         $payment->setRedirectUrls($redirectUrls);
@@ -88,8 +139,7 @@ class PaymentController extends Controller
         return $response;
     }
 
-    public function getDone(Request $request)
-{
+    public function getDone(Request $request){
     $id = $request->get('paymentID');
     $token = $request->get('token');
     $payer_id = $request->get('payerID');
@@ -105,10 +155,10 @@ class PaymentController extends Controller
      * Here is where you would do your own stuff like add a record for the payment, trigger a hasPayed event, etc.
      */
 
+     return response()->json($request->hehe);
+
     // Do something to signify we succeeded
-    return Response::json([
-        'success' => ''
-    ], 200);
+    return Response::json(['success' => '', 'payment'=> $executePayment], 200);
 
     //return response()->json(['success', 200]);
 }

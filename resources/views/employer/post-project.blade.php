@@ -174,24 +174,33 @@ i {
   <div class="container">
     @if ($errors->any())
       <br>
-        <div class="alert alert-danger">
+        <div class="alert alert-danger alert-dismissable">
             <ul>
                 @foreach ($errors->all() as $error)
                     <li>{{ $error }}</li>
                 @endforeach
             </ul>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+  <span aria-hidden="true">&times;</span>
+</button>
         </div>
     @endif
     @if(session()->has('success'))
       <br>
-      <div class="alert alert-success">
+      <div class="alert alert-success alert-dismissable">
         {{ session()->get('success') }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+<span aria-hidden="true">&times;</span>
+</button>
       </div>
     @endif
     @if(session()->has('error'))
       <br>
-      <div class="alert alert-danger">
+      <div class="alert alert-danger alert-dismissable">
         {{ session()->get('error') }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+          </button>
       </div>
     @endif
     <form action="{{route('store.project')}}" method="POST" enctype="multipart/form-data" class="animated fadeIn">

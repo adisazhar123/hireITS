@@ -15,7 +15,7 @@ Auth::routes();
 
 
 Route::get('/', function () {
-    return view('homepage');
+    return view('index_adis');
 });
 
 Route::get('get-image','UsersController@getImage')->name('get.navbar.pic');
