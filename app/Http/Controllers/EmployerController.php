@@ -96,9 +96,13 @@ class EmployerController extends Controller
   public function getData(Request $request){
   	 $id = Auth::user()->id;
   	 $emp = Employer::find($id);
-  	 $emp->age = $request->input('number');
-  	 $emp->major = $request->input('special');
+  	 $emp->name = $request->input('nama');
+  	 $emp->title = $request->input('special');
+  	 $emp->description = $request->input('details');
+  	 $emp->address = $request->input('address');
+  	 $emp->price = $request->input('number');
   	 $user = Auth::user();
+
      $user->hassetprofile = 1;
 
      if($emp->save() && $user->save()){

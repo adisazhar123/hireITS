@@ -85,16 +85,16 @@ textarea{
 				</div>
 			</div>
 			<div class = "form-group">
-				Phone Number
+				Price
 				<div class = "input-group">
 					<div class = "icon">
-						<span class = "icon-case"><i class = "fa fa-phone"></i></span>
+						<span class = "icon-case"><i class = "fa fa-sort-numeric-asc"></i></span>
 					</div>
-					<input type="text" name="number" class ="form-control col-6" placeholder="Phone Number" />
+					<input type="number" name="number" class ="form-control col-6" placeholder="Price" min="0"/>
 				</div>
 			</div>
 			<div class = "form-group">
-				Specialize
+				Title
 				<div class = "input-group">
 					<div class = "icon">
 						<span class = "icon-case"><i class = "fa fa-briefcase"></i></span>
@@ -103,7 +103,7 @@ textarea{
 				</div>
 			</div>
 			<div class = "form-group">
-				Company Details <br />
+				Descriptions <br />
 				<textarea name="details" rows="10" cols="80"></textarea>
 			</div>
 
