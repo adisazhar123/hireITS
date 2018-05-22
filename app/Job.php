@@ -23,4 +23,8 @@ class Job extends Model
   {
       return $this->belongsTo('App\Employer', 'employer_id');
   }
+  public function review()
+  {
+      return $this->belongsTo('App\Job', 'job_id');
+  }
 }

@@ -1,6 +1,6 @@
 @section('style')
   <style media="screen">
-.info p {
+.post .info p {
   text-align:center;
   color: #999;
   text-transform:none;
@@ -9,13 +9,13 @@
   margin-top:2px
 }
 
-.info i {
+.post .info i {
   color:#F6AA93;
 }
 
 
 .title{
-  background: #D66C44 ;
+  background: #f1c40f ;
   text-shadow: none;
   text-align:center;
   text-transform: uppercase;
@@ -24,7 +24,7 @@
 
 }
 
-form {
+form.post {
   border-radius: 5px;
   width:100%;
   margin: 5% auto;
@@ -36,7 +36,7 @@ p span {
   color: #F00;
 }
 
-p {
+.post p {
   margin: 0px;
   font-weight: 500;
   line-height: 2;
@@ -45,7 +45,7 @@ p {
 }
 
 
-input {
+.post input {
   border-radius: 0px 5px 5px 0px;
   border: 1px solid #eee;
   margin-bottom: 15px;
@@ -55,12 +55,12 @@ input {
   padding: 0px 15px;
 }
 
-a {
+.post a {
   text-decoration:inherit
 }
 
 
-.icon-case {
+.post .icon-case {
   width: 35px;
   float: left;
   border-radius: 5px 0px 0px 5px;
@@ -71,15 +71,15 @@ a {
   line-height:40px;
 }
 
-i {
+.post i {
   color:#555;
 }
 
-.contentform {
+.post .contentform {
   padding: 40px 30px;
 }
 
-.bouton-contact{
+.post .bouton-contact{
   background-color: #81BDA4;
   color: #FFF;
   text-align: center;
@@ -92,7 +92,7 @@ i {
   font-size: 18px;
 }
 
-.leftcontact {
+.post .leftcontact {
   width:49.5%;
   float:left;
   border-right: 1px dotted #CCC;
@@ -100,7 +100,7 @@ i {
   padding: 0px 15px 0px 0px;
 }
 
-.rightcontact {
+.post .rightcontact {
   width:49.5%;
   float:right;
   box-sizing: border-box;
@@ -203,7 +203,7 @@ i {
           </button>
       </div>
     @endif
-    <form action="{{route('store.project')}}" method="POST" enctype="multipart/form-data" class="animated fadeIn">
+    <form action="{{route('store.project')}}" method="POST" enctype="multipart/form-data" class="animated fadeIn post">
       <div class="title">
         <h1>Tell us what you need done</h1>
 
@@ -266,7 +266,7 @@ i {
         </div>
         <div class="form-group">
           <label for="">Files:</label><br>
-          <input type="file" class="form-control" name="photos[]" multiple>
+          <input type="file" class="form-control" name="photos[]" multiple><br><br><br>
           <small>Drag & drop any images that might be helpful in explaining your project brief here.</small>
         </div>
       <button type="submit" class="btn btn-primary">Submit</button>

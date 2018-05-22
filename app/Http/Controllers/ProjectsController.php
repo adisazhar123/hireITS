@@ -7,6 +7,7 @@ use App\Bid;
 use App\WonBy;
 use App\ProfileFiles;
 use App\JobFiles;
+use App\Messages;
 use DB;
 use Auth;
 use Illuminate\Http\Request;
@@ -71,14 +72,30 @@ class ProjectsController extends Controller{
                 ->get();
       $job_images = JobFiles::where('job_id', $job[0]->job_id)->get();
       $bids=$job[0]->bid;
+
+      $hasUserBid = Bid::where('job_id', $job[0]->job_id)->first();
+      if ($hasUserBid) $hasBid = 0;
+      else $hasBid = 1;
       if (!$bids->isEmpty())
         $pf = $bids[0]->freelancer->ProfileFiles;
       else $pf="";
+      //return $pf;
       return view('projects.view-project')->with('job', $job)->with('skills', $skills)->with('bids', $bids)->with('pics', $pf)
-                                          ->with('job_images', $job_images);
+                                          ->with('job_images', $job_images)->with('hasBid', $hasBid);
     }
 
     public function browseShowcase(){
       return view('showcase.browse-showcase');
+    }
+
+    public function downloadFileMessage($id){
+      $file = Messages::find($id);
+      return response($file['file'])
+        ->header('Cache-Control', 'no-cache private')
+        ->header('Content-Description', 'File Transfer')
+        ->header('Content-Type', 'application/octet-stream ')
+      //  ->header('Content-length', strlen($file_contents))
+        ->header('Content-Disposition', 'attachment; filename=attachment_msg_' . $file['msg_id']."." . $file['file_type'])
+        ->header('Content-Transfer-Encoding', 'binary');
     }
 }

@@ -384,7 +384,7 @@ p a{color:#27ae60; text-decoration:none;}
 
         <div class="profile-pic">
           @if ($pf->isEmpty())
-            <img class="rounded" src="{{asset('adis.jpg')}}" alt="profile_pic12">
+            <img class="rounded" src="{{asset('img/avatar.png')}}" alt="profile_pic12">
             @else
               <img class="rounded" src="data:{{$pf[0]->img_type}};base64,{{base64_encode( $pf[0]->name )}}" alt="profile_pic">
           @endif

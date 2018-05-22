@@ -36,11 +36,11 @@
   padding: 0x 0px;
 }
 
-ul {
+.slidebar ul {
   padding: 0;
   margin:0;
 }
-li {
+.slidebar li {
   list-style-type: none;
   margin: 0;
   position: relative;
@@ -157,25 +157,32 @@ table{
     <div class="main1">
          <div id="tab2"><h2 class="header">On Going Projects</h2>
            <table class="table table-hover">
-             <thead>
-               <tr>
-                 <th scope="col">#</th>
-                 <th scope="col">Project name</th>
-                 <th scope="col">Deadline</th>
-                 <th scope="col">Action</th>
-               </tr>
-             </thead>
-             <tbody>
-               @foreach ($projects as $project)
+             @if (!count($projects)>0)
+               <h3>No ongoing projects</h3>
+             @else
+               <thead>
                  <tr>
-                   <th scope="row">1</th>
-                   <td><a href="/projects/{{$project->slug}}">{{$project->name}}</a></td>
-                   <td>{{date_format(date_create($project->deadline), "d-m-Y")}}</td>
-                   <td><button class="btn btn-info mr-3 update-progress" job-id="{{$project->job_id}}">Update Progress</button><button job-id="{{$project->job_id}}" class="btn btn-warning view-history">View History</button></td>
+                   <th scope="col">#</th>
+                   <th scope="col">Project name</th>
+                   <th scope="col">Deadline</th>
+                   <th scope="col">Action</th>
                  </tr>
-               @endforeach
-
+               </thead>
+               @foreach ($projects as $project)
+              <tbody>
+               <tr>
+                 <th scope="row">1</th>
+                 <td><a href="/projects/{{$project->slug}}">{{$project->name}}</a></td>
+                 <td>{{date_format(date_create($project->deadline), "d-m-Y")}}</td>
+                 <td><button class="btn btn-info mr-3 update-progress" job-id="{{$project->job_id}}">Update Progress</button><button job-id="{{$project->job_id}}" class="btn btn-warning view-history">View History</button></td>
+               </tr>
              </tbody>
+
+             @endforeach
+             @endif
+
+
+
            </table>
 
          </div>
@@ -201,7 +208,7 @@ table{
         <div class="modal-body">
           <div class="row">
             <div class="col-md-6">
-              <form class="" action="{{route('send.progress')}}" method="post">
+              <form class="" action="{{route('send.progress')}}" method="post" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <label for="">Progress rate</label>
                 <div class="form-check">
@@ -229,9 +236,11 @@ table{
                   </label>
                 </div>
             </div>
-            <div class="col-md-6">
-              Comments for employer
-              <textarea name="msg_text" rows="5" cols="27">
+          </div>
+          <div class="row">
+
+            <div class="col-md-12">Comments for employer <br>
+              <textarea class="form-control" name="msg_text" rows="10" cols="10">
 
               </textarea>
             </div>
@@ -240,8 +249,7 @@ table{
             <div class="col-md-12">
               <div class="form-group">
                 Attachments
-                <input class="form-control" type="file" name="" value="">
-
+                <input type="file" name="progress_file" id="fileToUpload">
               </div>
             </div>
 
@@ -359,13 +367,27 @@ table{
       url: '{{route('get.messages.freelancer')}}',
       data: {job_id: job_id},
       success: function(data){
-        for(var i=0; i<data[0].length; i++){
-          if (data[0][i].from_id == data[1].freelancer_id){
-            content  += "<div class='card message-me'><div class=card-body>"+data[0][i].msg_text+"<br><small>Progress: "+data[0][i].progress+"%</small><br><small>"+data[1].freelancer_name+"</small>"+"</div></div>";
-          }else if (data[0][i].from_id == data[1].employer_id){
-            content  += "<div class='card message-end'><div class=card-body>"+data[0][i].msg_text+"<br><small>"+data[1].employer_name+"</small></div></div>";
+        if (data == "No message")
+          content  += "<div class='card message-me'><div class=card-body>"+data+"</div></div>";
+          else{
+            for(var i=0; i<data[0].length; i++){
+              if (data[0][i].from_id == data[1].freelancer_id){
+                if (data[0][i].file_type!=null) {
+                  content  += "<div class='card message-me'><div class=card-body>"+data[0][i].msg_text+"<br><a href=/project/messages/download-file/"+data[0][i].msg_id+">Download attachment</a><br><small>Progress: "+data[0][i].progress+"%</small><br><small>"+data[1].freelancer_name+"</small>"+"</div></div>";
+                }
+                else content  += "<div class='card message-me'><div class=card-body>"+data[0][i].msg_text+"<br><small>Progress: "+data[0][i].progress+"%</small><br><small>"+data[1].freelancer_name+"</small>"+"</div></div>";
+              }else if (data[0][i].from_id == data[1].employer_id){
+                if (data[0][i].file_type!=null) {
+                  content  += "<div class='card message-end'><div class=card-body>"+data[0][i].msg_text+"<br><a href=/project/messages/download-file/"+data[0][i].msg_id+">Download attachment</a><br><small>"+data[1].employer_name+"</small></div></div>";
+                }
+                else {
+                  content  += "<div class='card message-end'><div class=card-body>"+data[0][i].msg_text+"<br><small>"+data[1].employer_name+"</small></div></div>";
+
+                }
+              }
+            }
           }
-        }
+
         $(".discussion-history .modal-body").html(content)
         $(".modal.discussion-history").modal('show')
         console.log(data)

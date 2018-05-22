@@ -20,4 +20,7 @@ class Freelancer extends Model
     public function profilefiles(){
       return $this->hasMany('App\ProfileFiles', 'user_id', 'freelancer_id');
     }
+    public function review(){
+        return $this->hasMany('App\Review', 'to_id', 'freelancer_id');
+      }
 }

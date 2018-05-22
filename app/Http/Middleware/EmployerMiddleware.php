@@ -18,8 +18,6 @@ class EmployerMiddleware
     {
       if(Auth::check())
         if(Auth::user()->role === "employer")
-          if(Auth::user()->hassetprofile==0)
-            return redirect('/employer');
           return $next($request);
       return redirect('/')->withErrors('For employer only');
       }

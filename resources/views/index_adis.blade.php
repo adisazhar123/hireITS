@@ -213,7 +213,8 @@ i{
     @endif
   </div>
 
-  <div id="paypal-button-container"></div>
+  <div id="paypal-button-container">
+  </div>
 
 @endsection
 

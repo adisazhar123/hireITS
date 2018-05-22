@@ -45,7 +45,7 @@
 
             </li>
           @else
-            <li class=""><a id="login-btn" data-toggle="modal" data-target="#exampleModalCenter" href="#">Login</a></li>
+            <li class=""><a id="login-btn" data-toggle="modal" data-target="#exampleModalCenter" href="#">Sign Up</a></li>
           @endif
         </ul>
       </nav>

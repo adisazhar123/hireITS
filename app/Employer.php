@@ -12,4 +12,9 @@ class Employer extends Model
 
   public function job(){
     return $this->hasMany('App\Job', 'employer_id');
-  }}
+  }
+  public function review(){
+      return $this->hasMany('App\Review', 'to_id', 'employer');
+    }
+
+}

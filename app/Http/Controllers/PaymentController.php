@@ -28,6 +28,11 @@ use PayPal\Api\FlowConfig;
 use PayPal\Api\Presentation;
 use PayPal\Api\InputFields;
 use PayPal\Api\WebProfile;
+use App\Bid;
+use App\Job;
+use App\Freelancer;
+use App\PaymentModel;
+use Auth;
 use URL;
 use Session;
 use Redirect;
@@ -86,7 +91,10 @@ class PaymentController extends Controller
     }
 
 
-    public function getCheckout(){
+    public function getCheckout(Request $request){
+
+        $price = Bid::find($request->bid_id);
+        $job = Job::find($price['job_id']);
 
         //Setup Payer
         $payer = new Payer();
@@ -94,25 +102,22 @@ class PaymentController extends Controller
 
         //setup payee
         $payee = new Payee();
-        $payee->setEmail("payee_123@gmail.com");
-
-
-        //Setup Amount
-
+        $payee->setEmail(Freelancer::find($price['freelancer_id'])['paypal']);
+        //$payee->setEmail("Romeo@gmail.com");
 
         //Item
         $item = new Item();
-        $item->setName('Make me a website')
+        $item->setName("Payment for project: ".$job['name'])
         ->setCurrency("USD")
         ->setQuantity(1)
-        ->setPrice(23);
+        ->setPrice($price['price']);
 
         $itemList = new ItemList();
         $itemList->setItems(array($item));
 
         $amount = new Amount();
         $amount->setCurrency('USD');
-        $amount->setTotal(23);
+        $amount->setTotal($price['price']);
 
          //Setup Transaction
         $transaction = new Transaction();
@@ -140,36 +145,47 @@ class PaymentController extends Controller
     }
 
     public function getDone(Request $request){
-    $id = $request->get('paymentID');
-    $token = $request->get('token');
-    $payer_id = $request->get('payerID');
 
-    $payment = $this->getById($id, $this->_apiContext);
+      $id = $request->get('paymentID');
+      $token = $request->get('token');
+      $payer_id = $request->get('payerID');
 
-    $paymentExecution = new PaymentExecution();
+      $payment = $this->getById($id, $this->_apiContext);
 
-    $paymentExecution->setPayerId($payer_id);
-    $executePayment = $payment->execute($paymentExecution, $this->_apiContext);
+      $paymentExecution = new PaymentExecution();
 
-    /*
-     * Here is where you would do your own stuff like add a record for the payment, trigger a hasPayed event, etc.
-     */
+      $paymentExecution->setPayerId($payer_id);
+      $executePayment = $payment->execute($paymentExecution, $this->_apiContext);
 
-     return response()->json($request->hehe);
+      /*
+       * Here is where you would do your own stuff like add a record for the payment, trigger a hasPayed event, etc.
+       */
 
-    // Do something to signify we succeeded
-    return Response::json(['success' => '', 'payment'=> $executePayment], 200);
+       $price = Bid::find($request->bid_id);
+       $job = Job::find($price['job_id']);
+       $job->complete = 1;
+       $job->save();
 
-    //return response()->json(['success', 200]);
-}
+       $payment = new PaymentModel;
+       $payment->won_by_id = $price->freelancer_id;
+       $payment->job_id = $price->job_id;
+       $payment->description = "successfully paid.";
+       $payment->employer_id = Auth::user()->id;
+       $payment->amount = $price->price;
+       $payment->save();
+
+      // Do something to signify we succeeded
+      return Response::json(['success' => 1, 'payment'=> $executePayment], 200);
+
+      //return response()->json(['success', 200]);
+  }
 
 public function getCancel()
 {
    return new JsonResponse('error', 422);
 }
 
-public static function getById($paymentId, $apiContext = null)
-{
+public static function getById($paymentId, $apiContext = null){
     if (isset($apiContext)) {
         return Payment::get($paymentId, $apiContext);
     }

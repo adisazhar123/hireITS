@@ -14,6 +14,7 @@ use App\ProfileFiles;
 use App\Diberkati;
 use App\WonBy;
 use App\Messages;
+use App\Review;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -32,10 +33,12 @@ class FreelancerController extends Controller
                 ->get();
       $portfolios = Freelancer::find($id)->portfolio;
       $freelancer = Freelancer::find($id);
+      $reviews = Review::where('to_id', Auth::user()->id)->get();
+
       $pf = ProfileFiles::where('user_id', $id)->where('role', 'dp')->get();
       $cover=ProfileFiles::where('user_id', $id)->where('role', 'cover')->get();
       return view('freelancer.profile')->with('freelancer', $freelancer)->with('portfolios', $portfolios)->with('skills', $skills)->with('pf', $pf)
-      ->with('cover', $cover);
+      ->with('cover', $cover)->with('reviews', $reviews);
     }
 
     public function getProfile(Request $request){
@@ -130,9 +133,13 @@ class FreelancerController extends Controller
         $bid->freelancer_id = Auth::user()->id;
         $bid->price = $request->bidding_price;
         $bid->comment = $request->comment;
-        $bid->deadline = date_format(date_create( $request->deadline), 'Y-m-d');
-        if ($bid->save())
-          return response()->json(["success"=> 1]);
+        $bid->deadline = date_format(date_create($request->deadline), 'Y-m-d');
+        if ($bid->save()){
+          $job= Job::find($job_id);
+          $job->no_of_bids=$job->no_of_bids+1;
+          if ($job->save())
+            return response()->json(["success"=> 1]);
+        }
         else {
           return response()->json(["success"=> 0]);
 
@@ -172,7 +179,8 @@ class FreelancerController extends Controller
       public function storeProfilePic(Request $request){
         $file = $request->file('image');
         $contents = $file->openFile()->fread($file->getSize());
-        $extension = "image/".$request->file('image')->extension();
+        $extension = "image/".$file->getClientOriginalExtension();
+
         $pf=ProfileFiles::where('user_id',Auth::user()->id)->where('role','dp')->get();
         if ($pf->isEmpty()){
           $pf = new ProfileFiles;
@@ -246,6 +254,13 @@ class FreelancerController extends Controller
         $message->job_id = $request->job_id;
         $message->msg_text = $request->msg_text;
         $message->progress = $request->exampleRadios;
+        if ($request->hasFile('progress_file')) {
+          $file = $request->file('progress_file');
+          $contents = $file->openFile()->fread($file->getSize());
+          $extension = $file->getClientOriginalExtension();
+          $message->file = $contents;
+          $message->file_type = $extension;
+        }
         if ($message->save())
           return redirect()->back()->with('success', 'Progress sent to employer.');
         return redirect()->back()->with('error', 'Failed sending progress.');
@@ -257,7 +272,9 @@ class FreelancerController extends Controller
       }
 
       public function getMessages(Request $request){
-        $messages = Messages::where('job_id', $request->job_id)->get();
+
+        $messages = Messages::where('job_id', $request->job_id)->select('msg_id','job_id', 'from_id', 'to_id','msg_text','progress', 'file_type', 'sent_at')->get();
+        if($messages->isEmpty()) return "No message";
         if(User::find($messages[0]->to_id)->role === "freelancer"){
           $name['freelancer_name']= User::find($messages[0]->to_id)->username;
           $name['freelancer_id']= User::find($messages[0]->to_id)->id;

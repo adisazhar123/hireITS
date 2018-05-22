@@ -620,8 +620,7 @@ $(".text2").hover(function(){
 	});
 
 	$('#my_file').on('change', function() {
-		if (validate($(this).val()))
-  		$('#upload').html("upload: "+$(this).val());
+
 	});
 
   $("#upload-dp").submit(function(){

@@ -33,9 +33,7 @@
                   <strong style="color: red" id="password-error"></strong>
               </span>
             </div>
-            <div class="checkbox checkbox-success">
-              <input type="checkbox" name="remember"> Remember Me
-            </div>
+
 						<div class="form-group">
 							<button class="btn btn-success btn-lg btn-block" type="submit">Login</button>
 						</div>
@@ -76,14 +74,14 @@
             <div class="form-group">
               <div class="col-md-12">
                 <div class="form-check">
-                  <input class="form-check-input" type="radio" name="role"value="employer" checked>
-                  <label class="form-check-label" for="exampleRadios1">
+                  <input class="form-check-input" type="radio" name="role" value="employer" checked>
+                  <label class="form-check-label" for="exampleRadios1" style="color: white">
                     Employer
                   </label>
                 </div>
             <div class="form-check">
               <input class="form-check-input" type="radio" name="role" value="freelancer">
-              <label class="form-check-label" for="exampleRadios1">
+              <label class="form-check-label" for="exampleRadios1" style="color: white">
                 Freelancer
               </label>
             </div>

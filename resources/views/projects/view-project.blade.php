@@ -161,7 +161,7 @@
               </strong>
             </div>
             <div class="col-md-2">
-              @if (Auth::check() && Auth::user()->role==="freelancer")
+              @if (Auth::check() && Auth::user()->role==="freelancer" && $hasBid && $job[0]->active)
                 <button id="bid-now" class="btn btn-primary" name="bid-now">Bid on this project</button>
               @endif
             </div>
@@ -308,17 +308,14 @@
                           @if (Auth::check())
                             @foreach ($bid->job->wonby as $wonby)
                               @if ($wonby->won_by_id == Auth::user()->id)
-                                <div class="alert alert-success alert-dismissable">
-                                  You are working on this project now.
-                                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
+                                <div class="alert alert-warning">
+                                  Your ongoing project
                                 </button>
                                 </div>
                                 @break
                               @elseif ($bid->freelancer->freelancer_id == Auth::user()->id)
                                 <form class="" action="index.html" method="post">
                                   <button  id="cancel-bid" class="btn btn-danger animated fadeIn" type="submit" name="button">Cancel bid</button>
-
                                 </form>
                               @endif
                             @endforeach
@@ -328,15 +325,22 @@
                               {{ csrf_field() }}
                               <input type="hidden" name="won_by_id" value="{{$bid->freelancer_id}}">
                               <input type="hidden" name="job_id" value="{{$bid->job_id}}">
-                              @foreach ($job[0]->wonby as $wonby)
-                                @if ($bid->freelancer_id == $wonby->won_by_id)
-                                  <h6>I am already hired!</h6>
-                                  @break
-                                  @else
-                                    <button type="submit" class="btn btn-success hire-me" name="button">Hire me</button>
+                              @if ($job[0]->wonby->isEmpty())
+                                <button type="submit" class="btn btn-success hire-me" name="button">Hire me</button>
+                              @else
+                                @foreach ($job[0]->wonby as $wonby)
+                                  @if ($bid->freelancer_id == $wonby->won_by_id)
+                                    <div class="alert alert-warning">
+                                        I am already hired!
+                                    </div>
                                     @break
-                                @endif
-                              @endforeach
+                                    @else
+                                      <button type="submit" class="btn btn-success hire-me" name="button">Hire me</button>
+                                      @break
+                                  @endif
+                                @endforeach
+                              @endif
+
                             </form>
                           @endif
                         </div>

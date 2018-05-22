@@ -212,7 +212,9 @@ p a{color:#27ae60; text-decoration:none;}
         background-color: white;
       }
       .fa-star{
-        color:yellow;
+        color: #FFAA2A;
+        margin-right: 3px;
+
       }
 
       .divider{
@@ -646,15 +648,14 @@ p a{color:#27ae60; text-decoration:none;}
 
             <div id="third-tab" class="tab-content animated fadeIn">
 
-
-                        <i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i>
-                        <br><strong>Joni</strong>
-                        <p>This guy is awesome!! work is always on time</p>
-
-
-                        <i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i>
-                        <br><strong>Joni</strong> Project mobile app
-                        <p>This guy is awesome!! work is always on time</p>
+                @foreach ($reviews as $review)
+                    @for ($i=0; $i < $review->rating; $i++)
+                      <i class="fa fa-star" aria-hidden="true"></i>
+                    @endfor
+                  <br><strong>From: {{$review->employer->username}}</strong>
+                  <h6>Project name: {{$review->job->name}}</h6>
+                  <p>{{$review->comment}}</p>
+                @endforeach
 
             </div>
         </section>

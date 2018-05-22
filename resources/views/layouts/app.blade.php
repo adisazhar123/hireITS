@@ -60,6 +60,51 @@
 }
 body { padding-top: 65px; }
 
+footer{
+  padding-top: 50px;
+  padding-bottom: 40px;
+  background-color: #04091e;
+  color: white;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
+footer ul{
+  padding: 0;
+  list-style-type: none;
+}
+
+footer ul a{
+  color: rgb(190, 192, 194) !important;
+}
+
+footer p, footer a{
+  color: white;
+}
+
+footer p{
+  font-size: 1.2em !important;5
+}
+
+footer a:hover{
+  color: #f7f7f7;
+}
+
+
+footer .container2{
+  border-bottom-width: 0.8px !important;
+  border-bottom: solid white;
+  border-bottom-color: rgb(43, 51, 64);
+}
+
+.main-container {
+ height: 100vh; /* will cover the 100% of viewport */
+ overflow: hidden;
+ display: block;
+ position: relative;
+}
+
   </style>
 
 
@@ -73,6 +118,10 @@ body { padding-top: 65px; }
 
     </div>
     @yield('content')
+    <div class="main-container">
+      @include('inc.footer')
+
+    </div>
   </body>
   <script src="{{ asset('js/jquery.min.js') }}"></script>
   <script src="{{ asset('js/popper.min.js') }}"></script>

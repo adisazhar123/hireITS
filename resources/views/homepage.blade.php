@@ -467,8 +467,11 @@ i {
 		</div>
 		<div class="bottom"></div>
 	</div>
-	<h2>What's hireITS?</h2>
-	<h4>hireITS adalah website yang blablablablablablablablab untuk anak ITS yang ingin mencari uang hajajaj</h4>
+  <div class="container">
+
+    <h2>What's hireITS?</h2>
+    <h4>hireITS adalah website yang blablablablablablablablab untuk anak ITS yang ingin mencari uang hajajaj</h4>
+  </div>
 </div>
 
 <div class="howto animated fadeInDownBig">

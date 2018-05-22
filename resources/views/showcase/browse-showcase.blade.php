@@ -8,7 +8,7 @@
     width: 100%;
   }
   .backround{
-    /*background-image: url("https://images.pexels.com/photos/207665/pexels-photo-207665.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");*/
+    background-image: url("https://images.pexels.com/photos/207665/pexels-photo-207665.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
     height: 50%;
     padding-top: 300px;
     background-position: center;
@@ -69,20 +69,6 @@
   height: 100%;
   width: 100%;
 }
-
-/*.text{
-  transition: .5s ease;
-  opacity: 0;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  text-align: center;
-  background-color: black;
-  height: 100%;
-  width: 100%;
-}*/
 
 
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:600;);
@@ -199,24 +185,48 @@
 
 .card-body{
   background: #fff;
-
 }
 
 /* Demo purposes only */
 
 body {
   background-color: #FFF;
+}
+
+.container.yes{
   text-align: center;
 }
 
-/*.card:hover .middle{
-  opacity: 0.2;
+.filter a{
+  color: black;
+  font-size: 16px;
+  margin-right: 15px;
 }
 
-.card:hover .text {
-  opacity: 1;
+.filter a.active{
+  color: rgb(0, 135, 224);
+  font-weight: bold;
 }
-*/
+
+#collapseOne ul{
+  list-style-type: none;
+}
+
+.accordion.hide{
+  display: none;
+}
+
+@media only screen and (max-width: 990px) {
+    .accordion.hide{
+      display: block;
+    }
+    .accordion .card{
+      max-width: 717px;
+    }
+    .hide2{
+      display: none;
+    }
+}
 
 
   </style>
@@ -258,10 +268,69 @@ body {
         </div>
       </form>
     </div>
-
   </div>
 
-<div class="container">
+  <div class="filter" style="text-align: left; ">
+    <div class="container">
+      <div class="row hide2">
+        <div class="col-md-12">
+          <a href="#" class="active">All</a>
+          <a href="#">Logos</a>
+          <a href="#">Websites</a>
+          <a href="#">Mobile Applications</a>
+          <a href="#">Graphic Design</a>
+          <a href="#">Illustration</a>
+          <a href="#">3D Models</a>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="accordion hide" id="accordionExample">
+            <div class="card">
+              <div class="card-header" id="headingOne">
+                <h5 class="mb-0">
+                  <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    Categories
+                  </button>
+                </h5>
+              </div>
+
+              <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                <div class="card-body">
+                  <ul>
+                    <li>
+                      <a href="#" class="active">All</a>
+                    </li>
+                    <li>
+                      <a href="#">Logos</a>
+                    </li>
+                    <li>
+                      <a href="#">Websites</a>
+                    </li>
+                    <li>
+                      <a href="#">Mobile Applications</a>
+                    </li>
+                    <li>
+                      <a href="#">Graphic Design</a>
+                    </li>
+                    <li>
+                      <a href="#">Illustration</a>
+                    </li>
+                    <li>
+                      <a href="#">3D Models</a>
+
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<div class="container yes">
   <div class="row">
     <div class="col-md-12">
       <div class="row">

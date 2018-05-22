@@ -12,6 +12,8 @@ use App\WonBy;
 use App\Messages;
 use App\User;
 use App\JobFiles;
+use App\Bid;
+use App\Review;
 use Illuminate\Http\Request;
 
 class EmployerController extends Controller
@@ -149,12 +151,19 @@ class EmployerController extends Controller
           ->join('bid', 'job.job_id', '=', 'bid.job_id')
           ->select('*')->where('complete',0)->where('job.employer_id', Auth::user()->id)
           ->get();
-      //return $projects;
-     return view('employer.dashboard')->with('projects', $projects);
+
+    $finished_projects = DB::table('won_by')
+          ->join('job', 'won_by.job_id', '=', 'job.job_id')
+          ->join('bid', 'job.job_id', '=', 'bid.job_id')
+          ->select('*')->where('complete',1)->where('job.employer_id', Auth::user()->id)
+          ->get();
+
+     return view('employer.dashboard')->with('projects', $projects)->with('finished_projects', $finished_projects);
    }
 
    public function getMessages(Request $request){
-     $messages = Messages::where('job_id', $request->job_id)->get();
+     $messages = Messages::where('job_id', $request->job_id)->select('msg_id','job_id', 'from_id', 'to_id','msg_text','progress', 'file_type', 'sent_at')->get();
+     if($messages->isEmpty()) return "No message";
      if(User::find($messages[0]->to_id)->role === "freelancer"){
        $name['freelancer_name']= User::find($messages[0]->to_id)->username;
        $name['freelancer_id']= User::find($messages[0]->to_id)->id;
@@ -177,6 +186,15 @@ class EmployerController extends Controller
      $message->to_id = (WonBy::where('job_id',$request->job_id)->get())[0]->won_by_id;
      $message->job_id = $request->job_id;
      $message->msg_text = $request->msg_text;
+
+     if ($request->hasFile('progress_file')) {
+       $file = $request->file('progress_file');
+       $contents = $file->openFile()->fread($file->getSize());
+       $extension = $file->getClientOriginalExtension();
+       $message->file = $contents;
+       $message->file_type = $extension;
+     }
+
      if ($message->save())
        return redirect()->back()->with('success', 'Feedback sent to freelancer.');
      return redirect()->back()->with('error', 'Failed sending progress.');
@@ -203,6 +221,24 @@ class EmployerController extends Controller
        ]);
          return redirect()->route('view.employer.profile');
      }
+   }
+
+   public function getPaymentDetails(Request $request){
+     $price = Bid::find($request->id);
+     return number_format($price['price'], 2);
+   }
+
+   public function rateFreelancer(Request $request){
+     $review = new Review;
+     $review->from_id = Auth::user()->id;
+     $review->job_id = $request->rate_job_id;
+     $review->to_id = $request->rate_to_id;
+     $review->comment = $request->comment;
+     $review->rating = $request->stars;
+
+     if ($review->save())
+      return redirect()->back();
+
    }
 
 }
