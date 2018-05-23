@@ -124,6 +124,10 @@ table{
     overflow-y: auto;
 }
 
+.stars i{
+  color: #FFFFAA;
+}
+
 
 </style>
 @endsection
@@ -186,7 +190,31 @@ table{
            </table>
 
          </div>
-         <div id="tab3"><h2 class="header">Finished Projects</h2></div>
+         <div id="tab3"><h2 class="header">Finished Projects</h2>
+           <table class="table table-hover">
+             <thead>
+               <tr>
+                 <th scope="col">#</th>
+                 <th scope="col">Project name</th>
+                 <th scope="col">Action</th>
+               </tr>
+             </thead>
+             <tbody>
+               @foreach ($finished_projects as $project)
+                 <tr>
+                   <th scope="row">1</th>
+                   <td><a href="/projects/{{$project->slug}}">{{$project->name}}</a></td>
+                   @if ($project->has_review == 1)
+                     <td><button job-id="{{$project->job_id}}" class="btn btn-warning view-history mr-3">View History</button><button job-id="{{$project->job_id}}" employer-id="{{$project->employer_id}}" class="btn btn-primary rate-employer">Rate employer</button><i class="fa fa-check-square-o paid" aria-hidden="true"> Payment received</i></td>
+                   @else
+                     <td><button job-id="{{$project->job_id}}" class="btn btn-warning view-history mr-3">View History</button><button class="btn btn-default"><i class="fa fa-check-square-o paid" aria-hidden="true"> Payment received</i></button><button class="btn btn-default"><i class="fa fa-check-square-o paid" aria-hidden="true"> Rated </i></button></td>
+                   @endif
+                 </tr>
+               @endforeach
+             </tbody>
+           </table>
+         </div>
+
          <!-- <div id="tab4"><h2 class="header">Portfolio</h2></div>
          <div id="tab5"><h2 class="header">Blog /news</h2></div>
          <div id="tab6"><h2 class="header">Advanced</h2></div>    -->
@@ -301,12 +329,105 @@ table{
       </div>
     </div>
   </div>
+  <div class="modal rate animated fadeIn" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Rate employer</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form class="form-rating" action="{{route('rate.employer')}}" method="POST">
+          {{ csrf_field() }}
+          <div class="form-group">
+            <label for="stars">How many stars?</label>
+            <input type="hidden" id="stars" name="stars" value="">
+            <input type="hidden" id="rate_to_id" name="rate_to_id" value="">
+            <input type="hidden" id="rate_job_id" name="rate_job_id" value="">
+            <div class="stars">
+              <i class="fa fa-star s1" star-id='1' aria-hidden="true"></i><i class="fa fa-star s2" star-id='2' aria-hidden="true"></i><i class="fa fa-star s3" star-id='3' aria-hidden="true"></i><i star-id='4' class="fa fa-star s4" aria-hidden="true"></i>
+              <i class="fa fa-star s5" star-id='5' aria-hidden="true"></i>
+            </div><small>If you are pleased with the employer's directions, give them 4-5 stars.</small>
+          </div>
+          <div class="form-group">
+            <textarea name="comment" required id="comment" class="form-control" rows="8" cols="80"></textarea>
+          </div>
+          <button type="submit" name="button">Submit</button>
+        </form>
+      </div>
+      <div class="modal-footer">
+
+      </div>
+    </div>
+  </div>
+  </div>
 </div>
 @endsection
 
 @section('script')
 <script type="text/javascript">
   $(document).ready(function() {
+
+      $(document).on('click', '.rate-employer', function(){
+        $("#rate_to_id").val($(this).attr('employer-id'))
+        $("#rate_job_id").val($(this).attr('job-id'))
+        $(".rate").modal('show')
+      })
+
+        $(".stars i").click(function(){
+          if ($(this).attr('star-id')==1){
+            $('.s1').css('color', '#FFAA2A');
+            $('.s2').css('color', '#FFFFAA');
+            $('.s3').css('color', '#FFFFAA');
+            $('.s4').css('color', '#FFFFAA');
+            $('.s5').css('color', '#FFFFAA');
+            $("#stars").val("1")
+          }
+
+          else if ($(this).attr('star-id')==2){
+            $('.s1').css('color', '#FFAA2A');
+            $('.s2').css('color', '#FFAA2A');
+            $('.s3').css('color', '#FFFFAA');
+            $('.s4').css('color', '#FFFFAA');
+            $('.s5').css('color', '#FFFFAA');
+            $("#stars").val("2")
+          }
+          else if ($(this).attr('star-id')==3){
+            $('.s1').css('color', '#FFAA2A');
+            $('.s2').css('color', '#FFAA2A');
+            $('.s3').css('color', '#FFAA2A');
+            $('.s4').css('color', '#FFFFAA');
+            $('.s5').css('color', '#FFFFAA');
+            $("#stars").val("3")
+          }
+          else if ($(this).attr('star-id')==4){
+            $('.s1').css('color', '#FFAA2A');
+            $('.s2').css('color', '#FFAA2A');
+            $('.s3').css('color', '#FFAA2A');
+            $('.s4').css('color', '#FFAA2A');
+            $('.s5').css('color', '#FFFFAA');
+            $("#stars").val("4")
+          }
+          else if ($(this).attr('star-id')==5){
+            $('.s1').css('color', '#FFAA2A');
+            $('.s2').css('color', '#FFAA2A');
+            $('.s3').css('color', '#FFAA2A');
+            $('.s4').css('color', '#FFAA2A');
+            $('.s5').css('color', '#FFAA2A');
+            $("#stars").val("5")
+          }
+        })
+
+        $(".form-rating").submit(function(){
+          if ($("#stars").val()=="" || $("#comment").val()=="" ){
+            alert("Please give a star rating and comment.");
+            return false;
+          }
+
+        })
+
   $(".main1 div").hide();
 
   $(".slidebar li:first").attr("id","active");

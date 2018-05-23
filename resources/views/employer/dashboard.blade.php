@@ -143,6 +143,10 @@ table{
   color: green;
 }
 
+#tab3{
+  display: none;
+}
+
 
 </style>
 @endsection
@@ -221,7 +225,7 @@ table{
                    @if (!$project->has_review)
                      <td><button job-id="{{$project->job_id}}" class="btn btn-warning view-history mr-3">View History</button><button job-id="{{$project->job_id}}" freelancer-id="{{$project->freelancer_id}}" class="btn btn-primary rate-freelancer">Rate freelancer</button></td>
                    @else
-                     <td><button job-id="{{$project->job_id}}" class="btn btn-warning view-history mr-3">View History</button><i class="fa fa-check-square-o paid" aria-hidden="true"> Paid</i></td>
+                     <td><button job-id="{{$project->job_id}}" class="btn btn-warning view-history mr-3">View History</button><i class="fa fa-check-square-o paid" aria-hidden="true"> Paid</i><i class="fa fa-check-square-o paid" aria-hidden="true"> Rated </i></td>
 
                    @endif
                  </tr>
@@ -547,22 +551,14 @@ table{
 
 <script>
   paypal.Button.render({
-        env: 'sandbox', // sandbox | production
-
-        // PayPal Client IDs - replace with your own
-        // Create a PayPal app: https://developer.paypal.com/developer/applications/create
+        env: 'sandbox',
         client: {
             sandbox:    'AXQng1S57K1sm5SMXOdmlnKC_Yy72kVz4Ot4jvZK64wGIOWoxO-YwJMjBX5bNaEA6qFZE9McM0sB6iXz'
         },
-
-        // Show the buyer a 'Pay Now' button in the checkout flow
         commit: true,
 
-        // payment() is called when the button is clicked
         payment: function(data, actions) {
-          //This is your own API's endpoint
           var CREATE_PAYMENT_URL = '{{route('create')}}';
-
           return paypal.request({
               method: 'post',
               url: CREATE_PAYMENT_URL,
@@ -575,30 +571,26 @@ table{
           });
 
         },
-
-        // onAuthorize() is called when the buyer approves the payment
         onAuthorize: function(data) {
-
-        //Your own API endpoint for executing an authorized payment
         var EXECUTE_PAYMENT_URL ='{{route('execute')}}';
 
-        //
+
         paypal.request.post(EXECUTE_PAYMENT_URL,
           { paymentID: data.paymentID, payerID: data.payerID, bid_id: bid_id },
           {headers:
             {'x-csrf-token': $('meta[name="csrf-token"]').attr('content')}
           })
-          .then(function(data) { /* Say thanks to the user */
+          .then(function(data) {
             alertify.success('Payment successful!');
             console.log(data)
         })
-        .catch(function(err) { /* Deal with the error however you like */
+        .catch(function(err) {
 
       });
     },
 
     onCancel: function(data, actions) {
-    alert("CANCEL")
+      alert("CANCEL")
     }
 
     }, '#paypal-button-container');

@@ -211,7 +211,7 @@ p a{color:#27ae60; text-decoration:none;}
 
 /*Tab styles*/
 #generic-tabs ul#tabs { overflow: hidden; margin:0; padding:0;}
-#generic-tabs ul#tabs li{min-height: 100px; float:left; display:inline-block; width:100%; background:#EDEDED; border-top:4px solid #CCCCCC; border-right:1px solid #CCCCCC; }
+#generic-tabs ul#tabs li{min-height: 100px; float:left; display:inline-block; width:50%; background:#EDEDED; border-top:4px solid #CCCCCC; border-right:1px solid #CCCCCC; }
 #generic-tabs ul#tabs li:last-child {border-right:none;}
 #generic-tabs ul#tabs li:first-child { padding-left:0; }
 
@@ -369,7 +369,9 @@ p a{color:#27ae60; text-decoration:none;}
                 <li>
                     <a title="About" href="#first-tab"><i class="fa fa-home"></i> About</a>
                 </li>
-
+                <li>
+                    <a title="Reviews" href="#second-tab"><i class="fa fa-star"></i> Reviews</a>
+                </li>
             </ul>
 
             <div id="first-tab" class="tab-content animated fadeIn">
@@ -444,6 +446,18 @@ p a{color:#27ae60; text-decoration:none;}
                 </div>
               </div>
             </div>
+            <div id="second-tab" class="tab-content animated fadeIn">
+                  @foreach ($reviews as $review)
+                      @for ($i=0; $i < $review->rating; $i++)
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                      @endfor
+                    <br><strong>From: {{$review->freelancer}}</strong>
+                    <h6>Project name: {{$review->job->name}}</h6>
+                    <p>{{$review->comment}}</p>
+                  @endforeach
+
+
+                  </div>
         </section>
       </div>
 

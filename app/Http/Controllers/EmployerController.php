@@ -23,11 +23,12 @@ class EmployerController extends Controller
       $id = Auth::user()->id;
     else $id=9;
 
+    $reviews = Review::where('to_id', Auth::user()->id)->get();
     $employer = Employer::find($id);
     $pf = ProfileFiles::where('user_id', $id)->where('role', 'dp')->get();
     $cover=ProfileFiles::where('user_id', $id)->where('role', 'cover')->get();
 
-  	return view('employer.profile')->with('employer', $employer)->with('pf', $pf)->with('cover', $cover);
+  	return view('employer.profile')->with('employer', $employer)->with('pf', $pf)->with('cover', $cover)->with('reviews', $reviews);
   }
 
   public function postProject(){

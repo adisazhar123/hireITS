@@ -121,7 +121,14 @@ class FreelancerController extends Controller
            ->join('bid', 'job.job_id', '=', 'bid.job_id')
            ->select('*')->where('complete',0)->where('won_by.won_by_id', Auth::user()->id)
            ->get();
-      return view('freelancer.dashboard')->with('projects', $projects);
+
+      $finished_projects = DB::table('won_by')
+            ->join('job', 'won_by.job_id', '=', 'job.job_id')
+            ->join('bid', 'job.job_id', '=', 'bid.job_id')
+            ->select('*')->where('complete',1)->where('won_by.won_by_id', Auth::user()->id)
+            ->get();
+
+      return view('freelancer.dashboard')->with('projects', $projects)->with('finished_projects', $finished_projects);
     }
 
     public function bidProject(Request $request){
@@ -288,4 +295,19 @@ class FreelancerController extends Controller
         }
         return response()->json([$messages, $name]);
       }
+      public function rateEmployer(Request $request){
+        $review = new Review;
+        $review->from_id = Auth::user()->id;
+        $review->job_id = $request->rate_job_id;
+        $review->to_id = $request->rate_to_id;
+        $review->comment = $request->comment;
+        $review->rating = $request->stars;
+        $job=Job::find($request->rate_job_id);
+        $job->has_review=$job->has_review+2;
+
+        if ($review->save() && $job->save())
+         return redirect()->back();
+
+      }
+
 	 }

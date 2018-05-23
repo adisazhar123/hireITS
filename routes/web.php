@@ -46,6 +46,7 @@ Route::get('showcase', 'ProjectsController@browseShowcase')->name('browse.showca
 Route::get('/getSkills', 'FreelancerController@getSkills')->name('search.skills');
 Route::post('freelancer/send-progress', 'FreelancerController@sendProgress')->name('send.progress');
 Route::get('/freelancer/{username}','FreelancerController@viewFreelancer')->name('view.freelancer');
+Route::post('/rate-employer', 'FreelancerController@rateEmployer')->name('rate.employer');
 
 
 Route::get('/project/messages/download-file/{id}', 'ProjectsController@downloadFileMessage');
@@ -54,7 +55,7 @@ Route::get('/project/messages/download-file/{id}', 'ProjectsController@downloadF
 Route::middleware(['employer'])->group(function(){
   Route::post('post-project', 'EmployerController@storeProject')->name('store.project');
 });
-Route::post('/rate', 'EmployerController@rateFreelancer')->name('rate.freelancer');
+Route::post('/rate-freelancer', 'EmployerController@rateFreelancer')->name('rate.freelancer');
 Route::get('post-project', 'EmployerController@postProject')->name('post.project.page');
 Route::post('/employer/store-dp' ,'EmployerController@storeProfilePic')->name('store.employer.dp');
 Route::post('employer/send-progress', 'EmployerController@sendProgress')->name('send.progress.employer');
@@ -69,7 +70,7 @@ Route::get('employer/getprofile', 'EmployerController@getProfile')->name('get.em
 Route::put('employer/updateProfile', 'EmployerController@updateProfile')->name('update.employer.profile');
 Route::post('employer/hire-freelancer', 'EmployerController@hireFreelancer')->name('hire.freelancer');
 Route::get('employer/{username}', 'EmployerController@viewEmployer')->name('view.employer');  //MASIH BELOM
-Route::post('employer/project/payment-details', 'EmployerController@getPaymentDetails')->name('get.payment.details');  //MASIH BELOM
+Route::post('employer/project/payment-details', 'EmployerController@getPaymentDetails')->name('get.payment.details');
 
 
 
