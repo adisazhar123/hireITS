@@ -126,14 +126,16 @@
   </div>
   <div class="container">
     <div class="row">
-      @if(session()->has('success'))
-          <div class="col-md-12 alert alert-success alert-dismissable">
-              {{ session()->get('success') }}
-              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-          </div>
-      @endif
+      <div class="col-md-12">
+        @if(session()->has('success'))
+            <div class="alert alert-success alert-dismissable">
+                {{ session()->get('success') }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        @endif
+      </div>
       <div class="col-md-12">
         <div class="project-time">
           <div class="row">

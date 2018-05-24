@@ -3,26 +3,31 @@
   <head>
     <meta charset="utf-8">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>{{config('app.name','hireITS')}}</title>
+    <title>@yield('title')</title>
     <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet">
-
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/navbar2.css') }}" rel="stylesheet">
-
-    <link href="{{ asset('css/login-signup.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link href="//cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
-    <link href="//cdn.quilljs.com/1.3.6/quill.bubble.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.1/build/css/alertify.min.css"/>
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.1/build/css/themes/bootstrap.min.css"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker.min.css">
     <link rel="stylesheet" href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="{{ asset('css/login-signup.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+
+    @if (!isset($homepage))
+      <link href="//cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+      <link href="//cdn.quilljs.com/1.3.6/quill.bubble.css" rel="stylesheet">
+      <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
+      <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.1/build/css/alertify.min.css"/>
+      <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.1/build/css/themes/bootstrap.min.css"/>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker.min.css">
+    @endif
+
+    @yield('head')
 
   </head>
   @yield('style')
   <style media="screen">
+
+
   .navbar-brand {
     transform: scale(1.5);
     margin-left: 25px;
@@ -105,6 +110,67 @@ footer .container2{
  position: relative;
 }
 
+.btn-beekeper{
+  background-color: #f6e58d;
+  color: black;
+}
+
+.btn-beekeper:hover{
+  background-color: #f9ca24;
+  color: white;
+}
+
+.btn-nectarine{
+  background-color: #ffbe76;
+  color: black;
+}
+.btn-nectarine:hover{
+  background-color: #f0932b;
+  color: white;
+}
+.btn-eagle{
+  background-color: #95afc0;
+  color: black;
+}
+
+.btn-eagle:hover{
+  background-color: #535c68;
+  color: white;
+}
+.btn-june{
+  background-color: #badc58;
+  color: black;
+}
+.btn-june:hover{
+  background-color: #6ab04c;
+  color: white;
+}
+
+.btn-exodus{
+  background-color: #686de0;
+  color: black;
+}
+
+.btn-exodus:hover{
+  background-color: #4834d4;
+  color: white;
+}
+.btn-middle{
+  background-color: #7ed6df;
+  color: black;
+}
+
+.btn-middle:hover{
+  background-color: #22a6b3;
+  color: white;
+}
+
+.animated{
+  -moz-animation-duration: 1.5s;
+  -moz-animation-delay: 0.2s;
+  -moz-animation-iteration-count: once;
+}
+
   </style>
 
 
@@ -130,15 +196,13 @@ footer .container2{
   <!-- Main Quill library -->
   <script src="//cdn.quilljs.com/1.3.6/quill.js"></script>
   <script src="//cdn.quilljs.com/1.3.6/quill.min.js"></script>
-  <script src="https://www.paypalobjects.com/api/checkout.js"></script>
    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.11.1/build/alertify.min.js"></script>
   <script type="text/javascript">
-
     var action="";
 
     $(".login").click(function(){
-      alert("hi")
+
       $('.login-modal').fadeIn().modal('show')
     });
     $(".signup").click(function(){
@@ -263,7 +327,6 @@ footer .container2{
       data: {id: id},
       success: function(data){
         $("#navbar-pic").html(data)
-        //console.log(data)
       }
     })
   }
@@ -272,13 +335,15 @@ footer .container2{
   @endif
 
   </script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.min.js"></script>
   <script src="{{asset('js/superfish.min.js')}}"></script>
-  <script src="{{asset('js/jquery.magnific-popup.min.js')}}"></script>
-  <script src="{{asset('js/owl.carousel.min.js')}}"></script>
-  <script src="{{asset('js/jquery.counterup.min.js')}}"></script>
   <script src="{{asset('js/main.js')}}"></script>
 
+
+  @if (!isset($homepage))
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.min.js"></script>
+     <script src="{{asset('js/jquery.magnific-popup.min.js')}}"></script>
+     <script src="{{asset('js/owl.carousel.min.js')}}"></script>
+  @endif
 
   @yield('script')
 

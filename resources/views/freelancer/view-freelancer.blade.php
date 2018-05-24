@@ -367,6 +367,14 @@ p a{color:#27ae60; text-decoration:none;}
 }
 
 
+
+@media screen and (max-height: 768px) {
+  .hire-me a{
+    width: 100%;
+  }
+}
+
+
 @media screen and (max-height: 450px) {
   .sidenav {padding-top: 15px;}
   .sidenav a {font-size: 18px;}
@@ -457,7 +465,9 @@ p a{color:#27ae60; text-decoration:none;}
               </div>
             </div>
           </div>
-
+          <div class="hire-me">
+            <a href="{{route('post.project.page')}}?q=project+for+{{$freelancer[0]->username}}" class="btn btn-middle">Hire Me</a>
+          </div>
         </div>
 
         <div id="second-tab" class="tab-content portfolio animated fadeIn">
@@ -493,18 +503,19 @@ p a{color:#27ae60; text-decoration:none;}
 
 
         <div id="third-tab" class="tab-content animated fadeIn">
-
-
-                    <i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i>
-                    <br><strong>Joni</strong>
-                    <p>This guy is awesome!! work is always on time</p>
-
-
-                    <i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i>
-                    <br><strong>Joni</strong> Project mobile app
-                    <p>This guy is awesome!! work is always on time</p>
-
-        </div>
+          @if ($reviews->isEmpty())
+            <h4>No reviews.</h4>
+          @else
+            @foreach ($reviews as $review)
+                @for ($i=0; $i < $review->rating; $i++)
+                  <i class="fa fa-star" aria-hidden="true"></i>
+                @endfor
+              <br><strong>From: {{$review->employer->username}}</strong>
+              <h6>Project name: {{$review->job->name}}</h6>
+              <p>{{$review->comment}}</p>
+            @endforeach
+          @endif
+              </div>
 
     </section>
 

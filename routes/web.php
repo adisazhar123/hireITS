@@ -14,12 +14,15 @@
 Auth::routes();
 
 
+Route::get('/tes', function () {
+    return view('tes');
+});
 Route::get('/', function () {
     return view('homepage');
 });
 
 Route::get('get-image','UsersController@getImage')->name('get.navbar.pic');
-
+Route::get('top-user', 'UsersController@topuser')->name('user.top');
 
 //freelancer
 Route::get('freelancer/get/job-details', 'FreelancerController@getJobDetails')->name('get.job.details');
@@ -39,6 +42,7 @@ Route::middleware(['freelancer'])->group(function () {
   Route::post('/bid-project', 'FreelancerController@bidProject')->name('bid.project');
   Route::get('freelancer/getprofile', 'FreelancerController@getProfile')->name('get.freelancer.profile');
 });
+
 
 Route::get('freelancer/get-my-projects', 'FreelancerController@getOngoingProjects')->name('get.ongoing.projects');
 Route::get('jobs','ProjectsController@index')->name('browse.jobs');

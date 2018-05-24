@@ -16,6 +16,11 @@ class Review extends Model
       return $this->belongsTo('App\Freelancer', 'to_id', 'freelancer_id');
   }
 
+  public function freelancer2()
+  {
+      return $this->belongsTo('App\Freelancer', 'from_id', 'freelancer_id');
+  }
+
   public function employer()
   {
       return $this->belongsTo('App\Employer', 'from_id', 'employer_id');

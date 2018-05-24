@@ -167,6 +167,10 @@ table{
         </ul>
     </div>
 
+    @php
+      $no=1;
+    @endphp
+
     <div class="main1">
            <div id="tab1"><h2 class="header">My Bids</h2>
              <table class="table table-hover">
@@ -183,13 +187,12 @@ table{
                 @foreach ($my_bids as $my_bid)
                <tbody>
                 <tr>
-                  <th scope="row">1</th>
+                  <th scope="row">{{$no++}}</th>
                   <td><a href="/projects/{{$my_bid->slug}}">{{$my_bid->name}}</a></td>
-                  <td><button type="button" name="button" class="btn btn-default"><i class="fa fa-clock-o" aria-hidden="true"> Pending</i></button>
+                  <td><button type="button" name="button" class="btn btn-eagle"><i class="fa fa-clock-o" aria-hidden="true"> Pending</i></button>
                     </td>
                 </tr>
               </tbody>
-
               @endforeach
               @endif
 
@@ -216,7 +219,7 @@ table{
                  <th scope="row">1</th>
                  <td><a href="/projects/{{$project->slug}}">{{$project->name}}</a></td>
                  <td>{{date_format(date_create($project->deadline), "d-m-Y")}}</td>
-                 <td><button class="btn btn-info mr-3 update-progress" job-id="{{$project->job_id}}">Update Progress</button><button job-id="{{$project->job_id}}" class="btn btn-warning view-history">View History</button></td>
+                 <td><button class="btn btn-info mr-3 update-progress" job-id="{{$project->job_id}}">Update Progress</button><button job-id="{{$project->job_id}}" class="btn btn-nectarine view-history">View History</button></td>
                </tr>
              </tbody>
 
@@ -240,17 +243,16 @@ table{
                  <tr>
                    <th scope="row">1</th>
                    <td><a href="/projects/{{$project->slug}}">{{$project->name}}</a></td>
-                   @if ($project->has_review == 1)
-                     <td><button job-id="{{$project->job_id}}" class="btn btn-warning view-history mr-3">View History</button><button job-id="{{$project->job_id}}" employer-id="{{$project->employer_id}}" class="btn btn-primary rate-employer">Rate employer</button><i class="fa fa-check-square-o paid" aria-hidden="true"> Payment received</i></td>
+                   @if ($project->has_review == 3 || $project->has_review == 2)
+                     <td><button job-id="{{$project->job_id}}" class="btn btn-nectarine view-history mr-3 mb-2">View History</button><button class="btn btn-june mr-3 mb-2"><i class="fa fa-check-square-o paid" aria-hidden="true"> Payment received</i></button><button class="btn btn-june mb-2"><i class="fa fa-check-square-o paid" aria-hidden="true"> Employer Rated </i></button></td>
                    @else
-                     <td><button job-id="{{$project->job_id}}" class="btn btn-warning view-history mr-3">View History</button><button class="btn btn-default"><i class="fa fa-check-square-o paid" aria-hidden="true"> Payment received</i></button><button class="btn btn-default"><i class="fa fa-check-square-o paid" aria-hidden="true"> Rated </i></button></td>
+                     <td><button job-id="{{$project->job_id}}" class="btn btn-nectarine view-history mr-3 mb-2">View History</button><button class="btn btn-june mr-3 mb-2"><i class="fa fa-check-square-o paid" aria-hidden="true"> Payment received</i></button><button job-id="{{$project->job_id}}" employer-id="{{$project->employer_id}}" class="btn btn-primary rate-employer">Rate employer</button></td>
                    @endif
                  </tr>
                @endforeach
              </tbody>
            </table>
          </div>
-
          <!-- <div id="tab4"><h2 class="header">Portfolio</h2></div>
          <div id="tab5"><h2 class="header">Blog /news</h2></div>
          <div id="tab6"><h2 class="header">Advanced</h2></div>    -->

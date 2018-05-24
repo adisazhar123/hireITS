@@ -11,20 +11,6 @@ p{font-size: 1.2em; color:#a3a3a3 ; line-height: 1.5;}
 p strong{color:#555555;}
 p a{color:#27ae60; text-decoration:none;}
   img {max-width: 100%;}
-  .background-pic{
-    @if ($cover->isEmpty())
-      background-image: url('https://images.pexels.com/photos/735911/pexels-photo-735911.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');
-    @else
-      background-image: url({{asset($cover)}});
-    @endif
-    height: 60%;
-    top: 100%;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-color: rgba(0,0,0,0);
-    
-  }
 
   body{
     @if ($cover->isEmpty())
@@ -233,14 +219,12 @@ p a{color:#27ae60; text-decoration:none;}
         height: 40px;
         display: none;
         margin-bottom: 20px;
-        width: 100%;
         font-size: 28px;
       }
       #user-name{
         height: 40px;
         display: none;
         margin-bottom: 20px;
-        width: 100%;
         font-size: 28px;
 
       }
@@ -250,21 +234,37 @@ p a{color:#27ae60; text-decoration:none;}
         max-height: 300px;
       }
 
-      #user-price{
+      #user-price, #paypal{
         display: none;
 
         height: 40px;
         margin-bottom: 20px;
-        width: 100%;
         font-size: 28px;
       }
 
+      #jurusan{
+        display: none;
+        height: 40px;
+        margin-bottom: 20px;
+        font-size: 28px;
+      }
+
+
+      .input-group-prepend{
+        display: none;
+      }
+
+      .input-group-text{
+        height: 40px;
+      }
+
+
       .user-tags {
-    margin: 20px 0 0 0;
-    padding: 0;
-    list-style: none;
-    cursor: default;
-}
+        margin: 20px 0 0 0;
+        padding: 0;
+        list-style: none;
+        cursor: default;
+      }
 .user-tags .tag {
     display: inline-block;
     /*font-size: 8pt;
@@ -298,6 +298,7 @@ p a{color:#27ae60; text-decoration:none;}
 #wrapper{ max-width: 800px; width:100%; margin:0 auto;}
 #generic-tabs{
   width:100%; padding:20px;
+  height: 100%;
 }
 
 #first-tab,#second-tab,#third-tab{
@@ -330,11 +331,13 @@ p a{color:#27ae60; text-decoration:none;}
 }
 
 #second-tab{
+  display: none;
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
 }
 
 #third-tab{
+  display: none;
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
 }
@@ -458,7 +461,7 @@ p a{color:#27ae60; text-decoration:none;}
               @endif
 
             @endif
-            <div class="profile-pic">
+            <div class="profile-pic animated bounceInDown">
               @if ($pf->isEmpty())
                 <img class="rounded" src="{{asset('img/avatar.png')}}" alt="profile_pic12">
                 @else
@@ -475,7 +478,7 @@ p a{color:#27ae60; text-decoration:none;}
               </div>
 
             </div>
-            <div class="info">
+            <div class="info animated bounceInUp">
                 <p class="cant">{{"@".Auth::user()->username}} </p>
                 <p class="cant" id="department">{{$freelancer->major}} Department</p>
                 <p class="cant">{{$freelancer->jobs_completed}} jobs completed, {{$freelancer->jobs_ontime}} on time</p>
@@ -507,6 +510,7 @@ p a{color:#27ae60; text-decoration:none;}
 
               <div class="row">
                 <div class="col-lg-8">
+                  <button type="button" id="edit-profile" class="btn btn-warning" name="button" style="float: right">Edit Profile</button>
                   <h2><i class="profile-user fa fa-address-card-o"></i> Information</h2>
 
                   <h3 id="name2">@if (!Auth::user()->hassetprofile)
@@ -525,10 +529,42 @@ p a{color:#27ae60; text-decoration:none;}
 
                       <form action="#" method="post" class="form-profile">
                         {{ csrf_field() }}
-                        <input class="animated fadeIn form-control" id="user-name" type="text" placeholder="what is your name?" name="user-name" value="" style="display: none">
-                        <input class="animated fadeIn form-control" id="user-title" type="text" placeholder="what is your title?" name="user-title" value="" style="display: none">
+                        <div class="input-group inputt animated fadeIn">
+                              <div class="input-group-prepend animated fadeIn">
+                                <span class="input-group-text"><i class="fa fa-address-card" aria-hidden="true"></i></span>
+                              </div>
+                              <input class="animated fadeIn form-control" id="user-name" type="text" placeholder="what is your name?" name="user-name" value="" style="display: none">
+                         </div>
+
+                         <div class="input-group inputt animated fadeIn">
+                               <div class="input-group-prepend animated fadeIn">
+                                 <span class="input-group-text"><i class="fa fa-id-badge" aria-hidden="true"></i></span>
+                               </div>
+                               <input class="animated fadeIn form-control" id="user-title" type="text" placeholder="what is your title?" name="user-title" value="" style="display: none">
+                          </div>
+
+                          <div class="input-group inputt animated fadeIn">
+                                <div class="input-group-prepend animated fadeIn">
+                                  <span class="input-group-text"><i class="fa fa-graduation-cap" aria-hidden="true"></i></span>
+                                </div>
+                                <input class="animated fadeIn form-control" type="text" name="jurusan" id="jurusan" placeholder="what do you study in ITS?">
+                           </div>
+
+                           <div class="input-group inputt animated fadeIn">
+                                 <div class="input-group-prepend animated fadeIn">
+                                   <span class="input-group-text"><i class="fa fa-paypal" aria-hidden="true"></i></span>
+                                 </div>
+                                 <input type="email" class="animated fadeIn form-control" name="paypal" id="paypal" placeholder="if you want to be paid, fill in a valid paypal email" value="">
+                            </div>
+                            <div class="input-group inputt animated fadeIn">
+                                  <div class="input-group-prepend animated fadeIn">
+                                    <span class="input-group-text">$</span>
+                                  </div>
+                                  <input class="animated fadeIn form-control" id="user-price" type="text" name="user-price" placeholder="Price per hour" value="{{$freelancer->price}}" style="display: none">
+                             </div>
+
+
                         <h5 id="freelancer-price"> $ {{$freelancer->price}} USD/hr</h5>
-                        <input class="form-control" id="user-price" type="text" name="user-price" placeholder="Price per hour" value="{{$freelancer->price}}" style="display: none">
                         <input id="user-desc" name="user-desc" type="hidden" value="">
                         <div class="editor animated fadeIn">
 
@@ -548,7 +584,7 @@ p a{color:#27ae60; text-decoration:none;}
 
                 </div>
                 <div class="col-lg-4 divider">
-                  <div class="skills">                <button type="button" id="edit-profile" class="btn btn-warning" name="button" style="float: right">Edit Profile</button>
+                  <div class="skills">
 
                     <h2><i class="profile-user fa fa-cogs"></i> Skills</h2>
                       <form id="skills-form" style="opacity:0">
@@ -647,16 +683,18 @@ p a{color:#27ae60; text-decoration:none;}
             </div>
 
             <div id="third-tab" class="tab-content animated fadeIn">
-
-                @foreach ($reviews as $review)
-                    @for ($i=0; $i < $review->rating; $i++)
-                      <i class="fa fa-star" aria-hidden="true"></i>
-                    @endfor
-                  <br><strong>From: {{$review->employer->username}}</strong>
-                  <h6>Project name: {{$review->job->name}}</h6>
-                  <p>{{$review->comment}}</p>
-                @endforeach
-
+                @if ($reviews->isEmpty())
+                  <p>No review</p>
+                @else
+                  @foreach ($reviews as $review)
+                      @for ($i=0; $i < $review->rating; $i++)
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                      @endfor
+                    <br><strong>From: {{$review->employer->username}}</strong>
+                    <h6>Project name: {{$review->job->name}}</h6>
+                    <p>{{$review->comment}}</p>
+                  @endforeach
+                @endif
             </div>
         </section>
 
@@ -674,32 +712,37 @@ p a{color:#27ae60; text-decoration:none;}
     })
 
     $("#edit-profile").click(function(){
-    $("input#user-title").css("display", "block");
-    $("input#user-name").css("display", "block");
-    $("#skills-form").css("opacity","1")
-    $(".editor").css("display","block");
-    $(".ql-toolbar.ql-snow").css("display", "block");
-    $("#name2").css("display", "none");
-    $("#title").css("display", "none");
-    $("#save-profile").css("display", "block")
-    $(".profile-details").css("display", "none")
-    $("#user-price").css("display",'block')
-    $("#freelancer-price").css("display",'none')
-    $(".cant").css("display", "none")
-    $(this).hide();
-    $.ajax({
-      method: "GET",
-      url: "{{route('get.freelancer.profile')}}",
-      dataType: "json",
-      success: function(data){
-        console.log(data)
-        $("input#user-name").val(data.name);
-        $("input#user-title").val(data.title);
-        $("#user-price").val(data.price)
-        quill.root.innerHTML = data.description
-      }
-    });
+      $(".input-group-prepend").css("display", "block")
 
+      $("input#user-title").css("display", "block");
+      $("input#user-name").css("display", "block");
+      $("#skills-form").css("opacity","1")
+      $(".editor").css("display","block");
+      $(".ql-toolbar.ql-snow").css("display", "block");
+      $("#name2").css("display", "none");
+      $("#title").css("display", "none");
+      $("#save-profile").css("display", "block")
+      $(".profile-details").css("display", "none")
+      $("#user-price").css("display",'block')
+      $("#jurusan").css("display",'block')
+      $("#paypal").css("display",'block')
+      $("#freelancer-price").css("display",'none')
+      $(".cant").css("display", "none")
+      $(this).hide();
+      $.ajax({
+        method: "GET",
+        url: "{{route('get.freelancer.profile')}}",
+        dataType: "json",
+        success: function(data){
+          console.log(data)
+          $("input#user-name").val(data.name);
+          $("input#user-title").val(data.title);
+          $("#user-price").val(data.price)
+          $("#jurusan").val(data.major)
+          $("#paypal").val(data.paypal)
+          quill.root.innerHTML = data.description
+        }
+      });
   });
 
   var toolbarOptions = [
@@ -732,8 +775,10 @@ p a{color:#27ae60; text-decoration:none;}
     var title = $("input#user-title").val();
     var id = '{{Auth::user()->id}}'
     var price =   $("#user-price").val()
+    var jurusan = $("#jurusan").val()
+    var paypal = $("#paypal").val()
 
-    if (desc=="" || name=="" || title=="")
+    if (desc=="" || name=="" || title=="" || jurusan =="")
       alert("Fields cannot be empty!")
     else{
       //css
@@ -746,8 +791,11 @@ p a{color:#27ae60; text-decoration:none;}
       $("#save-profile").css("display", "none")
       $("#name2").css("display", "block")
       $("#user-price").css("display",'none')
+      $("#jurusan").css("display",'none')
+      $("#paypal").css("display",'none')
       $("#freelancer-price").css("display",'block')
       $("#skills-form").css("opacity","0")
+      $(".input-group-prepend").css("display", "none");
 
 
       $.ajaxSetup({
@@ -765,13 +813,16 @@ p a{color:#27ae60; text-decoration:none;}
       $.ajax({
         url: "{{route('update.freelancer.profile')}}",
         method: "PUT",
-        data: {name: name, description: desc, title: title, id: id, price: price, skills: mySkills},
+        data: {name: name, description: desc, title: title, id: id, price: price, skills: mySkills, jurusan: jurusan,
+          paypal: paypal
+              },
         success: function(data){
           if(data.success == 1){
 
             $(".profile-details").html(desc)
             $("#name2").text(name);
             $("#title").text(title);
+            $("#department").text(jurusan + " Department")
             $("#freelancer-price").html("$ " +price +" USD/hr")
             $(".cant").css("display", "block")
             $("#title").css("display", "block")

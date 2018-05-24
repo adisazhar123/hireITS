@@ -21,6 +21,8 @@
               <li><a href="{{route('post.project.page')}}">Post a project</a></li>
               <div class="dropdown-divider"></div>
               <li><a href="{{route('browse.showcase')}}">Showcase</a></li>
+              <div class="dropdown-divider"></div>
+              <li><a href="{{route('user.top')}}">Top Users</a></li>
             </ul>
           </li>
           @if(Auth::check())

@@ -45,7 +45,7 @@
                 </div>
               </div>
               <div class="row">
-                <a href="#" class="btn bid-btn" type="button" name="button">bid now</a>
+                <a href="{{route('view.project',['slug' => $job->slug])}}" class="btn bid-btn" type="button" name="button">bid now</a>
               </div>
             </div>
           </div>

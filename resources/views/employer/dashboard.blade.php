@@ -201,27 +201,33 @@ table{
       </div>
          <div id="tab2"><h2 class="header">On Going Projects</h2>
            <table class="table table-hover">
-             <thead>
-               <tr>
-                 <th scope="col">#</th>
-                 <th scope="col">Project name</th>
-                 <th scope="col">Deadline</th>
-                 <th scope="col">Action</th>
-               </tr>
-             </thead>
-             <tbody>
-               @foreach ($projects as $project)
+             @if (!count($projects)>0)
+               <h3>No ongoing projects</h3>
+             @else
+               <thead>
                  <tr>
-                   <th scope="row">1</th>
-                   <td><a href="/projects/{{$project->slug}}">{{$project->name}}</a></td>
-                   <td>{{date_format(date_create($project->deadline), "d-m-Y")}}</td>
-                   <td><button class="btn btn-info mr-3 update-progress" job-id="{{$project->job_id}}">Update Progress</button><button job-id="{{$project->job_id}}" class="btn btn-warning view-history mr-3">View History</button><button class="btn btn-primary pay-freelancer" bid-id="{{$project->bid_id}}">Pay freelancer</button></td>
+                   <th scope="col">#</th>
+                   <th scope="col">Project name</th>
+                   <th scope="col">Deadline</th>
+                   <th scope="col">Action</th>
                  </tr>
-               @endforeach
+               </thead>
+               <tbody>
+                 @foreach ($projects as $project)
+                   <tr>
+                     <th scope="row">1</th>
+                     <td><a href="/projects/{{$project->slug}}">{{$project->name}}</a></td>
+                     <td>{{date_format(date_create($project->deadline), "d-m-Y")}}</td>
+                     <td><button class="btn btn-info mr-3 update-progress" job-id="{{$project->job_id}}">Update Progress</button><button job-id="{{$project->job_id}}" class="btn btn-warning view-history mr-3">View History</button><button class="btn btn-primary pay-freelancer" bid-id="{{$project->bid_id}}">Pay freelancer</button></td>
+                   </tr>
+                 @endforeach
 
-             </tbody>
+               </tbody>
+             @endif
            </table>
-
+           @php
+             $no=1;
+           @endphp
          </div>
          <div id="tab3"><h2 class="header">Finished Projects</h2>
            <table class="table table-hover">
@@ -235,12 +241,13 @@ table{
              <tbody>
                @foreach ($finished_projects as $project)
                  <tr>
-                   <th scope="row">1</th>
+                   <th scope="row">{{$no++}}</th>
                    <td><a href="/projects/{{$project->slug}}">{{$project->name}}</a></td>
-                   @if (!$project->has_review)
-                     <td><button job-id="{{$project->job_id}}" class="btn btn-warning view-history mr-3">View History</button><button job-id="{{$project->job_id}}" freelancer-id="{{$project->freelancer_id}}" class="btn btn-primary rate-freelancer">Rate freelancer</button></td>
+
+                   @if ($project->has_review == 1 || $project->has_review == 3)
+                     <td><button job-id="{{$project->job_id}}" class="btn btn-nectarine view-history mr-3">View History</button><button class="btn btn-june mr-3"><i class="fa fa-check-square-o paid" aria-hidden="true"> Paid</i></button><button class="btn btn-june mr-3"><i class="fa fa-check-square-o paid" aria-hidden="true"> Rated </i></button></td>
                    @else
-                     <td><button job-id="{{$project->job_id}}" class="btn btn-warning view-history mr-3">View History</button><i class="fa fa-check-square-o paid" aria-hidden="true"> Paid</i><i class="fa fa-check-square-o paid" aria-hidden="true"> Rated </i></td>
+                     <td><button job-id="{{$project->job_id}}" class="btn btn-nectarine view-history mr-3">View History</button><button job-id="{{$project->job_id}}" freelancer-id="{{$project->freelancer_id}}" class="btn btn-primary rate-freelancer mr-3">Rate freelancer</button></td>
 
                    @endif
                  </tr>
@@ -331,6 +338,9 @@ table{
       <div class="modal-body">
         <h4>All payment is done through paypal.</h4>
         <p>PayPal lets you quickly and securely send and receive money for goods, services and more. At PayPal, your financial security is our highest priority. We use the latest anti-fraud technology to help make sure your transactions are safer and you’re 100% protected against unauthorized payments sent from your account.</p>
+        <div class="warning">
+
+        </div>
         <div class="details">
 
         </div>
@@ -382,6 +392,8 @@ table{
 @endsection
 
 @section('script')
+<script src="https://www.paypalobjects.com/api/checkout.js"></script>
+
 <script type="text/javascript">
 
   var bid_id;
@@ -490,7 +502,10 @@ table{
       method: "POST",
       data: {id: bid_id},
       success: function(data){
-        $(".payment .details").html("<p><strong>You have $"+ data + " due to pay.</strong></p>")
+        $(".payment .warning").html("");
+        if(!data[1])
+          $(".payment .warning").html("<div class='alert alert-danger'>This user hasn't set up their paypal account.</div>");
+        $(".payment .details").html("<p><strong>You have $"+ data[0] + " due to pay.</strong></p>")
       }
     })
     $('.payment').modal('show')
@@ -502,11 +517,6 @@ table{
     $(".rate").modal('show')
   })
 
-  $(".stars i").hover(function(){
-    if($(this).attr('star-id') == 1){
-    //  $()
-    }
-  })
 
 
   $(".stars i").click(function(){

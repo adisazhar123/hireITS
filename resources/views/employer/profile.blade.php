@@ -454,7 +454,7 @@ p a{color:#27ae60; text-decoration:none;}
                     @for ($i=0; $i < $review->rating; $i++)
                       <i class="fa fa-star" aria-hidden="true"></i>
                     @endfor
-                  <br><strong>From: {{$review->freelancer}}</strong>
+                  <br><strong>From: {{$review->freelancer2->username}}</strong>
                   <h6>Project name: {{$review->job->name}}</h6>
                   <p>{{$review->comment}}</p>
                 @endforeach

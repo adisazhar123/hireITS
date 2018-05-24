@@ -101,6 +101,15 @@ textarea{
 			<textarea name="description" rows="10" cols="80"></textarea>
 		</div>
 		<div class = "form-group">
+				Price
+				<div class = "input-group">
+					<div class = "icon">
+						<span class = "icon-case"><i class = "fa fa-sort-numeric-asc"></i></span>
+					</div>
+					<input type="number" name="number" class ="form-control col-6" placeholder="Price" min="0"/>
+				</div>
+			</div>
+		<div class = "form-group">
 			Your Title
 			<div class = "input-group">
 				<div class = "icon">

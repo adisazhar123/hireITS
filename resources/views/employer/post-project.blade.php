@@ -217,7 +217,14 @@ p span {
                     <span class="icon-case"><i class="fa fa-file-code-o"></i></span>
 
                   </div>
-                  <input type="text" name="name" id="name" class="form-control" placeholder="e.g. Build me a website">
+                  @php
+                    if (isset($_GET['q'])) {
+                      echo "<input type=text name=name id=name class=form-control value='".$_GET['q']."' placeholder='e.g. Build me a website'>";
+                    }else{
+                      echo '<input type="text" name="name" id="name" class="form-control" placeholder="e.g. Build me a website">';
+
+                    }
+                  @endphp
                 </div>
               </div>
 

@@ -31,7 +31,21 @@ class EmployerController extends Controller
   	return view('employer.profile')->with('employer', $employer)->with('pf', $pf)->with('cover', $cover)->with('reviews', $reviews);
   }
 
-  public function postProject(){
+  public function viewEmployer($username){
+    $id = User::where('username', $username)->first();
+    if ($id === null) return "No employer found with the given username: ". $username;
+    $employer = Employer::find($id);
+
+
+
+    $reviews = Review::where('to_id', $employer[0]->employer_id)->get();
+
+    $pf = ProfileFiles::where('user_id',$id->id)->where('role', 'dp')->get();
+    $cover=ProfileFiles::where('user_id', $id->id)->where('role', 'cover')->get();
+    return view('employer.view-employer')->with('employer', $employer)->with('pf', $pf)->with('reviews', $reviews)->with('cover', $cover);
+  }
+
+  public function postProject(Request $request){
     return view('employer.post-project');
   }
   public function storeProject(Request $request){
@@ -109,7 +123,7 @@ class EmployerController extends Controller
      $user->hassetprofile = 1;
 
      if($emp->save() && $user->save()){
-     	return view('employer.profile');
+     	return redirect()->route('view.employer.profile');
      }
   }
 
@@ -230,7 +244,10 @@ class EmployerController extends Controller
 
    public function getPaymentDetails(Request $request){
      $price = Bid::find($request->id);
-     return number_format($price['price'], 2);
+     $paypal_set=0;
+     if (!User::find($price->freelancer_id)['paypal']=="")
+      $paypal_set = 1;
+     return response()->json([number_format($price['price'], 2), $paypal_set]);
    }
 
    public function rateFreelancer(Request $request){
@@ -240,6 +257,17 @@ class EmployerController extends Controller
      $review->to_id = $request->rate_to_id;
      $review->comment = $request->comment;
      $review->rating = $request->stars;
+     $job=Job::find($request->rate_job_id);
+     $job->has_review=$job->has_review+1;
+
+     $freelancer = Freelancer::find($request->rate_to_id);
+     $freelancer->review+=1;
+     $freelancer->rating+=$request->stars;
+
+     $freelancer->rating=($freelancer->rating)/$freelancer->review;
+
+     if ($review->save() && $job->save() && $freelancer->save())
+      return redirect()->back();
 
      if ($review->save())
       return redirect()->back();

@@ -55,8 +55,11 @@ class FreelancerController extends Controller
       $freelancer->title = $request->input('title');
       $freelancer->description = $request->input('description');
       $freelancer->price = $request->input('price');
+      $freelancer->major = $request->jurusan;
+      $freelancer->paypal = $request->paypal;
       $user = Auth::user();
       $user->hassetprofile = 1;
+      $user->paypal = $request->paypal;
 
       for ($i=0; $i <count($request->skills) ; $i++) {
         $diberkati = new Diberkati;
@@ -99,9 +102,9 @@ class FreelancerController extends Controller
 
     public function deletePortfolio($id){
       $portfolio = Portfolio::find($id);
-      if($portfolio->isEmprt()) return "gaono";
+      if(empty($portfolio)) return "gaono";
       if ($portfolio->delete())
-        return "success";
+        return redirect()->back();
     }
 
     public function getSkills(Request $request){
@@ -133,7 +136,7 @@ class FreelancerController extends Controller
             ->get();
 
       //return [$my_bids, $projects, $finished_projects];
-      
+
       return view('freelancer.dashboard')->with('projects', $projects)->with('finished_projects', $finished_projects)->with('my_bids', $my_bids);
     }
 
@@ -180,11 +183,12 @@ class FreelancerController extends Controller
 	     		$fl->major = $request->input('major');
 	     		$fl->description = $request->input('description');
 	     		$fl->title = $request->input('title');
+	     		$fl->price = $request->input('number');
 	    		$user = Auth::user();
 	         	$user->hassetprofile = 1;
 
 	     		if($fl->save() && $user->save()){
-	     			return view('freelancer.profile');
+	     			return redirect()->route('view.freelancer.profile');
 	     		}
      		}
      	}
@@ -242,10 +246,12 @@ class FreelancerController extends Controller
                   ->select('diberkati.skills_id', 'diberkati.freelancer_id', 'skills.name')
                   ->get();
 
+        $reviews = Review::where('to_id', $freelancer[0]->freelancer_id)->get();
+
         $pf = ProfileFiles::where('user_id',$id->id)->where('role', 'dp')->get();
         $cover=ProfileFiles::where('user_id', $id->id)->where('role', 'cover')->get();
         return view('freelancer.view-freelancer')->with('freelancer', $freelancer)->with('portfolios',$portfolios)->with('skills', $skills)->with('pf', $pf)
-        ->with('cover', $cover);
+        ->with('cover', $cover)->with('reviews', $reviews);
       }
 
       public function getOngoingProjects(){
@@ -308,10 +314,18 @@ class FreelancerController extends Controller
         $review->to_id = $request->rate_to_id;
         $review->comment = $request->comment;
         $review->rating = $request->stars;
+
         $job=Job::find($request->rate_job_id);
         $job->has_review=$job->has_review+2;
 
-        if ($review->save() && $job->save())
+        $employer = Employer::find($request->rate_to_id);
+        $employer->rating+=$request->stars;
+        $employer->review+=1;
+
+        $employer->rating=($employer->rating)/$employer->review;
+
+
+        if ($review->save() && $job->save() && $employer->save())
          return redirect()->back();
 
       }
