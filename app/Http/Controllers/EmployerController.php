@@ -87,7 +87,7 @@ class EmployerController extends Controller
         $image->type ="image/".$extension;
         $image->save();
       }
-      return redirect()->back()->with('success', 'Project uploaded!');
+      return redirect()->route('view.project', $job->slug)->with('success', 'Project uploaded!');
     }
     else redirect()->back()->with('error', 'Project failed to upload!');
   }

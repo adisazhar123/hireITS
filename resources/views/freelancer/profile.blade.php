@@ -23,7 +23,7 @@ p a{color:#27ae60; text-decoration:none;}
     background-repeat: no-repeat;
     background-size: cover;
     background-color: rgba(0,0,0,0);
-    //margin-bottom: -400px;
+    
   }
 
   body{
