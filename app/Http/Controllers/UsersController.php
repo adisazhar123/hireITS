@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\User;
 use App\ProfileFiles;
 use DB;
+use App\Employer;
+use App\Freelancer;
 
 class UsersController extends Controller
 {
@@ -112,5 +114,9 @@ class UsersController extends Controller
       $name = base64_encode($pf[0]->name);
       $type = $pf[0]->img_type;
       return '<img style="height:30px; width:37px; border-radius: 3px" src="data:'.$type.';base64,'.$name.'"/>';
+    }
+
+    public function topuser(){
+    	return view('user.topuser');
     }
 }

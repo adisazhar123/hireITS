@@ -109,7 +109,7 @@ class EmployerController extends Controller
      $user->hassetprofile = 1;
 
      if($emp->save() && $user->save()){
-     	return view('employer.profile');
+     	return redirect()->route('view.employer.profile');
      }
   }
 
