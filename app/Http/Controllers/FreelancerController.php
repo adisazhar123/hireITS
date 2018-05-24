@@ -180,11 +180,12 @@ class FreelancerController extends Controller
 	     		$fl->major = $request->input('major');
 	     		$fl->description = $request->input('description');
 	     		$fl->title = $request->input('title');
+	     		$fl->price = $request->input('number');
 	    		$user = Auth::user();
 	         	$user->hassetprofile = 1;
 
 	     		if($fl->save() && $user->save()){
-	     			return view('freelancer.profile');
+	     			return redirect()->route('view.freelancer.profile');
 	     		}
      		}
      	}
