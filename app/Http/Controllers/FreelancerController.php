@@ -111,11 +111,15 @@ class FreelancerController extends Controller
      }
      $tags = Skills::where('name','like','%'.$term.'%')->limit(5)->get();
 
-
      return response()->json($tags);
    }
 
    public function dashboard(){
+     $my_bids = DB::table('bid')
+           ->join('job', 'bid.job_id', '=', 'job.job_id')
+           ->select('*')->where('complete',0)->where('active', 1)->where('bid.freelancer_id', Auth::user()->id)
+           ->get();
+
      $projects = DB::table('won_by')
            ->join('job', 'won_by.job_id', '=', 'job.job_id')
            ->join('bid', 'job.job_id', '=', 'bid.job_id')
@@ -128,7 +132,9 @@ class FreelancerController extends Controller
             ->select('*')->where('complete',1)->where('won_by.won_by_id', Auth::user()->id)
             ->get();
 
-      return view('freelancer.dashboard')->with('projects', $projects)->with('finished_projects', $finished_projects);
+      //return [$my_bids, $projects, $finished_projects];
+      
+      return view('freelancer.dashboard')->with('projects', $projects)->with('finished_projects', $finished_projects)->with('my_bids', $my_bids);
     }
 
     public function bidProject(Request $request){

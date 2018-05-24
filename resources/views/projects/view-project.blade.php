@@ -42,6 +42,7 @@
       padding: 0;
     }
     .bidders .card{
+      border-top: none;
       border-radius: 0px;
       padding: 0;
       border-bottom: solid grey;
@@ -89,7 +90,7 @@
     }
 
     .fa-star{
-      color: yellow;
+      color: #FFAA2A;
     }
 
     .card-body{
@@ -99,6 +100,8 @@
     .card-body img{
       border-radius: 4px;
     }
+
+
 
 
 
@@ -124,7 +127,7 @@
   <div class="container">
     <div class="row">
       @if(session()->has('success'))
-          <div class="alert alert-success alert-dismissable">
+          <div class="col-md-12 alert alert-success alert-dismissable">
               {{ session()->get('success') }}
               <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
@@ -172,7 +175,10 @@
     <div class="row">
       <div class="col-md-12">
         <div class="project-desc" style="background-color: white; height: auto">
-          <h3>Project Description</h3>
+          <div class="project-title">
+            <h3>Project Description</h3>
+
+          </div>
 
           <div class="row">
             <div class="col-md-8">
@@ -302,7 +308,14 @@
                         <div class="col-md-2">
                           ${{number_format($bid->price,2)}}
                           <br>
-                          my rating is five stars
+                          @if (!$bid->freelancer->rating)
+                            No ratings yet.
+                          @else
+                            @for ($i=0; $i < $bid->freelancer->rating; $i++)
+                              <i class="fa fa-star" aria-hidden="true"></i>
+                            @endfor
+                          @endif
+
                         </div>
                         <div class="col-md-2">
                           @if (Auth::check())

@@ -129,22 +129,18 @@ table{
   margin-right: 3px;
   font-size: 16px;
 }
-/*
-.stars .s1:hover{
-  color: #FFAA2A;
-}
-
-.stars .s1 .stars .s2:hover {
-  color: #FFAA2A;
-}*/
 
 .paid{
   font-size: 24px;
   color: green;
 }
 
-#tab3{
+#tab2, #tab3{
   display: none;
+}
+
+.main1 .btn{
+  margin-bottom: 3px;
 }
 
 
@@ -156,7 +152,7 @@ table{
 @section('content')
   <div class="container">
     @if(session()->has('success'))
-        <div class="alert alert-success alert-dismissible">
+        <div class="alert alert-success alert-dismissible mt-5">
             {{ session()->get('success') }}
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
   <span aria-hidden="true">&times;</span>
@@ -164,7 +160,7 @@ table{
         </div>
     @endif
     @if(session()->has('error'))
-        <div class="alert alert-danger alert-dismissible">
+        <div class="alert alert-danger alert-dismissible mt-5">
             {{ session()->get('error') }}
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
   <span aria-hidden="true">&times;</span>
@@ -176,6 +172,7 @@ table{
 <div class="container admin-panel">
     <div class="slidebar">
         <ul>
+          <li><a href="" name="tab1"><i class="fa fa fa-list"></i>My Projects</a></li>
             <li><a href="" name="tab2"><i class="fa fa fa-tasks"></i>On Going Projects</a></li>
             <li><a href="" name="tab3"><i class="fa fa-check"></i>Finished Projects</a></li>
             <!-- <li><a href="" name="tab4"><i class="fa fa-picture-o"></i>Portfolio</a></li>
@@ -184,6 +181,24 @@ table{
     </div>
 
     <div class="main1">
+      <div id="tab1"><h2 class="header">My Projects</h2>
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Project name</th>
+              <th scope="col">Deadline</th>
+              <th scope="col">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+
+
+
+          </tbody>
+        </table>
+
+      </div>
          <div id="tab2"><h2 class="header">On Going Projects</h2>
            <table class="table table-hover">
              <thead>

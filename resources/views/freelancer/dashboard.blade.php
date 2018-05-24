@@ -127,6 +127,16 @@ table{
 .stars i{
   color: #FFFFAA;
 }
+#tab2, #tab3{
+  display: none;
+}
+
+@media only screen and (max-width: 989px) {
+  .slidebar{
+    width: 0px;
+  }
+
+}
 
 
 </style>
@@ -149,16 +159,44 @@ table{
   </div>
 
 <div class="container admin-panel">
-    <div class="slidebar">
+    <div class="slidebar animated fadeIn">
         <ul>
+            <li><a href="" name="tab1"><i class="fa fa fa-list"></i>My Bids</a></li>
             <li><a href="" name="tab2"><i class="fa fa fa-tasks"></i>On Going Projects</a></li>
             <li><a href="" name="tab3"><i class="fa fa-check"></i>Finished Projects</a></li>
-            <!-- <li><a href="" name="tab4"><i class="fa fa-picture-o"></i>Portfolio</a></li>
-            <li><a href="" name="tab6"><i class="fa fa-wrench"></i>Advanced</a></li> -->
         </ul>
     </div>
 
     <div class="main1">
+           <div id="tab1"><h2 class="header">My Bids</h2>
+             <table class="table table-hover">
+              @if (!count($my_bids)>0)
+                 <h3>No bids</h3>
+              @else
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Project name</th>
+                    <th scope="col">Status</th>
+                  </tr>
+                </thead>
+                @foreach ($my_bids as $my_bid)
+               <tbody>
+                <tr>
+                  <th scope="row">1</th>
+                  <td><a href="/projects/{{$my_bid->slug}}">{{$my_bid->name}}</a></td>
+                  <td><button type="button" name="button" class="btn btn-default"><i class="fa fa-clock-o" aria-hidden="true"> Pending</i></button>
+                    </td>
+                </tr>
+              </tbody>
+
+              @endforeach
+              @endif
+
+             </table>
+
+           </div>
+
          <div id="tab2"><h2 class="header">On Going Projects</h2>
            <table class="table table-hover">
              @if (!count($projects)>0)
@@ -184,8 +222,6 @@ table{
 
              @endforeach
              @endif
-
-
 
            </table>
 
@@ -447,14 +483,13 @@ table{
         }
   });
 
-  /*$(document).on('mousemove', function(e){
-    if(e.pageX<=250)
-      document.getElementByClas("slidebar").style.width = "250px";
+  $(document).on('mousemove', function(e){
+    if(e.pageX<=100)
+      $(".slidebar").css("width", "100px")
       else{
-        document.getElementById("mySidenav").style.width = "0px";
-
+        $(".slidebar").css("width", "0px")
       }
-  })*/
+  })
 
   $(".update-progress").click(function(){
     $(".modal.progress2").modal('show')

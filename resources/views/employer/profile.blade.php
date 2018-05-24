@@ -447,16 +447,18 @@ p a{color:#27ae60; text-decoration:none;}
               </div>
             </div>
             <div id="second-tab" class="tab-content animated fadeIn">
-                  @foreach ($reviews as $review)
-                      @for ($i=0; $i < $review->rating; $i++)
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                      @endfor
-                    <br><strong>From: {{$review->freelancer}}</strong>
-                    <h6>Project name: {{$review->job->name}}</h6>
-                    <p>{{$review->comment}}</p>
-                  @endforeach
-
-
+              @if ($reviews->isEmpty())
+                <h4>No reviews.</h4>
+              @else
+                @foreach ($reviews as $review)
+                    @for ($i=0; $i < $review->rating; $i++)
+                      <i class="fa fa-star" aria-hidden="true"></i>
+                    @endfor
+                  <br><strong>From: {{$review->freelancer}}</strong>
+                  <h6>Project name: {{$review->job->name}}</h6>
+                  <p>{{$review->comment}}</p>
+                @endforeach
+              @endif
                   </div>
         </section>
       </div>
@@ -576,6 +578,7 @@ p a{color:#27ae60; text-decoration:none;}
             $("#title").css("display", "block")
 						$("#address").css("display", "block")
             $(".profile-details").css("display", "block")
+            $("#freelancer-price").text("Pays: $ " +price + " USD/hr")
             $("#edit-profile").show()
             alertify.success('Profile Updated!');
           }
