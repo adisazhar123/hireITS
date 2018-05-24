@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="{{ asset('css/login-signup.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
 
     @if (!isset($homepage))
       <link href="//cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
@@ -165,11 +164,6 @@ footer .container2{
   color: white;
 }
 
-.animated{
-  -moz-animation-duration: 1.5s;
-  -moz-animation-delay: 0.2s;
-  -moz-animation-iteration-count: once;
-}
 
   </style>
 
@@ -289,32 +283,6 @@ footer .container2{
     })
   })
 
-  $.fn.extend({
-  animateCss: function(animationName, callback) {
-    var animationEnd = (function(el) {
-      var animations = {
-        animation: 'animationend',
-        OAnimation: 'oAnimationEnd',
-        MozAnimation: 'mozAnimationEnd',
-        WebkitAnimation: 'webkitAnimationEnd',
-      };
-
-      for (var t in animations) {
-        if (el.style[t] !== undefined) {
-          return animations[t];
-        }
-      }
-    })(document.createElement('div'));
-
-    this.addClass('animated ' + animationName).one(animationEnd, function() {
-      $(this).removeClass('animated ' + animationName);
-
-      if (typeof callback === 'function') callback();
-    });
-
-    return this;
-  },
-});
 
   function getNavbarPic(){
     var id = "";

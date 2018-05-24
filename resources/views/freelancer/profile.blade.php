@@ -461,7 +461,7 @@ p a{color:#27ae60; text-decoration:none;}
               @endif
 
             @endif
-            <div class="profile-pic animated bounceInDown">
+            <div class="profile-pic  bounceInDown">
               @if ($pf->isEmpty())
                 <img class="rounded" src="{{asset('img/avatar.png')}}" alt="profile_pic12">
                 @else
@@ -478,7 +478,7 @@ p a{color:#27ae60; text-decoration:none;}
               </div>
 
             </div>
-            <div class="info animated bounceInUp">
+            <div class="info  bounceInUp">
                 <p class="cant">{{"@".Auth::user()->username}} </p>
                 <p class="cant" id="department">{{$freelancer->major}} Department</p>
                 <p class="cant">{{$freelancer->jobs_completed}} jobs completed, {{$freelancer->jobs_ontime}} on time</p>
@@ -506,7 +506,7 @@ p a{color:#27ae60; text-decoration:none;}
                 </li>
             </ul>
 
-            <div id="first-tab" class="tab-content animated fadeIn">
+            <div id="first-tab" class="tab-content  fadeIn">
 
               <div class="row">
                 <div class="col-lg-8">
@@ -529,44 +529,44 @@ p a{color:#27ae60; text-decoration:none;}
 
                       <form action="#" method="post" class="form-profile">
                         {{ csrf_field() }}
-                        <div class="input-group inputt animated fadeIn">
-                              <div class="input-group-prepend animated fadeIn">
+                        <div class="input-group inputt  fadeIn">
+                              <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fa fa-address-card" aria-hidden="true"></i></span>
                               </div>
-                              <input class="animated fadeIn form-control" id="user-name" type="text" placeholder="what is your name?" name="user-name" value="" style="display: none">
+                              <input class=" form-control" id="user-name" type="text" placeholder="what is your name?" name="user-name" value="" style="display: none">
                          </div>
 
-                         <div class="input-group inputt animated fadeIn">
-                               <div class="input-group-prepend animated fadeIn">
+                         <div class="input-group inputt  fadeIn">
+                               <div class="input-group-prepend ">
                                  <span class="input-group-text"><i class="fa fa-id-badge" aria-hidden="true"></i></span>
                                </div>
-                               <input class="animated fadeIn form-control" id="user-title" type="text" placeholder="what is your title?" name="user-title" value="" style="display: none">
+                               <input class="fadeIn form-control" id="user-title" type="text" placeholder="what is your title?" name="user-title" value="" style="display: none">
                           </div>
 
-                          <div class="input-group inputt animated fadeIn">
-                                <div class="input-group-prepend animated fadeIn">
+                          <div class="input-group inputt  fadeIn">
+                                <div class="input-group-prepend">
                                   <span class="input-group-text"><i class="fa fa-graduation-cap" aria-hidden="true"></i></span>
                                 </div>
-                                <input class="animated fadeIn form-control" type="text" name="jurusan" id="jurusan" placeholder="what do you study in ITS?">
+                                <input class="form-control" type="text" name="jurusan" id="jurusan" placeholder="what do you study in ITS?">
                            </div>
 
-                           <div class="input-group inputt animated fadeIn">
-                                 <div class="input-group-prepend animated fadeIn">
+                           <div class="input-group inputt  fadeIn">
+                                 <div class="input-group-prepend">
                                    <span class="input-group-text"><i class="fa fa-paypal" aria-hidden="true"></i></span>
                                  </div>
-                                 <input type="email" class="animated fadeIn form-control" name="paypal" id="paypal" placeholder="if you want to be paid, fill in a valid paypal email" value="">
+                                 <input type="email" class="form-control" name="paypal" id="paypal" placeholder="if you want to be paid, fill in a valid paypal email" value="">
                             </div>
-                            <div class="input-group inputt animated fadeIn">
-                                  <div class="input-group-prepend animated fadeIn">
+                            <div class="input-group inputt  fadeIn">
+                                  <div class="input-group-prepend">
                                     <span class="input-group-text">$</span>
                                   </div>
-                                  <input class="animated fadeIn form-control" id="user-price" type="text" name="user-price" placeholder="Price per hour" value="{{$freelancer->price}}" style="display: none">
+                                  <input class="form-control" id="user-price" type="text" name="user-price" placeholder="Price per hour" value="{{$freelancer->price}}" style="display: none">
                              </div>
 
 
                         <h5 id="freelancer-price"> $ {{$freelancer->price}} USD/hr</h5>
                         <input id="user-desc" name="user-desc" type="hidden" value="">
-                        <div class="editor animated fadeIn">
+                        <div class="editor  fadeIn">
 
                         </div>
                         <button type="submit" id="save-profile" class="btn btn-primary" style="display: none">Save Profile</button>
@@ -652,7 +652,7 @@ p a{color:#27ae60; text-decoration:none;}
                         @endforeach
                       </div>
                       @endif
-                        <div class="modal portfolio animated fadeIn" tabindex="-1" role="dialog">
+                        <div class="modal portfolio  fadeIn" tabindex="-1" role="dialog">
                           <div class="modal-dialog" role="document">
                             <div class="modal-content">
                               <div class="modal-header">
@@ -682,7 +682,7 @@ p a{color:#27ae60; text-decoration:none;}
                         </div>
             </div>
 
-            <div id="third-tab" class="tab-content animated fadeIn">
+            <div id="third-tab" class="tab-content  fadeIn">
                 @if ($reviews->isEmpty())
                   <p>No review</p>
                 @else
