@@ -341,7 +341,7 @@ p a{color:#27ae60; text-decoration:none;}
               @endif
 
             @endif
-            <div class="profile-pic animated bounceInDown">
+            <div class="profile-pic">
               @if ($pf->isEmpty())
                 <img class="rounded" src="{{asset('img/avatar.png')}}" alt="profile_pic12">
                 @else
@@ -358,7 +358,7 @@ p a{color:#27ae60; text-decoration:none;}
               </div>
 
             </div>
-            <div class="info animated bounceInUp">
+            <div class="info">
               <p class="cant">{{"@".Auth::user()->username}} </p>
   						<p class="cant">Member since: {{date_format(Auth::user()->created_at,"d/m/Y")}}</p>
             </div>
@@ -374,7 +374,7 @@ p a{color:#27ae60; text-decoration:none;}
                 </li>
             </ul>
 
-            <div id="first-tab" class="tab-content animated fadeIn">
+            <div id="first-tab" class="tab-content  ">
 
               <div class="row">
                 <div class="col-lg-12">
@@ -396,43 +396,43 @@ p a{color:#27ae60; text-decoration:none;}
                     </h5>
 										<h5 id="freelancer-price">Pays: $ {{$employer->price}}  USD/hr</h5>
 										<h5 id="address">{{$employer->address}}</h5>
-                      <form action="#" method="post" class="form-profile animated fadeIn">
+                      <form action="#" method="post" class="form-profile  ">
                         {{ csrf_field() }}
 
-												<div class="input-group inputt animated fadeIn">
-															<div class="input-group-prepend animated fadeIn">
+												<div class="input-group inputt  ">
+															<div class="input-group-prepend  ">
 																<span class="input-group-text"><i class="fa fa-building" aria-hidden="true"></i></span>
 															</div>
-															<input class="animated fadeIn form-control" id="user-name" type="text" placeholder="what is the name of your company?" name="user-name" value="" style="display: none">
+															<input class="  form-control" id="user-name" type="text" placeholder="what is the name of your company?" name="user-name" value="" style="display: none">
 												 </div>
 
-												<div class="input-group inputt animated fadeIn">
-															<div class="input-group-prepend animated fadeIn">
+												<div class="input-group inputt  ">
+															<div class="input-group-prepend  ">
 																<span class="input-group-text"><i class="fa fa-id-badge" aria-hidden="true"></i></span>
 															</div>
-															<input class="animated fadeIn form-control" id="user-title" type="text" placeholder="what is your title?" name="user-title" value="" style="display: none">
+															<input class="  form-control" id="user-title" type="text" placeholder="what is your title?" name="user-title" value="" style="display: none">
 												 </div>
 
 
 
-												<div class="input-group inputt animated fadeIn">
-															<div class="input-group-prepend animated fadeIn">
+												<div class="input-group inputt  ">
+															<div class="input-group-prepend  ">
 																<span class="input-group-text"><i class="fa fa-map-marker" aria-hidden="true"></i></span>
 															</div>
-															<input class="form-control animated fadeIn" id="user-address" placeholder="Where is your bussiness located at?" style="display: none" type="text" name="" value="">
+															<input class="form-control  " id="user-address" placeholder="Where is your bussiness located at?" style="display: none" type="text" name="" value="">
 												 </div>
 
-												<div class="input-group inputt animated fadeIn">
-								              <div class="input-group-prepend animated fadeIn" animated fadeIn>
+												<div class="input-group inputt  ">
+								              <div class="input-group-prepend  "  >
 								                <span class="input-group-text">$</span>
 								              </div>
-															<input class="form-control animated fadeIn" id="user-price" type="number" step="0.5" name="user-price" placeholder="Price per hour" value="">
+															<input class="form-control  " id="user-price" type="number" step="0.5" name="user-price" placeholder="Price per hour" value="">
 								         </div>
 												<input id="user-desc" name="user-desc" type="hidden" value="">
-                        <div class="editor animated fadeIn">
+                        <div class="editor  ">
 
                         </div>
-                        <button type="submit" id="save-profile" class="btn btn-primary animated fadeIn" style="display: none">Save Profile</button>
+                        <button type="submit" id="save-profile" class="btn btn-primary  " style="display: none">Save Profile</button>
                       </form>
 
                       <div class="profile-details">
@@ -446,7 +446,7 @@ p a{color:#27ae60; text-decoration:none;}
                 </div>
               </div>
             </div>
-            <div id="second-tab" class="tab-content animated fadeIn">
+            <div id="second-tab" class="tab-content  ">
               @if ($reviews->isEmpty())
                 <h4>No reviews.</h4>
               @else

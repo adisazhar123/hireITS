@@ -70,7 +70,6 @@ footer{
   background-color: #04091e;
   color: white;
   position: absolute;
-  bottom: 0;
   width: 100%;
 }
 
@@ -102,12 +101,6 @@ footer .container2{
   border-bottom-color: rgb(43, 51, 64);
 }
 
-.main-container {
- height: 100vh; /* will cover the 100% of viewport */
- overflow: hidden;
- display: block;
- position: relative;
-}
 
 .btn-beekeper{
   background-color: #f6e58d;
@@ -278,8 +271,6 @@ footer .container2{
 
       $(this).addClass('active');
       $("#"+tab_id).addClass('active');
-
-
     })
   })
 

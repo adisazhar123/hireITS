@@ -310,7 +310,7 @@
                         <div class="col-md-2">
                           ${{number_format($bid->price,2)}}
                           <br>
-                          @if (!$bid->freelancer->rating)
+                          @if (!$bid->freelancer->rating || $bid->freelancer->rating == 0)
                             No ratings yet.
                           @else
                             @for ($i=0; $i < $bid->freelancer->rating; $i++)
@@ -325,7 +325,6 @@
                               @if ($wonby->won_by_id == Auth::user()->id)
                                 <div class="alert alert-warning">
                                   Your ongoing project
-                                </button>
                                 </div>
                                 @break
                               @elseif ($bid->freelancer->freelancer_id == Auth::user()->id)
@@ -334,6 +333,16 @@
                                 </form>
                               @endif
                             @endforeach
+                          @elseif (1)
+                            @foreach ($bid->job->wonby as $wonby)
+
+                            @if ($wonby->won_by_id == $bid->freelancer->freelancer_id)
+                              <div class="alert alert-success">
+                                I won the bid!
+                              </button>
+                              </div>
+                            @endif
+                          @endforeach
                           @endif
                           @if (Auth::check() && Auth::user()->id == $job[0]->employer_id)
                             <form class="" action="{{route('hire.freelancer')}}" method="post">

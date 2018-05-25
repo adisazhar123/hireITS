@@ -16,10 +16,14 @@ Auth::routes();
 
 Route::get('/tes', function () {
     return view('tes');
-});
+})->name('home.page');
 Route::get('/', function () {
     return view('homepage');
 });
+
+Route::get('/frequently-asked', function () {
+    return view('faq');
+})->name('faq');
 
 Route::get('get-image','UsersController@getImage')->name('get.navbar.pic');
 Route::get('top-user', 'UsersController@topuser')->name('user.top');

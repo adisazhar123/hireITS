@@ -10,6 +10,11 @@
 
 }
 
+.btn i{
+  font-size: 18px;
+  color: black !important;
+}
+
 .slidebar {
   background-color: #111;
     height:100%;

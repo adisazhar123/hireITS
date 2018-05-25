@@ -28,7 +28,7 @@
               <a href="#">About us</a>
             </li>
             <li>
-              <a href="#">How it Works</a>
+              <a href="{{route('faq')}}">How it Works</a>
             </li>
           </ul>
         </div>
