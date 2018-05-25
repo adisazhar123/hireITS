@@ -92,8 +92,7 @@ class PaymentController extends Controller
 
 
     public function getCheckout(Request $request){
-
-        $price = Bid::find($request->bid_id);
+        $price = Bid::where('job_id',$request->id)->where('freelancer_id', $request->freelancer_id)->first();
         $job = Job::find($price['job_id']);
 
         //Setup Payer
@@ -138,7 +137,15 @@ class PaymentController extends Controller
         $payment->setPayer($payer);
         $payment->setRedirectUrls($redirectUrls);
         $payment->setTransactions(array($transaction));
-        $response = $payment->create($this->_apiContext);
+        try{
+          $response = $payment->create($this->_apiContext);
+        } catch (PayPal\Exception\PayPalConnectionException $ex) {
+          echo $ex->getCode(); // Prints the Error Code
+          echo $ex->getData(); // Prints the detailed error message
+          die($ex);
+      } catch (Exception $ex) {
+          die($ex);
+      }
 
         //Return our payment info to the user
         return $response;

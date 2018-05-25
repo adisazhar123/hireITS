@@ -364,7 +364,7 @@
                                         I am already hired!
                                     </div>
                                     @break
-                                    @else
+                                  @elseif($job[0]->active)
                                       <button type="submit" class="btn btn-success hire-me" name="button">Hire me</button>
                                       @break
                                   @endif

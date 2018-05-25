@@ -167,8 +167,7 @@ class EmployerController extends Controller
   public function dashboard(){
     $projects = DB::table('won_by')
           ->join('job', 'won_by.job_id', '=', 'job.job_id')
-          ->join('bid', 'job.job_id', '=', 'bid.job_id')
-          ->select('*')->where('complete',0)->where('job.employer_id', Auth::user()->id)
+          ->select('*')->where('complete',0)->where('job.employer_id', Auth::user()->id)->distinct()
           ->get();
 
     $finished_projects = DB::table('won_by')
@@ -243,7 +242,7 @@ class EmployerController extends Controller
    }
 
    public function getPaymentDetails(Request $request){
-     $price = Bid::find($request->id);
+     $price = Bid::where('job_id', $request->job_id)->where('freelancer_id', $request->freelancer_id)->first();
      $paypal_set=0;
      if (!User::find($price->freelancer_id)['paypal']=="")
       $paypal_set = 1;

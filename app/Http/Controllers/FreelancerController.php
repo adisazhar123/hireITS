@@ -124,8 +124,21 @@ class FreelancerController extends Controller
            ->join('job', 'bid.job_id', '=', 'job.job_id')
            ->select('*')->where('complete',0)->where('active', 1)->where('bid.freelancer_id', Auth::user()->id)
            ->get();
+           //$bids = Bid::with(['job','job.wonby'])->where('complete',0)->where('active', 1)->where('bid.freelancer_id', Auth::user()->id)->get();
 
-     $projects = DB::table('won_by')
+
+           $bids = Bid::with(['job' => function ($q){
+          //   $q->where('complete',0)->where('active', 0);
+
+           },'job.wonby' => function($q){
+             $q->where('won_by_id', Auth::user()->id);
+           }
+
+           ])->where('bid.freelancer_id', Auth::user()->id)->get();
+
+
+        //   return $bids;
+   $projects = DB::table('won_by')
            ->join('job', 'won_by.job_id', '=', 'job.job_id')
            ->join('bid', 'job.job_id', '=', 'bid.job_id')
            ->select('*')->where('complete',0)->where('won_by.won_by_id', Auth::user()->id)
@@ -139,7 +152,7 @@ class FreelancerController extends Controller
 
       $showcases = Showcase::where('freelancer_id', Auth::user()->id)->get();
 
-      return view('freelancer.dashboard')->with('projects', $projects)->with('finished_projects', $finished_projects)->with('my_bids', $my_bids)
+      return view('freelancer.dashboard')->with('projects', $projects)->with('finished_projects', $finished_projects)->with('bids', $bids)
                   ->with('showcases', $showcases);
     }
 

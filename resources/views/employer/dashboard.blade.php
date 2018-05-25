@@ -223,7 +223,7 @@ table{
                      <th scope="row">1</th>
                      <td><a href="/projects/{{$project->slug}}">{{$project->name}}</a></td>
                      <td>{{date_format(date_create($project->deadline), "d-m-Y")}}</td>
-                     <td><button class="btn btn-info mr-3 update-progress" job-id="{{$project->job_id}}">Update Progress</button><button job-id="{{$project->job_id}}" class="btn btn-warning view-history mr-3">View History</button><button class="btn btn-primary pay-freelancer" bid-id="{{$project->bid_id}}">Pay freelancer</button></td>
+                     <td><button class="btn btn-info mr-3 update-progress" job-id="{{$project->job_id}}">Update Progress</button><button job-id="{{$project->job_id}}" class="btn btn-warning view-history mr-3">View History</button><button class="btn btn-primary pay-freelancer" freelancer-id="{{$project->won_by_id}}" job-id="{{$project->job_id}}">Pay freelancer</button></td>
                    </tr>
                  @endforeach
 
@@ -285,7 +285,7 @@ table{
               Comments for freelancer
 
               <div class="form-group">
-                <textarea required name="msg_text" rows="5" cols="65">              </textarea>
+                <textarea required name="msg_text" rows="5" cols="54">              </textarea>
               </div>
             </div>
           </div>
@@ -401,7 +401,8 @@ table{
 
 <script type="text/javascript">
 
-  var bid_id;
+  var id;  var freelancer_id;
+
 
   $(document).ready(function() {
   $(".main1 div").hide();
@@ -493,10 +494,12 @@ table{
     })
   })
 
+
   $(document).on('click','.pay-freelancer', function(){
 
-    bid_id = $(this).attr('bid-id');
-
+    job_id = $(this).attr('job-id');
+    id=job_id;
+    freelancer_id = $(this).attr('freelancer-id');
     $.ajaxSetup({
     headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -505,7 +508,7 @@ table{
     $.ajax({
       url: '{{route('get.payment.details')}}',
       method: "POST",
-      data: {id: bid_id},
+      data: {job_id: job_id, freelancer_id: freelancer_id},
       success: function(data){
         $(".payment .warning").html("");
         if(!data[1])
@@ -595,7 +598,7 @@ table{
               headers: {
                   'x-csrf-token': $('meta[name="csrf-token"]').attr('content')
               },
-              data: {bid_id: bid_id}
+              data: {freelancer_id: freelancer_id, id:id}
           }).then(function(data) {
               return data.id;
           });
@@ -606,7 +609,7 @@ table{
 
 
         paypal.request.post(EXECUTE_PAYMENT_URL,
-          { paymentID: data.paymentID, payerID: data.payerID, bid_id: bid_id },
+          { paymentID: data.paymentID, payerID: data.payerID},
           {headers:
             {'x-csrf-token': $('meta[name="csrf-token"]').attr('content')}
           })
