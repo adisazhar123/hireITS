@@ -42,6 +42,10 @@ p a{color:#27ae60; text-decoration:none;}
 
   }
 
+  .info{
+    text-align: center;
+  }
+
       .info p{
       margin-top: 10px;
       text-align: center;
@@ -183,9 +187,6 @@ p a{color:#27ae60; text-decoration:none;}
         border-top-right-radius: 4px;
         background-color: white;
       }
-      .fa-star{
-        color:yellow;
-      }
 
       .divider{
         border-left: solid #E9E9E9;
@@ -199,51 +200,20 @@ p a{color:#27ae60; text-decoration:none;}
         opacity: 1;
       }
 
-      #user-title{
-        height: 40px;
-        display: none;
-        margin-bottom: 20px;
-        width: 100%;
-        font-size: 28px;
-      }
-      #user-name{
-        height: 40px;
-        display: none;
-        margin-bottom: 20px;
-        width: 100%;
-        font-size: 28px;
 
-      }
       #user-desc{
         display: none;
         width: 100%;
         max-height: 300px;
       }
 
-      #user-price{
-        display: none;
-
-        height: 40px;
-        margin-bottom: 20px;
-        width: 100%;
-        font-size: 28px;
-      }
-
-      #search_skills{
-        width: 100%;
-
-      }
-      span.select2.select2-container{
-        width: 100%;
-
-      }
-
-      #upload{
-        opacity: 0.6;
+      .fa-star{
+        color: #FFAA2A;
+        margin-right: 3px;
       }
 
 
-/*Generic styles*/
+
 #wrapper{ max-width: 800px; width:100%; margin:0 auto;}
 #generic-tabs{
   width:100%; padding:10px;
@@ -255,21 +225,16 @@ p a{color:#27ae60; text-decoration:none;}
   border-radius: 3px;
 }
 
-/*Tab styles*/
 #generic-tabs ul#tabs { overflow: hidden; margin:0; padding:0;}
 #generic-tabs ul#tabs li{min-height: 100px; float:left; display:inline-block; width:33.33%; background:#EDEDED; border-top:4px solid #CCCCCC; border-right:1px solid #CCCCCC; }
 #generic-tabs ul#tabs li:last-child {border-right:none;}
 #generic-tabs ul#tabs li:first-child { padding-left:0; }
 
-/*Tab link styles*/
 #generic-tabs ul#tabs li a { text-align:center; display:block; font-size: 1.2em; text-decoration: none; padding: 1.2em 1em; line-height: 16px; color:#BBBBBB;}
 
-/*Active tab styles*/
 #generic-tabs ul#tabs li.active {background:#FFFFFF; border-top:4px solid #3d82ab;}
 #generic-tabs ul#tabs li.active a { color:#333333;}
 #generic-tabs ul#tabs li.active a i {color:#85b8cb;}
-
-/*Tab content styles*/
 
 #generic-tabs .tab-content{ background:#FFFFFF; padding:3em 2em;}
 #generic-tabs .tab-content h1 {margin-top:0;}
@@ -279,14 +244,10 @@ p a{color:#27ae60; text-decoration:none;}
   border-bottom-right-radius: 5px;
 }
 
-#second-tab{
+#second-tab, #third-tab{
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
-}
-
-#third-tab{
-  border-bottom-left-radius: 5px;
-  border-bottom-right-radius: 5px;
+  display: none;
 }
 
 #tabs{
@@ -294,9 +255,6 @@ p a{color:#27ae60; text-decoration:none;}
   border-top-right-radius: 5px;
 }
 
-.delete-skills{
-  display: none;
-}
 
 .skills .card:hover .delete-skills{
   display: block;
@@ -323,62 +281,13 @@ p a{color:#27ae60; text-decoration:none;}
   #generic-tabs ul#tabs li a { font-size:1.6em; padding: 1.2em 2em; line-height: 16px; }
 }
 
-#edit-profile{
-  float: right;
-  padding: 10px;
 
-}
-
-#my_file {
-  visibility: hidden;
-  position: absolute;
-  left: -9999px;
-  top: -9999px
-}
-
-
-
-.sidenav {
-    height: 100%;
-    width: 0;
-    position: fixed;
-    z-index: 1;
-    top: 0;
-    left: 0;
-    background-color: rgba(0,0,0,0.7);
-    overflow-x: hidden;
-    transition: 0.5s;
-    padding-top: 60px;
-
-}
-
-.sidenav a {
-    padding: 8px 8px 8px 32px;
-    text-decoration: none;
-    font-size: 25px;
-    color: #818181;
-    display: block;
-    transition: 0.3s;
-}
-
-.sidenav a:hover {
-    color: #f1f1f1;
-    background-color: rgba(255,255,255,0.1);
-}
-
-
-
-@media screen and (max-height: 768px) {
+@media screen and (max-width: 768px) {
   .hire-me a{
     width: 100%;
   }
 }
 
-
-@media screen and (max-height: 450px) {
-  .sidenav {padding-top: 15px;}
-  .sidenav a {font-size: 18px;}
-}
 
 
 </style>
@@ -401,11 +310,14 @@ p a{color:#27ae60; text-decoration:none;}
             <p class="cant">{{"@".$freelancer[0]->username}} </p>
             <p class="cant" id="department">{{$freelancer[0]->major}} Department</p>
 
-                     @if (!$freelancer[0]->reviews)
-                <p class="cant">{{$freelancer[0]->reviews}} reviews</p>
-                @else
-                  <i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i> 5 reviews
-              @endif
+                     @if ($freelancer[0]->review)
+                       <p class="cant">{{$freelancer[0]->review}} reviews</p>
+                       @for ($i=0; $i < $freelancer[0]->rating; $i++)
+                         <i class="fa fa-star"></i>
+                       @endfor
+                      @else
+                        <p>No reviews</p>
+                     @endif
 
                   <p class="cant">Member since: {{date_format(date_create($freelancer[0]->created_at), "d-m-Y")}}</p>
                 </div>
@@ -465,6 +377,7 @@ p a{color:#27ae60; text-decoration:none;}
               </div>
             </div>
           </div>
+
           <div class="hire-me">
             <a href="{{route('post.project.page')}}?q=project+for+{{$freelancer[0]->username}}" class="btn btn-middle">Hire Me</a>
           </div>

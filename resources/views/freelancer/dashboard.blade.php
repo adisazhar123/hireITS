@@ -13,7 +13,7 @@
 .slidebar {
   background-color: #111;
     height:100%;
-    width: 150px;
+    width: 115px;
     position: fixed;
     z-index: 1;
     top: 45px;
@@ -127,7 +127,7 @@ table{
 .stars i{
   color: #FFFFAA;
 }
-#tab2, #tab3{
+#tab2, #tab3, #tab4{
   display: none;
 }
 
@@ -135,6 +135,14 @@ table{
   .slidebar{
     width: 0px;
   }
+}
+
+#search_skills{
+  width: 100%;
+
+}
+span.select2.select2-container{
+  width: 100%;
 
 }
 
@@ -146,14 +154,21 @@ table{
 
 @section('content')
   <div class="container">
+    <br>
     @if(session()->has('success'))
-        <div class="alert alert-success">
+        <div class="alert alert-success alert-dismissible">
             {{ session()->get('success') }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+             <span aria-hidden="true">&times;</span>
+           </button>
         </div>
     @endif
     @if(session()->has('error'))
-        <div class="alert alert-danger">
+        <div class="alert alert-danger alert-dismissible">
             {{ session()->get('error') }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+             <span aria-hidden="true">&times;</span>
+           </button>
         </div>
     @endif
   </div>
@@ -164,6 +179,7 @@ table{
             <li><a href="" name="tab1"><i class="fa fa fa-list"></i>My Bids</a></li>
             <li><a href="" name="tab2"><i class="fa fa fa-tasks"></i>On Going Projects</a></li>
             <li><a href="" name="tab3"><i class="fa fa-check"></i>Finished Projects</a></li>
+            <li><a href="" name="tab4"><i class="fa fa-gift"></i>My Showcases</a></li>
         </ul>
     </div>
 
@@ -175,7 +191,7 @@ table{
            <div id="tab1"><h2 class="header">My Bids</h2>
              <table class="table table-hover">
               @if (!count($my_bids)>0)
-                 <h3>No bids</h3>
+                 <h5>No bids</h5>
               @else
                 <thead>
                   <tr>
@@ -189,8 +205,11 @@ table{
                 <tr>
                   <th scope="row">{{$no++}}</th>
                   <td><a href="/projects/{{$my_bid->slug}}">{{$my_bid->name}}</a></td>
-                  <td><button type="button" name="button" class="btn btn-eagle"><i class="fa fa-clock-o" aria-hidden="true"> Pending</i></button>
-                    </td>
+                  @if ($my_bid->active == 1)
+                    <td><button type="button" name="button" class="btn btn-eagle"><i class="fa fa-clock-o" aria-hidden="true"> Pending</i></button></td>
+                  @else
+                    <td><button type="button" name="button" class="btn btn-glamour"><i class="fa fa-clock-o" aria-hidden="true"> Lost</i></button></td>
+                  @endif
                 </tr>
               </tbody>
               @endforeach
@@ -199,7 +218,9 @@ table{
              </table>
 
            </div>
-
+@php
+  $ha=1;
+@endphp
          <div id="tab2"><h2 class="header">On Going Projects</h2>
            <table class="table table-hover">
              @if (!count($projects)>0)
@@ -216,7 +237,7 @@ table{
                @foreach ($projects as $project)
               <tbody>
                <tr>
-                 <th scope="row">1</th>
+                 <th scope="row">{{$ha++}}</th>
                  <td><a href="/projects/{{$project->slug}}">{{$project->name}}</a></td>
                  <td>{{date_format(date_create($project->deadline), "d-m-Y")}}</td>
                  <td><button class="btn btn-info mr-3 update-progress" job-id="{{$project->job_id}}">Update Progress</button><button job-id="{{$project->job_id}}" class="btn btn-nectarine view-history">View History</button></td>
@@ -229,32 +250,73 @@ table{
            </table>
 
          </div>
+         @php
+           $he=1;
+         @endphp
          <div id="tab3"><h2 class="header">Finished Projects</h2>
            <table class="table table-hover">
-             <thead>
-               <tr>
-                 <th scope="col">#</th>
-                 <th scope="col">Project name</th>
-                 <th scope="col">Action</th>
-               </tr>
-             </thead>
-             <tbody>
-               @foreach ($finished_projects as $project)
+             @if (!count($finished_projects))
+               <h5>You haven't finished any projects yet.</h5>
+             @else
+               <thead>
                  <tr>
-                   <th scope="row">1</th>
-                   <td><a href="/projects/{{$project->slug}}">{{$project->name}}</a></td>
-                   @if ($project->has_review == 3 || $project->has_review == 2)
-                     <td><button job-id="{{$project->job_id}}" class="btn btn-nectarine view-history mr-3 mb-2">View History</button><button class="btn btn-june mr-3 mb-2"><i class="fa fa-check-square-o paid" aria-hidden="true"> Payment received</i></button><button class="btn btn-june mb-2"><i class="fa fa-check-square-o paid" aria-hidden="true"> Employer Rated </i></button></td>
-                   @else
-                     <td><button job-id="{{$project->job_id}}" class="btn btn-nectarine view-history mr-3 mb-2">View History</button><button class="btn btn-june mr-3 mb-2"><i class="fa fa-check-square-o paid" aria-hidden="true"> Payment received</i></button><button job-id="{{$project->job_id}}" employer-id="{{$project->employer_id}}" class="btn btn-primary rate-employer">Rate employer</button></td>
-                   @endif
+                   <th scope="col">#</th>
+                   <th scope="col">Project name</th>
+                   <th scope="col">Action</th>
                  </tr>
-               @endforeach
+               </thead>
+                 @foreach ($finished_projects as $project)
+
+                   <tbody>
+                   <tr>
+                     <th scope="row">{{$he++}}</th>
+                     <td><a href="/projects/{{$project->slug}}">{{$project->name}}</a></td>
+                     @if ($project->has_review == 3 || $project->has_review == 2)
+                       <td><button job-id="{{$project->job_id}}" class="btn btn-nectarine view-history mr-3 mb-2">View History</button><button class="btn btn-june mr-3 mb-2"><i class="fa fa-check-square-o paid" aria-hidden="true"> Payment received</i></button><button class="btn btn-june mb-2"><i class="fa fa-check-square-o paid" aria-hidden="true"> Employer Rated </i></button></td>
+                     @else
+                       <td><button job-id="{{$project->job_id}}" class="btn btn-nectarine view-history mr-3 mb-2">View History</button><button class="btn btn-june mr-3 mb-2"><i class="fa fa-check-square-o paid" aria-hidden="true"> Payment received</i></button><button job-id="{{$project->job_id}}" employer-id="{{$project->employer_id}}" class="btn btn-primary rate-employer">Rate employer</button></td>
+                     @endif
+                   </tr>
+                 @endforeach
+             @endif
              </tbody>
            </table>
          </div>
-         <!-- <div id="tab4"><h2 class="header">Portfolio</h2></div>
-         <div id="tab5"><h2 class="header">Blog /news</h2></div>
+         @php($ka=1)
+         <div id="tab4"><h2 class="header">My Showcases</h2>
+           <button class="btn btn-middle mb-3" type="button" name="button" style="float: right" id="add-showcase">Add showcase</button>
+           <table class="table table-hover">
+
+               @if (!count($showcases))
+                 <h5>Showcase is empty</h5>
+                @else
+                  <thead>
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">Showcase name</th>
+                      <th scope="col">Action</th>
+                    </tr>
+                  </thead>
+                  @foreach ($showcases as $showcase)
+
+                    <tbody>
+                    <tr>
+                      <th scope="row">{{$ka++}}</th>
+                      <td>{{$showcase->title}}</td>
+                      <td>
+                        <form action="{{route('delete.showcase')}}" method="post">
+                          {{method_field('delete')}}
+                          {{csrf_field()}}
+                          <input type="hidden" name="showcase_id" value="{{$showcase->showcase_id}}">
+                          <button class="btn btn-glamour" type="submit">Delete</button></td>
+                        </form>
+                    </tr>
+                  @endforeach
+               @endif
+             </tbody>
+           </table>
+         </div>
+         <!--<div id="tab5"><h2 class="header">Blog /news</h2></div>
          <div id="tab6"><h2 class="header">Advanced</h2></div>    -->
     </div>
 
@@ -401,6 +463,58 @@ table{
     </div>
   </div>
   </div>
+  <div class="modal showcase" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">New Showcase</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form enctype="multipart/form-data" id="addShowcase" action="{{route('post.showcase')}}" method="post">
+          {{ csrf_field() }}
+          <div class="form-group">
+            <label for="title">Showcase title</label>
+            <div class="input-group mb-2">
+              <div class="input-group-prepend">
+                <div class="input-group-text"><i class="fa fa-id-card-o" aria-hidden="true"></i></div>
+              </div>
+              <input type="text" name="title" required class="form-control" id="title" placeholder="Enter showcase title">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1">Showcase description</label>
+            <textarea required class="form-control" name="description" id="description" placeholder="Describe what you are able to offer"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="price">Showcase price</label>
+            <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">$</span>
+                  </div>
+                  <input class="form-control" id="user-price" required type="number" name="showcase_price" placeholder="How much does it cost?">
+             </div>
+          </div>
+
+            <div class="form-group">
+              <label for="tag_list">Tags:</label>
+              <select class="form-control col-md-12" style="width: 100%" required id="search_skills" name="search_skills[]" multiple></select>
+            </div>
+
+          <div class="form-group ">
+            <label for="pic">Showcase picture</label>
+            <div class="form-group">
+              <input type="file" name="picture" required value="">
+            </div>
+          </div>
+          <button type="submit" class="btn btn-exodus" style="width:100%">Submit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
 </div>
 @endsection
 
@@ -411,7 +525,7 @@ table{
       $(document).on('click', '.rate-employer', function(){
         $("#rate_to_id").val($(this).attr('employer-id'))
         $("#rate_job_id").val($(this).attr('job-id'))
-        $(".rate").modal('show')
+        $(".rate").fadeIn().modal('show')
       })
 
         $(".stars i").click(function(){
@@ -487,14 +601,14 @@ table{
 
   $(document).on('mousemove', function(e){
     if(e.pageX<=100)
-      $(".slidebar").css("width", "100px")
+      $(".slidebar").css("width", "115px")
       else{
         $(".slidebar").css("width", "0px")
       }
   })
 
   $(".update-progress").click(function(){
-    $(".modal.progress2").modal('show')
+    $(".modal.progress2").fadeIn().modal('show')
   })
   $(".view-history").click(function(){
   })
@@ -547,7 +661,7 @@ table{
           }
 
         $(".discussion-history .modal-body").html(content)
-        $(".modal.discussion-history").modal('show')
+        $(".modal.discussion-history").fadeIn().modal('show')
         console.log(data)
       },
       error: function(data){
@@ -556,6 +670,38 @@ table{
       }
     })
   })
+
+  $("#add-showcase").click(function(){
+    $(".modal.showcase").fadeIn().modal('show')
+  })
+
+    $('#search_skills').select2({
+      placeholder: 'Select an item',
+      ajax: {
+        url: '/getSkills',
+        dataType: 'json',
+        delay: 250,
+        processResults: function (data) {
+          return {
+            results:  $.map(data, function (item) {
+                  return {
+                      text: item.name,
+                      id: item.skills_id
+                  }
+              })
+          };
+        },
+        cache: true
+      }
+    });
+
+    //$("#addShowcase").submit(function())
+
+    var mySkills = [];
+    var skills = $("#search_skills").select2('data')
+    console.log(skills)
+    for(var i=0; i<skills.length; i++)
+      mySkills.push(skills[i].id)
 
 });
 </script>

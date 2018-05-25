@@ -40,7 +40,6 @@
                     -
                     ${{number_format($job->price_max,2  )}}
                   </h4>
-                  <small>(avg bid)</small>
                   <p>{{$job->no_of_bids}} bids</p>
                 </div>
               </div>

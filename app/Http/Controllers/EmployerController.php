@@ -156,7 +156,7 @@ class EmployerController extends Controller
   }
 
   public function hireFreelancer(Request $request){
-    $job = new Job;
+    $job = Job::find($request->job_id);
     $job->active = 0;
     $wonby = new WonBy;
     $wonby->won_by_id = $request->won_by_id;

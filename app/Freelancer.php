@@ -23,4 +23,8 @@ class Freelancer extends Model
     public function review(){
         return $this->hasMany('App\Review', 'to_id', 'freelancer_id');
       }
+
+    public function showcase(){
+      return $this->hasMany('App\Showcase', 'freelancer_id', 'freelancer_id');
+    }
 }

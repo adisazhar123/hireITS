@@ -110,9 +110,7 @@ p a{color:#27ae60; text-decoration:none;}
         border-top-right-radius: 4px;
         background-color: white;
       }
-      .fa-star{
-        color:yellow;
-      }
+
 
       .divider{
         border-left: solid #E9E9E9;
@@ -290,6 +288,10 @@ p a{color:#27ae60; text-decoration:none;}
     padding-top: 60px;
 
 }
+.fa-star{
+  color: #FFAA2A;
+  margin-right: 3px;
+}
 
 .sidenav a {
     padding: 8px 8px 8px 32px;
@@ -361,6 +363,14 @@ p a{color:#27ae60; text-decoration:none;}
             <div class="info">
               <p class="cant">{{"@".Auth::user()->username}} </p>
   						<p class="cant">Member since: {{date_format(Auth::user()->created_at,"d/m/Y")}}</p>
+              @if ($employer->review)
+                <p class="cant">{{$employer->review}} reviews</p>
+                @for ($i=0; $i < $employer->rating; $i++)
+                  <i class="fa fa-star"></i>
+                @endfor
+               @else
+                 <p>No reviews</p>
+              @endif
             </div>
           <section id="generic-tabs">
 
@@ -370,7 +380,7 @@ p a{color:#27ae60; text-decoration:none;}
                     <a title="About" href="#first-tab"><i class="fa fa-home"></i> About</a>
                 </li>
                 <li>
-                    <a title="Reviews" href="#second-tab"><i class="fa fa-star"></i> Reviews</a>
+                    <a title="Reviews" href="#second-tab"><i class="fa fa-info-circle"></i> Reviews</a>
                 </li>
             </ul>
 

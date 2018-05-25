@@ -23,7 +23,7 @@ p a{color:#27ae60; text-decoration:none;}
       background-size: 100% 510px;
 
     @else
-      background-size: 100% 465px;
+      background-size: 100% 495px;
 
     @endif
     background-position: top;
@@ -53,6 +53,10 @@ p a{color:#27ae60; text-decoration:none;}
       line-height: 10px;
       color: white;
       font-size: 18px;
+    }
+
+    .info{
+      text-align: center;
     }
 
     .skills{
@@ -200,7 +204,6 @@ p a{color:#27ae60; text-decoration:none;}
       .fa-star{
         color: #FFAA2A;
         margin-right: 3px;
-
       }
 
       .divider{
@@ -219,13 +222,13 @@ p a{color:#27ae60; text-decoration:none;}
         height: 40px;
         display: none;
         margin-bottom: 20px;
-        font-size: 28px;
+        font-size: 24px;
       }
       #user-name{
         height: 40px;
         display: none;
         margin-bottom: 20px;
-        font-size: 28px;
+        font-size: 24px;
 
       }
       #user-desc{
@@ -239,14 +242,14 @@ p a{color:#27ae60; text-decoration:none;}
 
         height: 40px;
         margin-bottom: 20px;
-        font-size: 28px;
+        font-size: 24px;
       }
 
       #jurusan{
         display: none;
         height: 40px;
         margin-bottom: 20px;
-        font-size: 28px;
+        font-size: 24px;
       }
 
 
@@ -445,6 +448,7 @@ p a{color:#27ae60; text-decoration:none;}
   position: relative;
 }
 
+
 </style>
 @endsection
 
@@ -481,13 +485,16 @@ p a{color:#27ae60; text-decoration:none;}
             <div class="info  bounceInUp">
                 <p class="cant">{{"@".Auth::user()->username}} </p>
                 <p class="cant" id="department">{{$freelancer->major}} Department</p>
-                <p class="cant">{{$freelancer->jobs_completed}} jobs completed, {{$freelancer->jobs_ontime}} on time</p>
+                <p class="cant">{{$freelancer->jobs_completed}} jobs completed</p>
 
-                         @if (!$freelancer->reviews)
-                    <p class="cant">{{$freelancer->reviews}} reviews</p>
-                    @else
-                      <i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i> 5 reviews
-                  @endif
+                @if ($freelancer->review)
+                  <p class="cant">{{$freelancer->review}} reviews</p>
+                  @for ($i=0; $i < $freelancer->rating; $i++)
+                    <i class="fa fa-star"></i>
+                  @endfor
+                @else
+                  <p>No reviews.</p>
+                @endif
 
                       <p class="cant">Member since: {{date_format(Auth::user()->created_at,"d/m/Y")}}</p>
                     </div>
@@ -560,7 +567,7 @@ p a{color:#27ae60; text-decoration:none;}
                                   <div class="input-group-prepend">
                                     <span class="input-group-text">$</span>
                                   </div>
-                                  <input class="form-control" id="user-price" type="text" name="user-price" placeholder="Price per hour" value="{{$freelancer->price}}" style="display: none">
+                                  <input class="form-control" id="user-price" type="number" step="0.5" name="user-price" placeholder="Price per hour" value="{{$freelancer->price}}" style="display: none">
                              </div>
 
 
@@ -779,7 +786,7 @@ p a{color:#27ae60; text-decoration:none;}
     var paypal = $("#paypal").val()
 
     if (desc=="" || name=="" || title=="" || jurusan =="")
-      alert("Fields cannot be empty!")
+      alertify.error('Do not leave any fields empty!');
     else{
       //css
       $("input#user-title").css("display", "none");

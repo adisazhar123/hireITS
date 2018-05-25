@@ -139,16 +139,16 @@
       <div class="col-md-12">
         <div class="project-time">
           <div class="row">
-            <div class="col-md-1">
+            <div class="col-md-2">
               <h4>Bids</h4>
               <strong>{{count($bids)}}</strong>
             </div>
-            <div class="col-md-1">
-              <h4>Bids</h4>
-              <strong>$12.00</strong>
+            <div class="col-md-2">
+              <h4>Average bid price</h4>
+              <strong> {{number_format($avg_price, 2)}}</strong>
             </div>
             <div class="col-md-2">
-              <h4>Project Budget</h4>
+              <h4>Project budget</h4>
               <strong>
 
                 ${{number_format($job[0]->price_max,2)}}
@@ -274,6 +274,12 @@
           <div class="bidders-header">
             <h3>Freelancers bidding</h3>
           </div>
+
+          @php
+            $counter=array();
+            $counter = array_fill(0, 100, 0);
+            $i=0;
+          @endphp
           @if ($bids->isEmpty())
             <div class="bidders-body">
                 <div class="card bid">
@@ -289,15 +295,15 @@
                     <div class="card-body">
                       <div class="row">
                         <div class="col-md-2">
-                          @foreach ($pics as $pic)
-                            @if ($bid->freelancer->freelancer_id == $pic->user_id)
-                              @if (empty($pic->img_type))
-                                <img class="img-fluid" src="{{asset('img/avatar.png')}}"/>
-                              @else
-                                <img class="img-fluid" src="data:{{$pic->img_type}};base64,{{base64_encode( $pic->name )}}"/>
-                              @endif
-                            @endif
+                          @foreach ($bid->freelancer->profilefiles as $pf)
+                            <img class="img-fluid" src="data:{{$pf->img_type}};base64,{{base64_encode( $pf->name )}}"/>
+                            @php
+                              $counter[$i]=1;
+                            @endphp
                           @endforeach
+                          @if (!$counter[$i])
+                            <img class="img-fluid" src="{{asset('img/avatar.png')}}"/>
+                          @endif
                         </div>
                         <div class="col-md-5">
                           <div class="">
@@ -372,6 +378,11 @@
                     </div>
               </div>
             </div>
+
+            @php
+              $i++;
+            @endphp
+
           @endforeach
         @endif
 

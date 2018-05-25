@@ -14,12 +14,7 @@
 Auth::routes();
 
 
-Route::get('/tes', function () {
-    return view('tes');
-})->name('home.page');
-Route::get('/', function () {
-    return view('homepage');
-});
+Route::get('/', 'HomeController@index')->name('home.page');
 
 Route::get('/frequently-asked', function () {
     return view('faq');
@@ -46,6 +41,9 @@ Route::middleware(['freelancer'])->group(function () {
   Route::post('/bid-project', 'FreelancerController@bidProject')->name('bid.project');
   Route::get('freelancer/getprofile', 'FreelancerController@getProfile')->name('get.freelancer.profile');
 });
+
+Route::post('/freelancer/post-showcase', 'FreelancerController@postShowcase')->name('post.showcase');
+Route::delete('/freelancer/delete-showcase', 'FreelancerController@deleteShowcase')->name('delete.showcase');
 
 
 Route::get('freelancer/get-my-projects', 'FreelancerController@getOngoingProjects')->name('get.ongoing.projects');

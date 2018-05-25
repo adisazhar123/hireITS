@@ -71,7 +71,6 @@
 }
 
 
-@import url(https://fonts.googleapis.com/css?family=Open+Sans:600;);
 .snip1573 {
   background-color: #000;
   display: inline-block;
@@ -253,17 +252,19 @@ body {
       <form>
         <div class="row">
           <div class="col-md-12">
-            <div class="input-group mb-3">
-              <div class="input-group-prepend">
-                <button class="btn" disabled id="search-logo" type="button" name="button"><i class="fa fa-search fa-lg" aria-hidden="true"></i>
-                </button>
-          </div>
-            <input type="text" class="form-control mb-2" id="inlineFormInput" placeholder="Search Keywords">
+            <form class="" action="{{route('browse.showcase')}}" method="get">
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <button class="btn" disabled id="search-logo" type="button" name="button"><i class="fa fa-search fa-lg" aria-hidden="true"></i>
+                  </button>
+            </div>
+              <input type="text" class="form-control mb-2" name="keywords" id="inlineFormInput" placeholder="Search Keywords">
 
-            <div class="input-group-append">
-              <button type="submit" class="btn btn-primary mb-2">Search</button>
-          </div>
-          </div>
+              <div class="input-group-append">
+                <button type="submit" class="btn btn-primary mb-2">Search</button>
+            </div>
+            </div>
+            </form>
         </div>
         </div>
       </form>
@@ -274,13 +275,27 @@ body {
     <div class="container">
       <div class="row hide2">
         <div class="col-md-12">
-          <a href="#" class="active">All</a>
-          <a href="#">Logos</a>
-          <a href="#">Websites</a>
-          <a href="#">Mobile Applications</a>
-          <a href="#">Graphic Design</a>
-          <a href="#">Illustration</a>
-          <a href="#">3D Models</a>
+          <a href="{{route('browse.showcase')}}" class="@if (!isset($_GET['category']))
+            active
+          @endif ">All</a>
+          <a href="{{route('browse.showcase')}}?category=logos" class="@if ((isset($_GET['category']) && $_GET['category'] === "logos"))
+            active
+          @endif ">Logos</a>
+          <a href="{{route('browse.showcase')}}?category=websites" class="@if ((isset($_GET['category']) && $_GET['category'] === "websites"))
+            active
+          @endif ">Websites</a>
+          <a href="{{route('browse.showcase')}}?category=mobile+applications" class="@if (isset($_GET['category']) && $_GET['category'] === "mobile applications")
+            active
+          @endif ">Mobile Applications</a>
+          <a href="{{route('browse.showcase')}}?category=graphic+design" class="@if ((isset($_GET['category']) && $_GET['category'] === "graphic design"))
+            active
+          @endif ">Graphic Design</a>
+          <a href="{{route('browse.showcase')}}?category=illustration" class="@if ((isset($_GET['category']) && $_GET['category'] === "illustration"))
+            active
+          @endif ">Illustration</a>
+          <a href="{{route('browse.showcase')}}?category=3d+models" class="@if ((isset($_GET['category']) && $_GET['category'] === "illustration"))
+            active
+          @endif ">3D Models</a>
         </div>
       </div>
       <div class="row">
@@ -334,86 +349,39 @@ body {
   <div class="row">
     <div class="col-md-12">
       <div class="row">
+        @if (!count($showcases))
+          <p>No showcase found.</p>
+        @else
+          @foreach ($showcases as $showcase)
+            <div class="col-md-4">
+              <div class="card snip1573">
 
-        <div class="col-md-4">
-          <div class="card snip1573" style="width: ;">
+                <img class="card-img-top" src="data:{{$showcase->pic_type}};base64,{{ base64_encode($showcase->pic) }}" alt="Card image cap">
 
-            <img class="card-img-top" src="https://cdn-images-1.medium.com/max/2000/1*TRn9ZGNdHaXN0qDdri5bjw@2x.gif" alt="Card image cap">
+                <div class="card-body" style="background-color: white">
+                  <p class="card-text">{{$showcase->title}}</p>
+                  <small>{{$showcase->description}}</small>
+                  <h4 class="card-text">$ {{$showcase->price}}</h4>
 
-            <div class="card-body" style="background-color: white">
-              <p class="card-text">Bussiness card design</p>
-              <h4 class="card-text">$200</h4>
+                </div>
+                <div class="middle">
 
+                </div>
+                <div class="text">
+                  <!-- <a href="#" class="btn btn-primary">Hire Me</a> -->
+                  <figcaption>
+                    <h3>Hire Me</h3>
+                  </figcaption>
+                  <a href="{{route('view.freelancer', $showcase->username)}}"></a>
+                </div>
+              </div>
             </div>
-            <div class="middle">
+          @endforeach
+        @endif
 
-            </div>
-            <div class="text">
-              <!-- <a href="#" class="btn btn-primary">Hire Me</a> -->
-              <figcaption>
-                <h3>Hire Me</h3>
-              </figcaption>
-              <a href="#"></a>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card snip1573" style="width: ;">
-          <img class="card-img-top" src="https://lh3.googleusercontent.com/uASJMQyWGjpbZ8yb6Is-8odp5oOGlfsrlB1hL5IhIfZTpz7g3yrz56X_NEmuKRKsAkXkTixMdw">
-            <div class="card-body">
-              <p class="card-text">House design</p>
-              <h4 class="card-text">$200</h4>
-            </div>
-            <div class="middle">
-
-            </div>
-            <div class="text">
-              <figcaption>
-                <h3>Hire Me</h3>
-              </figcaption>
-              <a href="#"></a>
-            </div>
-          </div>
-        </div>
-      <div class="col-md-4">
-        <div class="card snip1573" style="width: ;">
-        <img class="card-img-top" src="https://lh3.googleusercontent.com/JP1KT3xUA-MFA8tLRHC3CvX6nphBYLpCzxB6eIthMYXvF0dXX7I7NITpBT0E3B07CiqRzCqkPQ" alt="Card image cap">
-          <div class="card-body">
-            <p class="card-text">House design</p>
-          <h4 class="card-text">$200</h4>
-
-          </div>
-          <div class="middle">
-
-          </div>
-          <div class="text">
-            <figcaption>
-                <h3>Hire Me</h3>
-              </figcaption>
-              <a href="#"></a>
-          </div>
-        </div>
       </div>
-      <div class="col-md-4">
-        <div class="card snip1573" style="width: ;">
-        <img class="card-img-top" src="https://lh3.googleusercontent.com/s0o3GbvRKoEA3hBKTooThA45XtL7WpcuZ6SOYHB54vhu-Nj6TYDgiakW20O4VPwRcsjzOVsI2g" alt="Card image cap">
-          <div class="card-body">
-            <p class="card-text">House design</p>
-          <h4 class="card-text">$200</h4>
+      {{ $showcases->appends($_GET)->links('vendor.pagination.bootstrap-4') }}
 
-          </div>
-          <div class="middle">
-
-          </div>
-          <div class="text">
-            <figcaption>
-                <h3>Hire Me</h3>
-              </figcaption>
-              <a href="#"></a>
-          </div>
-        </div>
-      </div>
-      </div>
     </div>
   </div>
 </div>

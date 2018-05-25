@@ -458,6 +458,10 @@ i {
   padding: 50px 0;
 }
 
+.single-blog .dp{
+  border-radius: 4px;
+}
+
 
 </style>
 @endsection
@@ -471,6 +475,10 @@ i {
 	<link rel="stylesheet" href="industry/css/main.css">
 @endsection
 
+
+@section('menu-state')
+  menu-active
+@endsection
 
 @section('content')
 
@@ -506,7 +514,7 @@ i {
           </div>
         </div>
         <div class="row">
-          <div class="col-md-4">
+          <div class="col-md-4 aa">
             <div class="square">
             	<h3>Sign Up</h3>
               <img src="followers.png" alt="" width="170">
@@ -524,11 +532,10 @@ i {
             <div class="square">
             	<h3>Search</h3>
             	<img class="fa fa-search" aria-hidden="true" src="search.png" alt="" width="170">
-              <!-- <i class="fa fa-search" aria-hidden="true" style="font-size:89px;"></i> -->
               <p>Browse freely through many projects available accustomed to your likings.</p>
             </div>
           </div>
-          <div class="col-md-4 ">
+          <div class="col-md-4 aa">
             <div class="square">
             	<h3>Discuss</h3>
               <img src="chat.png" alt="" width="170">
@@ -560,7 +567,7 @@ i {
 						</div>
 						<h4>Web Application</h4>
 						<p>
-							inappropriate behavior is often laughed off as “boys will be boys,” women face higher conduct women face higher conduct.
+							Our students are highly capable to build top notch dynamic and responsive web applications to support industry needs.
 						</p>
 					</div>
 				</div>
@@ -571,7 +578,8 @@ i {
 						</div>
 						<h4>Architecture and design</h4>
 						<p>
-							inappropriate behavior is often laughed off as “boys will be boys,” women face higher conduct women face higher conduct.
+              Our students work within a given set of parameters to solve complex design problems.  A good architect approaches this task with enthusiasm and preference to exceed expectations
+              which is evident in ITS.
 						</p>
 					</div>
 				</div>
@@ -591,7 +599,6 @@ i {
 	</section>
 	<!-- End service Area -->
 
-
 	<!-- Start faq Area -->
 	<section class="faq-area section-gap relative ">
 		<div class="overlay overlay-bg "></div>
@@ -602,7 +609,7 @@ i {
 						<div class="circle ">
 							<div class="inner "></div>
 						</div>
-						<h5><span class="counter ">50</span></h5>
+						<h5><span class="counter ">{{count($jobs)}}</span></h5>
 						<p>
 							Projects Completed
 						</p>
@@ -613,9 +620,9 @@ i {
 						<div class="circle ">
 							<div class="inner "></div>
 						</div>
-						<h5><span class="counter ">20</span></h5>
+						<h5><span class="counter ">{{$users}}</span></h5>
 						<p>
-							Total Employees
+							Total Users
 						</p>
 					</div>
 				</div>
@@ -624,20 +631,9 @@ i {
 						<div class="circle ">
 							<div class="inner "></div>
 						</div>
-						<h5 class="counter ">30</h5>
+						<h5 class="counter ">{{count($ratings)}}</h5>
 						<p>
 							Happy Clients
-						</p>
-					</div>
-				</div>
-				<div class="col-lg-3 col-md-6 ">
-					<div class="single-faq ">
-						<div class="circle ">
-							<div class="inner "></div>
-						</div>
-						<h5 class="counter ">367</h5>
-						<p>
-							Tickets Submited
 						</p>
 					</div>
 				</div>
@@ -652,31 +648,33 @@ i {
     		<div class="container">
     			<div class="row">
             <div class="col-md-12 pb-30 header-text text-center ">
-              <h1 class="mb-10 ">Why choose hireITS?</h1>        
+              <h1 class="mb-10 ">Why choose hireITS?</h1>
             </div>    				<div class="col-lg-4">
     					<div class="single-cat d-flex flex-column">
     						<a href="#" class="hb-sm-margin mx-auto d-block"><span class="hb hb-md inv hb-facebook-inv"><span class="lnr lnr-magic-wand"></span></span></a>
-    						<h4 class="mb-20" style="margin-top: 23px;">Maintenance</h4>
+    						<h4 class="mb-20" style="margin-top: 23px;">Easy and profitable</h4>
     						<p>
-    							inappropriate behavior is often laughed off as “boys will be boys,” women face higher conduct standards especially in the workplace. That’s why.
+                  Theres just more and more people who are skillfull but cannot find the right platform to turn that skill into money. Well we have it here for you ITS students!
     						</p>
     					</div>
     				</div>
     				<div class="col-lg-4">
     					<div class="single-cat">
     						<a href="#" class="hb-sm-margin mx-auto d-block"><span class="hb hb-md inv hb-facebook-inv"><span class="lnr lnr-rocket"></span></span></a>
-    						<h4 class="mt-40 mb-20">Residental Service</h4>
+    						<h4 class="mt-40 mb-20">Competitiveness</h4>
     						<p>
-    							inappropriate behavior is often laughed off as “boys will be boys,” women face higher conduct standards especially in the workplace. That’s why.
+                  We strongly believe our platform is a foundation to gather companies/ individuals with students, to expose competition exists everywhere and gets tougher by time.
+                  Our hope is that it will incentify students to become proactive in wanting to find out more in any aspects.
+
     						</p>
     					</div>
     				</div>
     				<div class="col-lg-4">
     					<div class="single-cat">
     						<a href="#" class="hb-sm-margin mx-auto d-block"><span class="hb hb-md inv hb-facebook-inv"><span class="lnr lnr-bug"></span></span></a>
-    						<h4 class="mt-40 mb-20">Commercial Service</h4>
+    						<h4 class="mt-40 mb-20">It holds democracy values</h4>
     						<p>
-    							inappropriate behavior is often laughed off as “boys will be boys,” women face higher conduct standards especially in the workplace. That’s why.
+                  What more do you hate when a system is centric to a specific user? HireITS facilitates employers to rate freelancers and vice-versa.
     						</p>
     					</div>
     				</div>
@@ -752,6 +750,7 @@ i {
 				</div>
 			</div>
 		</div>
+
 	</section>
 	<!-- End feedback Area -->
 
@@ -768,78 +767,37 @@ i {
 				</div>
 			</div>
 			<div class="row ">
-				<div class="single-blog col-lg-4 col-md-4 ">
-					<div class="thumb ">
-						<img class="f-img img-fluid mx-auto " src="img/b1.jpg " alt=" ">
-					</div>
-					<div class="bottom d-flex justify-content-between align-items-center flex-wrap ">
-						<div>
-							<img class="img-fluid " src="img/user.png " alt=" ">
-							<a href="# "><span>Mark Wiens</span></a>
-						</div>
-						<div class="meta ">
-							13th Dec
-							<span class="lnr lnr-heart "></span> 15
-							<span class="lnr lnr-bubble "></span> 04
-						</div>
-					</div>
-					<a href="# ">
-						<h4>Portable Fashion for young women</h4>
-					</a>
-					<p>
-						Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip exea.
-					</p>
-				</div>
-				<div class="single-blog col-lg-4 col-md-4 ">
-					<div class="thumb ">
-						<img class="f-img img-fluid mx-auto " src="img/b2.jpg " alt=" ">
-					</div>
-					<div class="bottom d-flex justify-content-between align-items-center flex-wrap ">
-						<div>
-							<img class="img-fluid " src="img/user.png " alt=" ">
-							<a href="# "><span>Mark Wiens</span></a>
-						</div>
-						<div class="meta ">
-							13th Dec
-							<span class="lnr lnr-heart "></span> 15
-							<span class="lnr lnr-bubble "></span> 04
-						</div>
-					</div>
-					<a href="# ">
-						<h4>Portable Fashion for young women</h4>
-					</a>
-					<p>
-						Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip exea.
-					</p>
-				</div>
-				<div class="single-blog col-lg-4 col-md-4 ">
-					<div class="thumb ">
-						<img class="f-img img-fluid mx-auto " src="img/b3.jpg " alt=" ">
-					</div>
-					<div class="bottom d-flex justify-content-between align-items-center flex-wrap ">
-						<div>
-							<img class="img-fluid " src="img/user.png " alt=" ">
-							<a href="# "><span>Mark Wiens</span></a>
-						</div>
-						<div class="meta ">
-							13th Dec
-							<span class="lnr lnr-heart "></span> 15
-							<span class="lnr lnr-bubble "></span> 04
-						</div>
-					</div>
-					<a href="# ">
-						<h4>Portable Fashion for young women</h4>
-					</a>
-					<p>
-						Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip exea.
-					</p>
-				</div>
-
-
+        @foreach ($showcases as $showcase)
+          <div class="single-blog col-lg-4 col-md-4 ">
+            <div class="thumb ">
+              <img class="f-img img-fluid mx-auto " src="data:{{$showcase->pic_type}};base64,{{base64_encode( $showcase->pic)}}" alt=" ">
+            </div>
+            <div class="bottom d-flex justify-content-between align-items-center flex-wrap ">
+              <div>
+                @if ($showcase->freelancer->profilefiles)
+                  @foreach ($showcase->freelancer->profilefiles as $pf)
+                      <img class="img-fluid dp" src="data:{{$pf->img_type}};base64,{{base64_encode($pf->name)}}" alt=" " style="width: 35px">
+                  @endforeach
+                @else
+                  <img class="img-fluid dp" src="{{asset('img/avatar.png')}}" alt=" " style="width: 35px">
+                @endif
+                <a href="# "><span>{{$showcase->freelancer->username}}</span></a>
+              </div>
+            </div>
+            <a href="# ">
+              <h4>{{$showcase->title}}</h4>
+            </a>
+            <strong>$ {{$showcase->price}}</strong>
+            <p>
+              {{$showcase->description}}
+            </p>
+          </div>
+        @endforeach
 			</div>
 		</div>
 	</section>
 	<!-- end blog Area -->
+
 
 
 @endsection
@@ -864,19 +822,25 @@ i {
     $('.info a').click(function(){
     var role = $(this).attr('val');
 
-    $('.row').animateCss('fadeIn');
-
     if(role == "seeker"){
       $(".info a.orange").css('opacity','1');
       $(".info a.green").css('opacity','0.5');
-      $(".howto .maker").css('display','none');
-      $(".howto .seeker").css('display','block');
+
+      $(".aa").fadeOut().css("display", "none")
+
+      $(".howto .maker").fadeOut().css('display','none');
+      $(".howto .seeker").fadeOut().css('display','none');
+      $(".aa").fadeIn().css("display", "block")
+      $(".howto .seeker").fadeIn().css('display','block');
 
     }else{
       $(".info a.orange").css('opacity','0.5');
       $(".info a.green").css('opacity','1');
-      $(".howto .maker").css('display','block');
-      $(".howto .seeker").css('display','none');
+      $(".howto .maker").fadeOut().css('display','none');
+      $(".howto .aa").fadeOut().css("display", "none")
+      $(".howto .seeker").fadeOut().css('display','none');
+      $(".aa").fadeIn().css("display", "block")
+      $(".howto .maker").fadeIn().css('display','block');
 
     }
 

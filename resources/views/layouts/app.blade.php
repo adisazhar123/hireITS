@@ -5,7 +5,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title')</title>
     <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet">
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/bootswatch/4.1.1/litera/bootstrap.min.css" rel="stylesheet">
     <link href="{{ asset('css/navbar2.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -71,6 +71,7 @@ footer{
   color: white;
   position: absolute;
   width: 100%;
+  bottom: 0;
 }
 
 footer ul{
@@ -155,6 +156,23 @@ footer .container2{
 .btn-middle:hover{
   background-color: #22a6b3;
   color: white;
+}
+
+.btn-glamour{
+  background-color: #ff7979;
+  color: black;
+}
+
+.btn-glamour:hover{
+  background-color: #eb4d4b;
+  color: white;
+}
+
+.main-container {
+ height: 100vh; /* will cover the 100% of viewport */
+ overflow: hidden;
+ display: block;
+ position: relative;
 }
 
 

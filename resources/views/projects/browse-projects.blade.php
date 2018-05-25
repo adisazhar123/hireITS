@@ -318,9 +318,9 @@
       @endphp
 
       @if ($result && empty($keyword))
-        <p>{{$result}} result/s found</p>
+        <p>{{$jobs->total()}} result/s found</p>
       @elseif ($result)
-        <p>{{$result}} result/s found for {{$keyword}}</p>
+        <p>{{$jobs->total()}} result/s found for {{$keyword}}</p>
       @else
         <p>0 result/s found for {{$keyword}}</p>
 
@@ -331,7 +331,7 @@
   <div class="jobs-content">
     <div class="container">
       <div class="row">
-        <div class="col-md-3">
+        <div class="col-lg-3">
           <div class="filter" style="background-color: white;">
             <div class="toggle-filter" style="width: 100%; padding-left: 20px; padding-top: 2px; cursor: pointer" data-toggle="collapse" data-target=".multi-collapse" aria-expanded="false" aria-controls="multiCollapseExample2">
                 <i class="fa fa-wrench fa-lg" style='color: black;'></i>
@@ -364,7 +364,7 @@
                         @endphp
                     @endif
                     <input class="form-control" id="min_price1" type="number" value="{{$min}}" placeholder="Min Price" min="1" max="9999999" step="0.50"> <br>
-                  </div>
+                  </div><br>
                   <div class="input-group">
                         <div class="input-group-prepend">
                           <span class="input-group-text" id="inputGroupPrepend">$</span>
@@ -374,7 +374,7 @@
                     </div>
           </div>
         </div>
-        <div class="col-md-9">
+        <div class="col-lg-9">
           <div class="available-jobs mb-2" style="background-color: white;">
             <div class="jobs-head mb-2" style="padding: 20px">
               <form class="" action="index.html" method="post">

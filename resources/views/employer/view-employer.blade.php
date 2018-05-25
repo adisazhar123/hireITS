@@ -111,7 +111,8 @@ p a{color:#27ae60; text-decoration:none;}
         background-color: white;
       }
       .fa-star{
-        color:yellow;
+        color: #FFAA2A;
+        margin-right: 3px;
       }
 
       .divider{
@@ -362,6 +363,14 @@ p a{color:#27ae60; text-decoration:none;}
             <div class="info animated bounceInUp">
               <p class="cant">{{"@".Auth::user()->username}} </p>
   						<p class="cant">Member since: {{date_format(Auth::user()->created_at,"d/m/Y")}}</p>
+              @if ($employer[0]->review)
+                <p class="cant">{{$employer[0]->review}} reviews</p>
+                @for ($i=0; $i < $employer[0]->rating; $i++)
+                  <i class="fa fa-star"></i>
+                @endfor
+               @else
+                 <p>No reviews</p>
+              @endif
             </div>
           <section id="generic-tabs">
 
@@ -371,7 +380,7 @@ p a{color:#27ae60; text-decoration:none;}
                     <a title="About" href="#first-tab"><i class="fa fa-home"></i> About</a>
                 </li>
                 <li>
-                    <a title="Reviews" href="#second-tab"><i class="fa fa-star"></i> Reviews</a>
+                    <a title="Reviews" href="#second-tab"><i class="fa fa-info-circle"></i> Reviews </a>
                 </li>
             </ul>
 

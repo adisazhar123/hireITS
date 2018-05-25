@@ -15,6 +15,8 @@ use App\Diberkati;
 use App\WonBy;
 use App\Messages;
 use App\Review;
+use App\Showcase;
+use App\ShowcaseSkill;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -135,9 +137,10 @@ class FreelancerController extends Controller
             ->select('*')->where('complete',1)->where('won_by.won_by_id', Auth::user()->id)
             ->get();
 
-      //return [$my_bids, $projects, $finished_projects];
+      $showcases = Showcase::where('freelancer_id', Auth::user()->id)->get();
 
-      return view('freelancer.dashboard')->with('projects', $projects)->with('finished_projects', $finished_projects)->with('my_bids', $my_bids);
+      return view('freelancer.dashboard')->with('projects', $projects)->with('finished_projects', $finished_projects)->with('my_bids', $my_bids)
+                  ->with('showcases', $showcases);
     }
 
     public function bidProject(Request $request){
@@ -329,5 +332,35 @@ class FreelancerController extends Controller
          return redirect()->back();
 
       }
+
+      public function postShowcase(Request $request){
+        $showcase = new Showcase;
+        $showcase->title = $request->title;
+        $showcase->freelancer_id = Auth::user()->id;
+        $file = $request->file('picture');
+        $contents = $file->openFile()->fread($file->getSize());
+        $extension = "image/".$request->file('picture')->extension();
+        $showcase->description = $request->description;
+        $showcase->pic = $contents;
+        $showcase->pic_type = $extension;
+        $showcase->price = $request->showcase_price;
+        $showcase->save();
+
+        for ($i=0; $i < count($request->search_skills) ; $i++) {
+          $skills = new ShowcaseSkill;
+          $skills->showcase_id = $showcase->showcase_id;
+          $skills->skills_id = $request->search_skills[$i];
+          $skills->save();
+        }
+        return redirect()->back()->with('success', 'Showcase Uploaded!');
+
+      }
+
+      public function deleteShowcase(Request $request){
+        $showcase = Showcase::find($request->showcase_id);
+        if ($showcase->delete())
+          return redirect()->back()->with('success', 'Showcase Deleted!');
+      }
+
 
 	 }
