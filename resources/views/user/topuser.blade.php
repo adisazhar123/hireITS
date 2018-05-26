@@ -109,8 +109,8 @@
 			<div class="freelancer">
 				<h2>Freelancer</h2>
 				<div class="row">
-					@if (empty($top_freelancers))
-						<h5>No freelancers yet.</h5>
+					@if (!count($top_freelancers))
+						<h5>No top freelancers yet.</h5>
 					@else
 						@if (isset($top_freelancers[0]))
 						<div class="col-lg-4">
@@ -192,7 +192,7 @@
 			<div class="employer">
 				<h2>Employer</h2>
 				<div class="row">
-					@if (empty($top_employers))
+					@if (!count($top_employers))
 						<h5>No top employers yet.</h5>
 					@else
 						@if (isset($top_employers[0]))
