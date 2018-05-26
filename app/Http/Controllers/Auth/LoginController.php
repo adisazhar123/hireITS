@@ -46,8 +46,7 @@ class LoginController extends Controller
     if ($request->ajax()){
       if (Auth::check())
         if (Auth::user()->role === "freelancer") {
-        	$freelancer = DB::table('freelancer')->where('freelancer_id', $user->id)->first();
-        	if($freelancer->name){
+        	if(Auth::user()->hassetprofile){
         		$x = '/freelancer';
         	}
         	else{
@@ -59,17 +58,16 @@ class LoginController extends Controller
               'intended' => $x,
           ]);
         }else{
-        	$employer = DB::table('employer')->where('employer_id', $user->id)->first();
-        	//if($employer->age){
-        	//	$x = '/employer';
-        	//}
-        	//else{
-        	//	$x = '/employer/fill-data';
-        	//}
+          if(Auth::user()->hassetprofile){
+        		$x = '/employer';
+        	}
+        	else{
+        		$x = '/employer/fill-data';
+        	}
           return response()->json([
             'auth' => auth()->check(),
             'user' => $user,
-            'intended' => '/employer',
+            'intended' => $x,
           ]);
         }
     }

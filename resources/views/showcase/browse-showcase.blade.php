@@ -241,7 +241,7 @@ body {
   <div class="title">
     <div class="container">
       <h1> Freelancer Showcase</h1>
-      <h1>Let the art speak for itself </h1>
+      <h1>Let the beauty speak for itself </h1>
     </div>
 
   </div>
@@ -353,7 +353,7 @@ body {
           <p>No showcase found.</p>
         @else
           @foreach ($showcases as $showcase)
-            <div class="col-md-4">
+            <div class="col-lg-4">
               <div class="card snip1573">
 
                 <img class="card-img-top" src="data:{{$showcase->pic_type}};base64,{{ base64_encode($showcase->pic) }}" alt="Card image cap">

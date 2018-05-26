@@ -1,152 +1,152 @@
 @section('style')
 <style type="text/css">
 
-.admin-panel {
-  width: 100%;
-  margin: 50px auto;
-  overflow: hidden;
-  background-color:#fff;
-  position:relative;
+  .admin-panel {
+    width: 100%;
+    margin: 50px auto;
+    overflow: hidden;
+    background-color:#fff;
+    position:relative;
 
-}
+  }
 
-.btn i{
-  font-size: 18px;
-  color: black !important;
-}
+  .btn i{
+    font-size: 18px;
+    color: black !important;
+  }
 
-.slidebar {
-  background-color: #111;
-    height:100%;
-    width: 100px;
-    position: fixed;
-    z-index: 1;
-    top: 65px;
-    left: 0;
+  .slidebar {
+    width: 115px;
     background-color: #111;
-    overflow-x: hidden;
-    padding-top: 20px;
-}
-.slidebar ul {
-  position:relative;
-  height:100%;
-}
+      height:100%;
+      position: fixed;
+      z-index: 1;
+      top: 65px;
+      left: 0;
+      background-color: #111;
+      overflow-x: hidden;
+      padding-top: 20px;
+  }
+  .slidebar ul {
+    position:relative;
+    height:100%;
+  }
 
-.slidebar a{
-  color: #bbb;
-  text-decoration:none;
-}
-.slidebar li{
-  text-align:center;
-  padding: 0x 0px;
-}
+  .slidebar a{
+    color: #bbb;
+    text-decoration:none;
+  }
+  .slidebar li{
+    text-align:center;
+    padding: 0x 0px;
+  }
 
-.slidebar ul {
-  padding: 0;
-  margin:0;
-}
-.slidebar li {
-  list-style-type: none;
-  margin: 0;
-  position: relative;
-  text-align:center;
-  color:#B3B3B3
-}
-.slidebar i {
-  display:block;
-  text-align:center;
-  color:#B3B3B3;
-  font-size: 40px;
-  margin-bottom: 8px;
-}
+  .slidebar ul {
+    padding: 0;
+    margin:0;
+  }
+  .slidebar li {
+    list-style-type: none;
+    margin: 0;
+    position: relative;
+    text-align:center;
+    color:#B3B3B3
+  }
+  .slidebar i {
+    display:block;
+    text-align:center;
+    color:#B3B3B3;
+    font-size: 40px;
+    margin-bottom: 8px;
+  }
 
-.slidebar ul a {
-  color:#B3B3B3;
-  text-decoration: none;
-  box-sizing:border-box;
-  display: block;
-  text-transform: capitalize;
-  padding: 20px;
-}
-.slidebar li:hover a, li#active{
-  background-color: #313131;
-}
-.slidebar li:hover i, li#active i{
-  color: #17BCE8;
-}
-.slidebar li:focus i {
-  color: #17BCE8;
-}
+  .slidebar ul a {
+    color:#B3B3B3;
+    text-decoration: none;
+    box-sizing:border-box;
+    display: block;
+    text-transform: capitalize;
+    padding: 20px;
+  }
+  .slidebar li:hover a, li#active{
+    background-color: #313131;
+  }
+  .slidebar li:hover i, li#active i{
+    color: #17BCE8;
+  }
+  .slidebar li:focus i {
+    color: #17BCE8;
+  }
 
-.main1 {
-  width: 85%;
-  background-color: rgb(255,255,255);
-  position: relative;
-  padding-left: 160px;
+  .main1 {
+    width: 85%;
+    background-color: rgb(255,255,255);
+    position: relative;
+    padding-left: 160px;
 
-}
+  }
 
-.main1 h2 {
-  margin:1em 30px;
-  color:#17BCE8;
-  font-size: 20px;
-  font-weight:600;
-  border-bottom: 1px solid #bbb;
-  padding: 0px 0px 10px 0px;
-}
+  .main1 h2 {
+    margin:1em 30px;
+    color:#17BCE8;
+    font-size: 20px;
+    font-weight:600;
+    border-bottom: 1px solid #bbb;
+    padding: 0px 0px 10px 0px;
+  }
 
-table{
-  width: 100%;
-}
+  table{
+    width: 100%;
+  }
 
-.message-me{
-  width: 100%;
-  border-color: green;
-  margin-bottom: 5px;
-}
+  .message-me{
+    width: 100%;
+    border-color: green;
+    margin-bottom: 5px;
+  }
 
-.message-end{
-  width: 100%;
-  border-color: blue;
-  margin-bottom: 5px;
+  .message-end{
+    width: 100%;
+    border-color: blue;
+    margin-bottom: 5px;
 
-}
+  }
 
-.discussion-history .modal-content{
-  width: auto;
-}
+  .discussion-history .modal-content{
+    width: auto;
+  }
 
-.discussion-history .modal-body{
-  justify-content: center;
-}
+  .discussion-history .modal-body{
+    justify-content: center;
+  }
 
-.discussion-history .modal-dialog{
-    overflow-y: initial !important;
-    top: 20%;
-}
-.discussion-history .modal-body{
-    height: 250px;
-    overflow-y: auto;
-}
+  .discussion-history .modal-dialog{
+      overflow-y: initial !important;
+      top: 20%;
+  }
+  .discussion-history .modal-body{
+      height: 250px;
+      overflow-y: auto;
+  }
 
-.stars i{
-  color: #FFFFAA;
-  margin-right: 3px;
-  font-size: 16px;
-}
+  .stars i{
+    color: #FFFFAA;
+    margin-right: 3px;
+    font-size: 16px;
+  }
 
-.paid{
-  font-size: 24px;
-  color: green;
-}
+  .paid{
+    font-size: 24px;
+    color: green;
+  }
 
-#tab2, #tab3{
-  display: none;
-}
+  #tab2, #tab3{
+    display: none;
+  }
 
-.main1 .btn{
-  margin-bottom: 3px;
-}
+  .main1 .btn{
+    margin-bottom: 3px;
+  }
 
 
 </style>
@@ -184,23 +184,34 @@ table{
             <li><a href="" name="tab6"><i class="fa fa-wrench"></i>Advanced</a></li> -->
         </ul>
     </div>
-
+    @php
+      $yu=1;
+    @endphp
     <div class="main1">
       <div id="tab1"><h2 class="header">My Projects</h2>
         <table class="table table-hover">
-          <thead>
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">Project name</th>
-              <th scope="col">Deadline</th>
-              <th scope="col">Action</th>
-            </tr>
-          </thead>
-          <tbody>
-
-
-
-          </tbody>
+          @if (!count($my_projects))
+            <h3>No projects</h3>
+          @else
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Project name</th>
+                <th scope="col">Deadline</th>
+                <th scope="col">Bids</th>
+              </tr>
+            </thead>
+            <tbody>
+              @foreach ($my_projects as $my_project)
+                <tr>
+                  <th scope="row">{{$yu++}}</th>
+                  <td><a href="/projects/{{$my_project->slug}}">{{$my_project->name}}</a></td>
+                  <td>{{date_format(date_create($my_project->deadline), "d-m-Y")}}</td>
+                  <td>{{$my_project->no_of_bids}}</td>
+                </tr>
+              @endforeach
+            </tbody>
+          @endif
         </table>
 
       </div>
@@ -218,9 +229,12 @@ table{
                  </tr>
                </thead>
                <tbody>
+                 @php
+                   $ni=1;
+                 @endphp
                  @foreach ($projects as $project)
                    <tr>
-                     <th scope="row">1</th>
+                     <th scope="row">{{$ni++}}</th>
                      <td><a href="/projects/{{$project->slug}}">{{$project->name}}</a></td>
                      <td>{{date_format(date_create($project->deadline), "d-m-Y")}}</td>
                      <td><button class="btn btn-info mr-3 update-progress" job-id="{{$project->job_id}}">Update Progress</button><button job-id="{{$project->job_id}}" class="btn btn-warning view-history mr-3">View History</button><button class="btn btn-primary pay-freelancer" freelancer-id="{{$project->won_by_id}}" job-id="{{$project->job_id}}">Pay freelancer</button></td>
@@ -252,7 +266,7 @@ table{
                    @if ($project->has_review == 1 || $project->has_review == 3)
                      <td><button job-id="{{$project->job_id}}" class="btn btn-nectarine view-history mr-3">View History</button><button class="btn btn-june mr-3"><i class="fa fa-check-square-o paid" aria-hidden="true"> Paid</i></button><button class="btn btn-june mr-3"><i class="fa fa-check-square-o paid" aria-hidden="true"> Rated </i></button></td>
                    @else
-                     <td><button job-id="{{$project->job_id}}" class="btn btn-nectarine view-history mr-3">View History</button><button job-id="{{$project->job_id}}" freelancer-id="{{$project->freelancer_id}}" class="btn btn-primary rate-freelancer mr-3">Rate freelancer</button></td>
+                     <td><button job-id="{{$project->job_id}}" class="btn btn-nectarine view-history mr-3">View History</button><button class="btn btn-june mr-3"><i class="fa fa-check-square-o paid" aria-hidden="true"> Paid</i></button><button job-id="{{$project->job_id}}" freelancer-id="{{$project->freelancer_id}}" class="btn btn-primary rate-freelancer mr-3">Rate freelancer</button></td>
 
                    @endif
                  </tr>
@@ -382,7 +396,7 @@ table{
         <div class="form-group">
           <textarea name="comment" required id="comment" class="form-control" rows="8" cols="80"></textarea>
         </div>
-        <button type="submit" name="button">Submit</button>
+        <button class="btn btn-exodus" type="submit" name="button">Submit</button>
       </form>
     </div>
     <div class="modal-footer">
@@ -451,7 +465,7 @@ table{
       },
       error: function(data){
         console.log(data)
-        console.log("Ajax Error - get job details")
+        alertify.error("System error. Please contact technical support.")
       }
     })
   });
@@ -489,7 +503,7 @@ table{
       },
       error: function(data){
         console.log(data)
-        console.log("Ajax Error - get message details")
+        alertify.error("System error. Please contact technical support.")
       }
     })
   })
@@ -514,9 +528,12 @@ table{
         if(!data[1])
           $(".payment .warning").html("<div class='alert alert-danger'>This user hasn't set up their paypal account.</div>");
         $(".payment .details").html("<p><strong>You have $"+ data[0] + " due to pay.</strong></p>")
+        $('.payment').modal('show')
+      },
+      error: function(){
+        alertify.error("System error. Please contact technical support.")
       }
     })
-    $('.payment').modal('show')
   })
 
   $(document).on('click', '.rate-freelancer', function(){
@@ -609,13 +626,14 @@ table{
 
 
         paypal.request.post(EXECUTE_PAYMENT_URL,
-          { paymentID: data.paymentID, payerID: data.payerID},
+          { paymentID: data.paymentID, payerID: data.payerID, freelancer_id:freelancer_id, id: id},
           {headers:
             {'x-csrf-token': $('meta[name="csrf-token"]').attr('content')}
           })
           .then(function(data) {
             alertify.success('Payment successful!');
             console.log(data)
+            window.location.reload(true);
         })
         .catch(function(err) {
 
@@ -627,6 +645,17 @@ table{
     }
 
     }, '#paypal-button-container');
+
+
+    $(document).on('mousemove', function(e){
+      if(e.pageX<=100)
+        $(".slidebar").css("width", "115px")
+        else{
+          $(".slidebar").css("width", "0px")
+        }
+    })
+
+
   </script>
 
 @endsection

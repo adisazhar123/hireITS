@@ -8,6 +8,9 @@ use App\ProfileFiles;
 use DB;
 use App\Employer;
 use App\Freelancer;
+use App\Review;
+use App\TopFreelancer;
+use App\TopEmployer;
 
 class UsersController extends Controller
 {
@@ -37,29 +40,7 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-        /*$this->validate($request,[
-            'username' => 'required',
-            'password' => 'required',
-            'email' => 'required',
-            'password_confirmation' => 'required'
-        ]);
 
-        $user = new User([
-        	'username' => $request->input('username'),
-            'email' => $request->input('email'),
-            'password' => $request->input('password')
-        ]);
-        $user->save();
-
-        /*$mail = $request->input('email');
-        $passwd = $request->input('password');
-        $name = ''; $role ='';
-        $data = array('name'=>$name, 'email'=>$mail, 'password'=>$passwd, 'role'=>$role);
-
-        echo $mail; echo '<br>';
-        echo $passwd;
-        DB::table('users')->insert($data);*/
-        echo 'Insert success';
     }
 
     /**
@@ -117,6 +98,8 @@ class UsersController extends Controller
     }
 
     public function topuser(){
-    	return view('user.topuser');
+      $top_freelancers = TopFreelancer::all();
+      $top_employers = TopEmployer::all();
+    	return view('user.topuser')->with('top_freelancers', $top_freelancers)->with('top_employers', $top_employers);
     }
 }

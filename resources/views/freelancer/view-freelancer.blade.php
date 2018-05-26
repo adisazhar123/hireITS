@@ -312,7 +312,7 @@ p a{color:#27ae60; text-decoration:none;}
 
                      @if ($freelancer[0]->review)
                        <p class="cant">{{$freelancer[0]->review}} reviews</p>
-                       @for ($i=0; $i < $freelancer[0]->rating; $i++)
+                       @for ($i=0; $i < $freelancer[0]->rating/$freelancer[0]->review; $i++)
                          <i class="fa fa-star"></i>
                        @endfor
                       @else

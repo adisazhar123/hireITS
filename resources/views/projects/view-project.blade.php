@@ -80,15 +80,6 @@
 
     }
 
-    .bidders .card #cancel-bid{
-      display: none;
-    }
-
-    .card:hover #cancel-bid{
-      display: block;
-
-    }
-
     .fa-star{
       color: #FFAA2A;
     }
@@ -135,6 +126,8 @@
                 </button>
             </div>
         @endif
+
+
       </div>
       <div class="col-md-12">
         <div class="project-time">
@@ -165,9 +158,26 @@
                 @endphp
               </strong>
             </div>
-            <div class="col-md-2">
-              @if (Auth::check() && Auth::user()->role==="freelancer" && $hasBid && $job[0]->active)
+            <div class="col-md-3">
+
+              @if (Auth::check() && Auth::user()->role==="freelancer" && !$hasBid && $job[0]->active)
                 <button id="bid-now" class="btn btn-primary" name="bid-now">Bid on this project</button>
+              @elseif(Auth::check() && Auth::user()->role==="freelancer" && $hasBid && $job[0]->active)
+                @if (isset($job[0]->wonby[0]->won_by_id) && $job[0]->wonby[0]->won_by_id == Auth::user()->id)
+
+                @else
+                  <div class="alert alert-success">
+                    You are bidding on this project.
+                  </div>
+                @endif
+              @endif
+              @if (Auth::check() && Auth::user()->id == $job[0]->employer_id && $job[0]->active && !$job[0]->no_of_bids)
+                <form class="" action="{{route('delete.project')}}" method="post">
+                  {{ csrf_field() }}
+                  {{ method_field('delete')}}
+                  <input type="hidden" name="job_id" value="{{$job[0]->job_id}}">
+                  <button type="submit" class="btn btn-glamour" name="button">Delete Project</button>
+                </form>
               @endif
             </div>
           </div>
@@ -203,7 +213,16 @@
                 @foreach ($skills as $skill)
                   <a href="#">{{$skill->name}}</a>
 
-                @endforeach
+                @endforeach <br><br>
+                @if ($job[0]->active)
+                  Active: Yes
+                @else
+                  Active: No
+                @endif <br>
+                @if ($job[0]->completed)
+                  Completed: Yes
+                @else Completed: No
+                @endif
               </div>
 
             </div>
@@ -326,25 +345,22 @@
 
                         </div>
                         <div class="col-md-2">
-                          @if (Auth::check())
+                          @if (Auth::check() && $bid->freelancer_id == Auth::user()->id)
                             @foreach ($bid->job->wonby as $wonby)
-                              @if ($wonby->won_by_id == Auth::user()->id)
+                              @if ($wonby->won_by_id == $bid->freelancer_id && $bid->freelancer_id == Auth::user()->id)
                                 <div class="alert alert-warning">
-                                  Your ongoing project
+                                  You are hired and working on this project.
                                 </div>
                                 @break
-                              @elseif ($bid->freelancer->freelancer_id == Auth::user()->id)
-                                <form class="" action="index.html" method="post">
-                                  <button  id="cancel-bid" class="btn btn-danger animated fadeIn" type="submit" name="button">Cancel bid</button>
-                                </form>
                               @endif
                             @endforeach
-                          @elseif (1)
+                          @else
                             @foreach ($bid->job->wonby as $wonby)
 
-                            @if ($wonby->won_by_id == $bid->freelancer->freelancer_id)
+                            @if ($wonby->won_by_id == $bid->freelancer->freelancer_id && !Auth::check()  || $wonby->won_by_id == $bid->freelancer->freelancer_id
+                              && Auth::check() && $job[0]->employer_id != Auth::user()->id)
                               <div class="alert alert-success">
-                                I won the bid!
+                                This freelancer won the bid!
                               </button>
                               </div>
                             @endif
@@ -372,6 +388,14 @@
                               @endif
 
                             </form>
+                          @endif
+                          @if (Auth::check() && Auth::user()->id == $bid->freelancer_id && $job[0]->active)
+                              <form class="" action="{{route('cancel.bid')}}" method="post">
+                                {{ csrf_field() }}
+                                {{method_field('delete')}}
+                                <input type="hidden" name="bid_id" value="{{$bid->bid_id}}">
+                                <button id="cancel-bid" class="btn btn-glamour" type="submit" name="button">Cancel bid</button>
+                              </form>
                           @endif
                         </div>
                       </div>

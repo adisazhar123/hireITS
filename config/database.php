@@ -52,6 +52,7 @@ return [
             'prefix' => '',
             'strict' => true,
             'engine' => null,
+            'modes' => ['NO_ZERO_DATE', 'STRICT_TRANS_TABLES'],
         ],
 
         'pgsql' => [

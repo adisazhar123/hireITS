@@ -1,137 +1,130 @@
 @section('style')
-  <style media="screen">
-.post .info p {
-  text-align:center;
-  color: #999;
-  text-transform:none;
-  font-weight:600;
-  font-size:15px;
-  margin-top:2px
-}
+<style media="screen">
+  .post .info p {
+    text-align:center;
+    color: #999;
+    text-transform:none;
+    font-weight:600;
+    font-size:15px;
+    margin-top:2px
+  }
+  .title-top{
+    height: 100px;
+    background-color: #0087E0;
+  }
 
-.post .info i {
-  color:#F6AA93;
-}
+  .title-top h3{
+    padding-top: 30px;
+    font-weight: bold;
+    color: white;
+    font-size: 35px;
 
+  }
 
-.title{
-  background: #f1c40f ;
-  text-shadow: none;
-  text-align:center;
-  text-transform: uppercase;
-  font-size: 18px;
-  color: #FFF;
-
-}
-
-form.post {
-  border-radius: 5px;
-  width:100%;
-  margin: 5% auto;
-  background-color: #FFFFFF;
-  overflow: hidden;
-}
-
-p span {
-  color: #F00;
-}
-
-.post p {
-  margin: 0px;
-  font-weight: 500;
-  line-height: 2;
-  color:#333;
-  text-align:justify;
-}
+  .post .info i {
+    color:#F6AA93;
+  }
 
 
-.post input {
-  border-radius: 0px 5px 5px 0px;
-  border: 1px solid #eee;
-  margin-bottom: 15px;
-  width: 94%;
-  height: 41px;
-  float: left;
-  padding: 0px 15px;
-}
+  .title{
+    background: #f1c40f ;
+    text-shadow: none;
+    text-align:center;
+    text-transform: uppercase;
+    font-size: 18px;
+    color: #FFF;
 
-.post a {
-  text-decoration:inherit
-}
+  }
+
+  form.post {
+    border-radius: 5px;
+    width:100%;
+    margin: 5% auto;
+    background-color: #FFFFFF;
+    overflow: hidden;
+  }
+
+  p span {
+    color: #F00;
+  }
+
+  .post p {
+    margin: 0px;
+    font-weight: 500;
+    line-height: 2;
+    color:#333;
+    text-align:justify;
+  }
 
 
-.post .icon-case {
-  width: 35px;
-  float: left;
-  border-radius: 5px 0px 0px 5px;
-  background:#eeeeee;
-  height:42px;
-  position: relative;
-  text-align: center;
-  line-height:40px;
-}
+  .post input {
+    border-radius: 0px 5px 5px 0px;
+    border: 1px solid #eee;
+    margin-bottom: 15px;
+    width: 100%;
+    height: 41px;
+    float: left;
+    padding: 0px 15px;
+  }
 
-.post i {
-  color:#555;
-}
+  .post a {
+    text-decoration:inherit
+  }
 
-.post .contentform {
-  padding: 40px 30px;
-}
 
-.post .bouton-contact{
-  background-color: #81BDA4;
-  color: #FFF;
-  text-align: center;
-  width: 100%;
-  border:0;
-  padding: 17px 25px;
-  border-radius: 0px 0px 5px 5px;
-  cursor: pointer;
-  margin-top: 40px;
-  font-size: 18px;
-}
+  .post .icon-case {
+    width: 35px;
+    float: left;
+    border-radius: 5px 0px 0px 5px;
+    background:#eeeeee;
+    height:42px;
+    position: relative;
+    text-align: center;
+    line-height:40px;
+  }
 
-.post .leftcontact {
-  width:49.5%;
-  float:left;
-  border-right: 1px dotted #CCC;
-  box-sizing: border-box;
-  padding: 0px 15px 0px 0px;
-}
+  .post i {
+    color:#555;
+  }
 
-.post .rightcontact {
-  width:49.5%;
-  float:right;
-  box-sizing: border-box;
-  padding: 0px 0px 0px 15px;
-}
+  .post .contentform {
+    padding: 40px 30px;
+  }
 
-.validation {
-  display:none;
-  margin: 0 0 10px;
-  font-weight:400;
-  font-size:13px;
-  color: #DE5959;
-}
+  .post .bouton-contact{
+    background-color: #81BDA4;
+    color: #FFF;
+    text-align: center;
+    width: 100%;
+    border:0;
+    padding: 17px 25px;
+    border-radius: 0px 0px 5px 5px;
+    cursor: pointer;
+    margin-top: 40px;
+    font-size: 18px;
+  }
 
-#sendmessage {
-  border:1px solid #fff;
-  display:none;
-  text-align:center;
-  margin:10px 0;
-  font-weight:600;
-  margin-bottom:30px;
-  background-color: #EBF6E0;
-  color: #5F9025;
-  border: 1px solid #B3DC82;
-  padding: 13px 40px 13px 18px;
-  border-radius: 3px;
-  box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.03);
-}
+  .post .leftcontact {
+    width:49.5%;
+    float:left;
+    border-right: 1px dotted #CCC;
+    box-sizing: border-box;
+    padding: 0px 15px 0px 0px;
+  }
 
-  #sendmessage.show,.show  {
-    display:block;
+  .post .rightcontact {
+    width:49.5%;
+    float:right;
+    box-sizing: border-box;
+    padding: 0px 0px 0px 15px;
+  }
+
+  .validation {
+    display:none;
+    margin: 0 0 10px;
+    font-weight:400;
+    font-size:13px;
+    color: #DE5959;
   }
 
   .ql-toolbar.ql-snow{
@@ -165,29 +158,39 @@ p span {
 
   }
 
-  </style>
+</style>
 @endsection
 
 @extends('layouts.app')
 
 @section('content')
+  <div class="title-top">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4">
+          <h3>Top jobs</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div class="container">
     @if ($errors->any())
       <br>
-        <div class="alert alert-danger alert-dismissable">
+        <div class="alert alert-danger alert-dismissible">
             <ul>
                 @foreach ($errors->all() as $error)
                     <li>{{ $error }}</li>
                 @endforeach
             </ul>
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-  <span aria-hidden="true">&times;</span>
-</button>
+              <span aria-hidden="true">&times;</span>
+    </button>
         </div>
     @endif
     @if(session()->has('success'))
       <br>
-      <div class="alert alert-success alert-dismissable">
+      <div class="alert alert-success alert-dismissible">
         {{ session()->get('success') }}
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
 <span aria-hidden="true">&times;</span>
@@ -196,7 +199,7 @@ p span {
     @endif
     @if(session()->has('error'))
       <br>
-      <div class="alert alert-danger alert-dismissable">
+      <div class="alert alert-danger alert-dismissible">
         {{ session()->get('error') }}
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
           <span aria-hidden="true">&times;</span>
@@ -291,10 +294,16 @@ p span {
 
   <script type="text/javascript">
 
+  var date = new Date();
+
   $("form").submit(function(){
     var desc =   quill.root.innerHTML
     $("#description").val(desc)
 
+    if($("#price1").val() > $("#price2").val()){
+      alertify.error("Minimum budget has to be lower than maximum budget.")
+      return false;
+    }
   });
 
   $('#search_skills').select2({

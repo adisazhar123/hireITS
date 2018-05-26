@@ -74,6 +74,10 @@
 	padding: 10px;
 }
 
+.picture img{
+	border-radius: 5px;
+}
+
 .title{
 	min-height:100px;
 	background-color: #0087E0;
@@ -105,47 +109,82 @@
 			<div class="freelancer">
 				<h2>Freelancer</h2>
 				<div class="row">
+					@if (empty($top_freelancers))
+						<h5>No freelancers yet.</h5>
+					@else
+						@if (isset($top_freelancers[0]))
+						<div class="col-lg-4">
+							<div class = "user" >
+								<h1>1.</h1>
+								<div class = "picture">
+									@if (empty($top_freelancers[0]->pic))
+										<img src="{{asset('img/avatar.png')}}" alt="profile_pic" style="width: 100%">
 
-					<div class="col-lg-4">
-						<div class = "user" >
-							<h1>1.</h1>
-							<div class = "picture">
-								<img src="{{asset('img/avatar.png')}}" alt="" style="width: 100%">
-							</div>
-							<div class="detail">
-								<p>Rating: 4.6</p>
-								<p>Major: Mettalurgy</p>
-								<i class="fa fa-trophy fa-lg" aria-hidden="true"></i>
+									@else
+										<img src="data:{{$top_freelancers[0]->img_type}};base64,{{base64_encode($top_freelancers[0]->pic)}}" alt="profile_pic" style="width: 100%">
 
+									@endif
+								</div>
+								<div class="detail">
+									<p>Rating: {{$top_freelancers[0]->rating}}</p>
+									<p>Major: {{$top_freelancers[0]->major}}</p>
+									<i class="fa fa-trophy fa-lg" aria-hidden="true"></i>
+								</div>
+								<div class="overlay">{{$top_freelancers[0]->name}}</div>
 							</div>
-							<div class="overlay">Modista </div>
 						</div>
-					</div>
+						@endif
+						@if (isset($top_freelancers[1]))
+							<div class="col-lg-4">
+								<div class = "user" >
+									<h1>2.</h1>
+									<div class = "picture">
+										@if (empty($top_freelancers[1]->pic))
+											<img src="{{asset('img/avatar.png')}}" alt="profile_pic" style="width: 100%">
 
-					<div class="col-lg-4">
-						<div class="user">
-							<h1>2.</h1>
-							<div class="picture"></div>
-							<div class="detail">
-								<p>Rating: </p>
-								<p>Major: </p>
-								<i class="fa fa-pagelines fa-lg" aria-hidden="true"></i>
+										@else
+											<img src="data:{{$top_freelancers[1]->img_type}};base64,{{base64_encode($top_freelancers[1]->pic)}}" alt="profile_pic" style="width: 100%">
+
+										@endif
+									</div>
+									<div class="detail">
+										<p>Rating: {{$top_freelancers[1]->rating}}</p>
+										<p>Major: {{$top_freelancers[1]->major}}</p>
+										<i class="fa fa-pagelines fa-lg" aria-hidden="true"></i>
+									</div>
+									<div class="overlay">{{$top_freelancers[1]->name}}</div>
+								</div>
 							</div>
-							<div class="overlay">Ghisa</div>
-						</div>
-					</div>
-					<div class="col-lg-4">
-						<div class="user">
-							<h1>3.</h1>
-							<div class="picture"></div>
-							<div class="detail">
-								<p>Rating: </p>
-								<p>Major: </p>
-								<i class="fa fa-envira fa-lg" aria-hidden="true"></i>
+						@endif
+
+						@if (isset($top_freelancers[2]))
+							<div class="col-lg-4">
+								<div class = "user" >
+									<h1>3.</h1>
+									<div class = "picture">
+										@if (empty($top_freelancers[2]->pic))
+											<img src="{{asset('img/avatar.png')}}" alt="profile_pic" style="width: 100%">
+
+										@else
+											<img src="data:{{$top_freelancers[2]->img_type}};base64,{{base64_encode($top_freelancers[2]->pic)}}" alt="profile_pic" style="width: 100%">
+
+										@endif
+									</div>
+									<div class="detail">
+										<p>Rating: {{$top_freelancers[2]->rating}}</p>
+										<p>Major: {{$top_freelancers[2]->major}}</p>
+										<i class="fa fa-envira fa-lg" aria-hidden="true"></i>
+									</div>
+									<div class="overlay">{{$top_freelancers[2]->name}}</div>
+								</div>
 							</div>
-							<div class = "overlay">Adis</div>
-						</div>
-					</div>
+					@endif
+
+
+
+
+
+					@endif
 				</div>
 			</div>
 			<div class = "garis"></div>
@@ -153,47 +192,71 @@
 			<div class="employer">
 				<h2>Employer</h2>
 				<div class="row">
+					@if (empty($top_employers))
+						<h5>No top employers yet.</h5>
+					@else
+						@if (isset($top_employers[0]))
+							<div class="col-lg-4">
+								<div class = "user" >
+									<h1>1.</h1>
+									<div class = "picture">
+										@if (empty($top_employers[0]->pic))
+											<img src="{{asset('img/avatar.png')}}" alt="profile_pic" style="width: 100%">
+										@else
+											<img src="data:{{$top_employers[0]->img_type}};base64,{{base64_encode($top_employers[0]->pic)}}" alt="profile_pic" style="width: 100%">
+										@endif
+									</div>
+									<div class="detail">
+										<p>Rating: {{$top_employers[0]->rating}}</p>
+										<i class="fa fa-trophy fa-lg" aria-hidden="true"></i>
 
-					<div class="col-lg-4">
-						<div class = "user" >
-							<h1>1.</h1>
-							<div class = "picture">
-								<img src="{{asset('img/avatar.png')}}" alt="" style="width: 100%">
+									</div>
+									<div class="overlay">{{$top_employers[0]->name}} </div>
+								</div>
 							</div>
-							<div class="detail">
-								<p>Rating: 4.6</p>
-								<p>Major: Mettalurgy</p>
-								<i class="fa fa-trophy fa-lg" aria-hidden="true"></i>
+						@endif
 
+						@if (isset($top_employers[1]))
+							<div class="col-lg-4">
+								<div class="user">
+									<h1>2.</h1>
+									<div class="picture">
+										@if (empty($top_employers[1]->pic))
+											<img src="{{asset('img/avatar.png')}}" alt="profile_pic" style="width: 100%">
+										@else
+											<img src="data:{{$top_employers[1]->img_type}};base64,{{base64_encode($top_employers[1]->pic)}}" alt="profile_pic" style="width: 100%">
+										@endif
+									</div>
+									<div class="detail">
+										<p>Rating: {{$top_employers[1]->rating}}</p>
+										<i class="fa fa-pagelines fa-lg" aria-hidden="true"></i>
+									</div>
+									<div class="overlay">{{$top_employers[1]->name}}</div>
+								</div>
 							</div>
-							<div class="overlay">Modista </div>
-						</div>
-					</div>
+						@endif
 
-					<div class="col-lg-4">
-						<div class="user">
-							<h1>2.</h1>
-							<div class="picture"></div>
-							<div class="detail">
-								<p>Rating: </p>
-								<p>Major: </p>
-								<i class="fa fa-pagelines fa-lg" aria-hidden="true"></i>
+						@if (isset($top_employers[2]))
+							<div class="col-lg-4">
+								<div class="user">
+									<h1>3.</h1>
+									<div class="picture">
+										@if (empty($top_employers[2]->pic))
+											<img src="{{asset('img/avatar.png')}}" alt="profile_pic" style="width: 100%">
+										@else
+											<img src="data:{{$top_employers[2]->img_type}};base64,{{base64_encode($top_employers[2]->pic)}}" alt="profile_pic" style="width: 100%">
+										@endif
+									</div>
+									<div class="detail">
+										<p>Rating: {{$top_employers[2]->rating}}</p>
+										<i class="fa fa-envira fa-lg" aria-hidden="true"></i>
+									</div>
+									<div class = "overlay">{{$top_employers[2]->name}}</div>
+								</div>
 							</div>
-							<div class="overlay">Ghisa</div>
-						</div>
-					</div>
-					<div class="col-lg-4">
-						<div class="user">
-							<h1>3.</h1>
-							<div class="picture"></div>
-							<div class="detail">
-								<p>Rating: </p>
-								<p>Major: </p>
-								<i class="fa fa-envira fa-lg" aria-hidden="true"></i>
-							</div>
-							<div class = "overlay">Adis</div>
-						</div>
-					</div>
+						@endif
+					@endif
+
 				</div>
 			</div>
 

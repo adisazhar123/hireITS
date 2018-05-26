@@ -14,57 +14,61 @@ p a{color:#27ae60; text-decoration:none;}
 
   body{
     @if ($cover->isEmpty())
-      background-image: url('https://images.pexels.com/photos/207153/pexels-photo-207153.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');
+      background-image: url('https://images.pexels.com/photos/688830/pexels-photo-688830.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');
     @else
       background-image: url({{asset($cover)}});
     @endif
     background-repeat: no-repeat;
-    background-size: 100% 470px;
+    background-size: 100% 500px;
     background-position: top;
 
   }
 
 	.text2{
-		transition: .5s ease;
-		opacity: 0;
-		position: absolute;
-		top: 30%;
-		left: 47%;
-		transform: translate(-50%, -50%);
-		-ms-transform: translate(-50%, -50%);
-		text-align: center;
-		height: 10%;
-		width: 10%;
+    transition: .5s ease;
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    text-align: center;
 	}
 
+  #file_selector{
+    margin-bottom: 20px;
+  }
+
   .profile-pic{
-    margin-top: 25px;
+    margin-top: 20px;
     justify-content: center;  margin-left: auto;
     margin-right: auto;
     width: 300px;
     height: 100%;
+    position: relative;
   }
-      .profile-pic img{
-      border-radius: 5px;
-      display: block;
-      margin-left: auto;
-      margin-right: auto;
-      height: 224.467px;
-      width: 300px;
 
-      }
+  .profile-pic img{
+    border-radius: 5px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    height: 224.467px;
+    width: 300px;
+  }
 
-			.info{
-				margin-top: 25px;
-			}
+	.info{
+		margin-top: 25px;
+    text-align: center;
+	}
 
-      .info p{
-      margin-top: 10px;
-      text-align: center;
-      line-height: 10px;
-      color: white;
-      font-size: 18px;
-    }
+  .info p{
+    margin-top: 10px;
+    text-align: center;
+    line-height: 10px;
+    color: white;
+    font-size: 18px;
+  }
 
 
 
@@ -355,7 +359,7 @@ p a{color:#27ae60; text-decoration:none;}
                   {{ csrf_field() }}
                     <input type="file"  id="my_file" name="image"/>
                     <i class="fa fa-wrench" id="file_selector" style="font-size:60px;"></i>
-                    <button id="upload" class="btn btn-default" type="submit" name="button">upload profile pic: </button>
+                    <button id="upload" class="btn btn-default" type="submit" name="button">upload profile pic</button>
                  </form>
               </div>
 
@@ -365,7 +369,7 @@ p a{color:#27ae60; text-decoration:none;}
   						<p class="cant">Member since: {{date_format(Auth::user()->created_at,"d/m/Y")}}</p>
               @if ($employer->review)
                 <p class="cant">{{$employer->review}} reviews</p>
-                @for ($i=0; $i < $employer->rating; $i++)
+                @for ($i=0; $i < $employer->rating/$employer->review; $i++)
                   <i class="fa fa-star"></i>
                 @endfor
                @else

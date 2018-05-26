@@ -6,6 +6,7 @@ use Auth;
 use DB;
 use App\Job;
 use App\Employer;
+use App\Freelancer;
 use App\HarusBisaSkill;
 use App\ProfileFiles;
 use App\WonBy;
@@ -69,11 +70,8 @@ class EmployerController extends Controller
         if (!$check){
           return redirect()->back()->withInput()->with('error', 'File has to be png or jpeg');
         }
-
       }
-
     }
-
 
     $job=new Job;
     $job->name = $request->name;
@@ -165,7 +163,9 @@ class EmployerController extends Controller
   }
 
   public function dashboard(){
-    $projects = DB::table('won_by')
+    $my_projects = Job::where('active', 1)->where('complete', 0)->get();
+
+    $ongoing_projects = DB::table('won_by')
           ->join('job', 'won_by.job_id', '=', 'job.job_id')
           ->select('*')->where('complete',0)->where('job.employer_id', Auth::user()->id)->distinct()
           ->get();
@@ -173,10 +173,11 @@ class EmployerController extends Controller
     $finished_projects = DB::table('won_by')
           ->join('job', 'won_by.job_id', '=', 'job.job_id')
           ->join('bid', 'job.job_id', '=', 'bid.job_id')
-          ->select('*')->where('complete',1)->where('job.employer_id', Auth::user()->id)
+          ->select('*')->where('complete',1)->where('job.employer_id', Auth::user()->id)->groupBy('job.job_id')
           ->get();
 
-     return view('employer.dashboard')->with('projects', $projects)->with('finished_projects', $finished_projects);
+     return view('employer.dashboard')->with('projects', $ongoing_projects)->with('finished_projects', $finished_projects)
+            ->with('my_projects', $my_projects);
    }
 
    public function getMessages(Request $request){
@@ -260,17 +261,22 @@ class EmployerController extends Controller
      $job->has_review=$job->has_review+1;
 
      $freelancer = Freelancer::find($request->rate_to_id);
-     $freelancer->review+=1;
-     $freelancer->rating+=$request->stars;
 
-     $freelancer->rating=($freelancer->rating)/$freelancer->review;
+     $rating = $freelancer->rating + $request->stars;
+     $reviews = $freelancer->review + 1;
+
+     $freelancer->rating = $rating;
+     $freelancer->review =$reviews;
 
      if ($review->save() && $job->save() && $freelancer->save())
-      return redirect()->back();
+      return redirect()->back()->with('success', 'Freelancer rated!');
 
-     if ($review->save())
-      return redirect()->back();
+   }
 
+   public function deleteProject(Request $request){
+     $job = Job::find($request->job_id);
+     if ($job->delete())
+      return redirect()->route('view.employer.dashboard')->with('success', 'Project deleted!');
    }
 
 }

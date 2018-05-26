@@ -36,6 +36,7 @@ p a{color:#27ae60; text-decoration:none;}
     margin-right: auto;
     width: 300px;
     height: 100%;
+    position: relative;
   }
       .profile-pic img{
       border-radius: 5px;
@@ -151,13 +152,11 @@ p a{color:#27ae60; text-decoration:none;}
         transition: .5s ease;
         opacity: 0;
         position: absolute;
-        top: 30%;
+        top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
         -ms-transform: translate(-50%, -50%);
         text-align: center;
-        height: 10%;
-        width: 10%;
       }
       .portfolio .card:hover .text{
         opacity: 0.8;
@@ -489,7 +488,7 @@ p a{color:#27ae60; text-decoration:none;}
 
                 @if ($freelancer->review)
                   <p class="cant">{{$freelancer->review}} reviews</p>
-                  @for ($i=0; $i < $freelancer->rating; $i++)
+                  @for ($i=0; $i < $freelancer->rating/$freelancer->review; $i++)
                     <i class="fa fa-star"></i>
                   @endfor
                 @else

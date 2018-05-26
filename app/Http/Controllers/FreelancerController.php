@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Freelancer;
+use App\Employer;
 use Auth;
 use App\User;
 use DB;
@@ -120,40 +121,28 @@ class FreelancerController extends Controller
    }
 
    public function dashboard(){
-     $my_bids = DB::table('bid')
-           ->join('job', 'bid.job_id', '=', 'job.job_id')
-           ->select('*')->where('complete',0)->where('active', 1)->where('bid.freelancer_id', Auth::user()->id)
-           ->get();
-           //$bids = Bid::with(['job','job.wonby'])->where('complete',0)->where('active', 1)->where('bid.freelancer_id', Auth::user()->id)->get();
-
-
-           $bids = Bid::with(['job' => function ($q){
-          //   $q->where('complete',0)->where('active', 0);
-
+     $bids = Bid::with(['job' => function ($q){
            },'job.wonby' => function($q){
-             $q->where('won_by_id', Auth::user()->id);
+             $q->where('won_by_id','=' ,Auth::user()->id);
            }
-
            ])->where('bid.freelancer_id', Auth::user()->id)->get();
 
-
-        //   return $bids;
-   $projects = DB::table('won_by')
+      $projects = DB::table('won_by')
            ->join('job', 'won_by.job_id', '=', 'job.job_id')
            ->join('bid', 'job.job_id', '=', 'bid.job_id')
-           ->select('*')->where('complete',0)->where('won_by.won_by_id', Auth::user()->id)
+           ->select('*')->where('complete',0)->where('won_by.won_by_id', Auth::user()->id)->where('bid.freelancer_id', Auth::user()->id)
            ->get();
 
       $finished_projects = DB::table('won_by')
             ->join('job', 'won_by.job_id', '=', 'job.job_id')
             ->join('bid', 'job.job_id', '=', 'bid.job_id')
-            ->select('*')->where('complete',1)->where('won_by.won_by_id', Auth::user()->id)
+            ->select('*')->where('complete',1)->where('won_by.won_by_id', Auth::user()->id)->where('bid.freelancer_id', Auth::user()->id)
             ->get();
 
       $showcases = Showcase::where('freelancer_id', Auth::user()->id)->get();
 
-      return view('freelancer.dashboard')->with('projects', $projects)->with('finished_projects', $finished_projects)->with('bids', $bids)
-                  ->with('showcases', $showcases);
+      return view('freelancer.dashboard')->with('projects', $projects)->with('finished_projects', $finished_projects)->with('my_bids', $bids)
+      ->with('showcases', $showcases);
     }
 
     public function bidProject(Request $request){
@@ -335,11 +324,11 @@ class FreelancerController extends Controller
         $job->has_review=$job->has_review+2;
 
         $employer = Employer::find($request->rate_to_id);
-        $employer->rating+=$request->stars;
-        $employer->review+=1;
+        $rating = $employer->rating + $request->stars;
+        $reviews = $employer->review + 1;
 
-        $employer->rating=($employer->rating)/$employer->review;
-
+        $employer->rating = $result;
+        $employer->review =$reviews;
 
         if ($review->save() && $job->save() && $employer->save())
          return redirect()->back();
@@ -373,6 +362,12 @@ class FreelancerController extends Controller
         $showcase = Showcase::find($request->showcase_id);
         if ($showcase->delete())
           return redirect()->back()->with('success', 'Showcase Deleted!');
+      }
+
+      public function deleteBid(Request $request){
+        $bid = Bid::find($request->bid_id);
+        if ($bid->delete())
+        return redirect()->back()->with('success', 'Bid Canceled!');
       }
 
 

@@ -82,10 +82,13 @@ class ProjectsController extends Controller{
       $bids=$job[0]->bid;
 
       $average_bid_price = DB::table('bid')->where('job_id', $job[0]->job_id)->avg('price');
+      
+      if (Auth::check())
+        $hasUserBid = Bid::where('job_id', $job[0]->job_id)->where('freelancer_id', Auth::user()->id)->first();
 
-      $hasUserBid = Bid::where('job_id', $job[0]->job_id)->where('freelancer_id', Auth::user()->id)->first();
-      if ($hasUserBid) $hasBid = 0;
+      if (empty($hasUserBid)) $hasBid = 0;
       else $hasBid = 1;
+
       if (!$bids->isEmpty())
         $pf = $bids[0]->freelancer->ProfileFiles;
       else $pf="";

@@ -1,150 +1,150 @@
 @section('style')
 <style type="text/css">
 
-.admin-panel {
-  width: 100%;
-  margin: 50px auto;
-  overflow: hidden;
-  background-color:#fff;
-  position:relative;
+  .admin-panel {
+    width: 100%;
+    margin: 50px auto;
+    overflow: hidden;
+    background-color:#fff;
+    position:relative;
 
-}
-
-.slidebar {
-  background-color: #111;
-    height:100%;
-    width: 115px;
-    position: fixed;
-    z-index: 1;
-    top: 45px;
-    left: 0;
-    background-color: #111;
-    overflow-x: hidden;
-    padding-top: 20px;
-}
-.slidebar ul {
-  position:relative;
-  height:100%;
-}
-
-.slidebar a{
-  color: #bbb;
-  text-decoration:none;
-}
-.slidebar li{
-  text-align:center;
-  padding: 0x 0px;
-}
-
-.slidebar ul {
-  padding: 0;
-  margin:0;
-}
-.slidebar li {
-  list-style-type: none;
-  margin: 0;
-  position: relative;
-  text-align:center;
-  color:#B3B3B3
-}
-.slidebar i {
-  display:block;
-  text-align:center;
-  color:#B3B3B3;
-  font-size: 40px;
-  margin-bottom: 8px;
-}
-
-.slidebar ul a {
-  color:#B3B3B3;
-  text-decoration: none;
-  box-sizing:border-box;
-  display: block;
-  text-transform: capitalize;
-  padding: 20px;
-}
-.slidebar li:hover a, li#active{
-  background-color: #313131;
-}
-.slidebar li:hover i, li#active i{
-  color: #17BCE8;
-}
-.slidebar li:focus i {
-  color: #17BCE8;
-}
-
-.main1 {
-  width: 85%;
-  background-color: rgb(255,255,255);
-  position: relative;
-  padding-left: 160px;
-
-}
-
-.main1 h2 {
-  margin:1em 30px;
-  color:#17BCE8;
-  font-size: 20px;
-  font-weight:600;
-  border-bottom: 1px solid #bbb;
-  padding: 0px 0px 10px 0px;
-}
-
-table{
-  width: 100%;
-}
-
-.message-me{
-  width: 100%;
-  border-color: green;
-  margin-bottom: 5px;
-}
-
-.message-end{
-  width: 100%;
-  border-color: blue;
-  margin-bottom: 5px;
-
-}
-
-.discussion-history .modal-content{
-  width: auto;
-}
-
-.discussion-history .modal-body{
-  justify-content: center;
-}
-
-.discussion-history .modal-dialog{
-    overflow-y: initial !important;
-    top: 20%;
-}
-.discussion-history .modal-body{
-    height: 250px;
-    overflow-y: auto;
-}
-
-.stars i{
-  color: #FFFFAA;
-}
-#tab2, #tab3, #tab4{
-  display: none;
-}
-
-@media only screen and (max-width: 989px) {
-  .slidebar{
-    width: 0px;
   }
-}
 
-#search_skills{
-  width: 100%;
+  .slidebar {
+    background-color: #111;
+      height:100%;
+      width: 115px;
+      position: fixed;
+      z-index: 1;
+      top: 45px;
+      left: 0;
+      background-color: #111;
+      overflow-x: hidden;
+      padding-top: 20px;
+  }
+  .slidebar ul {
+    position:relative;
+    height:100%;
+  }
 
-}
-span.select2.select2-container{
-  width: 100%;
+  .slidebar a{
+    color: #bbb;
+    text-decoration:none;
+  }
+  .slidebar li{
+    text-align:center;
+    padding: 0x 0px;
+  }
 
-}
+  .slidebar ul {
+    padding: 0;
+    margin:0;
+  }
+  .slidebar li {
+    list-style-type: none;
+    margin: 0;
+    position: relative;
+    text-align:center;
+    color:#B3B3B3
+  }
+  .slidebar i {
+    display:block;
+    text-align:center;
+    color:#B3B3B3;
+    font-size: 40px;
+    margin-bottom: 8px;
+  }
+
+  .slidebar ul a {
+    color:#B3B3B3;
+    text-decoration: none;
+    box-sizing:border-box;
+    display: block;
+    text-transform: capitalize;
+    padding: 20px;
+  }
+  .slidebar li:hover a, li#active{
+    background-color: #313131;
+  }
+  .slidebar li:hover i, li#active i{
+    color: #17BCE8;
+  }
+  .slidebar li:focus i {
+    color: #17BCE8;
+  }
+
+  .main1 {
+    width: 85%;
+    background-color: rgb(255,255,255);
+    position: relative;
+    padding-left: 160px;
+
+  }
+
+  .main1 h2 {
+    margin:1em 30px;
+    color:#17BCE8;
+    font-size: 20px;
+    font-weight:600;
+    border-bottom: 1px solid #bbb;
+    padding: 0px 0px 10px 0px;
+  }
+
+  table{
+    width: 100%;
+  }
+
+  .message-me{
+    width: 100%;
+    border-color: green;
+    margin-bottom: 5px;
+  }
+
+  .message-end{
+    width: 100%;
+    border-color: blue;
+    margin-bottom: 5px;
+
+  }
+
+  .discussion-history .modal-content{
+    width: auto;
+  }
+
+  .discussion-history .modal-body{
+    justify-content: center;
+  }
+
+  .discussion-history .modal-dialog{
+      overflow-y: initial !important;
+      top: 20%;
+  }
+  .discussion-history .modal-body{
+      height: 250px;
+      overflow-y: auto;
+  }
+
+  .stars i{
+    color: #FFFFAA;
+  }
+  #tab2, #tab3, #tab4{
+    display: none;
+  }
+
+  @media only screen and (max-width: 989px) {
+    .slidebar{
+      width: 0px;
+    }
+  }
+
+  #search_skills{
+    width: 100%;
+
+  }
+  span.select2.select2-container{
+    width: 100%;
+
+  }
 
 
 </style>
@@ -202,15 +202,17 @@ span.select2.select2-container{
                 </thead>
                 @foreach ($my_bids as $my_bid)
                <tbody>
-                <tr>
-                  <th scope="row">{{$no++}}</th>
-                  <td><a href="/projects/{{$my_bid->slug}}">{{$my_bid->name}}</a></td>
-                  @if ($my_bid->active == 1)
-                    <td><button type="button" name="button" class="btn btn-eagle"><i class="fa fa-clock-o" aria-hidden="true"> Pending</i></button></td>
-                  @else
-                    <td><button type="button" name="button" class="btn btn-glamour"><i class="fa fa-clock-o" aria-hidden="true"> Lost</i></button></td>
-                  @endif
-                </tr>
+                 @if (!isset($my_bid->job->wonby[0]->won_by_id) && empty($my_bid->job->wonby[0]->won_by_id))
+                   <tr>
+                     <th scope="row">{{$no++}}</th>
+                     <td><a href="/projects/{{$my_bid->job->slug}}">{{$my_bid->job->name}}</a></td>
+                     @if ($my_bid->job->active)
+                       <td><button type="button" name="button" class="btn btn-eagle"><i class="fa fa-clock-o" aria-hidden="true"> Pending</i></button></td>
+                     @else
+                       <td><button type="button" name="button" class="btn btn-glamour"><i class="fa fa-times" aria-hidden="true"> Lost</i></button></td>
+                     @endif
+                   </tr>
+                 @endif
               </tbody>
               @endforeach
               @endif
@@ -274,7 +276,7 @@ span.select2.select2-container{
                      @if ($project->has_review == 3 || $project->has_review == 2)
                        <td><button job-id="{{$project->job_id}}" class="btn btn-nectarine view-history mr-3 mb-2">View History</button><button class="btn btn-june mr-3 mb-2"><i class="fa fa-check-square-o paid" aria-hidden="true"> Payment received</i></button><button class="btn btn-june mb-2"><i class="fa fa-check-square-o paid" aria-hidden="true"> Employer Rated </i></button></td>
                      @else
-                       <td><button job-id="{{$project->job_id}}" class="btn btn-nectarine view-history mr-3 mb-2">View History</button><button class="btn btn-june mr-3 mb-2"><i class="fa fa-check-square-o paid" aria-hidden="true"> Payment received</i></button><button job-id="{{$project->job_id}}" employer-id="{{$project->employer_id}}" class="btn btn-primary rate-employer">Rate employer</button></td>
+                       <td><button job-id="{{$project->job_id}}" class="btn btn-nectarine view-history mr-3 mb-2">View History</button><button class="btn btn-june mr-3 mb-2"><i class="fa fa-check-square-o paid" aria-hidden="true"> Payment received</i></button><button job-id="{{$project->job_id}}" employer-id="{{$project->employer_id}}" class="btn btn-primary rate-employer mb-2">Rate employer</button></td>
                      @endif
                    </tr>
                  @endforeach
@@ -439,7 +441,7 @@ span.select2.select2-container{
         </button>
       </div>
       <div class="modal-body">
-        <form class="form-rating" action="{{route('rate.employer')}}" method="POST">
+        <form class="form-rating" action="{{route('rate.employer')}}" method="POST" id="rating-form">
           {{ csrf_field() }}
           <div class="form-group">
             <label for="stars">How many stars?</label>
@@ -454,7 +456,7 @@ span.select2.select2-container{
           <div class="form-group">
             <textarea name="comment" required id="comment" class="form-control" rows="8" cols="80"></textarea>
           </div>
-          <button type="submit" name="button">Submit</button>
+          <button type="submit" class="btn btn-exodus" name="button" style="width: 100%">Submit</button>
         </form>
       </div>
       <div class="modal-footer">
@@ -574,7 +576,7 @@ span.select2.select2-container{
 
         $(".form-rating").submit(function(){
           if ($("#stars").val()=="" || $("#comment").val()=="" ){
-            alert("Please give a star rating and comment.");
+            alertify.error("Please give a star rating and comment.")
             return false;
           }
 
@@ -702,6 +704,7 @@ span.select2.select2-container{
     console.log(skills)
     for(var i=0; i<skills.length; i++)
       mySkills.push(skills[i].id)
+
 
 });
 </script>

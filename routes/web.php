@@ -26,6 +26,8 @@ Route::get('top-user', 'UsersController@topuser')->name('user.top');
 //freelancer
 Route::get('freelancer/get/job-details', 'FreelancerController@getJobDetails')->name('get.job.details');
 Route::get('freelancer/get/messages', 'FreelancerController@getMessages')->name('get.messages.freelancer');
+Route::delete('freelancer/cancel-bid', 'FreelancerController@deleteBid')->name('cancel.bid');
+
 
 Route::middleware(['freelancer'])->group(function () {
   Route::get('/freelancer', 'FreelancerController@index')->name('view.freelancer.profile');
@@ -61,6 +63,7 @@ Route::get('/project/messages/download-file/{id}', 'ProjectsController@downloadF
 Route::middleware(['employer'])->group(function(){
   Route::post('post-project', 'EmployerController@storeProject')->name('store.project');
 });
+Route::delete('/employer/delete-project','EmployerController@deleteProject')->name('delete.project');
 Route::post('/rate-freelancer', 'EmployerController@rateFreelancer')->name('rate.freelancer');
 Route::get('post-project', 'EmployerController@postProject')->name('post.project.page');
 Route::post('/employer/store-dp' ,'EmployerController@storeProfilePic')->name('store.employer.dp');
@@ -77,8 +80,6 @@ Route::put('employer/updateProfile', 'EmployerController@updateProfile')->name('
 Route::post('employer/hire-freelancer', 'EmployerController@hireFreelancer')->name('hire.freelancer');
 Route::get('employer/{username}', 'EmployerController@viewEmployer')->name('view.employer');  //MASIH BELOM
 Route::post('employer/project/payment-details', 'EmployerController@getPaymentDetails')->name('get.payment.details');
-
-
 
 //payment
 Route::get('check', 'Auth\LoginController@check')->name('check');

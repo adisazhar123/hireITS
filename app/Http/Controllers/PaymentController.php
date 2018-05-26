@@ -71,23 +71,21 @@ class PaymentController extends Controller
     	$presentation = new Presentation();
     	$inputFields = new InputFields();
     	$webProfile = new WebProfile();
-    	$flowConfig->setLandingPageType("Billing"); //Set the page type
+    	$flowConfig->setLandingPageType("Billing");
 
     	$presentation->setLogoImage("http://seekvectorlogo.com/wp-content/uploads/2018/01/pak-elektron-limited-pel-vector-logo-small.png")->setBrandName("hireITS"); //NB: Paypal recommended to use https for the logo's address and the size set to 190x60.
 
     	$inputFields->setAllowNote(true)->setNoShipping(1)->setAddressOverride(0);
 
-    	$webProfile->setName("Example " . uniqid())
+    	$webProfile->setName("hireits " . uniqid())
     		->setFlowConfig($flowConfig)
-    		// Parameters for style and presentation.
     		->setPresentation($presentation)
-    		// Parameters for input field customization.
     		->setInputFields($inputFields)
         ->setTemporary(true);
 
     	$createProfileResponse = $webProfile->create($this->_apiContext);
 
-    	return $createProfileResponse->getId(); //The new webprofile's id
+    	return $createProfileResponse->getId();
     }
 
 
@@ -164,11 +162,7 @@ class PaymentController extends Controller
       $paymentExecution->setPayerId($payer_id);
       $executePayment = $payment->execute($paymentExecution, $this->_apiContext);
 
-      /*
-       * Here is where you would do your own stuff like add a record for the payment, trigger a hasPayed event, etc.
-       */
-
-       $price = Bid::find($request->bid_id);
+       $price = Bid::where('job_id', $request->id)->where('freelancer_id', $request->freelancer_id)->first();
        $job = Job::find($price['job_id']);
        $job->complete = 1;
        $job->save();
