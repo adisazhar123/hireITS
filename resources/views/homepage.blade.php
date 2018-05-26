@@ -1,3 +1,13 @@
+@extends('layouts.app')
+
+@section('title')
+  Homepage
+@endsection
+
+@php
+  $homepage=1;
+@endphp
+
 @section('style')
   <style media="screen">
     @import url('https://fonts.googleapis.com/css?family=Raleway');
@@ -122,7 +132,7 @@
   transform: rotate3d(0, 1, 0, 180deg) translate3d(0, 0, 0px);
 }
 
-.bottom {
+.backgg .bottom {
   background: #fff;
   border: 2px solid #777;
   border-radius: 0 0 1em 1em;
@@ -137,7 +147,7 @@
   box-shadow: 0 3px 4px #DFDFDF;
 }
 
-.bottom:before {
+.backgg .bottom:before {
   background: #777;
   border-radius: 0 0 0.3em 0.3em;
   content: " ";
@@ -335,16 +345,16 @@
 
 .backgg {
   position: relative;
-  background-image: url(http://blog.visme.co/wp-content/uploads/2017/07/50-Beautiful-and-Minimalist-Presentation-Backgrounds-08.jpg);
+  //background-image: url(http://blog.visme.co/wp-content/uploads/2017/07/50-Beautiful-and-Minimalist-Presentation-Backgrounds-08.jpg);
+  background-image: url(https://images.pexels.com/photos/1037995/pexels-photo-1037995.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260);
   background-size: cover;
   background-repeat: no-repeat;
-  height: 659px;
+  height: 700px;
 }
 
 .howto {
   padding: 2em;
-  background: #FFFFFF;
-  min-height: 100vh;
+  background: #f9f9ff;
 }
 
 .howto h2 {
@@ -387,27 +397,7 @@ i {
   transform: rotate(15deg);
 }
 
-body {
-  font-size: 14px;
-  line-height: 1.5;
-  color: #333;
-  min-height: 100%;
-  position: relative;
-  width: 100%;
-  height: 100%;
-}
 
-label {
-  margin-bottom: 0;
-}
-
-a {
-  color: #e1e1e1;
-}
-
-a:focus, a:hover {
-  color: #008080;
-}
 
 .btn-success {
   background-color: #25a08d;
@@ -445,112 +435,418 @@ i {
   color: #243f8a;
 }
 
+.single-service img{
+  border-radius: 4px;
+}
+
+.thumb img{
+  border-radius: 4px;
+  width: 100%;
+  min-height: 250px;
+}
+
+.single-service .thumb{
+  min-width: 350px;
+}
+
+.hb-sm-margin{
+  width: auto;
+  height: auto;
+}
+
+.section-gap{
+  padding: 50px 0;
+}
+
+.single-blog .dp{
+  border-radius: 4px;
+}
 
 
 </style>
 @endsection
-@extends('layouts.app')
 
+
+@section('head')
+	<link rel="stylesheet" href="industry/css/magnific-popup.css">
+
+	<link rel="stylesheet" href="industry/css/hexagons.min.css">
+	<link rel="stylesheet" href="industry/css/owl.carousel.css">
+	<link rel="stylesheet" href="industry/css/main.css">
+@endsection
+
+
+@section('menu-state')
+  menu-active
+@endsection
 
 @section('content')
-<!-- Modal -->
 
+  <div class="backgg animated fadeInUpBig">
+    	<div class="laptop">
+  		<div class="laptop_a laptop_def">
+  			<div class="front">
+  				<iframe width="400" height="225" src="https://www.youtube.com/embed/6RSmq2qV1bg?rel=0&amp;autoplay=1&amp;showinfo=0&amp;start=2" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+  			</div>
+  			<div class="back"></div>
+  			<div class="top"></div>
+  		</div>
+  		<div class="bottom"></div>
+  	</div>
+    <div class="container">
 
-<div class="backgg animated fadeInUpBig">
-  	<div class="laptop">
-		<div class="laptop_a laptop_def">
-			<div class="front">
-				<iframe width="400" height="225" src="https://www.youtube.com/embed/6RSmq2qV1bg?rel=0&amp;autoplay=1&amp;showinfo=0&amp;start=2" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-			</div>
-			<div class="back"></div>
-			<div class="top"></div>
-		</div>
-		<div class="bottom"></div>
-	</div>
-  <div class="container">
-
-    <h2>What's hireITS?</h2>
-    <h4>hireITS adalah website yang blablablablablablablablab untuk anak ITS yang ingin mencari uang hajajaj</h4>
+      <h2>What's hireITS?</h2>
+      <h4>hireITS adalah website yang blablablablablablablablab untuk anak ITS yang ingin mencari uang hajajaj</h4>
+    </div>
   </div>
-</div>
 
-<div class="howto animated fadeInDownBig">
-	<h2>How to use hireITS?</h2>
-	<div class="">
-      <div class="info">
-      	<div id="buttons">
-    		<a class="butn green" val="maker" >I'm a job maker</a>
-			<a class="butn orange" val="seeker">I'm a job seeker</a>
-		</div>
-         <!--  <i class="" val="maker" style="font-size:60px;" data-toggle="tooltop" title="Job Maker"></i>
-          <i class="fa fa-user" val="seeker" style="font-size:60px;" data-toggle="tooltop" title="Students"></i> -->
+  <div class="howto animated fadeInDownBig">
+    <div class="container">
+      <h2>How to use hireITS?</h2>
+    	<div class="">
+          <div class="info">
+          	<div id="buttons">
+        		<a class="butn green" val="maker" >I'm a job maker</a>
+    			<a class="butn orange" val="seeker">I'm a job seeker</a>
+    		</div>
+             <!--  <i class="" val="maker" style="font-size:60px;" data-toggle="tooltop" title="Job Maker"></i>
+              <i class="fa fa-user" val="seeker" style="font-size:60px;" data-toggle="tooltop" title="Students"></i> -->
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4 aa">
+            <div class="square">
+            	<h3>Sign Up</h3>
+              <img src="followers.png" alt="" width="170">
+              <p>Apply for a legitible account to start.</p>
+            </div>
+          </div>
+          <div class="col-md-4 maker" >
+            <div class="square">
+            	<h3>Post</h3>
+              	<img src="invoice.png" alt="" width="170">
+              	<p>Post your projects so freelancers will be able to browse.</p>
+            </div>
+          </div>
+          <div class="col-md-4 seeker" style="display:none">
+            <div class="square">
+            	<h3>Search</h3>
+            	<img class="fa fa-search" aria-hidden="true" src="search.png" alt="" width="170">
+              <p>Browse freely through many projects available accustomed to your likings.</p>
+            </div>
+          </div>
+          <div class="col-md-4 aa">
+            <div class="square">
+            	<h3>Discuss</h3>
+              <img src="chat.png" alt="" width="170">
+              <p>Negotiate bids, ideas and requirements with end user.</p>
+            </div>
+          </div>
       </div>
     </div>
-    <div class="row">
-      <div class="col-md-4">
-        <div class="square">
-        	<h3>Sign Up</h3>
-          <img src="followers.png" alt="" width="170">
-          <p>Apply for a legitible account to start.</p>
-        </div>
-      </div>
-      <div class="col-md-4 maker" >
-        <div class="square">
-        	<h3>Post</h3>
-          	<img src="invoice.png" alt="" width="170">
-          	<p>Post your projects so freelancers will be able to browse.</p>
-        </div>
-      </div>
-      <div class="col-md-4 seeker" style="display:none">
-        <div class="square">
-        	<h3>Search</h3>
-        	<img class="fa fa-search" aria-hidden="true" src="search.png" alt="" width="170">
-          <!-- <i class="fa fa-search" aria-hidden="true" style="font-size:89px;"></i> -->
-          <p>Browse freely through many projects available accustomed to your likings.</p>
-        </div>
-      </div>
-      <div class="col-md-4 ">
-        <div class="square">
-        	<h3>Discuss</h3>
-          <img src="chat.png" alt="" width="170">
-          <p>Negotiate bids, ideas and requirements with end user.</p>
-        </div>
-      </div>
+
   </div>
-</div>
+
+
+	<!-- Start service Area -->
+	<section class="service-area section-gap " id="service ">
+		<div class="container ">
+			<div class="row justify-content-center ">
+				<div class="col-md-12 pb-30 header-text text-center ">
+					<h1 class="mb-10 ">Our Capturing Market Sectors</h1>
+					<p>
+						Who are in extremely love with eco friendly system..
+					</p>
+				</div>
+			</div>
+			<div class="row ">
+				<div class="col-lg-4 ">
+					<div class="single-service ">
+						<div class="thumb ">
+							<img src="https://decidigital.com/wp-content/uploads/2017/06/Responsive-Design.jpg" alt=" ">
+						</div>
+						<h4>Web Application</h4>
+						<p>
+							Our students are highly capable to build top notch dynamic and responsive web applications to support industry needs.
+						</p>
+					</div>
+				</div>
+				<div class="col-lg-4 ">
+					<div class="single-service ">
+						<div class="thumb ">
+							<img src="https://thumbs.dreamstime.com/b/engineering-architecture-drawings-1994275.jpg" alt=" ">
+						</div>
+						<h4>Architecture and design</h4>
+						<p>
+              Our students work within a given set of parameters to solve complex design problems.  A good architect approaches this task with enthusiasm and preference to exceed expectations
+              which is evident in ITS.
+						</p>
+					</div>
+				</div>
+				<div class="col-lg-4 ">
+					<div class="single-service ">
+						<div class="thumb ">
+							<img src="https://i.ytimg.com/vi/s9inYNPStNw/maxresdefault.jpg" alt=" ">
+						</div>
+						<h4>3D modelling</h4>
+						<p>
+							inappropriate behavior is often laughed off as “boys will be boys,” women face higher conduct women face higher conduct.
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- End service Area -->
+
+	<!-- Start faq Area -->
+	<section class="faq-area section-gap relative ">
+		<div class="overlay overlay-bg "></div>
+		<div class="container ">
+			<div class="row justify-content-center align-items-center ">
+				<div class="col-lg-3 col-md-6 ">
+					<div class="single-faq ">
+						<div class="circle ">
+							<div class="inner "></div>
+						</div>
+						<h5><span class="counter ">{{count($jobs)}}</span></h5>
+						<p>
+							Projects Completed
+						</p>
+					</div>
+				</div>
+				<div class="col-lg-3 col-md-6 ">
+					<div class="single-faq ">
+						<div class="circle ">
+							<div class="inner "></div>
+						</div>
+						<h5><span class="counter ">{{$users}}</span></h5>
+						<p>
+							Total Users
+						</p>
+					</div>
+				</div>
+				<div class="col-lg-3 col-md-6 ">
+					<div class="single-faq ">
+						<div class="circle ">
+							<div class="inner "></div>
+						</div>
+						<h5 class="counter ">{{count($ratings)}}</h5>
+						<p>
+							Happy Clients
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- End faq Area -->
+
+
+    	<!-- Start cat Area -->
+    	<section class="cat-area section-gap" id="feature">
+    		<div class="container">
+    			<div class="row">
+            <div class="col-md-12 pb-30 header-text text-center ">
+              <h1 class="mb-10 ">Why choose hireITS?</h1>
+            </div>    				<div class="col-lg-4">
+    					<div class="single-cat d-flex flex-column">
+    						<a href="#" class="hb-sm-margin mx-auto d-block"><span class="hb hb-md inv hb-facebook-inv"><span class="lnr lnr-magic-wand"></span></span></a>
+    						<h4 class="mb-20" style="margin-top: 23px;">Easy and profitable</h4>
+    						<p>
+                  Theres just more and more people who are skillfull but cannot find the right platform to turn that skill into money. Well we have it here for you ITS students!
+    						</p>
+    					</div>
+    				</div>
+    				<div class="col-lg-4">
+    					<div class="single-cat">
+    						<a href="#" class="hb-sm-margin mx-auto d-block"><span class="hb hb-md inv hb-facebook-inv"><span class="lnr lnr-rocket"></span></span></a>
+    						<h4 class="mt-40 mb-20">Competitiveness</h4>
+    						<p>
+                  We strongly believe our platform is a foundation to gather companies/ individuals with students, to expose competition exists everywhere and gets tougher by time.
+                  Our hope is that it will incentify students to become proactive in wanting to find out more in any aspects.
+
+    						</p>
+    					</div>
+    				</div>
+    				<div class="col-lg-4">
+    					<div class="single-cat">
+    						<a href="#" class="hb-sm-margin mx-auto d-block"><span class="hb hb-md inv hb-facebook-inv"><span class="lnr lnr-bug"></span></span></a>
+    						<h4 class="mt-40 mb-20">It holds democracy values</h4>
+    						<p>
+                  What more do you hate when a system is centric to a specific user? HireITS facilitates employers to rate freelancers and vice-versa.
+    						</p>
+    					</div>
+    				</div>
+    			</div>
+    		</div>
+    	</section>
+    	<!-- End cat Area -->
+
+	<!-- Start feedback Area -->
+	<section class="feedback-area section-gap relative " id="feedback ">
+		<div class="overlay overlay-bg "></div>
+		<div class="container ">
+			<div class="row justify-content-center ">
+				<div class="col-md-12 pb-30 header-text text-center ">
+					<h1 class="mb-10 text-white ">Enjoy our Client’s Feedback</h1>
+					<p class="text-white ">
+						Who are in extremely love with eco friendly system..
+					</p>
+				</div>
+			</div>
+			<div class="row feedback-contents justify-content-center align-items-center ">
+				<div class="col-lg-6 feedback-left relative d-flex justify-content-center align-items-center ">
+					<div class="overlay overlay-bg "></div>
+				</div>
+				<div class="col-lg-6 feedback-right ">
+					<div class="active-review-carusel ">
+						<div class="single-feedback-carusel ">
+							<div class="title d-flex flex-row ">
+								<h4 class="text-white pb-10 ">Fannie Rowe</h4>
+								<div class="star ">
+									<span class="fa fa-star checked "></span>
+									<span class="fa fa-star checked "></span>
+									<span class="fa fa-star checked "></span>
+									<span class="fa fa-star "></span>
+									<span class="fa fa-star "></span>
+								</div>
+							</div>
+							<p class="text-white ">
+								Accessories Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker. Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker.
+							</p>
+						</div>
+						<div class="single-feedback-carusel ">
+							<div class="title d-flex flex-row ">
+								<h4 class="text-white pb-10 ">Fannie Rowe</h4>
+								<div class="star ">
+									<span class="fa fa-star checked "></span>
+									<span class="fa fa-star checked "></span>
+									<span class="fa fa-star checked "></span>
+									<span class="fa fa-star checked "></span>
+									<span class="fa fa-star "></span>
+								</div>
+							</div>
+							<p class="text-white ">
+								Accessories Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker. Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker.
+							</p>
+						</div>
+						<div class="single-feedback-carusel ">
+							<div class="title d-flex flex-row ">
+								<h4 class="text-white pb-10 ">Fannie Rowe</h4>
+								<div class="star ">
+									<span class="fa fa-star checked "></span>
+									<span class="fa fa-star checked "></span>
+									<span class="fa fa-star checked "></span>
+									<span class="fa fa-star checked "></span>
+									<span class="fa fa-star checked "></span>
+								</div>
+							</div>
+							<p class="text-white ">
+								Accessories Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker. Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker.
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</section>
+	<!-- End feedback Area -->
+
+
+	<!-- Start blog Area -->
+	<section class="blog-area section-gap " id="blog ">
+		<div class="container ">
+			<div class="row justify-content-center ">
+				<div class="col-md-12 pb-30 header-text ">
+					<h1>Latest posts from our Showcase</h1>
+				</div>
+			</div>
+			<div class="row ">
+        @if ($showcases->isEmpty())
+          <h3>Showcase is empty</h3>
+        @else
+
+          @foreach ($showcases as $showcase)
+            <div class="single-blog col-lg-4 col-md-4 ">
+              <div class="thumb ">
+                <img class="f-img img-fluid mx-auto " src="data:{{$showcase->pic_type}};base64,{{base64_encode( $showcase->pic)}}" alt=" ">
+              </div>
+              <div class="bottom d-flex justify-content-between align-items-center flex-wrap ">
+                <div>
+                  @if ($showcase->freelancer->profilefiles)
+                    @foreach ($showcase->freelancer->profilefiles as $pf)
+                        <img class="img-fluid dp" src="data:{{$pf->img_type}};base64,{{base64_encode($pf->name)}}" alt=" " style="width: 35px">
+                    @endforeach
+                  @else
+                    <img class="img-fluid dp" src="{{asset('img/avatar.png')}}" alt=" " style="width: 35px">
+                  @endif
+                  <a href="# "><span>{{$showcase->freelancer->username}}</span></a>
+                </div>
+              </div>
+              <a href="# ">
+                <h4>{{$showcase->title}}</h4>
+              </a>
+              <strong>$ {{$showcase->price}}</strong>
+              <p>
+                {{$showcase->description}}
+              </p>
+            </div>
+          @endforeach
+
+        @endif
+			</div>
+		</div>
+	</section>
+	<!-- end blog Area -->
 
 
 
 @endsection
 
+
 @section('script')
-<script type="text/javascript">
+  <script src="industry/js/vendor/jquery-2.2.4.min.js "></script>
+	<script src="industry/js/vendor/bootstrap.min.js "></script>
+	<script src="industry/js/superfish.min.js "></script>
+	<script src="industry/js/jquery.ajaxchimp.min.js "></script>
+	<script src="industry/js/jquery.magnific-popup.min.js "></script>
+	<script src="js/owl.carousel.min.js "></script>
+	<script src="industry/js/hexagons.min.js "></script>
+	<script src="industry/js/jquery.counterup.min.js "></script>
+	<script src="industry/js/waypoints.min.js "></script>
+	<script src="js/main2.js "></script>
+  <script type="text/javascript">
+    $('[data-toggle="tooltip"]').tooltip();
 
-  $('[data-toggle="tooltip"]').tooltip();
-
-  $(".info a.green").css('opacity','1');
-
-  $('.info a').click(function(){
-  var role = $(this).attr('val');
-
-  $('.row').animateCss('fadeIn');
-
-  if(role == "seeker"){
-    $(".info a.orange").css('opacity','1');
-    $(".info a.green").css('opacity','0.5');
-    $(".howto .maker").css('display','none');
-    $(".howto .seeker").css('display','block');
-
-  }else{
-    $(".info a.orange").css('opacity','0.5');
     $(".info a.green").css('opacity','1');
-    $(".howto .maker").css('display','block');
-    $(".howto .seeker").css('display','none');
 
-  }
-});
+    $('.info a').click(function(){
+    var role = $(this).attr('val');
 
+    if(role == "seeker"){
+      $(".info a.orange").css('opacity','1');
+      $(".info a.green").css('opacity','0.5');
 
+      $(".aa").fadeOut().css("display", "none")
 
-</script>
+      $(".howto .maker").fadeOut().css('display','none');
+      $(".howto .seeker").fadeOut().css('display','none');
+      $(".aa").fadeIn().css("display", "block")
+      $(".howto .seeker").fadeIn().css('display','block');
+
+    }else{
+      $(".info a.orange").css('opacity','0.5');
+      $(".info a.green").css('opacity','1');
+      $(".howto .maker").fadeOut().css('display','none');
+      $(".howto .aa").fadeOut().css("display", "none")
+      $(".howto .seeker").fadeOut().css('display','none');
+      $(".aa").fadeIn().css("display", "block")
+      $(".howto .maker").fadeIn().css('display','block');
+
+    }
+
+  });    </script>
+
 @endsection

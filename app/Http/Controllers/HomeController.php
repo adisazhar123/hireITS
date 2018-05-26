@@ -29,7 +29,7 @@ class HomeController extends Controller
         $showcases = Showcase::limit(3)->orderBy('showcase_id', 'desc')->get();
         $users = intval(User::count());
         $happy_clients = Review::where('rating','>=','3')->get();
-        return view('tes')->with('showcases', $showcases)->with('jobs', $jobs)->with('users', intval($users))
+        return view('homepage')->with('showcases', $showcases)->with('jobs', $jobs)->with('users', intval($users))
                 ->with('ratings', $happy_clients);
     }
 }

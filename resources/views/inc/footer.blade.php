@@ -11,9 +11,6 @@
           <h4>Freelancer</h4>
           <ul>
             <li>
-              <a href="#">Categories</a>
-            </li>
-            <li>
               <a href="#">Projects</a>
             </li>
             <li>
@@ -25,10 +22,7 @@
           <h4>About</h4>
           <ul>
             <li>
-              <a href="#">About us</a>
-            </li>
-            <li>
-              <a href="{{route('faq')}}">How it Works</a>
+              <a href="{{route('faq')}}" target="_blank">How it Works</a>
             </li>
           </ul>
         </div>
@@ -37,10 +31,16 @@
     <div class="container mt-3">
       <div class="row">
         <div class="col-md-4">
-          <p>60 registered users</p>
+          <p>@php
+            use App\User;
+            echo User::count();
+          @endphp registered users</p>
         </div>
         <div class="col-md-4">
-          <p>90 jobs posted</p>
+          <p>@php
+            use App\Job;
+            echo Job::count();
+          @endphp jobs posted</p>
         </div>
         <div class="col-md-4">
           <p>hireITS ® is a registered Trademark of Adis, Ghisa and Modis</p>
