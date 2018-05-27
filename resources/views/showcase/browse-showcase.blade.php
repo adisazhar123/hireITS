@@ -8,12 +8,12 @@
     width: 100%;
   }
   .backround{
-    background-image: url("https://images.pexels.com/photos/207665/pexels-photo-207665.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
-    height: 50%;
+/*    background-image: url("https://images.pexels.com/photos/207665/pexels-photo-207665.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");*/
+/*    height: 50%;*/
     padding-top: 300px;
-    background-position: center;
+/*    background-position: center;
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: cover;*/
     background-color: rgba(0,0,0,0);
   }
 
@@ -203,8 +203,12 @@ body {
 }
 
 .filter a.active{
-  color: rgb(0, 135, 224);
+  color: #6da768;
   font-weight: bold;
+}
+
+.btn-link{
+  color: #6da768;
 }
 
 #collapseOne ul{
@@ -213,6 +217,24 @@ body {
 
 .accordion.hide{
   display: none;
+}
+
+.col-md-12{
+  text-align: center;
+}
+
+.col-md-12 a{
+  font-size: 20px;
+}
+
+.col-md-12 p{
+  text-align: center;
+}
+
+  .btn-primary {
+    color: #fff;
+    background-color: #f39c12;
+    border-color: #f39c12;
 }
 
 @media only screen and (max-width: 990px) {
@@ -241,7 +263,7 @@ body {
   <div class="title">
     <div class="container">
       <h1> Freelancer Showcase</h1>
-      <h1>Let the beauty speak for itself </h1>
+      <h4>Let the beauty speak for itself </h4>            <br><br>
     </div>
 
   </div>
@@ -258,6 +280,7 @@ body {
                   <button class="btn" disabled id="search-logo" type="button" name="button"><i class="fa fa-search fa-lg" aria-hidden="true"></i>
                   </button>
             </div>
+
               <input type="text" class="form-control mb-2" name="keywords" id="inlineFormInput" placeholder="Search Keywords">
 
               <div class="input-group-append">
@@ -348,9 +371,9 @@ body {
 <div class="container yes">
   <div class="row">
     <div class="col-md-12">
-      <div class="row">
+      <div class="row" style="text-align: center;">
         @if (!count($showcases))
-          <p>No showcase found.</p>
+          <p >No showcase found.</p>
         @else
           @foreach ($showcases as $showcase)
             <div class="col-lg-4">

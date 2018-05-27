@@ -1,5 +1,9 @@
 @section('style')
 <style media="screen">
+/*
+body{
+  background-image: url("https://thumbs.dreamstime.com/z/art-stationary-pattern-painting-illustration-supplies-background-seamless-school-texture-50375705.jpg");
+}*/
   .post .info p {
     text-align:center;
     color: #999;
@@ -25,7 +29,6 @@
     color:#F6AA93;
   }
 
-
   .title{
     background: #f1c40f ;
     text-shadow: none;
@@ -38,7 +41,7 @@
 
   form.post {
     border-radius: 5px;
-    width:100%;
+    max-width:800px;
     margin: 5% auto;
     background-color: #FFFFFF;
     overflow: hidden;
@@ -158,21 +161,21 @@
 
   }
 
+  p{
+    font-size: 13px;
+  }
+
+  .btn-primary {
+    color: #fff;
+    background-color: #f39c12;
+    border-color: #f39c12;
+}
 </style>
 @endsection
 
 @extends('layouts.app')
 
 @section('content')
-  <div class="title-top">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-4">
-          <h3>Top jobs</h3>
-        </div>
-      </div>
-    </div>
-  </div>
 
   <div class="container">
     @if ($errors->any())
@@ -208,31 +211,29 @@
     @endif
     <form action="{{route('store.project')}}" method="POST" enctype="multipart/form-data" class="animated fadeIn post">
       <div class="title">
-        <h1>Tell us what you need done</h1>
-
+        <h2>Post A Project</h2>
+        <h4>Tell us what you need done</h4>
       </div>
         <div class="contentform">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
               <div class="form-group">
-                <h5>Choose a name for your project <span>*</span></h5>
+                <h6>Choose a name for your project <span>*</span></h6>
                 <div class="input-group">
                   <div class="input-group-prepend">
                     <span class="icon-case"><i class="fa fa-file-code-o"></i></span>
-
                   </div>
                   @php
                     if (isset($_GET['q'])) {
                       echo "<input type=text name=name id=name class=form-control value='".$_GET['q']."' placeholder='e.g. Build me a website'>";
                     }else{
                       echo '<input type="text" name="name" id="name" class="form-control" placeholder="e.g. Build me a website">';
-
                     }
                   @endphp
                 </div>
               </div>
 
               <div class="form-group">
-              <h5>Description <span>*</span></h5>
+              <h6>Description <span>*</span></h6>
               <p>Great project descriptions include a little bit about yourself, details of what you are trying to achieve, and any decisions that you have already made about your project. If there are things you are unsure of, don't worry, a freelancer will be able to help you fill in the blanks.</p>
               <div class="editor animated fadeIn">
 
@@ -241,7 +242,7 @@
         </div>
 
         <div class="form-group">
-        <h5>Minimum budget <span>*</span></h5>
+        <h6>Minimum budget <span>*</span></h6>
         <div class="input-group">
               <div class="input-group-prepend">
                 <span class="input-group-text" id="inputGroupPrepend">$</span>
@@ -251,7 +252,7 @@
         </div>
 
         <div class="form-group">
-        <h5>Maximum budget <span>*</span></h5>
+        <h6>Maximum budget <span>*</span></h6>
         <div class="input-group">
               <div class="input-group-prepend">
                 <span class="input-group-text" id="inputGroupPrepend">$</span>
@@ -261,7 +262,7 @@
         </div>
 
         <div class="form-group">
-        <h5>Deadline<span>*</span></h5>
+        <h6>Deadline<span>*</span></h6>
           <div class="input-group date" data-provide="datepicker">
             <span class="icon-case"><i class="fa fa-calendar"></i></span>
                 <input type="text" class="form-control" name="date" placeholder="Deadline">
@@ -269,15 +270,16 @@
                     <span class="glyphicon glyphicon-th"></span>
                 </div>
             </div>
-        </div>
+        </div> 
         <div class="form-group">
-          <label for="tag_list">Tags:</label>
+          <h6 for="tag_list">Tags</h6>
           <select class="form-control" id="search_skills" name="search_skills[]" multiple></select>
         </div>
         <div class="form-group">
-          <label for="">Files:</label><br>
-          <input type="file" class="form-control" name="photos[]" multiple><br><br><br>
-          <small>Drag & drop any images that might be helpful in explaining your project brief here.</small>
+          <h6 for="">Files</h6>
+          <p>Drag & drop any images that might be helpful in explaining your project brief here.</p>
+          <input type="file" class="form-control" name="photos[]" multiple><br>
+  
         </div>
       <button type="submit" class="btn btn-primary">Submit</button>
       </div>

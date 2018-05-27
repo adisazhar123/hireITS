@@ -4,25 +4,29 @@
   body{
     background-color: #E9E9E9;
   }
-    .title{
-      height: 100px;
-      background-color: #0087E0;
-    }
 
-    .title h3{
-      padding-top: 30px;
+
+      .title{
+        padding-top: 250px;
+    margin-top: -250px;
+    font-weight: bold;
+    text-align: center;
+  }
+
+    .title h1 h4{
+      
       font-weight: bold;
       color: white;
       font-size: 35px;
+      
 
     }
 
-    .breadcrumb{
-      background-color: #E9E9E9 !important;
-
-    }
-
-
+  .btn-primary {
+    color: #fff;
+    background-color: #f39c12;
+    border-color: #f39c12;
+}
     .search-jobs input, .search-jobs button{
       height: 60px;
       font-size: 22px;
@@ -131,6 +135,12 @@
     .body-link:active {
         text-decoration: none;
     }
+
+    .backround{
+    padding-top: 50px;
+    background-color: rgba(0,0,0,0);
+  }
+
 
     input[type=range] {
   -webkit-appearance: none;
@@ -269,7 +279,7 @@
 
 @section('content')
 
-  <div class="title">
+<!--   <div class="title">
     <div class="container">
       <div class="row">
         <div class="col-md-4">
@@ -277,8 +287,8 @@
         </div>
       </div>
     </div>
-  </div>
-  <nav aria-label="breadcrumb" id="breadcrumb">
+  </div> -->
+<!--   <nav aria-label="breadcrumb" id="breadcrumb">
     <div class="container">
       <div class="row">
           <ol class="breadcrumb">
@@ -290,7 +300,18 @@
     </div>
 
 </nav>
+ -->
+   <div class="backround">
 
+  </div>
+
+  <div class="title">
+    <div class="container">
+      <h1> Freelancer Showcase</h1>
+      <h4>Let the beauty speak for itself </h4>            <br><br>
+    </div>
+
+  </div>
   <div class="search-jobs">
     <div class="container">
         <div class="row">

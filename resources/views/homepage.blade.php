@@ -345,8 +345,8 @@
 
 .backgg {
   position: relative;
-  //background-image: url(http://blog.visme.co/wp-content/uploads/2017/07/50-Beautiful-and-Minimalist-Presentation-Backgrounds-08.jpg);
-  background-image: url(https://images.pexels.com/photos/1037995/pexels-photo-1037995.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260);
+  /*//background-image: url(http://blog.visme.co/wp-content/uploads/2017/07/50-Beautiful-and-Minimalist-Presentation-Backgrounds-08.jpg);*/
+  background-image: url(https://d39l2hkdp2esp1.cloudfront.net/img/photo/104388/104388_00_2x.jpg?20160418013135);
   background-size: cover;
   background-repeat: no-repeat;
   height: 700px;
