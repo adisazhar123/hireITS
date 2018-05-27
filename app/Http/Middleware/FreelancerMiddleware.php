@@ -18,6 +18,6 @@ class FreelancerMiddleware
       if(Auth::check())
         if(Auth::user()->role === "freelancer")
           return $next($request);
-      return redirect('/')->withErrors('For freelancer only');
+      return redirect('/')->with('error','For freelancer only');
       }
 }

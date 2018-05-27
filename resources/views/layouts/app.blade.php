@@ -10,13 +10,13 @@
     <link rel="stylesheet" href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="{{ asset('css/login-signup.css') }}" rel="stylesheet">
-
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.1/build/css/alertify.min.css"/>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.1/build/css/themes/bootstrap.min.css"/>
     @if (!isset($homepage))
       <link href="//cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
       <link href="//cdn.quilljs.com/1.3.6/quill.bubble.css" rel="stylesheet">
       <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
-      <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.1/build/css/alertify.min.css"/>
-      <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.1/build/css/themes/bootstrap.min.css"/>
+
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker.min.css">
     @endif
 
@@ -215,6 +215,7 @@ footer .container2{
     });
 
     $("#register_form").submit(function(e){
+
       e.preventDefault();
       $.ajax({
         method :"POST",
@@ -222,7 +223,7 @@ footer .container2{
         data: $(this).serialize(),
         success: function(data){
           if(data.errors) {
-            $(".alert-success").css("display", "none")
+            $("#register_form .alert-success").css("display", "none")
               if(data.errors.email){
                 $("#email-error2").html( data.errors.email[0] );
                 }
@@ -237,7 +238,7 @@ footer .container2{
             $("#email-error2").html("");
             $("#password-error2").html("");
             $("#username-error2").html("");
-            $(".alert-success").show().delay(5000).fadeOut();
+            $("#register_form .alert-success").show().delay(5000).fadeOut();
           }
         },
         error: function(data){
@@ -256,10 +257,10 @@ footer .container2{
         success: function(data){
           if (data.auth){
             console.log(data.auth)
-            $(".alert-danger").css("display", "none")
+            $("#login_form .alert-danger").css("display", "none")
 
-            $(".alert-success").html("Login successful")
-            $(".alert-success").show().delay(5000).fadeOut();
+            $("#login_form .alert-success").html("Login successful")
+            $("#login_form .alert-success").show().delay(5000).fadeOut();
           }
           window.location.replace(data.intended);
 
@@ -268,8 +269,8 @@ footer .container2{
         error: function(data){
           if(data){
             console.log(data.responseJSON.message)
-            $(".alert-danger").html(data.responseJSON.message)
-            $(".alert-danger").css("display", "block")
+            $("#login_form .alert-danger").html(data.responseJSON.message)
+            $("#login_form .alert-danger").css("display", "block")
           }
 
           else{

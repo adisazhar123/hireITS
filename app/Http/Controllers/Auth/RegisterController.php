@@ -83,12 +83,14 @@ class RegisterController extends Controller
               $freelancer = new Freelancer();
               $freelancer->freelancer_id = $user->id;
               $freelancer->username = $user->username;
+              $freelancer->created_at = $user->created_at;
               if ($freelancer->save())
                 return response()->json(['success' => "Registration succesful"]);
             }else{
               $employer = new Employer();
               $employer->employer_id = $user->id;
               $employer->username = $user->username;
+              $employer->created_at = $user->created_at;
               if($employer->save())
                 return response()->json(['success' => "Registration succesful"]);
             }

@@ -847,6 +847,13 @@ i {
 
     }
 
-  });    </script>
+  });
+
+  @if(session()->has('error'))
+    alertify.error('{{ session()->get('error') }}')
+  @endif
+
+
+</script>
 
 @endsection

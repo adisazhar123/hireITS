@@ -641,7 +641,7 @@
     },
 
     onCancel: function(data, actions) {
-      alert("CANCEL")
+      alertify.error('Payment canceled!');
     }
 
     }, '#paypal-button-container');

@@ -21,7 +21,7 @@ p a{color:#27ae60; text-decoration:none;}
       background-image: url({{asset($cover)}});
     @endif
     background-repeat: no-repeat;
-    background-size: 100% 465px;
+    background-size: 100% 490px;
     background-position: top;
 
   }
@@ -307,20 +307,18 @@ p a{color:#27ae60; text-decoration:none;}
           @endif
         </div>
         <div class="info">
-            <p class="cant">{{"@".$freelancer[0]->username}} </p>
-            <p class="cant" id="department">{{$freelancer[0]->major}} Department</p>
-
-                     @if ($freelancer[0]->review)
-                       <p class="cant">{{$freelancer[0]->review}} reviews</p>
-                       @for ($i=0; $i < $freelancer[0]->rating/$freelancer[0]->review; $i++)
-                         <i class="fa fa-star"></i>
-                       @endfor
-                      @else
-                        <p>No reviews</p>
-                     @endif
-
-                  <p class="cant">Member since: {{date_format(date_create($freelancer[0]->created_at), "d-m-Y")}}</p>
-                </div>
+          <p class="cant">{{"@".$freelancer[0]->username}} </p>
+          <p class="cant" id="department">{{$freelancer[0]->major}} Department</p>
+             @if ($freelancer[0]->review)
+               <p class="cant">{{$freelancer[0]->review}} reviews</p>
+               @for ($i=0; $i < $freelancer[0]->rating/$freelancer[0]->review; $i++)
+                 <i class="fa fa-star"></i>
+               @endfor
+              @else
+                <p>No reviews</p>
+             @endif
+                <p class="cant">Member since: {{date_format(date_create($freelancer[0]->created_at), "d-m-Y")}}</p>
+        </div>
       <section id="generic-tabs">
 
 

@@ -102,9 +102,6 @@
 @endsection
 
 @extends('layouts.app')
-@section('navbar')
-  @include('inc.navbar')
-@endsection
 
 @section('content')
 
@@ -203,7 +200,7 @@
 
               <div class="employer-desc">
                 <strong>About the employer</strong><br>
-                <a href="#">{{$job[0]->employer->username}}</a>
+                <a href="{{route('view.employer', $job[0]->employer->username)}}">{{$job[0]->employer->username}}</a>
                 <br>
                 <i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i>
               </div>
@@ -430,13 +427,13 @@
               <div class="input-group-prepend">
                 <span class="input-group-text" id="inputGroupPrepend">$</span>
               </div>
-              <input type="number" class="form-control" name="bidding_price" id="bidding_price" step=".01" placeholder="Bidding Price" min="0">
+              <input type="number" class="form-control" name="bidding_price" id="bidding_price" step=".01" placeholder="Bidding Price" min="0" required>
             </div>
             <small class="form-text text-muted">e.g. $35.00</small>
           </div>
           <div class="form-group">
             <div class="input-group date" data-provide="datepicker">
-                <input type="text" class="form-control" name="deadline" placeholder="How long will it take to finish the project?">
+                <input type="text" class="form-control" name="deadline" placeholder="How long will it take to finish the project?" required>
                 <div class="input-group-addon">
                     <span class="glyphicon glyphicon-th"></span>
                 </div>
@@ -444,7 +441,7 @@
           </div>
           <input type="hidden" name="job_id" value="{{$job[0]->job_id}}">
           <div class="form-group">
-            <textarea class="form-control" name="comment" id="comment" placeholder="Tell the employer why you should be hired. What are your experiences and skills?"></textarea>
+            <textarea class="form-control" name="comment" id="comment" placeholder="Tell the employer why you should be hired. What are your experiences and skills?" required></textarea>
           </div>
           <button type="submit" class="btn btn-primary">Bid Now</button>
         </form>

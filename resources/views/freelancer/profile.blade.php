@@ -23,7 +23,7 @@ p a{color:#27ae60; text-decoration:none;}
       background-size: 100% 510px;
 
     @else
-      background-size: 100% 495px;
+      background-size: 100% 490px;
 
     @endif
     background-position: top;
@@ -108,6 +108,10 @@ p a{color:#27ae60; text-decoration:none;}
 
         .portfolio img{
           border-radius: 4px;
+        }
+
+        .input-group-text{
+          width: 55px;
         }
 
 
@@ -671,13 +675,13 @@ p a{color:#27ae60; text-decoration:none;}
                                 <form enctype="multipart/form-data" method="post" action="{{route('add.portfolio')}}">
                                   {{ csrf_field() }}
                                   <div class="form-group">
-                                    <input type="text" class="form-control" id="port_name" name="port_name" placeholder="Portfolio Name">
+                                    <input type="text" class="form-control" id="port_name" name="port_name" placeholder="Portfolio Name" required>
                                   </div>
                                   <div class="form-group">
-                                    <textarea class="form-control" id="port_desc" name="port_desc" placeholder="Portfolio Description"></textarea>
+                                    <textarea class="form-control" id="port_desc" name="port_desc" placeholder="Portfolio Description" required></textarea>
                                   </div>
                                   <div class="form-group">
-                                    <input type="file" class="form-control" name="image" id="port_img">
+                                    <input type="file" class="form-control" name="image" id="port_img" required>
                                   </div>
                                   <button type="submit" class="btn btn-primary">Submit</button>
                                 </form>
@@ -982,6 +986,10 @@ $(".text2").hover(function(){
       }
     });
   });
+
+  @if(session()->has('success'))
+      alertify.success('{{ session()->get('success') }}')
+  @endif
 
 </script>
 

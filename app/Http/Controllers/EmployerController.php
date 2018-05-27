@@ -82,6 +82,9 @@ class EmployerController extends Controller
     $job->active = 1;
     $job->deadline = date_format(date_create($request->date), 'Y-m-d');
     $job->slug = str_replace(' ', '-', strtolower($request->name))."-".time();
+
+  //  return $request->search_skills;
+
     if ($job->save()){
       for ($i=0; $i <count($request->search_skills) ; $i++) {
         $harus_bisa = new HarusBisaSkill;

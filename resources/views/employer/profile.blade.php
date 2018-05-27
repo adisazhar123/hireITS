@@ -19,7 +19,7 @@ p a{color:#27ae60; text-decoration:none;}
       background-image: url({{asset($cover)}});
     @endif
     background-repeat: no-repeat;
-    background-size: 100% 500px;
+    background-size: 100% 495px;
     background-position: top;
 
   }

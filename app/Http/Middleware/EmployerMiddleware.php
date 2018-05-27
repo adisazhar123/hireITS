@@ -19,6 +19,6 @@ class EmployerMiddleware
       if(Auth::check())
         if(Auth::user()->role === "employer")
           return $next($request);
-      return redirect('/')->withErrors('For employer only');
+      return redirect('/')->with('error','For employer only');
       }
 }

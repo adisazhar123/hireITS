@@ -19,7 +19,7 @@ p a{color:#27ae60; text-decoration:none;}
       background-image: url({{asset($cover)}});
     @endif
     background-repeat: no-repeat;
-    background-size: 100% 470px;
+    background-size: 100% 500px;
     background-position: top;
 
   }
@@ -335,34 +335,19 @@ p a{color:#27ae60; text-decoration:none;}
 @section('content')
 
     <div class="container">
-			@if (Auth::check())
-              @if (!Auth::user()->hassetprofile)
-                <div class="alert alert-warning" role="alert">
-                  You must complete your basic details before you can go anywhere.
-                </div>
-              @endif
 
-            @endif
             <div class="profile-pic animated bounceInDown">
               @if ($pf->isEmpty())
                 <img class="rounded" src="{{asset('img/avatar.png')}}" alt="profile_pic12">
                 @else
                   <img class="rounded" src="data:{{$pf[0]->img_type}};base64,{{base64_encode( $pf[0]->name )}}" alt="profile_pic">
               @endif
-              <div class="text2">
 
-                <form action="#" enctype="multipart/form-data" id="upload-dp">
-                  {{ csrf_field() }}
-                    <input type="file"  id="my_file" name="image"/>
-                    <i class="fa fa-wrench" id="file_selector" style="font-size:60px;"></i>
-                    <button id="upload" class="btn btn-default" type="submit" name="button">upload profile pic: </button>
-                 </form>
-              </div>
 
             </div>
             <div class="info animated bounceInUp">
-              <p class="cant">{{"@".Auth::user()->username}} </p>
-  						<p class="cant">Member since: {{date_format(Auth::user()->created_at,"d/m/Y")}}</p>
+              <p class="cant">{{"@".$employer[0]->username}} </p>
+  						<p class="cant">Member since: {{date_format(date_create($employer[0]->created_at),"d/m/Y")}}</p>
               @if ($employer[0]->review)
                 <p class="cant">{{$employer[0]->review}} reviews</p>
                 @for ($i=0; $i < $employer[0]->rating/$employer[0]->review; $i++)
@@ -390,18 +375,12 @@ p a{color:#27ae60; text-decoration:none;}
                 <div class="col-lg-12">
                   <h2><i class="profile-user fa fa-address-card-o"></i> Information</h2>
 
-                  <h3 id="name2">@if (!Auth::user()->hassetprofile)
-                        Please set your name.
-                      @else
+                  <h3 id="name2">
 												{{$employer[0]->name}}
-                      @endif
-
                     </h3>
-                      <h5 id="title">@if (!Auth::user()->hassetprofile)
-                        What is your company type? Are you a corporate, startup or individual?
-                      @else
+                      <h5 id="title">
+
 												{{$employer[0]->title}}
-                      @endif
                     </h5>
 										<h5 id="freelancer-price">Pays: $ {{$employer[0]->price}}  USD/hr</h5>
 										<h5 id="address">{{$employer[0]->address}}</h5>
@@ -409,11 +388,8 @@ p a{color:#27ae60; text-decoration:none;}
 
                       <div class="profile-details">
                         <p>
-                        @if (!Auth::user()->hassetprofile)
-                          We want to know a little bit more of you. What are your mastery? Do you like to draw?
-                          @else
+
 														{!! $employer[0]->description !!}
-                        @endif
                       </div>
                 </div>
               </div>

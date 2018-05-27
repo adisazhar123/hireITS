@@ -99,7 +99,7 @@ class FreelancerController extends Controller
       $portfolio->img_type=$extension;
       $portfolio->img_name = $contents;
       if ($portfolio->save())
-        return "success";
+        return redirect()->back()->with('success', 'Portfolio added!');
 
     }
 
@@ -107,7 +107,7 @@ class FreelancerController extends Controller
       $portfolio = Portfolio::find($id);
       if(empty($portfolio)) return "gaono";
       if ($portfolio->delete())
-        return redirect()->back();
+        return redirect()->back()->with('success', 'Portfolio deleted!');
     }
 
     public function getSkills(Request $request){
@@ -327,11 +327,11 @@ class FreelancerController extends Controller
         $rating = $employer->rating + $request->stars;
         $reviews = $employer->review + 1;
 
-        $employer->rating = $result;
+        $employer->rating = $rating;
         $employer->review =$reviews;
 
         if ($review->save() && $job->save() && $employer->save())
-         return redirect()->back();
+         return redirect()->back()->with('success', 'Employer rated!');
 
       }
 
