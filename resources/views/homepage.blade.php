@@ -462,6 +462,12 @@ i {
   border-radius: 4px;
 }
 
+.shadow-text{
+	text-shadow: 0px 4px 3px rgba(0,0,0,0.4),
+             0px 8px 13px rgba(0,0,0,0.1),
+             0px 18px 23px rgba(0,0,0,0.1);
+    color : white;
+}
 
 </style>
 @endsection
@@ -495,8 +501,8 @@ i {
   	</div>
     <div class="container">
 
-      <h2>What's hireITS?</h2>
-      <h4>hireITS adalah website yang blablablablablablablablab untuk anak ITS yang ingin mencari uang hajajaj</h4>
+      <h2><span class = "shadow-text">What's hireITS?</span></h2>
+      <h4><span class = "shadow-text">hireITS is a website used as an intermediary for its student who want to make money. In this website the students will be associated to the employer who need their skills and abilities.</span></h4>
     </div>
   </div>
 
@@ -703,7 +709,7 @@ i {
 					<div class="active-review-carusel ">
 						<div class="single-feedback-carusel ">
 							<div class="title d-flex flex-row ">
-								<h4 class="text-white pb-10 ">Fannie Rowe</h4>
+								<h4 class="text-white pb-10 ">Modista Garsia</h4>
 								<div class="star ">
 									<span class="fa fa-star checked "></span>
 									<span class="fa fa-star checked "></span>
@@ -713,12 +719,12 @@ i {
 								</div>
 							</div>
 							<p class="text-white ">
-								Accessories Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker. Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker.
+								There was time when I want to make money and that's when my friend introduce me to this website. At first I doubt it will have benfits for me, but turn out that this website is very good. I even can buy my favourite anime figure.
 							</p>
 						</div>
 						<div class="single-feedback-carusel ">
 							<div class="title d-flex flex-row ">
-								<h4 class="text-white pb-10 ">Fannie Rowe</h4>
+								<h4 class="text-white pb-10 ">Ghifaroza Rahmadiana</h4>
 								<div class="star ">
 									<span class="fa fa-star checked "></span>
 									<span class="fa fa-star checked "></span>
@@ -728,12 +734,12 @@ i {
 								</div>
 							</div>
 							<p class="text-white ">
-								Accessories Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker. Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker.
+								At first, I tried using this website because I felt that my skills will be wasted if its not used to make money. So, when I tried this website, the result is beyond what I expected. I have many connections and I myself, able to live with my own money.
 							</p>
 						</div>
 						<div class="single-feedback-carusel ">
 							<div class="title d-flex flex-row ">
-								<h4 class="text-white pb-10 ">Fannie Rowe</h4>
+								<h4 class="text-white pb-10 ">Adistya Azhar</h4>
 								<div class="star ">
 									<span class="fa fa-star checked "></span>
 									<span class="fa fa-star checked "></span>
@@ -743,7 +749,7 @@ i {
 								</div>
 							</div>
 							<p class="text-white ">
-								Accessories Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker. Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker.
+								It's great to be able to work here. Not only you can make money yourself, you will also gain experience. There's also chance for students who have graduated to work through this website. In conclusion, use this website, there's no maybe.
 							</p>
 						</div>
 					</div>
