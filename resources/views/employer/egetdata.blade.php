@@ -20,9 +20,9 @@ body {
     overflow: hidden;
   }
 
-  input {
+/*  input {
     width: 100%;
-  }
+  }*/
 
   .contentform{
   	padding: 30px 30px;
@@ -41,9 +41,9 @@ body {
    /* margin-left:15px;*/
   }
 
-  textarea{
+/*  textarea{
   	margin-left : 15px;
-  }
+  }*/
 
     .title{
     background: #f1c40f ;
@@ -55,6 +55,22 @@ body {
     padding: 0.5em;
   }
 
+  .submitt{
+     text-align: center;
+  }
+
+    .btn.btn-june {
+    color: #fff;
+    background-color: #f1c40f;
+    border-color: #f1c40f;
+   
+}
+
+.btn.btn-june:hover {
+    color: #fff;
+    background-color: #f39c12;
+    border-color: #f39c12;
+}
 
 </style>
 @endsection
@@ -72,7 +88,7 @@ body {
 		<div class = "contentform">
       <div class="col-md-12" >
         <div class = "form-group">
-  				Company name
+  				<h6>Company Name</h6>
   				<div class = "input-group">
   					<div class = "icon">
   						<span class = "icon-case"><i class ="fa fa-briefcase"></i></span>
@@ -84,7 +100,7 @@ body {
 
       <div class="col-md-12">
         <div class = "form-group">
-  				Company Address
+  				<h6>Company Address</h6>
   				<div class = "input-group">
   					<div class = "icon">
   						<span class = "icon-case"><i class = "fa fa-map-marker"></i></span>
@@ -96,7 +112,7 @@ body {
 
       <div class="col-md-12">
         <div class = "form-group">
-  				Price
+  				<h6>Price</h6>
   				<div class = "input-group">
   					<div class = "icon">
   						<span class = "icon-case"><i class = "fa fa-sort-numeric-asc"></i></span>
@@ -107,7 +123,7 @@ body {
       </div>
       <div class="col-md-12">
         <div class = "form-group">
-  				Title
+  				<h6>Title</h6>
   				<div class = "input-group">
   					<div class = "icon">
   						<span class = "icon-case"><i class = "fa fa-briefcase"></i></span>
@@ -118,15 +134,14 @@ body {
       </div>
       <div class="col-md-12">
         <div class = "form-group">
-  				<h6>Description <span>*</span></h6>
+  				<h6>Description</h6>
   				<textarea class="form-control" name="details"></textarea>
   			</div>
       </div>
       <div class="col-md-12">
-
-        			<div class = "form-group">
+        			<div class = "form-group submitt">
         				<input type="submit" class="btn btn-june" value="Submit Data">
-                <a href="{{route('view.employer.profile')}}">Fill in later...</a>
+                <a  class="btn btn-june" href="{{route('view.employer.profile')}}">Fill in later...</a>
         			</div>
       </div>
 

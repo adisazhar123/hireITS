@@ -168,10 +168,14 @@ body {
     font-size: 13px;
   }
 
+  .submitt{
+     text-align: center;
+  }
   .btn-primary {
     color: #fff;
     background-color: #f1c40f;
     border-color: #f1c40f;
+   
 }
 
 .btn-primary:hover {
@@ -291,7 +295,9 @@ body {
           <input type="file" class="form-control" name="photos[]" multiple><br>
   
         </div>
+        <div class="submitt">
       <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
       </div>
     </form>
 
