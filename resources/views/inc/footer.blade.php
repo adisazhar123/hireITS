@@ -4,7 +4,7 @@
       <div class="row">
         <div class="col-md-4">
           <div class="info-section">
-            <a href="#"><li class="fa fa-globe"></li> Help & Support</a>
+            <a href="{{route('faq')}}"><li class="fa fa-globe"></li> Help & Support</a>
           </div>
         </div>
         <div class="col-md-4">
