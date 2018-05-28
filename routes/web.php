@@ -17,7 +17,7 @@ Auth::routes();
 Route::get('/', 'HomeController@index')->name('home.page');
 
 Route::get('/frequently-asked', function () {
-    return view('faq');
+    return view('faq1');
 })->name('faq');
 
 Route::get('get-image','UsersController@getImage')->name('get.navbar.pic');
