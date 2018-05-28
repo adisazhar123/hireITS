@@ -1,5 +1,15 @@
 @section('style')
 <style media="screen">
+.main-container{
+  max-height: 60vh !important;
+}
+
+.container{
+	text-align: center;
+}
+body {
+  background : url("https://cdn.shopify.com/s/files/1/0153/0623/products/Bead_Board_Wallpaper_in_White_by_York_Wallcoverings_c9f50134-b90a-4d8c-aae3-75328c6a804e_large.jpg?v=1450293667");
+}
 
 .garis{
 	width : 1050px;
@@ -78,39 +88,57 @@
 	border-radius: 5px;
 }
 
-.title{
-	min-height:100px;
-	background-color: #0087E0;
-	position: relative;
-	margin-bottom: 20px;
- }
+.backround{
+	padding-top: 300px;
+}
+  .title{
+    margin-top: -250px;
+    text-align: center;
+    font-weight: bold;
+  }
 
-.title h3{
-	padding-top: 30px;
-	font-weight: bold;
-	color: white;
-	font-size: 35px;
-
+hr {
+	overflow: visible;
+	width: 60vw;
+	margin: 50px auto;
+	height: 0px;
+	border: none;
+	border-top: 8px solid #f39c12;
+	text-align: center;
 }
 
-
+hr:after {
+	content:"\f005";
+	font-family: FontAwesome;
+	font-size: 64px;	
+	position: relative;
+	top: -.8em;
+	background: rgba(0, 0, 0, 0);
+	color: #f1c40f;	
+}
 </style>
 @endsection
 
 @extends('layouts.app')
 
 @section('content')
-	<div class="title">
-		<div class="container">
-<h3>Top Users</h3>
-		</div>
-	</div>
+  <div class="backround">
+
+  </div>
+  <div class="title">
+    <div class="container">
+      <h1> Top Users</h1>
+      <hr>
+      <br><br>
+    </div>
+  </div>
+
 	<div class="container">
 			<div class="freelancer">
 				<h2>Freelancer</h2>
-				<div class="row">
+				<div class="row1" style="text-align: center !important;">
 					@if (!count($top_freelancers))
-						<h5>No top freelancers yet.</h5>
+						<h5 style="color:#c6c4c4">No top freelancers yet.</h5>
 					@else
 						@if (isset($top_freelancers[0]))
 						<div class="col-lg-4">
@@ -179,21 +207,17 @@
 								</div>
 							</div>
 					@endif
-
-
-
-
-
 					@endif
 				</div>
 			</div>
 			<div class = "garis"></div>
 
 			<div class="employer">
+				      <hr>
 				<h2>Employer</h2>
-				<div class="row">
+				<div class="row1" style="text-align: center !important;">
 					@if (!count($top_employers))
-						<h5>No top employers yet.</h5>
+						<h5 style="color:#c6c4c4">No top employers yet.</h5>
 					@else
 						@if (isset($top_employers[0]))
 							<div class="col-lg-4">

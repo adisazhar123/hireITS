@@ -1,9 +1,13 @@
 @section('style')
   <style media="screen">
 
-  body{
-    background-color: #E9E9E9;
-  }
+    .main-container{
+  max-height: 60vh !important;
+}
+
+body {
+  background : url("https://cdn.shopify.com/s/files/1/0153/0623/products/Bead_Board_Wallpaper_in_White_by_York_Wallcoverings_c9f50134-b90a-4d8c-aae3-75328c6a804e_large.jpg?v=1450293667");
+}
 
 
       .title{
@@ -364,8 +368,8 @@
                 <i class="fa fa-wrench fa-lg" style='color: black;'></i>
             </div>
             <div class="filter-content show multi-collapse" id="multiCollapseExample2">
-              <h5>Filter by:</h5>
-              <h6><strong>Budget</strong></h6>
+              <h6>Filter Budget:</h6>
+              <!-- <h6><strong>Budget</strong></h6> -->
               <input type="checkbox" name="" value=""> Average Bid <br>
               <div class="input-group">
                     <div class="input-group-prepend">

@@ -4,21 +4,24 @@
 .main-container{
   max-height: 60vh !important;
 }
+
 body {
   background : url("https://cdn.shopify.com/s/files/1/0153/0623/products/Bead_Board_Wallpaper_in_White_by_York_Wallcoverings_c9f50134-b90a-4d8c-aae3-75328c6a804e_large.jpg?v=1450293667");
 }
-  .post .info p {
-    text-align:center;
-    color: #999;
-    text-transform:none;
-    font-weight:600;
-    font-size:15px;
-    margin-top:2px
-  }
-  .title-top{
-    height: 100px;
-    background-color: #0087E0;
-  }
+
+.post .info p {
+  text-align:center;
+  color: #999;
+  text-transform:none;
+  font-weight:600;
+  font-size:15px;
+  margin-top:2px
+}
+
+.title-top{
+  height: 100px;
+  background-color: #0087E0;
+}
 
   .title-top h3{
     padding-top: 30px;

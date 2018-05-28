@@ -14,7 +14,7 @@
 /*    background-position: center;
     background-repeat: no-repeat;
     background-size: cover;*/
-    background-color: rgba(0,0,0,0);
+    /*background-color: rgba(0,0,0,0);*/
   }
 
 /*  .search-showcase{
@@ -268,9 +268,8 @@ body {
   <div class="title">
     <div class="container">
       <h1> Freelancer Showcase</h1>
-      <h4>Let the beauty speak for itself </h4>            <br><br>
+      <h4>Let the beauty speak for itself </h4><br><br>
     </div>
-
   </div>
 
 
