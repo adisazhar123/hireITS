@@ -125,7 +125,7 @@ p a{color:#27ae60; text-decoration:none;}
         cursor: pointer;
       }
 
-      .profile-pic:hover .text2{
+      .profile-pic .text2{
         opacity: 1;
       }
 
@@ -195,8 +195,8 @@ p a{color:#27ae60; text-decoration:none;}
       }
 
       #upload{
-        opacity: 0.6;
-				margin-left: -50px;
+        background-color: rgba(0,0,0,0);
+				/*margin-left: -50px;*/
       }
 
 
@@ -204,7 +204,7 @@ p a{color:#27ae60; text-decoration:none;}
 #wrapper{ max-width: 800px; width:100%; margin:0 auto;}
 #generic-tabs{
   width:100%; padding:20px;
-	margin-top: 80px;
+	margin-top: 30px;
 }
 
 #first-tab,#second-tab,#third-tab{
@@ -349,14 +349,14 @@ p a{color:#27ae60; text-decoration:none;}
                 @else
                   <img class="rounded" src="data:{{$pf[0]->img_type}};base64,{{base64_encode( $pf[0]->name )}}" alt="profile_pic">
               @endif
-              <div class="text2">
-
-                <form action="#" enctype="multipart/form-data" id="upload-dp">
+             
+                <form action="#" enctype="multipart/form-data" id="upload-dp" style="text-align: center;">
                   {{ csrf_field() }}
                     <input type="file"  id="my_file" name="image"/>
-                    <i class="fa fa-wrench" id="file_selector" style="font-size:60px;"></i>
-                    <button id="upload" class="btn btn-default" type="submit" name="button">upload profile pic</button>
+                    <i class="fa fa-wrench" id="file_selector" style="font-size:30px;"></i>
+                    <span><button id="upload" class="btn btn-default" type="submit" name="button">Upload profile picture</button></span>
                  </form>
+                  <div class="text2" >
               </div>
 
             </div>
@@ -369,7 +369,7 @@ p a{color:#27ae60; text-decoration:none;}
                   <i class="fa fa-star"></i>
                 @endfor
                @else
-                 <p>No reviews</p>
+                 <!-- <p>No reviews</p> -->
               @endif
             </div>
           <section id="generic-tabs">
@@ -377,7 +377,7 @@ p a{color:#27ae60; text-decoration:none;}
 
             <ul id="tabs">
                 <li>
-                    <a title="About" href="#first-tab"><i class="fa fa-home"></i> About</a>
+                    <a title="About" href="#first-tab"><i class="fa fa-home"></i> About Me</a>
                 </li>
                 <li>
                     <a title="Reviews" href="#second-tab"><i class="fa fa-info-circle"></i> Reviews</a>
@@ -423,8 +423,6 @@ p a{color:#27ae60; text-decoration:none;}
 															<input class="  form-control" id="user-title" type="text" placeholder="what is your title?" name="user-title" value="" style="display: none">
 												 </div>
 
-
-
 												<div class="input-group inputt  ">
 															<div class="input-group-prepend  ">
 																<span class="input-group-text"><i class="fa fa-map-marker" aria-hidden="true"></i></span>
@@ -458,7 +456,7 @@ p a{color:#27ae60; text-decoration:none;}
             </div>
             <div id="second-tab" class="tab-content  ">
               @if ($reviews->isEmpty())
-                <h4>No reviews.</h4>
+                <h5 style="color:#c6c4c4; text-align: center;">No reviews.</h5>
               @else
                 @foreach ($reviews as $review)
                     @for ($i=0; $i < $review->rating; $i++)
