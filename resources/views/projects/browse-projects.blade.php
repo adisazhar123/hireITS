@@ -5,10 +5,6 @@
 @section('style')
   <style media="screen">
 
-    .main-container{
-  max-height: 60vh !important;
-}
-
 body {
   background : url("https://cdn.shopify.com/s/files/1/0153/0623/products/Bead_Board_Wallpaper_in_White_by_York_Wallcoverings_c9f50134-b90a-4d8c-aae3-75328c6a804e_large.jpg?v=1450293667");
 }
@@ -155,93 +151,6 @@ body {
     background-color: rgba(0,0,0,0);
   }
 
-
-    input[type=range] {
-  -webkit-appearance: none;
-  width: 100%;
-  margin: 4.8px 0;
-    }
-    input[type=range]:focus {
-      outline: none;
-    }
-    input[type=range]::-webkit-slider-runnable-track {
-      width: 100%;
-      height: 8.4px;
-      cursor: pointer;
-      box-shadow: 0.5px 0.5px 1px rgba(0, 0, 0, 0.44), 0px 0px 0.5px rgba(13, 13, 13, 0.44);
-      background: #006da9;
-      border-radius: 1.3px;
-      border: 0.2px solid #010101;
-    }
-    input[type=range]::-webkit-slider-thumb {
-      box-shadow: 1px 1px 1px rgba(0, 0, 0, 0), 0px 0px 1px rgba(13, 13, 13, 0);
-      border: 1.5px solid #000000;
-      height: 18px;
-      width: 14px;
-      border-radius: 50px;
-      background: #ff9621;
-      cursor: pointer;
-      -webkit-appearance: none;
-      margin-top: -5px;
-    }
-    input[type=range]:focus::-webkit-slider-runnable-track {
-      background: #0077b8;
-    }
-    input[type=range]::-moz-range-track {
-      width: 100%;
-      height: 8.4px;
-      cursor: pointer;
-      box-shadow: 0.5px 0.5px 1px rgba(0, 0, 0, 0.44), 0px 0px 0.5px rgba(13, 13, 13, 0.44);
-      background: #006da9;
-      border-radius: 1.3px;
-      border: 0.2px solid #010101;
-    }
-    input[type=range]::-moz-range-thumb {
-      box-shadow: 1px 1px 1px rgba(0, 0, 0, 0), 0px 0px 1px rgba(13, 13, 13, 0);
-      border: 1.5px solid #000000;
-      height: 18px;
-      width: 14px;
-      border-radius: 50px;
-      background: #ff9621;
-      cursor: pointer;
-    }
-    input[type=range]::-ms-track {
-      width: 100%;
-      height: 8.4px;
-      cursor: pointer;
-      background: transparent;
-      border-color: transparent;
-      color: transparent;
-    }
-    input[type=range]::-ms-fill-lower {
-      background: #00639a;
-      border: 0.2px solid #010101;
-      border-radius: 2.6px;
-      box-shadow: 0.5px 0.5px 1px rgba(0, 0, 0, 0.44), 0px 0px 0.5px rgba(13, 13, 13, 0.44);
-    }
-    input[type=range]::-ms-fill-upper {
-      background: #006da9;
-      border: 0.2px solid #010101;
-      border-radius: 2.6px;
-      box-shadow: 0.5px 0.5px 1px rgba(0, 0, 0, 0.44), 0px 0px 0.5px rgba(13, 13, 13, 0.44);
-    }
-    input[type=range]::-ms-thumb {
-      box-shadow: 1px 1px 1px rgba(0, 0, 0, 0), 0px 0px 1px rgba(13, 13, 13, 0);
-      border: 1.5px solid #000000;
-      height: 18px;
-      width: 14px;
-      border-radius: 50px;
-      background: #ff9621;
-      cursor: pointer;
-      height: 8.4px;
-    }
-    input[type=range]:focus::-ms-fill-lower {
-      background: #006da9;
-    }
-    input[type=range]:focus::-ms-fill-upper {
-      background: #0077b8;
-    }
-
     .job-desc{
       text-align: justify;
     }
@@ -293,28 +202,6 @@ body {
 
 @section('content')
 
-<!--   <div class="title">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-4">
-          <h3>Top jobs</h3>
-        </div>
-      </div>
-    </div>
-  </div> -->
-<!--   <nav aria-label="breadcrumb" id="breadcrumb">
-    <div class="container">
-      <div class="row">
-          <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{{url('/')}}">hireITS</a></li>
-            <li class="breadcrumb-item active"><a href="#">Jobs</a></li>
-          </ol>
-      </div>
-
-    </div>
-
-</nav>
- -->
    <div class="backround">
 
   </div>

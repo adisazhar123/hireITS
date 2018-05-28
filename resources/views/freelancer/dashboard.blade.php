@@ -20,7 +20,7 @@
     width: 115px;
     position: fixed;
     z-index: 1;
-    top: 45px;
+    top: 61px;
     left: 0;
     background-color: #111;
     overflow-x: hidden;
@@ -101,7 +101,7 @@
   }
 
   .main1 {
-    width: 85%;
+    width: 100%;
     background-color: rgb(255,255,255);
     position: relative;
     padding-left: 160px;

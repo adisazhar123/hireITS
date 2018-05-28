@@ -159,7 +159,7 @@ hr:after {
 									@endif
 								</div>
 								<div class="detail">
-									<p>Rating: {{$top_freelancers[0]->rating}}</p>
+									<p>Rating: {{$top_freelancers[0]->fre_rating/$top_freelancers[0]->fre_review}}</p>
 									<p>Major: {{$top_freelancers[0]->major}}</p>
 									<i class="fa fa-trophy fa-lg" aria-hidden="true"></i>
 								</div>
@@ -181,7 +181,7 @@ hr:after {
 										@endif
 									</div>
 									<div class="detail">
-										<p>Rating: {{$top_freelancers[1]->rating}}</p>
+										<p>Rating: {{$top_freelancers[1]->fre_rating/$top_freelancers[1]->fre_review}}</p>
 										<p>Major: {{$top_freelancers[1]->major}}</p>
 										<i class="fa fa-pagelines fa-lg" aria-hidden="true"></i>
 									</div>
@@ -204,7 +204,7 @@ hr:after {
 										@endif
 									</div>
 									<div class="detail">
-										<p>Rating: {{$top_freelancers[2]->rating}}</p>
+										<p>Rating: {{$top_freelancers[2]->fre_rating/$top_freelancers[2]->fre_review}}</p>
 										<p>Major: {{$top_freelancers[2]->major}}</p>
 										<i class="fa fa-envira fa-lg" aria-hidden="true"></i>
 									</div>
@@ -236,7 +236,7 @@ hr:after {
 										@endif
 									</div>
 									<div class="detail">
-										<p>Rating: {{$top_employers[0]->rating}}</p>
+										<p>Rating: {{$top_employers[0]->emp_rating/$top_employers[0]->emp_review}}</p>
 										<i class="fa fa-trophy fa-lg" aria-hidden="true"></i>
 
 									</div>
@@ -257,7 +257,7 @@ hr:after {
 										@endif
 									</div>
 									<div class="detail">
-										<p>Rating: {{$top_employers[1]->rating}}</p>
+										<p>Rating: {{$top_employers[1]->emp_rating/$top_employers[1]->emp_review}}</p>
 										<i class="fa fa-pagelines fa-lg" aria-hidden="true"></i>
 									</div>
 									<div class="overlay">{{$top_employers[1]->name}}</div>
@@ -277,7 +277,7 @@ hr:after {
 										@endif
 									</div>
 									<div class="detail">
-										<p>Rating: {{$top_employers[2]->rating}}</p>
+										<p>Rating: {{$top_employers[2]->emp_rating/$top_employers[2]->emp_review}}</p>
 										<i class="fa fa-envira fa-lg" aria-hidden="true"></i>
 									</div>
 									<div class = "overlay">{{$top_employers[2]->name}}</div>

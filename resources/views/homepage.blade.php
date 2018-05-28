@@ -792,7 +792,7 @@ i {
                   @else
                     <img class="img-fluid dp" src="{{asset('img/avatar.png')}}" alt=" " style="width: 35px">
                   @endif
-                  <a href="# "><span>{{$showcase->freelancer->username}}</span></a>
+                  <a href="{{route('view.freelancer', $showcase->freelancer->username)}} "><span>{{$showcase->freelancer->username}}</span></a>
                 </div>
               </div>
               <a href="# ">

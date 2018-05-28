@@ -664,7 +664,7 @@
             window.location.reload(true);
         })
         .catch(function(err) {
-
+          alertify.error(err);
       });
     },
 
