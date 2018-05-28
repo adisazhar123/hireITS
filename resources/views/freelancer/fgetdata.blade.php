@@ -1,9 +1,16 @@
 @section('style')
 <style media="screen">
+    .main-container{
+  max-height: 60vh !important;
+}
 
-  input{
+body {
+  background : url("https://cdn.shopify.com/s/files/1/0153/0623/products/Bead_Board_Wallpaper_in_White_by_York_Wallcoverings_c9f50134-b90a-4d8c-aae3-75328c6a804e_large.jpg?v=1450293667");
+}
+
+/*  input{
     width: 100%;
-  }
+  }*/
 
   .container{
   	margin:center;
@@ -32,13 +39,13 @@
     position: relative;
     text-align: center;
     line-height:40px;
-    margin-left:15px;
+   /* margin-left:15px;*/
   }
 
-  textarea{
+/*  textarea{
   	margin-left : 15px;
   }
-
+*/
   .title{
     background: #f1c40f ;
     text-shadow: none;
@@ -49,6 +56,22 @@
     padding: 0.5em;
   }
 
+    .btn-primary {
+    color: #fff;
+    background-color: #f1c40f;
+    border-color: #f1c40f;
+   
+}
+
+.btn-primary:hover {
+    color: #fff;
+    background-color: #f39c12;
+    border-color: #f39c12;
+}
+
+  .submitt{
+     text-align: center;
+  }
 
 </style>
 @endsection
@@ -66,7 +89,7 @@
 	<div class = "contentform">
     <div class="col-md-12">
       <div class = "form-group">
-  			Your name
+  			<h6>Your Name</h6>
   			<div class = "input-group">
   			<div class = "icon">
   				<span class ="icon-case"><i class = "fa fa-user-circle-o"></i></span>
@@ -79,7 +102,7 @@
 
     <div class="col-md-12">
       <div class = "form-group">
-        Your Age
+        <h6>Your Age</h6>
         <div class = "input-group">
           <div class = "icon">
             <span class ="icon-case"><i class = "fa fa-vcard-o"></i></span>
@@ -91,11 +114,10 @@
 
     <div class="col-md-12">
       <div class = "form-group">
-  			Your Major
+  			<h6>Your Major</h6>
   			<div class ="input-group">
   				<div class = "icon">
   				<span class ="icon-case"><i class = "fa fa-mortar-board"></i></span>
-
   				</div>
   				<input type="text" name="major" class ="form-control" placeholder="Major" />
   			</div>
@@ -104,14 +126,14 @@
 
     <div class="col-md-12">
       <div class = "form-group">
-  			Describe Yourself! <br />
-  			<textarea name="description" rows="10" cols="80"></textarea>
+  			<h6>Describe Yourself!</h6>
+  			<textarea class="form-control" name="description"></textarea>
   		</div>
     </div>
 
     <div class="col-md-12">
       <div class = "form-group">
-  				Price
+  				<h6>Price</h6>
   				<div class = "input-group">
   					<div class = "icon">
   						<span class = "icon-case"><i class = "fa fa-sort-numeric-asc"></i></span>
@@ -123,7 +145,7 @@
 
     <div class="col-md-12">
       <div class = "form-group">
-  			Your Title
+  			<h6>Your Title</h6>
   			<div class = "input-group">
   				<div class = "icon">
   				<span class ="icon-case"><i class = "fa fa-trophy"></i></span>
@@ -135,9 +157,9 @@
     </div>
 
     <div class="col-md-12">
-      <div class = "form-group">
+      <div class = "form-group submitt">
   			<input type="submit" class="btn btn-primary" value="Submit Data">
-        <a href="{{route('view.freelancer.profile')}}">Fill in later...</a>
+        <a class="btn btn-primary" href="{{route('view.freelancer.profile')}}">Fill in later...</a>
   		</div>
     </div>
 	</div>

@@ -27,6 +27,12 @@
     background-color: #f39c12;
     border-color: #f39c12;
 }
+
+  .btn-primary:hover {
+    color: #fff;
+    background-color: #f39c12;
+    border-color: #f39c12;
+}
     .search-jobs input, .search-jobs button{
       height: 60px;
       font-size: 22px;

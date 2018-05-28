@@ -237,6 +237,11 @@ body {
     border-color: #f39c12;
 }
 
+  .btn-primary:hover {
+    color: #fff;
+    background-color: #f39c12;
+    border-color: #f39c12;
+}
 @media only screen and (max-width: 990px) {
     .accordion.hide{
       display: block;
