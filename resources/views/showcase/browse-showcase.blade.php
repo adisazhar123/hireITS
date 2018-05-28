@@ -17,9 +17,9 @@
     background-color: rgba(0,0,0,0);
   }
 
-  .search-showcase{
+/*  .search-showcase{
     margin-bottom: 100px;
-  }
+  }*/
   .search-showcase input, .search-showcase button{
     height: 60px;
     font-size: 22px;
@@ -190,6 +190,7 @@
 
 body {
   background-color: #FFF;
+  background : url("https://cdn.shopify.com/s/files/1/0153/0623/products/Bead_Board_Wallpaper_in_White_by_York_Wallcoverings_c9f50134-b90a-4d8c-aae3-75328c6a804e_large.jpg?v=1450293667");
 }
 
 .container.yes{
@@ -326,8 +327,8 @@ body {
           <div class="accordion hide" id="accordionExample">
             <div class="card">
               <div class="card-header" id="headingOne">
-                <h5 class="mb-0">
-                  <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                <h5 class="mb-0" >
+                  <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" style="text-decoration: none;">
                     Categories
                   </button>
                 </h5>
@@ -369,11 +370,11 @@ body {
   </div>
 
 <div class="container yes">
-  <div class="row">
-    <div class="col-md-12">
-      <div class="row" style="text-align: center;">
+  <div class="row" style="text-align: center !important; padding-top: 100px;">
+    <div class="col-md-12"  >
+      <div class="row1">
         @if (!count($showcases))
-          <p >No showcase found.</p>
+          <h5 style="color:#c6c4c4">No showcase found.</h5>
         @else
           @foreach ($showcases as $showcase)
             <div class="col-lg-4">
