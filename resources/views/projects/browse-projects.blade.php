@@ -318,7 +318,7 @@ body {
   <div class="title">
     <div class="container">
       <h1>Find Projects</h1>
-      <h4>PIKIRPIKIRPIKIR</h4><br><br>
+      <h4>Find projects to get started</h4><br><br>
     </div>
 
   </div>

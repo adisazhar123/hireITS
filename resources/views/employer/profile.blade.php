@@ -1,6 +1,9 @@
 @section('style')
 <style media="screen">
 
+.main-container{
+  max-height: 60vh !important;
+}
 /*Box sizing stuff*/
 * { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box;}
 /*Font styels*/
@@ -14,13 +17,13 @@ p a{color:#27ae60; text-decoration:none;}
 
   body{
     @if ($cover->isEmpty())
-      background-image: url('https://images.pexels.com/photos/688830/pexels-photo-688830.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');
+      background : url("https://cdn.shopify.com/s/files/1/0153/0623/products/Bead_Board_Wallpaper_in_White_by_York_Wallcoverings_c9f50134-b90a-4d8c-aae3-75328c6a804e_large.jpg?v=1450293667");
     @else
       background-image: url({{asset($cover)}});
     @endif
-    background-repeat: no-repeat;
+    /*background-repeat: no-repeat;
     background-size: 100% 495px;
-    background-position: top;
+    background-position: top;*/
 
   }
 
@@ -54,7 +57,7 @@ p a{color:#27ae60; text-decoration:none;}
     margin-left: auto;
     margin-right: auto;
     height: 224.467px;
-    width: 300px;
+ /*   width: 300px;*/
   }
 
 	.info{
@@ -66,11 +69,9 @@ p a{color:#27ae60; text-decoration:none;}
     margin-top: 10px;
     text-align: center;
     line-height: 10px;
-    color: white;
-    font-size: 18px;
+    color: #343a40;
+    font-size: 25px;
   }
-
-
 
     .text {
           padding-top: 120px;
@@ -221,9 +222,9 @@ p a{color:#27ae60; text-decoration:none;}
 #generic-tabs ul#tabs li a { text-align:center; display:block; font-size: 1.2em; text-decoration: none; padding: 1.2em 1em; line-height: 16px; color:#BBBBBB;}
 
 /*Active tab styles*/
-#generic-tabs ul#tabs li.active {background:#FFFFFF; border-top:4px solid #3d82ab;}
+#generic-tabs ul#tabs li.active {background:#FFFFFF; border-top:4px solid #f39c12;}
 #generic-tabs ul#tabs li.active a { color:#333333;}
-#generic-tabs ul#tabs li.active a i {color:#85b8cb;}
+#generic-tabs ul#tabs li.active a i {color:#6da768;}
 
 /*Tab content styles*/
 
@@ -236,11 +237,6 @@ p a{color:#27ae60; text-decoration:none;}
 }
 
 #second-tab{
-  border-bottom-left-radius: 5px;
-  border-bottom-right-radius: 5px;
-}
-
-#third-tab{
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
 }
@@ -349,7 +345,7 @@ p a{color:#27ae60; text-decoration:none;}
             @endif
             <div class="profile-pic">
               @if ($pf->isEmpty())
-                <img class="rounded" src="{{asset('img/avatar.png')}}" alt="profile_pic12">
+                <img class="rounded" src="{{asset('https://www.shareicon.net/data/2016/09/01/822711_user_512x512.png')}}" alt="profile_pic12">
                 @else
                   <img class="rounded" src="data:{{$pf[0]->img_type}};base64,{{base64_encode( $pf[0]->name )}}" alt="profile_pic">
               @endif

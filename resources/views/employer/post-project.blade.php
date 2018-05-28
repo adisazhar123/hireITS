@@ -293,7 +293,7 @@ body {
           <select class="form-control" id="search_skills" name="search_skills[]" multiple></select>
         </div>
         <div class="form-group">
-          <h6 for="">Files</h6>
+          <h6 for="">Files<span>*</span></h6>
           <p>Drag & drop any images that might be helpful in explaining your project brief here.</p>
           <input type="file" class="form-control" name="photos[]" multiple><br>
   

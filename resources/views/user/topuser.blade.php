@@ -213,7 +213,7 @@ hr:after {
 			<div class = "garis"></div>
 
 			<div class="employer">
-				      <hr>
+				      <hr><br><br>
 				<h2>Employer</h2>
 				<div class="row1" style="text-align: center !important;">
 					@if (!count($top_employers))
