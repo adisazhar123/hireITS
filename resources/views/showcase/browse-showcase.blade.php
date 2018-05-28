@@ -189,7 +189,6 @@
 /* Demo purposes only */
 
 body {
-  background-color: #FFF;
   background : url("https://cdn.shopify.com/s/files/1/0153/0623/products/Bead_Board_Wallpaper_in_White_by_York_Wallcoverings_c9f50134-b90a-4d8c-aae3-75328c6a804e_large.jpg?v=1450293667");
 }
 
