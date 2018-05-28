@@ -1,3 +1,7 @@
+@section('title')
+  FAQ
+@endsection
+
 @section('style')
 <style>
 	.big-container{
@@ -158,10 +162,10 @@
 					<div class = "button-faq">How do reviews work?</div>
 					<div class = "content">
 						Each time you finish a project, you will be given a review and rating from your employer. A review is a detailed comment explaining how well you did the job.
-						Rating is based on stars, from a range of 1 to 5.</p>
-						<p>5 stars being the highest (it means you have done an excellent job) and 1 star the lowest (it means your work quality is poor).
-							Each 7 days there will be a "top users" award where it will be accumulated based on top reviews.
-						</p>
+						Rating is based on stars, from a range of 1 to 5.<br /><br />
+						5 stars being the highest (it means you have done an excellent job) and 1 star the lowest (it means your work quality is poor).<br /><br />
+						Each 7 days there will be a "top users" award where it will be accumulated based on top reviews.
+						
 					</div>
 					<div class = "button-faq">How much hireITS fee cost for new freelancers?</div>
 					<div class = "content">
