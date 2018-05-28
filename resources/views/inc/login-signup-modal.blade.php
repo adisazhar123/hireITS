@@ -5,7 +5,7 @@
         <div class="">
 			<ul class="switcher clearfix">
 				<li class="first logo active" data-tab="login">
-					<a">Login</a>
+					<a>Login</a>
 				</li>
 				<li class="second logo" data-tab="sign_up">
 					<a>Sign Up</a>
@@ -72,7 +72,7 @@
 
             </div>
             <div class="form-group" >
-              <div class="col-md-12" style="text-align: center;">
+              <div class="col-md-12">
                 <div class="form-check">
                   <input class="form-check-input" type="radio" name="role" value="employer" checked>
                   <label class="form-check-label" for="exampleRadios1" style="color: white">

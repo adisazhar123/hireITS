@@ -1,3 +1,7 @@
+@section('title')
+  Profile | {{$employer[0]->username}}
+@endsection
+
 @section('style')
 <style media="screen">
 
@@ -14,13 +18,11 @@ p a{color:#27ae60; text-decoration:none;}
 
   body{
     @if ($cover->isEmpty())
-      background-image: url('https://images.pexels.com/photos/688830/pexels-photo-688830.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');
+    background : url("https://cdn.shopify.com/s/files/1/0153/0623/products/Bead_Board_Wallpaper_in_White_by_York_Wallcoverings_c9f50134-b90a-4d8c-aae3-75328c6a804e_large.jpg?v=1450293667");
     @else
       background-image: url({{asset($cover)}});
     @endif
-    background-repeat: no-repeat;
-    background-size: 100% 500px;
-    background-position: top;
+
 
   }
 
@@ -62,7 +64,7 @@ p a{color:#27ae60; text-decoration:none;}
       .info p{
       margin-top: 10px;
       line-height: 10px;
-      color: white;
+      color: black;
       font-size: 18px;
     }
 

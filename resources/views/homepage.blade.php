@@ -4,6 +4,10 @@
   Homepage
 @endsection
 
+@section('nav-state')
+  menu-active
+@endsection
+
 @php
   $homepage=1;
 @endphp

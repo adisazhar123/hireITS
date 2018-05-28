@@ -1,3 +1,7 @@
+@section('title')
+  Dashboard Freelancer
+@endsection
+
 @section('style')
 <style type="text/css">
 
@@ -12,42 +16,42 @@
 
   .slidebar {
     background-color: #111;
-      height:100%;
-      width: 115px;
-      position: fixed;
-      z-index: 1;
-      top: 45px;
-      left: 0;
-      background-color: #111;
-      overflow-x: hidden;
-      padding-top: 20px;
-      -webkit-transition-duration: 0.4s; 
+    height:100%;
+    width: 115px;
+    position: fixed;
+    z-index: 1;
+    top: 45px;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    padding-top: 20px;
+    -webkit-transition-duration: 0.4s;
     transition-duration: 0.4s;
   }
   .slidebar ul {
     position:relative;
     height:100%;
-    -webkit-transition-duration: 0.4s; 
+    -webkit-transition-duration: 0.4s;
     transition-duration: 0.4s;
   }
 
   .slidebar a{
     color: #bbb;
     text-decoration:none;
-    -webkit-transition-duration: 0.4s; 
+    -webkit-transition-duration: 0.4s;
     transition-duration: 0.4s;
   }
   .slidebar li{
     text-align:center;
     padding: 0x 0px;
-    -webkit-transition-duration: 0.4s; 
+    -webkit-transition-duration: 0.4s;
     transition-duration: 0.4s;
   }
 
   .slidebar ul {
     padding: 0;
     margin:0;
-    -webkit-transition-duration: 0.4s; 
+    -webkit-transition-duration: 0.4s;
     transition-duration: 0.4s;
   }
   .slidebar li {
@@ -56,7 +60,7 @@
     position: relative;
     text-align:center;
     color:#B3B3B3;
-    -webkit-transition-duration: 0.4s; 
+    -webkit-transition-duration: 0.4s;
     transition-duration: 0.4s;
   }
   .slidebar i {
@@ -65,7 +69,7 @@
     color:#B3B3B3;
     font-size: 40px;
     margin-bottom: 8px;
-    -webkit-transition-duration: 0.4s; 
+    -webkit-transition-duration: 0.4s;
     transition-duration: 0.4s;
   }
 
@@ -76,23 +80,23 @@
     display: block;
     text-transform: capitalize;
     padding: 20px;
-    -webkit-transition-duration: 0.4s; 
+    -webkit-transition-duration: 0.4s;
     transition-duration: 0.4s;
   }
   .slidebar li:hover a, li#active{
     background-color: #313131;
-    -webkit-transition-duration: 0.4s; 
+    -webkit-transition-duration: 0.4s;
     transition-duration: 0.4s;
 
   }
   .slidebar li:hover i, li#active i{
     color: #17BCE8;
-    -webkit-transition-duration: 0.4s; 
+    -webkit-transition-duration: 0.4s;
     transition-duration: 0.4s;
   }
   .slidebar li:focus i {
     color: #17BCE8;
-    -webkit-transition-duration: 0.4s; 
+    -webkit-transition-duration: 0.4s;
     transition-duration: 0.4s;
   }
 
@@ -347,15 +351,13 @@
              </tbody>
            </table>
          </div>
-         <!--<div id="tab5"><h2 class="header">Blog /news</h2></div>
-         <div id="tab6"><h2 class="header">Advanced</h2></div>    -->
     </div>
 
 
 </div>
 
 <div class="container">
-  <div class="modal progress2" tabindex="-1" role="dialog">
+  <div class="modal progress2 fade" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -432,7 +434,7 @@
 
 
 <div class="container">
-  <div class="modal discussion-history animated fadeIn" tabindex="-1" role="dialog">
+  <div class="modal discussion-history fade" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -461,7 +463,7 @@
       </div>
     </div>
   </div>
-  <div class="modal rate animated fadeIn" tabindex="-1" role="dialog">
+  <div class="modal rate fade" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -495,7 +497,7 @@
     </div>
   </div>
   </div>
-  <div class="modal showcase" tabindex="-1" role="dialog">
+  <div class="modal showcase fade" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">

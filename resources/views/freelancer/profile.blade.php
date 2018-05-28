@@ -1,3 +1,7 @@
+@section('title')
+  Profile Freelancer
+@endsection
+
 @section('style')
 <style media="screen">
 
@@ -14,19 +18,11 @@ p a{color:#27ae60; text-decoration:none;}
 
   body{
     @if ($cover->isEmpty())
-      background-image: url('https://images.pexels.com/photos/735911/pexels-photo-735911.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');
+    background : url("https://cdn.shopify.com/s/files/1/0153/0623/products/Bead_Board_Wallpaper_in_White_by_York_Wallcoverings_c9f50134-b90a-4d8c-aae3-75328c6a804e_large.jpg?v=1450293667");
     @else
       background-image: url({{asset($cover)}});
     @endif
-    background-repeat: no-repeat;
-    @if (!Auth::user()->hassetprofile)
-      background-size: 100% 510px;
 
-    @else
-      background-size: 100% 490px;
-
-    @endif
-    background-position: top;
 
   }
 
@@ -52,7 +48,7 @@ p a{color:#27ae60; text-decoration:none;}
       margin-top: 10px;
       text-align: center;
       line-height: 10px;
-      color: white;
+      color: black;
       font-size: 18px;
     }
 
@@ -426,6 +422,10 @@ p a{color:#27ae60; text-decoration:none;}
     background-color: rgba(255,255,255,0.1);
 }
 
+#file_selector:hover{
+  cursor: pointer;
+}
+
 
 @media screen and (max-height: 450px) {
   .sidenav {padding-top: 15px;}
@@ -474,7 +474,6 @@ p a{color:#27ae60; text-decoration:none;}
                 @else
                   <img class="rounded" src="data:{{$pf[0]->img_type}};base64,{{base64_encode( $pf[0]->name )}}" alt="profile_pic">
               @endif
-              <div class="text2">
 
                 <form action="#" enctype="multipart/form-data" id="upload-dp">
                   {{ csrf_field() }}
@@ -482,7 +481,6 @@ p a{color:#27ae60; text-decoration:none;}
                     <i class="fa fa-wrench" id="file_selector" style="font-size:60px;"></i>
                     <button id="upload" class="btn btn-default" type="submit" name="button">upload profile pic: </button>
                  </form>
-              </div>
 
             </div>
             <div class="info  bounceInUp">
@@ -942,7 +940,6 @@ $(".text2").hover(function(){
 	});
 
 	$('#my_file').on('change', function() {
-  	$('#upload').html("upload: "+$(this).val());
 	});
 
   $("#upload-dp").submit(function(){

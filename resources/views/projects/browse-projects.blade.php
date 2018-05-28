@@ -1,3 +1,7 @@
+@section('title')
+  Browse Projects
+@endsection
+
 @section('style')
   <style media="screen">
 
@@ -18,11 +22,11 @@ body {
   }
 
     .title h1 h4{
-      
+
       font-weight: bold;
       color: white;
       font-size: 35px;
-      
+
 
     }
 

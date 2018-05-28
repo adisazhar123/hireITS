@@ -1,3 +1,7 @@
+@section('title')
+  Fill in Employer Data
+@endsection
+
 @section('style')
 <style media="screen">
   .main-container{
@@ -63,7 +67,7 @@ body {
     color: #fff;
     background-color: #f1c40f;
     border-color: #f1c40f;
-   
+
 }
 
 .btn.btn-june:hover {

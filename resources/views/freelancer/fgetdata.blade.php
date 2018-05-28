@@ -1,3 +1,7 @@
+@section('title')
+  Fill in Data Freelancer
+@endsection
+
 @section('style')
 <style media="screen">
     .main-container{
@@ -60,7 +64,7 @@ body {
     color: #fff;
     background-color: #f1c40f;
     border-color: #f1c40f;
-   
+
 }
 
 .btn-primary:hover {

@@ -5,7 +5,7 @@
       <div class="jobs-body">
         <a class="body-link" href="{{route('view.project',['slug' => $job->slug])}}" style="display: block">
           <div class="row">
-            <div class="col-sm-9 col-md-9">
+            <div class="col-sm-9 col-md-9 col-lg-9">
               <div class="row">
                 <h4>{{substr(strip_tags($job->name), 0, 55)}}</h4>
                 <h6>
@@ -32,7 +32,7 @@
                 </div>
               </div>
             </div>
-            <div class="col-sm-3 col-md-3">
+            <div class="col-sm-3 col-md-3 col-lg-3">
               <div class="row">
                 <div class="job-price">
                   <h4>

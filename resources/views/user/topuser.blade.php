@@ -1,3 +1,8 @@
+
+@section('title')
+  Top Users
+@endsection
+
 @section('style')
 <style media="screen">
 .main-container{
@@ -110,11 +115,11 @@ hr {
 hr:after {
 	content:"\f005";
 	font-family: FontAwesome;
-	font-size: 64px;	
+	font-size: 64px;
 	position: relative;
 	top: -.8em;
 	background: rgba(0, 0, 0, 0);
-	color: #f1c40f;	
+	color: #f1c40f;
 }
 </style>
 @endsection

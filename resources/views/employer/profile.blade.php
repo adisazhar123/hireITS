@@ -1,3 +1,6 @@
+@section('title')
+  Profile Employer
+@endsection
 @section('style')
 <style media="screen">
 
@@ -21,9 +24,6 @@ p a{color:#27ae60; text-decoration:none;}
     @else
       background-image: url({{asset($cover)}});
     @endif
-    /*background-repeat: no-repeat;
-    background-size: 100% 495px;
-    background-position: top;*/
 
   }
 
@@ -51,6 +51,9 @@ p a{color:#27ae60; text-decoration:none;}
     position: relative;
   }
 
+  #file_selector:hover{
+    cursor: pointer;
+  }
   .profile-pic img{
     border-radius: 5px;
     display: block;
@@ -69,7 +72,7 @@ p a{color:#27ae60; text-decoration:none;}
     margin-top: 10px;
     text-align: center;
     line-height: 10px;
-    color: #343a40;
+    color: black;
     font-size: 25px;
   }
 
@@ -349,15 +352,13 @@ p a{color:#27ae60; text-decoration:none;}
                 @else
                   <img class="rounded" src="data:{{$pf[0]->img_type}};base64,{{base64_encode( $pf[0]->name )}}" alt="profile_pic">
               @endif
-             
+
                 <form action="#" enctype="multipart/form-data" id="upload-dp" style="text-align: center;">
                   {{ csrf_field() }}
                     <input type="file"  id="my_file" name="image"/>
                     <i class="fa fa-wrench" id="file_selector" style="font-size:30px;"></i>
                     <span><button id="upload" class="btn btn-default" type="submit" name="button">Upload profile picture</button></span>
                  </form>
-                  <div class="text2" >
-              </div>
 
             </div>
             <div class="info">

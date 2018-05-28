@@ -1,3 +1,7 @@
+
+@section('title')
+  Dashboard Employer
+@endsection
 @section('style')
 <style type="text/css">
 
@@ -25,33 +29,33 @@
       background-color: #111;
       overflow-x: hidden;
       padding-top: 20px;
-      -webkit-transition-duration: 0.4s; 
+      -webkit-transition-duration: 0.4s;
       transition-duration: 0.4s;
   }
   .slidebar ul {
     position:relative;
     height:100%;
-    -webkit-transition-duration: 0.4s; 
+    -webkit-transition-duration: 0.4s;
       transition-duration: 0.4s;
   }
 
   .slidebar a{
     color: #bbb;
     text-decoration:none;
-    -webkit-transition-duration: 0.4s; 
+    -webkit-transition-duration: 0.4s;
       transition-duration: 0.4s;
   }
   .slidebar li{
     text-align:center;
     padding: 0x 0px;
-    -webkit-transition-duration: 0.4s; 
+    -webkit-transition-duration: 0.4s;
       transition-duration: 0.4s;
   }
 
   .slidebar ul {
     padding: 0;
     margin:0;
-    -webkit-transition-duration: 0.4s; 
+    -webkit-transition-duration: 0.4s;
       transition-duration: 0.4s;
   }
   .slidebar li {
@@ -60,7 +64,7 @@
     position: relative;
     text-align:center;
     color:#B3B3B3
-    -webkit-transition-duration: 0.4s; 
+    -webkit-transition-duration: 0.4s;
       transition-duration: 0.4s;
   }
   .slidebar i {
@@ -69,7 +73,7 @@
     color:#B3B3B3;
     font-size: 40px;
     margin-bottom: 8px;
-    -webkit-transition-duration: 0.4s; 
+    -webkit-transition-duration: 0.4s;
       transition-duration: 0.4s;
   }
   body {
@@ -82,22 +86,22 @@
     display: block;
     text-transform: capitalize;
     padding: 20px;
-    -webkit-transition-duration: 0.4s; 
+    -webkit-transition-duration: 0.4s;
       transition-duration: 0.4s;
   }
   .slidebar li:hover a, li#active{
     background-color: #313131;
-    -webkit-transition-duration: 0.4s; 
+    -webkit-transition-duration: 0.4s;
       transition-duration: 0.4s;
   }
   .slidebar li:hover i, li#active i{
     color: #17BCE8;
-    -webkit-transition-duration: 0.4s; 
+    -webkit-transition-duration: 0.4s;
       transition-duration: 0.4s;
   }
   .slidebar li:focus i {
     color: #17BCE8;
-    -webkit-transition-duration: 0.4s; 
+    -webkit-transition-duration: 0.4s;
       transition-duration: 0.4s;
   }
 

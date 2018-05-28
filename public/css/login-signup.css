@@ -137,3 +137,7 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
 input[type="checkbox"]:checked+label::before, .checkbox-success input[type="radio"]:checked+label::before {
   background-color: #25a08d !important;
 }
+
+.first.logo, .second.logo{
+  color: white;
+}

@@ -1,3 +1,7 @@
+@section('title')
+  Post Project
+@endsection
+
 @section('style')
 <style media="screen">
 
@@ -178,7 +182,7 @@ body {
     color: #fff;
     background-color: #f1c40f;
     border-color: #f1c40f;
-   
+
 }
 
 .btn-primary:hover {
@@ -287,7 +291,7 @@ body {
                     <span class="glyphicon glyphicon-th"></span>
                 </div>
             </div>
-        </div> 
+        </div>
         <div class="form-group">
           <h6 for="tag_list">Tags</h6>
           <select class="form-control" id="search_skills" name="search_skills[]" multiple></select>
@@ -296,7 +300,7 @@ body {
           <h6 for="">Files<span>*</span></h6>
           <p>Drag & drop any images that might be helpful in explaining your project brief here.</p>
           <input type="file" class="form-control" name="photos[]" multiple><br>
-  
+
         </div>
         <div class="submitt">
       <button type="submit" class="btn btn-primary">Submit</button>

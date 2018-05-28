@@ -1,3 +1,7 @@
+@section('title')
+  Browse Showcase
+@endsection
+
 @section('style')
   <style media="screen">
 

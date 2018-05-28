@@ -1,3 +1,7 @@
+@section('title')
+  {{$job[0]->name}}
+@endsection
+
 @section('style')
 
   <style media="screen">

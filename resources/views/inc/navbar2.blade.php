@@ -2,7 +2,9 @@
   <div class="container">
     <div class="row align-items-center justify-content-between d-flex">
       <div id="logo">
-        <a class="navbar-brand" href="{{url('/')}}">hire<strong>ITS</strong></a>
+        <a class="navbar-brand" href="{{url('/')}}">
+          <img src="{{asset('img/hireits.png')}}" alt="" style="width: 90px; margin-bottom: 8px" title="" />
+        </a>
       </div>
 
       <nav id="nav-menu-container">
@@ -42,7 +44,6 @@
                     {{ csrf_field() }}
                 </form>
               </ul>
-
             </li>
           @else
             <li class=""><a id="login-btn" data-toggle="modal" data-target="#exampleModalCenter" href="#">Sign Up</a></li>
