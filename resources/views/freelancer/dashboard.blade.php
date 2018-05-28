@@ -21,31 +21,43 @@
       background-color: #111;
       overflow-x: hidden;
       padding-top: 20px;
+      -webkit-transition-duration: 0.4s; 
+    transition-duration: 0.4s;
   }
   .slidebar ul {
     position:relative;
     height:100%;
+    -webkit-transition-duration: 0.4s; 
+    transition-duration: 0.4s;
   }
 
   .slidebar a{
     color: #bbb;
     text-decoration:none;
+    -webkit-transition-duration: 0.4s; 
+    transition-duration: 0.4s;
   }
   .slidebar li{
     text-align:center;
     padding: 0x 0px;
+    -webkit-transition-duration: 0.4s; 
+    transition-duration: 0.4s;
   }
 
   .slidebar ul {
     padding: 0;
     margin:0;
+    -webkit-transition-duration: 0.4s; 
+    transition-duration: 0.4s;
   }
   .slidebar li {
     list-style-type: none;
     margin: 0;
     position: relative;
     text-align:center;
-    color:#B3B3B3
+    color:#B3B3B3;
+    -webkit-transition-duration: 0.4s; 
+    transition-duration: 0.4s;
   }
   .slidebar i {
     display:block;
@@ -53,6 +65,8 @@
     color:#B3B3B3;
     font-size: 40px;
     margin-bottom: 8px;
+    -webkit-transition-duration: 0.4s; 
+    transition-duration: 0.4s;
   }
 
   .slidebar ul a {
@@ -62,15 +76,24 @@
     display: block;
     text-transform: capitalize;
     padding: 20px;
+    -webkit-transition-duration: 0.4s; 
+    transition-duration: 0.4s;
   }
   .slidebar li:hover a, li#active{
     background-color: #313131;
+    -webkit-transition-duration: 0.4s; 
+    transition-duration: 0.4s;
+
   }
   .slidebar li:hover i, li#active i{
     color: #17BCE8;
+    -webkit-transition-duration: 0.4s; 
+    transition-duration: 0.4s;
   }
   .slidebar li:focus i {
     color: #17BCE8;
+    -webkit-transition-duration: 0.4s; 
+    transition-duration: 0.4s;
   }
 
   .main1 {
@@ -81,10 +104,14 @@
 
   }
 
+  body {
+  background : url("https://cdn.shopify.com/s/files/1/0153/0623/products/Bead_Board_Wallpaper_in_White_by_York_Wallcoverings_c9f50134-b90a-4d8c-aae3-75328c6a804e_large.jpg?v=1450293667");
+  }
+
   .main1 h2 {
     margin:1em 30px;
-    color:#17BCE8;
-    font-size: 20px;
+    color:#f39c12;
+    font-size: 36px;
     font-weight:600;
     border-bottom: 1px solid #bbb;
     padding: 0px 0px 10px 0px;
@@ -92,6 +119,7 @@
 
   table{
     width: 100%;
+    margin:1em 30px;
   }
 
   .message-me{
@@ -191,7 +219,7 @@
            <div id="tab1"><h2 class="header">My Bids</h2>
              <table class="table table-hover">
               @if (!count($my_bids)>0)
-                 <h5>No bids</h5>
+                 <h5 style="font-size : 20px; margin:1em 30px;">No bids</h5>
               @else
                 <thead>
                   <tr>
@@ -226,7 +254,7 @@
          <div id="tab2"><h2 class="header">On Going Projects</h2>
            <table class="table table-hover">
              @if (!count($projects)>0)
-               <h3>No ongoing projects</h3>
+               <h3 style="font-size : 20px; margin:1em 30px;">No ongoing projects</h3>
              @else
                <thead>
                  <tr>
@@ -258,7 +286,7 @@
          <div id="tab3"><h2 class="header">Finished Projects</h2>
            <table class="table table-hover">
              @if (!count($finished_projects))
-               <h5>You haven't finished any projects yet.</h5>
+               <h5 style="font-size : 20px; margin:1em 30px;">You haven't finished any projects yet.</h5>
              @else
                <thead>
                  <tr>
@@ -290,8 +318,9 @@
            <table class="table table-hover">
 
                @if (!count($showcases))
-                 <h5>Showcase is empty</h5>
+                 <h5 style="font-size : 20px; margin:1em 30px;">Showcase is empty</h5>
                 @else
+                 <h5 style="font-size : 20px; margin:1em 30px;">Post your showcase</h5>
                   <thead>
                     <tr>
                       <th scope="col">#</th>
@@ -378,13 +407,14 @@
           <div class="row">
             <div class="col-md-12">
               <div class="form-group">
+              <br />
                 Attachments
                 <input type="file" name="progress_file" id="fileToUpload">
               </div>
             </div>
 
           </div>
-          <div class="form-group">
+          <div class="form-group" style="text-align:center">
             <button type="submit" class="btn btn-success" name="button">Send to employer</button>
 
           </div>
