@@ -1,14 +1,5 @@
 @section('style')
 <style media="screen">
-  .title{
-    background: #D66C44 ;
-    text-shadow: none;
-    text-align:center;
-    text-transform: uppercase;
-    font-size: 18px;
-    color: #FFF;
-    padding: 5px 5px;
-  }
 
   input{
     width: 100%;
@@ -48,6 +39,17 @@
   	margin-left : 15px;
   }
 
+  .title{
+    background: #f1c40f ;
+    text-shadow: none;
+    text-align:center;
+    text-transform: uppercase;
+    font-size: 18px;
+    color: #FFF;
+    padding: 0.5em;
+  }
+
+
 </style>
 @endsection
 
@@ -58,7 +60,7 @@
 	<form method="post" action="/dataupd">
 
 	<div class = "title">
-		<h3 align="center">Please fill your Data!</h3>
+		<h2 align="center">Please fill your Data!</h2>
 	</div>
 	{{ csrf_field() }}
 	<div class = "contentform">

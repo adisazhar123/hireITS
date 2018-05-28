@@ -307,8 +307,8 @@
 
   <div class="title">
     <div class="container">
-      <h1> Freelancer Showcase</h1>
-      <h4>Let the beauty speak for itself </h4>            <br><br>
+      <h1>Find Projects</h1>
+      <h4>PIKIRPIKIRPIKIR</h4><br><br>
     </div>
 
   </div>

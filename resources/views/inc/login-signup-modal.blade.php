@@ -5,7 +5,7 @@
         <div class="">
 			<ul class="switcher clearfix">
 				<li class="first logo active" data-tab="login">
-					<a>Login</a>
+					<a">Login</a>
 				</li>
 				<li class="second logo" data-tab="sign_up">
 					<a>Sign Up</a>
@@ -35,12 +35,12 @@
             </div>
 
 						<div class="form-group">
-							<button class="btn btn-success btn-lg btn-block" type="submit">Login</button>
+							<button class="btn btn-success btn-lg btn-block" type="submit" style="font-size: 18px;">Login</button>
 						</div>
             <hr />
-						<div class="text-center">
+<!-- 						<div class="text-center">
 							<label><a href="#">Forgot your password?</a></label>
-						</div>
+						</div> -->
 					</form>
 				</div>
 				<div class="tab-pane" id="sign_up">
@@ -71,29 +71,29 @@
 							<input class="form-control input-lg" name="password_confirmation" placeholder="Repeat Password" required="" type="password"> <i class="fa fa-lock"></i>
 
             </div>
-            <div class="form-group">
-              <div class="col-md-12">
+            <div class="form-group" >
+              <div class="col-md-12" style="text-align: center;">
                 <div class="form-check">
                   <input class="form-check-input" type="radio" name="role" value="employer" checked>
                   <label class="form-check-label" for="exampleRadios1" style="color: white">
                     Employer
                   </label>
                 </div>
-            <div class="form-check">
-              <input class="form-check-input" type="radio" name="role" value="freelancer">
-              <label class="form-check-label" for="exampleRadios1" style="color: white">
-                Freelancer
-              </label>
-            </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="role" value="freelancer">
+                  <label class="form-check-label" for="exampleRadios1" style="color: white">
+                    Freelancer
+                  </label>
+                </div>
               </div>
             </div>
-						<div class="checkbox checkbox-success">
+<!-- 						<div class="checkbox checkbox-success">
 							<input id="agree-terms" type="checkbox">
               <label for="agree-terms"> Agree our terms</label>
-						</div>
+						</div> -->
 						<hr>
 						<div class="form-group">
-							<button class="btn btn-success btn-lg btn-block" type="submit">Sign Up</button>
+							<button class="btn btn-success btn-lg btn-block" type="submit" style="font-size: 18px;">Sign Up</button>
 						</div>
 					</form>
 				</div>

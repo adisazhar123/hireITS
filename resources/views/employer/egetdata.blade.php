@@ -1,14 +1,12 @@
 @section('style')
 <style media="screen">
-  .title{
-    background: #D66C44 ;
-    text-shadow: none;
-    text-align:center;
-    text-transform: uppercase;
-    font-size: 18px;
-    color: #FFF;
-    padding: 5px 5px;
-  }
+  .main-container{
+  max-height: 60vh !important;
+}
+
+body {
+  background : url("https://cdn.shopify.com/s/files/1/0153/0623/products/Bead_Board_Wallpaper_in_White_by_York_Wallcoverings_c9f50134-b90a-4d8c-aae3-75328c6a804e_large.jpg?v=1450293667");
+}
 
   .container{
   	margin:center;
@@ -40,12 +38,24 @@
     position: relative;
     text-align: center;
     line-height:40px;
-    margin-left:15px;
+   /* margin-left:15px;*/
   }
 
   textarea{
   	margin-left : 15px;
   }
+
+    .title{
+    background: #f1c40f ;
+    text-shadow: none;
+    text-align:center;
+    text-transform: uppercase;
+    font-size: 18px;
+    color: #FFF;
+    padding: 0.5em;
+  }
+
+
 </style>
 @endsection
 
@@ -56,11 +66,11 @@
 	<form method="post" action="/empupd">
 	{{ csrf_field() }}
 		<div class = "title">
-			<h3 aling="center">Please fill your Data!</h3>
+			<h2 style="text-align:center;">Please fill your Data!</h2>
 		</div>
 
 		<div class = "contentform">
-      <div class="col-md-12">
+      <div class="col-md-12" >
         <div class = "form-group">
   				Company name
   				<div class = "input-group">
@@ -108,8 +118,8 @@
       </div>
       <div class="col-md-12">
         <div class = "form-group">
-  				Descriptions <br />
-  				<textarea class="form-control" name="details" rows="10" cols="80"></textarea>
+  				<h6>Description <span>*</span></h6>
+  				<textarea class="form-control" name="details"></textarea>
   			</div>
       </div>
       <div class="col-md-12">
