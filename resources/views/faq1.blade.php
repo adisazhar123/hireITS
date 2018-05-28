@@ -118,12 +118,13 @@
 		</div>
 		<div class = "body-container">
 			<div class = "tab-container">
-				<div class = "tabs" style="border-top-left-radius : 10px;border-top-right-radius : 10px;" onclick="openTab(event, 'user')" id="defaultOpen">Users</div>
+				<div class = "tabs" style="border-top-left-radius : 10px;border-top-right-radius : 10px;" onclick="openTab(event, 'freelancer')" id="defaultOpen">Freelancer</div>
+				<div class = "tabs" onclick="openTab(event, 'employer')">Employer</div>
 				<div class = "tabs" onclick="openTab(event, 'account')">Account</div>
 				<div class = "tabs" onclick="openTab(event, 'payment')">Payment</div>
 			</div>
 			<div class = "faq-container">
-				<div class = "faq-content" id="user">
+				<div class = "faq-content" id="freelancer">
 					<div class = "button-faq">How do I start working?</div>
 					<div class = "content">
 						You have to create an account as a "freelancer"
@@ -170,6 +171,29 @@
 					<div class = "content">
 						HireITS uses PayPal for its payment gateway. PayPal is the safest and a trustworthy system for online payments. Please before you start on projects,
 						make a PayPal account, and add your PayPal email to your account. You can do this going to your profile and click "edit profile".
+					</div>
+				</div>
+				<div class = "faq-content" id="employer">
+					<div class = "button-faq">How does Freelancer work for employers?</div>
+					<div class = "content">
+						Freelancer provides a convenient and safe environment for service buyers (employers) and skilled workers (freelancers) around the world to conduct business. You can use the site to look for professional freelancers who can deliver the work you require, whether it be a short-term or long-term project. To know more, <a href="{{route('browse.showcase')}}">click here</a>.
+					</div>
+					<div class = "button-faq">What fees will I pay?</div>
+					<div class = "content">
+						Posting a project on the site is <span style="font-weight:bold">free</span>!
+					</div>
+					<div class = "button-faq">How do I post a project?</div>
+					<div class = "content">
+						To post a project, hover over <span style="font-weight:bold">Hire Freelancers</span> and select <span style="font-weight:bold">Post a Project</span>. For your convenience, you can just <a href="{{route('post.project.page')}}">click this link.</a>
+					</div>
+					<div class = "button-faq">How do I hire a freelancer directly from my project?</div>
+					<div class = "content">
+						Hire a freelancer in 3 easy steps:
+						<ol>
+							<li>Hover over My profile and go to your Dashboard</li>
+							<li>On My Projects tab, and select the project you want to see its details</li>
+							<li>On Freelancers bidding section, click Hire Me and complete a short form to offer the selected freelancer your project.</li>
+						</ol>
 					</div>
 				</div>
 				<div class = "faq-content" id="account">
