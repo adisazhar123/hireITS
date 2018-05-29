@@ -531,11 +531,13 @@ i {
               <p>Apply for a legitible account to start.</p>
             </div>
           </div>
-          <div class="col-md-4 maker" >
-            <div class="square">
-            	<h3>Post</h3>
-              	<img src="invoice.png" alt="" width="170">
-              	<p>Post your projects so freelancers will be able to browse.</p>
+
+          <div class="col-lg-4 maker">
+            <div class="single-cat d-flex flex-column">
+              <a href="#" class="hb-sm-margin mx-auto d-block"><span class="hb hb-md inv hb-facebook-inv"><span class="lnr lnr-users"></span></span></a>
+              <h4 class="mb-20" style="margin-top: 23px;">Easy and profitable</h4>
+              <p>Post your projects so freelancers will be able to browse.</p>
+
             </div>
           </div>
           <div class="col-md-4 seeker" style="display:none">
@@ -659,7 +661,8 @@ i {
     			<div class="row">
             <div class="col-md-12 pb-30 header-text text-center ">
               <h1 class="mb-10 ">Why choose hireITS?</h1>
-            </div>    				<div class="col-lg-4">
+            </div>
+            <div class="col-lg-4">
     					<div class="single-cat d-flex flex-column">
     						<a href="#" class="hb-sm-margin mx-auto d-block"><span class="hb hb-md inv hb-facebook-inv"><span class="lnr lnr-magic-wand"></span></span></a>
     						<h4 class="mb-20" style="margin-top: 23px;">Easy and profitable</h4>
