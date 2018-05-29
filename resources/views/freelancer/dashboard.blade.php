@@ -6,7 +6,7 @@
 <style type="text/css">
 
   .admin-panel {
-    width: 100%;
+    width: 70%;
     margin: 50px auto;
     overflow: hidden;
     background-color:#fff;
@@ -337,7 +337,7 @@ tr{
                      @if ($project->has_review == 3 || $project->has_review == 2)
                        <td><button job-id="{{$project->job_id}}" class="btn btn-middle view-history mr-3 mb-2">View History</button><button class="btn btn-june mr-3 mb-2"><!-- <i class="fa fa-check-square-o paid" aria-hidden="true">  -->Payment received<!-- </i> --></button><button class="btn btn-june mb-2"><!-- <i class="fa fa-check-square-o paid" aria-hidden="true">  -->Employer Rated<!--  </i> --></button></td>
                      @else
-                       <td><button job-id="{{$project->job_id}}" class="btn btn-middle view-history mr-3 mb-2">View History</button><button class="btn btn-june mr-3 mb-2"><!-- <i class="fa fa-check-square-o paid" aria-hidden="true">  -->Payment received<!-- </i> --></button><button job-id="{{$project->job_id}}" employer-id="{{$project->employer_id}}" class="btn btn-primary rate-employer mb-2">Rate employer</button></td>
+                       <td><button job-id="{{$project->job_id}}" class="btn btn-middle view-history mr-3 mb-2">View History</button><button class="btn btn-june mr-3 mb-2"><!-- <i class="fa fa-check-square-o paid" aria-hidden="true">  -->Payment received<!-- </i> --></button><button job-id="{{$project->job_id}}" employer-id="{{$project->employer_id}}" class="btn btn-middle rate-employer mb-2">Rate employer</button></td>
                      @endif
                    </tr>
                  @endforeach
