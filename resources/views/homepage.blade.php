@@ -531,7 +531,7 @@ body{
     	<div class="laptop">
   		<div class="laptop_a laptop_def">
   			<div class="front">
-  				<iframe width="400" height="225" src="https://www.youtube.com/embed/6RSmq2qV1bg?rel=0&amp;showinfo=0&amp;start=2" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+  				<iframe width="400" height="225" src="https://www.youtube.com/embed/-nooHjoxfJ8?autoplay=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
   			</div>
   			<div class="back"></div>
   			<div class="top"></div>
@@ -560,32 +560,39 @@ body{
           </div>
         </div>
         <div class="row">
-          <div class="col-md-4 aa">
-            <div class="square">
-            	<h3>Sign Up</h3>
-              <img src="followers.png" alt="" width="170">
-              <p>Apply for a legitible account to start.</p>
+          <div class="col-lg-4 aa">
+            <div class="single-cat d-flex flex-column" style="text-align: center">
+              <a href="#" class="hb-sm-margin mx-auto d-block"><span class="hb hb-md inv hb-facebook-inv"><span class="lnr lnr-users"></span></span></a>
+              <h4 class="mb-20" style="margin-top: 23px;">Sign Up</h4>
+              <p>Post your projects so freelancers will be able to browse.</p>
+
             </div>
           </div>
-          <div class="col-md-4 maker" >
-            <div class="square">
-            	<h3>Post</h3>
-              	<img src="invoice.png" alt="" width="170">
-              	<p>Post your projects so freelancers will be able to browse.</p>
+
+          <div class="col-lg-4 maker">
+            <div class="single-cat d-flex flex-column" style="text-align: center">
+              <a href="#" class="hb-sm-margin mx-auto d-block"><span class="hb hb-md inv hb-facebook-inv"><span class="lnr lnr-map"></span></span></a>
+              <h4 class="mb-20" style="margin-top: 23px;">Post</h4>
+              <p>Post your projects so freelancers will be able to browse.</p>
+
             </div>
           </div>
-          <div class="col-md-4 seeker" style="display:none">
-            <div class="square">
-            	<h3>Search</h3>
-            	<img class="fa fa-search" aria-hidden="true" src="search.png" alt="" width="170">
+
+          <div class="col-lg-4 seeker" style="display:none">
+            <div class="single-cat d-flex flex-column" style="text-align: center">
+              <a href="#" class="hb-sm-margin mx-auto d-block"><span class="hb hb-md inv hb-facebook-inv"><span class="lnr lnr-select"></span></span></a>
+              <h4 class="mb-20" style="margin-top: 23px;">Search</h4>
               <p>Browse freely through many projects available accustomed to your likings.</p>
+
             </div>
           </div>
-          <div class="col-md-4 aa">
-            <div class="square">
-            	<h3>Discuss</h3>
-              <img src="chat.png" alt="" width="170">
+
+          <div class="col-lg-4 aa">
+            <div class="single-cat d-flex flex-column" style="text-align: center">
+              <a href="#" class="hb-sm-margin mx-auto d-block"><span class="hb hb-md inv hb-facebook-inv"><span class="lnr lnr-bubble"></span></span></a>
+              <h4 class="mb-20" style="margin-top: 23px;">Discuss</h4>
               <p>Negotiate bids, ideas and requirements with end user.</p>
+
             </div>
           </div>
       </div>
@@ -646,6 +653,43 @@ body{
     </section> 
 
 	<!-- Start service Area 
+
+	<div class="col-lg-4 aa">
+            <div class="single-cat d-flex flex-column" style="text-align: center">
+              <a href="#" class="hb-sm-margin mx-auto d-block"><span class="hb hb-md inv hb-facebook-inv"><span class="lnr lnr-users"></span></span></a>
+              <h4 class="mb-20" style="margin-top: 23px;">Sign Up</h4>
+              <p>Post your projects so freelancers will be able to browse.</p>
+
+            </div>
+          </div>
+
+          <div class="col-lg-4 maker">
+            <div class="single-cat d-flex flex-column" style="text-align: center">
+              <a href="#" class="hb-sm-margin mx-auto d-block"><span class="hb hb-md inv hb-facebook-inv"><span class="lnr lnr-map"></span></span></a>
+              <h4 class="mb-20" style="margin-top: 23px;">Post</h4>
+              <p>Post your projects so freelancers will be able to browse.</p>
+
+            </div>
+          </div>
+
+          <div class="col-lg-4 seeker" style="display:none">
+            <div class="single-cat d-flex flex-column" style="text-align: center">
+              <a href="#" class="hb-sm-margin mx-auto d-block"><span class="hb hb-md inv hb-facebook-inv"><span class="lnr lnr-select"></span></span></a>
+              <h4 class="mb-20" style="margin-top: 23px;">Search</h4>
+              <p>Browse freely through many projects available accustomed to your likings.</p>
+
+            </div>
+          </div>
+
+          <div class="col-lg-4 aa">
+            <div class="single-cat d-flex flex-column" style="text-align: center">
+              <a href="#" class="hb-sm-margin mx-auto d-block"><span class="hb hb-md inv hb-facebook-inv"><span class="lnr lnr-bubble"></span></span></a>
+              <h4 class="mb-20" style="margin-top: 23px;">Discuss</h4>
+              <p>Negotiate bids, ideas and requirements with end user.</p>
+
+            </div>
+          </div>
+
 	<section class="service-area section-gap " id="service ">
 		<div class="container ">
 			<div class="row justify-content-center ">
@@ -824,7 +868,7 @@ body{
     	</section>
     	<!-- End cat Area -->
 
-    <section id="story" style="background-color : white; height : 520px"> 
+    <section id="story" style="background-color : white; height : 450px"> 
        <div class="container-fluid section1">
           <div class="row" >
             <div class="col-md-6 wow fadeInUp" data-wow-delay="0.2s">
@@ -834,7 +878,7 @@ body{
             </div>
             <div class="col-md-6 wow fadeInUp" data-wow-delay="0.3s">
               <div class="service-h-desc">
-                <h3 class = "judul" style="text-align:left">Enjoy our Client's Feedback</h3>
+                <h3 class = "judul" style="text-align:left; margin-top:-45px">Enjoy our Client's Feedback</h3>
                 <div class="garis" style="margin-left:1px; height : 5px; margin-bottom : 30px"></div>  
               <div class="service-h-tab"> 
                 <div class="col-lg-6 feedback-right ">
