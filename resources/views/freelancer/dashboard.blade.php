@@ -6,7 +6,7 @@
 <style type="text/css">
 
   .admin-panel {
-    width: 70%;
+    width: 100%;
     margin: 50px auto;
     overflow: hidden;
     background-color:#fff;
@@ -101,10 +101,8 @@
   }
 
   .main1 {
-    width: 85%;
+    width: 100%;
     background-color: rgb(255,255,255);
-    position: relative;
-    /*padding-left: 160px;*/
 
   }
 
@@ -124,7 +122,6 @@
 
   table{
     width: 100%;
-    margin:1em 30px;
   }
 
   .message-me{

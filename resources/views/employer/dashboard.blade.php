@@ -6,11 +6,13 @@
 <style type="text/css">
 
   .admin-panel {
-   /* width: 100%;
-    margin: 50px auto;*/
     background-color:#fff;
     position:relative;
 
+  }
+
+  .admin-panel .header{
+    text-align: center;
   }
 
   .btn i{
@@ -106,11 +108,8 @@
   }
 
   .main1 {
-    width: 85%;
+    width: 100%;
     background-color: rgb(255,255,255);
-    position: relative;
-   /* padding-left: 160px;*/
-
   }
 
   .main1 h2 {
@@ -121,11 +120,6 @@
     /*border-bottom: 1px solid #bbb;*/
     padding: 20px 0px 10px 0px;
     text-align: center;
-  }
-
-  table{
-    width: 100%;
-    margin:1em 30px;
   }
 
   .message-me{
@@ -176,6 +170,13 @@
   .main1 .btn{
     margin-bottom: 3px;
   }
+
+  @media only screen and (min-width: 990px) {
+    .main1 .btn{
+      margin-right: 3px;
+    }
+
+}
 
 .btn-glamour {
   background-color: #EA5059 !important;
@@ -287,7 +288,7 @@ tr{
                      <th scope="row">{{$ni++}}</th>
                      <td><a href="/projects/{{$project->slug}}">{{$project->name}}</a></td>
                      <td>{{date_format(date_create($project->deadline), "d-m-Y")}}</td>
-                     <td><button class="btn btn-middle mr-3 update-progress" job-id="{{$project->job_id}}">Update Progress</button><button job-id="{{$project->job_id}}" class="btn btn-warning view-history mr-3">View History</button><button class="btn btn-middle pay-freelancer" freelancer-id="{{$project->won_by_id}}" job-id="{{$project->job_id}}">Pay Freelancer</button></td>
+                     <td><button class="btn btn-middle update-progress" job-id="{{$project->job_id}}">Update Progress</button><button job-id="{{$project->job_id}}" class="btn btn-warning view-history">View History</button><button class="btn btn-middle pay-freelancer" freelancer-id="{{$project->won_by_id}}" job-id="{{$project->job_id}}">Pay Freelancer</button></td>
                    </tr>
                  @endforeach
 

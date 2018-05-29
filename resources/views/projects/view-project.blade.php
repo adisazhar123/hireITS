@@ -458,7 +458,7 @@
         </div>
       </div>
     </div>
-    <div class="modal bid-modal" tabindex="-1" role="dialog">
+    <div class="modal bid-modal fade" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -481,11 +481,14 @@
           </div>
           <div class="form-group">
             <div class="input-group date" data-provide="datepicker">
-                <input type="text" class="form-control" name="deadline" placeholder="How long will it take to finish the project?" required>
-                <div class="input-group-addon">
-                    <span class="glyphicon glyphicon-th"></span>
-                </div>
-            </div>
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroupPrepend"><i class="fa fa-calendar"></i></span>
+              </div>
+                  <input type="text" class="form-control datepicker" name="deadline" placeholder="Deadline" required id="myDate">
+                  <div class="input-group-addon">
+                      <span class="glyphicon glyphicon-th"></span>
+                  </div>
+              </div>
           </div>
           <input type="hidden" name="job_id" value="{{$job[0]->job_id}}">
           <div class="form-group">
@@ -502,10 +505,18 @@
 
 @section('script')
   <script type="text/javascript">
+
+  var date = new Date();
+  date.setDate(date.getDate());
+
+  $('.input-group.date').datepicker({
+    startDate: date,
+    todayHighlight: true,
+  });
+
     $("#bid-now").click(function(){
       $(".bid-modal").modal("show");
     })
-    $('.datepicker').datepicker();
 
     $("#bid-form").submit(function(e){
       e.preventDefault()
