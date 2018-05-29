@@ -28,7 +28,7 @@ Route::middleware(['freelancer'])->group(function () {
   Route::get('/freelancer', 'FreelancerController@index')->name('view.freelancer.profile');
   Route::get('/freelancer/fill-data', 'FreelancerController@freeget')->name('freelancer.fill.data');
   Route::put('freelancer/updateProfile', 'FreelancerController@updateProfile')->name('update.freelancer.profile');
-  Route::post('dataupd', 'FreelancerController@getData');
+  Route::post('dataupd', 'FreelancerController@getData')->name('freelancer.save');
   Route::post('/addPortfolio', 'FreelancerController@addPortfolio')->name('add.portfolio');
   Route::delete('/deletePortfolio/{id}', 'FreelancerController@deletePortfolio')->name('delete.portfolio'); //harus di cek apakah portfolio milik user
   Route::delete('/freelancer/delete-skill', 'FreelancerController@deleteSkill')->name('delete.skill'); //harus di cek apakah skill milik user
@@ -58,7 +58,7 @@ Route::middleware(['employer'])->group(function(){
   Route::get('employer/get/messages', 'EmployerController@getMessages')->name('get.messages.employer');
   Route::get('employer/dashboard', 'EmployerController@dashboard')->name('view.employer.dashboard');
   Route::get('/employer/fill-data', 'EmployerController@empget')->name('employer.fill.data');
-  Route::post('empupd', 'EmployerController@getData');
+  Route::post('empupd', 'EmployerController@getData')->name('employer.save');
   Route::get('employer', 'EmployerController@index')->name('view.employer.profile');
   Route::get('employer/getprofile', 'EmployerController@getProfile')->name('get.employer.profile');
   Route::put('employer/updateProfile', 'EmployerController@updateProfile')->name('update.employer.profile');

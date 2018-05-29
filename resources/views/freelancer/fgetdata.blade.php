@@ -84,7 +84,7 @@ body {
 
 @section('content')
 <div class = "container">
-	<form method="post" action="/dataupd">
+	<form method="post" action="{{route('freelancer.save')}}">
 
 	<div class = "title">
 		<h2 align="center">Please fill your Data!</h2>

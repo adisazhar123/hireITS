@@ -83,7 +83,7 @@ body {
 
 @section('content')
 <div class = "container">
-	<form method="post" action="/empupd">
+	<form method="post" action="{{route('employer.save')}}">
 	{{ csrf_field() }}
 		<div class = "title">
 			<h2 style="text-align:center;">Please fill your Data!</h2>

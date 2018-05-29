@@ -321,15 +321,6 @@ footer .container2{
   </script>
   <script src="{{asset('js/superfish.min.js')}}"></script>
   <script src="{{asset('js/main.js')}}"></script>
-  <script src="{{asset('assets/js/jquery/jquery.min.js')}}"></script>
-    <script src="{{asset('assets/js/popper/popper.min.js')}}"></script>
-    <script src="{{asset('assets/js/bootstrap/bootstrap.min.js')}}"></script>
-    <script src="{{asset('assets/js/wow/wow.min.js')}}"></script>
-    <script src="{{asset('assets/js/owl-carousel/owl.carousel.min.js')}}"></script>
-
-    <!-- Plugin JavaScript -->
-    <script src="{{asset('assets/js/jquery-easing/jquery.easing.min.js')}}"></script> 
-    <script src="{{asset('assets/js/custom.js')}}"></script> 
 
 
   @if (!isset($homepage))

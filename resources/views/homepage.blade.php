@@ -13,6 +13,12 @@
 @endphp
 
 @section('style')
+	
+    <!--<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,300i,400,400i,700,700i" rel="stylesheet">
+    <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{asset('assets/font-awesome-4.7.0/css/font-awesome.min.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/css/animate/animate.min.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">-->
   <style media="screen">
     @import url('https://fonts.googleapis.com/css?family=Raleway');
     .laptop {
@@ -1072,6 +1078,7 @@ body{
 	<script src="industry/js/jquery.counterup.min.js "></script>
 	<script src="industry/js/waypoints.min.js "></script>
 	<script src="js/main2.js "></script>
+
   <script type="text/javascript">
     $('[data-toggle="tooltip"]').tooltip();
 

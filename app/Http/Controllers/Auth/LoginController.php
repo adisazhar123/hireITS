@@ -47,10 +47,10 @@ class LoginController extends Controller
       if (Auth::check())
         if (Auth::user()->role === "freelancer") {
         	if(Auth::user()->hassetprofile){
-        		$x = '/freelancer';
+        		$x = route('view.freelancer.profile');
         	}
         	else{
-        		$x = '/freelancer/fill-data';
+        		$x = route('freelancer.fill.data');
         	}
           return response()->json([
               'auth' => auth()->check(),
@@ -59,10 +59,10 @@ class LoginController extends Controller
           ]);
         }else{
           if(Auth::user()->hassetprofile){
-        		$x = '/employer';
+        		$x = route('view.employer.profile');
         	}
         	else{
-        		$x = '/employer/fill-data';
+        		$x = route('employer.fill.data');
         	}
           return response()->json([
             'auth' => auth()->check(),
