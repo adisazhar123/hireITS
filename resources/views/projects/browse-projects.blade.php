@@ -62,10 +62,12 @@ body {
     }
 
     .filter .toggle-filter{
-      padding: 0px;
+      padding: 20px;
       height: 27px;
-      background-color: #0087E0;
+      background-color: #f1c40f;
       display: none;
+      text-align: center;
+
     }
 
     .filter .filter-content{
@@ -263,7 +265,7 @@ body {
         <div class="col-lg-3">
           <div class="filter" style="background-color: white;">
             <div class="toggle-filter" style="width: 100%; padding-left: 20px; padding-top: 2px; cursor: pointer" data-toggle="collapse" data-target=".multi-collapse" aria-expanded="false" aria-controls="multiCollapseExample2">
-                <i class="fa fa-wrench fa-lg" style='color: black;'></i>
+                <i class="fa fa-wrench fa-lg" style='color: white;'></i>
             </div>
             <div class="filter-content show multi-collapse" id="multiCollapseExample2">
               <h6>Filter Budget:</h6>
