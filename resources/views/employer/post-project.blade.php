@@ -245,12 +245,14 @@ body {
                   </div>
                   @php
                     if (isset($_GET['q'])) {
-                      echo "<input type=text name=name id=name class=form-control value='".$_GET['q']."' placeholder='e.g. Build me a website'>";
+                      echo "<input type=text name=name id=name class=form-control value='".$_GET['q']."' placeholder='e.g. Build me a website' required>";
                     }else{
-                      echo '<input type="text" name="name" id="name" class="form-control" placeholder="e.g. Build me a website">';
+                      echo '<input type="text" name="name" id="name" class="form-control" placeholder="e.g. Build me a website" required>';
                     }
                   @endphp
+                  <br>
                 </div>
+                <small id="counter"></small>
               </div>
 
               <div class="form-group">
@@ -268,7 +270,7 @@ body {
               <div class="input-group-prepend">
                 <span class="input-group-text" id="inputGroupPrepend">$</span>
               </div>
-              <input type="number" name="min_price" class="form-control" id="price1" placeholder="Enter min. price" min="0" step="0.1">
+              <input type="number" name="min_price" class="form-control" id="price1" placeholder="Enter min. price" min="0" step="0.1" required>
             </div>
         </div>
 
@@ -278,7 +280,7 @@ body {
               <div class="input-group-prepend">
                 <span class="input-group-text" id="inputGroupPrepend">$</span>
               </div>
-              <input type="number" name="max_price" class="form-control" id="price2" placeholder="Enter max. price" min="0" step="0.1">
+              <input type="number" name="max_price" class="form-control" id="price2" placeholder="Enter max. price" min="0" step="0.1" required>
             </div>
         </div>
 
@@ -286,7 +288,7 @@ body {
         <h6>Deadline<span>*</span></h6>
           <div class="input-group date" data-provide="datepicker">
             <span class="icon-case"><i class="fa fa-calendar"></i></span>
-                <input type="text" class="form-control" name="date" placeholder="Deadline">
+                <input type="text" class="form-control" name="date" placeholder="Deadline" required>
                 <div class="input-group-addon">
                     <span class="glyphicon glyphicon-th"></span>
                 </div>
@@ -294,12 +296,12 @@ body {
         </div>
         <div class="form-group">
           <h6 for="tag_list">Tags</h6>
-          <select class="form-control" id="search_skills" name="search_skills[]" multiple></select>
+          <select class="form-control" id="search_skills" name="search_skills[]" multiple required></select>
         </div>
         <div class="form-group">
           <h6 for="">Files<span>*</span></h6>
           <p>Drag & drop any images that might be helpful in explaining your project brief here.</p>
-          <input type="file" class="form-control" name="photos[]" multiple><br>
+          <input type="file" class="form-control" name="photos[]" multiple required><br>
 
         </div>
         <div class="submitt">
@@ -324,6 +326,10 @@ body {
   $("form").submit(function(){
     var desc =   quill.root.innerHTML
     $("#description").val(desc)
+    if ($("#name").val().length > 30){
+      alertify.error("Title is too long.")
+      return false;
+    }
 
     if(parseInt($("#price1").val()) > parseInt($("#price2").val())){
       alertify.error("Minimum budget has to be lower than maximum budget.")
@@ -370,6 +376,17 @@ body {
     theme: 'snow',
     formats: formats
   });
+
+  $("#name").keyup(function(){
+    var awal=30;
+    $("#counter").text(30 - $("#name").val().length +" left")
+    if($("#counter").text()<0)
+      $("#counter").css('color', 'red')
+    else {
+      $("#counter").css('color', 'black')
+
+    }
+  })
 
 
   </script>

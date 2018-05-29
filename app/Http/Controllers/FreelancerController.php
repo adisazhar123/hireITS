@@ -366,7 +366,9 @@ class FreelancerController extends Controller
 
       public function deleteBid(Request $request){
         $bid = Bid::find($request->bid_id);
-        if ($bid->delete())
+        $job = Job::find($bid->job_id);
+        $job->no_of_bids-=1;
+        if ($bid->delete() && $job->save())
         return redirect()->back()->with('success', 'Bid Canceled!');
       }
 
