@@ -31,22 +31,22 @@
     <div class="container mt-3">
       <div class="row">
         <div class="col-md-4">
-          <p>@php
+          <h5>@php
             use App\User;
             echo User::count();
-          @endphp registered users</p>
+          @endphp registered users</h5>
         </div>
         <div class="col-md-4">
-          <p>@php
+          <h5>@php
             use App\Job;
             echo Job::count();
-          @endphp jobs posted</p>
+          @endphp jobs posted</h5>
         </div>
         <div class="col-md-4">
-          <p>hireITS ® is a registered Trademark of Adis, Ghisa and Modis</p>
+          <h5>hireITS ® is a registered Trademark of Adis, Ghisa and Modis</h5>
         </div>
       </div>
-      <a href="{{URL::to('https://www.paypal.com')}}">Payment powered by: <img src="https://upload.wikimedia.org/wikipedia/commons/3/39/PayPal_logo.svg" alt="paypal_logo" width="100px"></a>
+      <a href="{{URL::to('https://www.paypal.com')}}">Payment powered by <img src="https://upload.wikimedia.org/wikipedia/commons/3/39/PayPal_logo.svg" alt="paypal_logo" width="100px"></a>
     </div>
   </div>
 </footer>
