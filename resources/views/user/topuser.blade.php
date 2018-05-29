@@ -141,7 +141,7 @@ hr:after {
 	<div class="container">
 			<div class="freelancer">
 				<h2>Freelancer</h2>
-				<div class="row1" style="text-align: center !important;">
+				<div class="row" style="text-align: center !important;">
 					@if (!count($top_freelancers))
 						<h5 style="color:#c6c4c4">No top freelancers yet.</h5>
 					@else
@@ -220,7 +220,7 @@ hr:after {
 			<div class="employer">
 				      <hr><br><br>
 				<h2>Employer</h2>
-				<div class="row1" style="text-align: center !important;">
+				<div class="row" style="text-align: center !important;">
 					@if (!count($top_employers))
 						<h5 style="color:#c6c4c4">No top employers yet.</h5>
 					@else
