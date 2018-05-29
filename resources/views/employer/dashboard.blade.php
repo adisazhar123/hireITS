@@ -5,6 +5,10 @@
 @section('style')
 <style type="text/css">
 
+.main-container{
+  max-height: 60vh !important;
+}
+
   .admin-panel {
     background-color:#fff;
     position:relative;
@@ -114,7 +118,7 @@
 
   .main1 h2 {
     margin:1em 30px;
-    color:#f39c12;
+    /*color:#f39c12;*/
     font-size: 36px;
     font-weight:600;
     /*border-bottom: 1px solid #bbb;*/

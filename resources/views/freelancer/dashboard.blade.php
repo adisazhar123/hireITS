@@ -5,6 +5,10 @@
 @section('style')
 <style type="text/css">
 
+.main-container{
+  max-height: 60vh !important;
+}
+
   .admin-panel {
     width: 100%;
     margin: 50px auto;
@@ -112,7 +116,7 @@
 
   .main1 h2 {
     margin:1em 30px;
-    color:#f39c12;
+   /* color:#f39c12;*/
     font-size: 36px;
     font-weight:600;
     /*border-bottom: 1px solid #bbb;*/
@@ -343,8 +347,8 @@ tr{
            </table>
          </div>
          @php($ka=1)
-         <div id="tab4" ><h2 class="header">My Showcases</h2>
-           <button class="btn btn-middle mb-3" type="button" name="button" id="add-showcase">Add showcase</button>
+         <div id="tab4" style="text-align: center;"><h2 class="header">My Showcases</h2>
+           <button class="btn btn-middle " type="button" name="button" id="add-showcase">Add showcase</button><br><br>
            <table class="table table-hover">
 
                @if (!count($showcases))
