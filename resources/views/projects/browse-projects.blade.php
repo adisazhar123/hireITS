@@ -5,6 +5,10 @@
 @section('style')
   <style media="screen">
 
+.main-container{
+  max-height: 60vh !important;
+}
+
 body {
   background : url("https://cdn.shopify.com/s/files/1/0153/0623/products/Bead_Board_Wallpaper_in_White_by_York_Wallcoverings_c9f50134-b90a-4d8c-aae3-75328c6a804e_large.jpg?v=1450293667");
 }
@@ -108,20 +112,23 @@ body {
     }
 
     .bid-btn{
+
       border: 0;
       border-radius: 3px;
       color: white;
       font-weight: bold;
-      background-color: rgba(79,181,93,0.8);
+      background-color: #f1c40f;
       text-decoration: none;
       display: none;
-      margin-left: 10px;
+      margin-left: 50px;
+      border-color: #f1c40f;
     }
 
     .bid-btn:hover{
-      background-color: rgba(79,181,93,1);
+      background-color: #f39c12;
       cursor: pointer;
       color: white;
+      border-color: #f39c12;
     }
 
     .body-link{
@@ -156,7 +163,7 @@ body {
     }
 
     .job-price h4{
-      padding-right: 15px;
+      /*padding-right: 15px;*/
       font-size: 18px;
     }
 

@@ -374,8 +374,6 @@ p a{color:#27ae60; text-decoration:none;}
               @endif
             </div>
           <section id="generic-tabs">
-
-
             <ul id="tabs">
                 <li>
                     <a title="About" href="#first-tab"><i class="fa fa-home"></i> About Me</a>
