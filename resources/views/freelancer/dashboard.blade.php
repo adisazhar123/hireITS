@@ -223,7 +223,7 @@
            <div id="tab1"><h2 class="header">My Bids</h2>
              <table class="table table-hover">
               @if (!count($my_bids)>0)
-                 <h5 style="font-size : 20px; margin:1em 30px;">No bids</h5>
+                 <h5 style="color:#c6c4c4; text-align: center;">No bids.</h5>
               @else
                 <thead>
                   <tr>
@@ -258,7 +258,7 @@
          <div id="tab2"><h2 class="header">On Going Projects</h2>
            <table class="table table-hover">
              @if (!count($projects)>0)
-               <h3 style="font-size : 20px; margin:1em 30px;">No ongoing projects</h3>
+               <h5 style="color:#c6c4c4; text-align: center;">No ongoing projects.</h5>
              @else
                <thead>
                  <tr>
@@ -290,7 +290,7 @@
          <div id="tab3"><h2 class="header">Finished Projects</h2>
            <table class="table table-hover">
              @if (!count($finished_projects))
-               <h5 style="font-size : 20px; margin:1em 30px;">You haven't finished any projects yet.</h5>
+                <h5 style="color:#c6c4c4; text-align: center;">You haven't finished any projects yet.</h5>
              @else
                <thead>
                  <tr>

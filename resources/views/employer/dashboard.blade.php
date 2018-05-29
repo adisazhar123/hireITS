@@ -6,8 +6,8 @@
 <style type="text/css">
 
   .admin-panel {
-    width: 100%;
-    margin: 50px auto;
+   /* width: 100%;
+    margin: 50px auto;*/
     background-color:#fff;
     position:relative;
 
@@ -118,8 +118,9 @@
     color:#f39c12;
     font-size: 36px;
     font-weight:600;
-    border-bottom: 1px solid #bbb;
+    /*border-bottom: 1px solid #bbb;*/
     padding: 20px 0px 10px 0px;
+    text-align: center;
   }
 
   table{
@@ -219,7 +220,7 @@
       <div style="padding-bottom : 10px" id="tab1"><h2 class="header">My Projects</h2>
         <table class="table table-hover">
           @if (!count($my_projects))
-            <h3 style="font-size : 20px; margin:1em 30px;">No projects</h3>
+            <h5 style="color:#c6c4c4; text-align: center;">No projects.</h5>
           @else
             <thead>
               <tr>
@@ -246,7 +247,7 @@
          <div id="tab2" style="padding-bottom : 10px"><h2 class="header">On Going Projects</h2>
            <table class="table table-hover">
              @if (!count($projects)>0)
-               <h3 style="font-size : 20px; margin:1em 30px;">No ongoing projects</h3>
+               <h5 style="color:#c6c4c4; text-align: center;">No ongoing projects.</h5>
              @else
                <thead>
                  <tr>
