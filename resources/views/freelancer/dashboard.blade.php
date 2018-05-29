@@ -401,8 +401,7 @@
           <div class="row">
 
             <div class="col-md-12">Comments for employer <br>
-              <textarea class="form-control" name="msg_text" rows="10" cols="10">
-
+              <textarea class="form-control" name="msg_text">
               </textarea>
             </div>
           </div>

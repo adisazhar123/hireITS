@@ -511,7 +511,7 @@ p a{color:#27ae60; text-decoration:none;}
                 <h5 class="cant">{{$freelancer->jobs_completed}} jobs completed</h5>
 
                 @if ($freelancer->review)
-                  <p class="cant">{{$freelancer->review}} reviews</p>
+                  <h5 class="cant">{{$freelancer->review}} reviews</h5>
                   @for ($i=0; $i < $freelancer->rating/$freelancer->review; $i++)
                     <i class="fa fa-star"></i>
                   @endfor
