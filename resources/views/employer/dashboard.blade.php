@@ -177,6 +177,9 @@
     margin-bottom: 3px;
   }
 
+tr{
+  text-align: center;
+}
 
 </style>
 @endsection

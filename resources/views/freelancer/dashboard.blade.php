@@ -101,10 +101,10 @@
   }
 
   .main1 {
-    width: 100%;
+    width: 85%;
     background-color: rgb(255,255,255);
     position: relative;
-    padding-left: 160px;
+    /*padding-left: 160px;*/
 
   }
 
@@ -117,8 +117,9 @@
     color:#f39c12;
     font-size: 36px;
     font-weight:600;
-    border-bottom: 1px solid #bbb;
-    padding: 0px 0px 10px 0px;
+    /*border-bottom: 1px solid #bbb;*/
+    padding: 20px 0px 10px 0px;
+    text-align: center;
   }
 
   table{
@@ -159,9 +160,30 @@
   .stars i{
     color: #FFFFAA;
   }
+
   #tab2, #tab3, #tab4{
     display: none;
   }
+
+
+  .main1 .btn{
+    margin-bottom: 3px;
+  }
+
+
+.btn-glamour {
+  background-color: #EA5059 !important;
+    color: white !important;
+}
+
+.btn-glamour:hover {
+  background-color: #e23838 !important;
+}
+
+.btn-middle {
+    background-color: #f0ad4e !important;
+    color: white !important;
+}
 
   @media only screen and (max-width: 989px) {
     .slidebar{
@@ -178,6 +200,13 @@
 
   }
 
+tr{
+  text-align: center;
+}
+
+.btn-june {
+    color: white !important;
+}
 
 </style>
 @endsection
@@ -206,12 +235,12 @@
   </div>
 
 <div class="container admin-panel">
-    <div class="slidebar animated fadeIn">
+    <div class="slidebar animated fadeIn" >
         <ul>
-            <li><a href="" name="tab1"><i class="fa fa fa-list"></i>My Bids</a></li>
-            <li><a href="" name="tab2"><i class="fa fa fa-tasks"></i>On Going Projects</a></li>
-            <li><a href="" name="tab3"><i class="fa fa-check"></i>Finished Projects</a></li>
-            <li><a href="" name="tab4"><i class="fa fa-gift"></i>My Showcases</a></li>
+            <li><a href="" name="tab1"><i class="fa fa fa-list" style="font-size: 1.5em;"></i>My Bids</a></li>
+            <li><a href="" name="tab2"><i class="fa fa fa-tasks" style="font-size: 1.5em;"></i>On Going Projects</a></li>
+            <li><a href="" name="tab3"><i class="fa fa-check" style="font-size: 1.5em;"></i>Finished Projects</a></li>
+            <li><a href="" name="tab4"><i class="fa fa-gift" style="font-size: 1.5em;"></i>My Showcases</a></li>
         </ul>
     </div>
 
@@ -274,7 +303,7 @@
                  <th scope="row">{{$ha++}}</th>
                  <td><a href="/projects/{{$project->slug}}">{{$project->name}}</a></td>
                  <td>{{date_format(date_create($project->deadline), "d-m-Y")}}</td>
-                 <td><button class="btn btn-info mr-3 update-progress" job-id="{{$project->job_id}}">Update Progress</button><button job-id="{{$project->job_id}}" class="btn btn-nectarine view-history">View History</button></td>
+                 <td><button class="btn btn-info mr-3 update-progress" job-id="{{$project->job_id}}">Update Progress</button><button job-id="{{$project->job_id}}" class="btn btn-middle view-history">View History</button></td>
                </tr>
              </tbody>
 
@@ -306,9 +335,9 @@
                      <th scope="row">{{$he++}}</th>
                      <td><a href="/projects/{{$project->slug}}">{{$project->name}}</a></td>
                      @if ($project->has_review == 3 || $project->has_review == 2)
-                       <td><button job-id="{{$project->job_id}}" class="btn btn-nectarine view-history mr-3 mb-2">View History</button><button class="btn btn-june mr-3 mb-2"><i class="fa fa-check-square-o paid" aria-hidden="true"> Payment received</i></button><button class="btn btn-june mb-2"><i class="fa fa-check-square-o paid" aria-hidden="true"> Employer Rated </i></button></td>
+                       <td><button job-id="{{$project->job_id}}" class="btn btn-middle view-history mr-3 mb-2">View History</button><button class="btn btn-june mr-3 mb-2"><!-- <i class="fa fa-check-square-o paid" aria-hidden="true">  -->Payment received<!-- </i> --></button><button class="btn btn-june mb-2"><!-- <i class="fa fa-check-square-o paid" aria-hidden="true">  -->Employer Rated<!--  </i> --></button></td>
                      @else
-                       <td><button job-id="{{$project->job_id}}" class="btn btn-nectarine view-history mr-3 mb-2">View History</button><button class="btn btn-june mr-3 mb-2"><i class="fa fa-check-square-o paid" aria-hidden="true"> Payment received</i></button><button job-id="{{$project->job_id}}" employer-id="{{$project->employer_id}}" class="btn btn-primary rate-employer mb-2">Rate employer</button></td>
+                       <td><button job-id="{{$project->job_id}}" class="btn btn-middle view-history mr-3 mb-2">View History</button><button class="btn btn-june mr-3 mb-2"><!-- <i class="fa fa-check-square-o paid" aria-hidden="true">  -->Payment received<!-- </i> --></button><button job-id="{{$project->job_id}}" employer-id="{{$project->employer_id}}" class="btn btn-primary rate-employer mb-2">Rate employer</button></td>
                      @endif
                    </tr>
                  @endforeach
@@ -317,14 +346,14 @@
            </table>
          </div>
          @php($ka=1)
-         <div id="tab4"><h2 class="header">My Showcases</h2>
-           <button class="btn btn-middle mb-3" type="button" name="button" style="float: right" id="add-showcase">Add showcase</button>
+         <div id="tab4" ><h2 class="header">My Showcases</h2>
+           <button class="btn btn-middle mb-3" type="button" name="button" id="add-showcase">Add showcase</button>
            <table class="table table-hover">
 
                @if (!count($showcases))
-                 <h5 style="font-size : 20px; margin:1em 30px;">Showcase is empty</h5>
+                 <h5 style="color:#c6c4c4; text-align: center;">Showcase is empty.</h5>
                 @else
-                 <h5 style="font-size : 20px; margin:1em 30px;">Post your showcase</h5>
+                 <!-- <h5 style="font-size : 20px; margin:1em 30px;">Post your showcase</h5> -->
                   <thead>
                     <tr>
                       <th scope="col">#</th>
