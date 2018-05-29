@@ -6,8 +6,8 @@
 <style type="text/css">
 
   .admin-panel {
-    width: 100%;
-    margin: 50px auto;
+   /* width: 100%;
+    margin: 50px auto;*/
     background-color:#fff;
     position:relative;
 
@@ -109,7 +109,7 @@
     width: 85%;
     background-color: rgb(255,255,255);
     position: relative;
-    padding-left: 160px;
+   /* padding-left: 160px;*/
 
   }
 
@@ -118,8 +118,9 @@
     color:#f39c12;
     font-size: 36px;
     font-weight:600;
-    border-bottom: 1px solid #bbb;
+    /*border-bottom: 1px solid #bbb;*/
     padding: 20px 0px 10px 0px;
+    text-align: center;
   }
 
   table{
@@ -176,6 +177,27 @@
     margin-bottom: 3px;
   }
 
+.btn-glamour {
+  background-color: #EA5059 !important;
+    color: white !important;
+}
+
+.btn-glamour:hover {
+  background-color: #e23838 !important;
+}
+
+.btn-middle {
+    background-color: #f0ad4e !important;
+    color: white !important;
+}
+
+tr{
+  text-align: center;
+}
+
+.btn-june {
+    color: white !important;
+}
 
 </style>
 @endsection
@@ -205,9 +227,9 @@
 <div class="container admin-panel">
     <div class="slidebar">
         <ul>
-          <li><a href="" name="tab1"><i class="fa fa fa-list"></i>My Projects</a></li>
-            <li><a href="" name="tab2"><i class="fa fa fa-tasks"></i>On Going Projects</a></li>
-            <li><a href="" name="tab3"><i class="fa fa-check"></i>Finished Projects</a></li>
+          <li><a href="" name="tab1"><i class="fa fa fa-list" style="font-size: 1.5em;"></i>My Projects</a></li>
+            <li><a href="" name="tab2"><i class="fa fa fa-tasks" style="font-size: 1.5em;"></i>On Going Projects</a></li>
+            <li><a href="" name="tab3"><i class="fa fa-check" style="font-size: 1.5em;"></i>Finished Projects</a></li>
             <!-- <li><a href="" name="tab4"><i class="fa fa-picture-o"></i>Portfolio</a></li>
             <li><a href="" name="tab6"><i class="fa fa-wrench"></i>Advanced</a></li> -->
         </ul>
@@ -219,7 +241,7 @@
       <div style="padding-bottom : 10px" id="tab1"><h2 class="header">My Projects</h2>
         <table class="table table-hover">
           @if (!count($my_projects))
-            <h3 style="font-size : 20px; margin:1em 30px;">No projects</h3>
+            <h5 style="color:#c6c4c4; text-align: center;">No projects.</h5>
           @else
             <thead>
               <tr>
@@ -246,7 +268,7 @@
          <div id="tab2" style="padding-bottom : 10px"><h2 class="header">On Going Projects</h2>
            <table class="table table-hover">
              @if (!count($projects)>0)
-               <h3 style="font-size : 20px; margin:1em 30px;">No ongoing projects</h3>
+               <h5 style="color:#c6c4c4; text-align: center;">No ongoing projects.</h5>
              @else
                <thead>
                  <tr>
@@ -292,9 +314,9 @@
                    <td><a href="/projects/{{$project->slug}}">{{$project->name}}</a></td>
 
                    @if ($project->has_review == 1 || $project->has_review == 3)
-                     <td><button job-id="{{$project->job_id}}" class="btn btn-nectarine view-history mr-3">View History</button><button class="btn btn-june mr-3"><i class="fa fa-check-square-o paid" aria-hidden="true"> Paid</i></button><button class="btn btn-june mr-3"><i class="fa fa-check-square-o paid" aria-hidden="true"> Rated </i></button></td>
+                     <td><button job-id="{{$project->job_id}}" class="btn btn-middle  view-history mr-3">View History</button><button class="btn btn-june mr-3"><!-- <i class="fa fa-check-square-o paid" aria-hidden="true">  -->Paid<!-- </i> --></button><button class="btn btn-june mr-3"><!-- <i class="fa fa-check-square-o paid" aria-hidden="true">  -->Rated<!--  </i> --></button></td>
                    @else
-                     <td><button job-id="{{$project->job_id}}" class="btn btn-nectarine view-history mr-3">View History</button><button class="btn btn-june mr-3"><i class="fa fa-check-square-o paid" aria-hidden="true"> Paid</i></button><button job-id="{{$project->job_id}}" freelancer-id="{{$project->freelancer_id}}" class="btn btn-primary rate-freelancer mr-3">Rate freelancer</button></td>
+                     <td><button job-id="{{$project->job_id}}" class="btn btn-middle  view-history mr-3">View History</button><button class="btn btn-june mr-3"><!-- <i class="fa fa-check-square-o paid" aria-hidden="true">  -->Paid<!-- </i> --></button><button job-id="{{$project->job_id}}" freelancer-id="{{$project->freelancer_id}}" class="btn btn-middle rate-freelancer mr-3">Rate freelancer</button></td>
 
                    @endif
                  </tr>
