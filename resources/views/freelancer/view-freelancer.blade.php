@@ -311,6 +311,8 @@ p a{color:#27ae60; text-decoration:none;}
         <div class="info">
           <p class="cant">{{"@".$freelancer[0]->username}} </p>
           <p class="cant" id="department">{{$freelancer[0]->major}} Department</p>
+          <p class="cant">{{$freelancer[0]->jobs_completed}} jobs completed</p>
+
              @if ($freelancer[0]->review)
                <p class="cant">{{$freelancer[0]->review}} reviews</p>
                @for ($i=0; $i < $freelancer[0]->rating/$freelancer[0]->review; $i++)
