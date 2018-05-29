@@ -4,6 +4,10 @@
 
 @section('style')
 <style>
+
+  body {
+  background : url("https://cdn.shopify.com/s/files/1/0153/0623/products/Bead_Board_Wallpaper_in_White_by_York_Wallcoverings_c9f50134-b90a-4d8c-aae3-75328c6a804e_large.jpg?v=1450293667");
+}
 	.big-container{
 		height : 100%;
 		padding-bottom : 70px;
@@ -35,22 +39,22 @@
 		text-align : center;
 		padding-top : 10px;
 		padding-bottom : 5px;
-		background-color : #0087e0;
+		background-color : #f1c40f;
+        color : #fff;
 	}
 
 	.tabs:hover{
-		background-color : #50a3d9;
+		background-color : #f39c12;
 		cursor: pointer;
         -webkit-transition-duration: 0.4s;
         transition-duration: 0.4s;
-        border-bottom : 2px solid blue;
+        /*border-bottom : 2px solid blue;*/
 	}
 	.tabs.active{
-		background-color : #50a3d9;
+		background-color : #f39c12;
 		cursor: pointer;
         -webkit-transition-duration: 0.4s;
         transition-duration: 0.4s;
-        border-bottom : 2px solid blue;
 	}
 	.faq-container{
 		padding-bottom : 50px;
@@ -60,8 +64,8 @@
 		overflow :auto;
 	}
 	.button-faq{
-		background-color: #777;
-	    color: white;
+		background-color: #c6c6c6;
+	    color: black;
 	    cursor: pointer;
 	    padding: 18px;
 	    width: 100%;
@@ -73,7 +77,7 @@
         transition-duration: 0.4s;
 	}
 	.active, .button-faq:hover {
-    	background-color: #555;
+    	background-color: #e0e0e0;
         -webkit-transition-duration: 0.4s;
         transition-duration: 0.4s;
 	}
@@ -95,13 +99,15 @@
     content: "\2212";
 	}
 
-  .bg{
-    background-image: url({{asset("img/banner-1.jpg")}});
-    background-repeat: no-repeat;
-    background-size: 100% 290px;
-    background-position: top;
-    min-height: 300px;
+.backround{
+    padding-top: 300px;
+}
+  .title{
+    margin-top: -250px;
+    text-align: center;
+    font-weight: bold;
   }
+
 
 </style>
 @endsection
@@ -109,9 +115,16 @@
 @extends('layouts.app')
 
 @section('content')
-  <div class="bg">
-    <h1 class = "header-style">Frequently Asked Questions</h1>
+  <div class="backround">
+
   </div>
+  <div class="title">
+    <div class="container">
+      <h1>Frequently Asked Questions</h1>
+      <br><br>
+    </div>
+  </div>
+
 
 	<div class = "container">
       <div class="row">
