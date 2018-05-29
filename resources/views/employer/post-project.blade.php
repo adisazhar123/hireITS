@@ -288,7 +288,7 @@ body {
         <h6>Deadline<span>*</span></h6>
           <div class="input-group date" data-provide="datepicker">
             <span class="icon-case"><i class="fa fa-calendar"></i></span>
-                <input type="text" class="form-control" name="date" placeholder="Deadline" required>
+                <input type="text" class="form-control" name="date" placeholder="Deadline" required id="myDate">
                 <div class="input-group-addon">
                     <span class="glyphicon glyphicon-th"></span>
                 </div>
@@ -322,6 +322,13 @@ body {
   <script type="text/javascript">
 
   var date = new Date();
+  date.setDate(date.getDate());
+
+  $('#myDate').datepicker({
+      startDate: date,
+      minData: date
+  });
+
 
   $("form").submit(function(){
     var desc =   quill.root.innerHTML

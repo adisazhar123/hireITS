@@ -496,7 +496,7 @@ i {
     	<div class="laptop">
   		<div class="laptop_a laptop_def">
   			<div class="front">
-  				<iframe width="400" height="225" src="https://www.youtube.com/embed/6RSmq2qV1bg?rel=0&amp;autoplay=1&amp;showinfo=0&amp;start=2" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+          <iframe width="400" height="225" src="https://www.youtube.com/embed/6RSmq2qV1bg" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
   			</div>
   			<div class="back"></div>
   			<div class="top"></div>
@@ -524,36 +524,42 @@ i {
           </div>
         </div>
         <div class="row">
-          <div class="col-md-4 aa">
-            <div class="square">
-            	<h3>Sign Up</h3>
-              <img src="followers.png" alt="" width="170">
-              <p>Apply for a legitible account to start.</p>
-            </div>
-          </div>
-
-          <div class="col-lg-4 maker">
-            <div class="single-cat d-flex flex-column">
+          <div class="col-lg-4 aa">
+            <div class="single-cat d-flex flex-column" style="text-align: center">
               <a href="#" class="hb-sm-margin mx-auto d-block"><span class="hb hb-md inv hb-facebook-inv"><span class="lnr lnr-users"></span></span></a>
-              <h4 class="mb-20" style="margin-top: 23px;">Easy and profitable</h4>
+              <h4 class="mb-20" style="margin-top: 23px;">Sign Up</h4>
               <p>Post your projects so freelancers will be able to browse.</p>
 
             </div>
           </div>
-          <div class="col-md-4 seeker" style="display:none">
-            <div class="square">
-            	<h3>Search</h3>
-            	<img class="fa fa-search" aria-hidden="true" src="search.png" alt="" width="170">
+
+          <div class="col-lg-4 maker">
+            <div class="single-cat d-flex flex-column" style="text-align: center">
+              <a href="#" class="hb-sm-margin mx-auto d-block"><span class="hb hb-md inv hb-facebook-inv"><span class="lnr lnr-map"></span></span></a>
+              <h4 class="mb-20" style="margin-top: 23px;">Post</h4>
+              <p>Post your projects so freelancers will be able to browse.</p>
+
+            </div>
+          </div>
+
+          <div class="col-lg-4 seeker" style="display:none">
+            <div class="single-cat d-flex flex-column" style="text-align: center">
+              <a href="#" class="hb-sm-margin mx-auto d-block"><span class="hb hb-md inv hb-facebook-inv"><span class="lnr lnr-select"></span></span></a>
+              <h4 class="mb-20" style="margin-top: 23px;">Search</h4>
               <p>Browse freely through many projects available accustomed to your likings.</p>
+
             </div>
           </div>
-          <div class="col-md-4 aa">
-            <div class="square">
-            	<h3>Discuss</h3>
-              <img src="chat.png" alt="" width="170">
+
+          <div class="col-lg-4 aa">
+            <div class="single-cat d-flex flex-column" style="text-align: center">
+              <a href="#" class="hb-sm-margin mx-auto d-block"><span class="hb hb-md inv hb-facebook-inv"><span class="lnr lnr-bubble"></span></span></a>
+              <h4 class="mb-20" style="margin-top: 23px;">Discuss</h4>
               <p>Negotiate bids, ideas and requirements with end user.</p>
+
             </div>
           </div>
+
       </div>
     </div>
 
@@ -566,9 +572,7 @@ i {
 			<div class="row justify-content-center ">
 				<div class="col-md-12 pb-30 header-text text-center ">
 					<h1 class="mb-10 ">Our Capturing Market Sectors</h1>
-					<p>
-						Who are in extremely love with eco friendly system..
-					</p>
+
 				</div>
 			</div>
 			<div class="row ">
