@@ -314,15 +314,10 @@ p a{color:#27ae60; text-decoration:none;}
           @endif
         </div>
         <div class="info">
-<<<<<<< HEAD
           <p class="cant">{{"@".$freelancer[0]->username}} </p>
           <p class="cant" id="department">{{$freelancer[0]->major}} Department</p>
           <p class="cant">{{$freelancer[0]->jobs_completed}} jobs completed</p>
 
-=======
-          <h5 class="cant">{{"@".$freelancer[0]->username}} </h5>
-          <h5 class="cant" id="department">{{$freelancer[0]->major}} Department</h5>
->>>>>>> ca0e0e6067696b02f8119a6cdc9b0a1b3572ef7b
              @if ($freelancer[0]->review)
                <h5 class="cant">{{$freelancer[0]->review}} reviews</h5>
                @for ($i=0; $i < $freelancer[0]->rating/$freelancer[0]->review; $i++)
@@ -362,11 +357,9 @@ p a{color:#27ae60; text-decoration:none;}
                     {{$freelancer[0]->title}}
                 </h5>
 
-
-
                   <div class="profile-details">
 
-                        {!! $freelancer[0]->description !!}
+                    {!! $freelancer[0]->description !!}
 
                   </div>
             </div>

@@ -271,6 +271,8 @@ class EmployerController extends Controller
      $freelancer->rating = $rating;
      $freelancer->review =$reviews;
 
+     $freelancer->jobs_completed+=1;
+
      if ($review->save() && $job->save() && $freelancer->save())
       return redirect()->back()->with('success', 'Freelancer rated!');
 
