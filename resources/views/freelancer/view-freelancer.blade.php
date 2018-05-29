@@ -5,6 +5,10 @@
 @section('style')
 <style media="screen">
 
+.main-container{
+  max-height: 60vh !important;
+}
+
 /*Box sizing stuff*/
 * { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box;}
 /*Font styels*/
@@ -40,21 +44,23 @@ p a{color:#27ae60; text-decoration:none;}
   margin-left: auto;
   margin-right: auto;
   height: 224.467px;
-  width: 300px;
+ /* width: 300px;*/
 
   }
 
   .info{
+    margin-top: 25px;
     text-align: center;
   }
 
-      .info p{
-      margin-top: 10px;
-      text-align: center;
-      line-height: 10px;
-      color: black;
-      font-size: 18px;
-    }
+  .info p{
+    margin-top: 10px;
+    text-align: center;
+    line-height: 10px;
+    color: black;
+    font-size: 25px;
+  }
+
 
     .skills{
       border-radius: 5px;
@@ -197,8 +203,7 @@ p a{color:#27ae60; text-decoration:none;}
       .text2:hover{
         cursor: pointer;
       }
-
-      .profile-pic:hover .text2{
+      .profile-pic .text2{
         opacity: 1;
       }
 
@@ -219,7 +224,7 @@ p a{color:#27ae60; text-decoration:none;}
 #wrapper{ max-width: 800px; width:100%; margin:0 auto;}
 #generic-tabs{
   width:100%; padding:10px;
-  margin-top: 43px;
+  margin-top: 30px;
 }
 
 #first-tab,#second-tab,#third-tab{
@@ -234,9 +239,9 @@ p a{color:#27ae60; text-decoration:none;}
 
 #generic-tabs ul#tabs li a { text-align:center; display:block; font-size: 1.2em; text-decoration: none; padding: 1.2em 1em; line-height: 16px; color:#BBBBBB;}
 
-#generic-tabs ul#tabs li.active {background:#FFFFFF; border-top:4px solid #3d82ab;}
+#generic-tabs ul#tabs li.active {background:#FFFFFF; border-top:4px solid #f39c12;}
 #generic-tabs ul#tabs li.active a { color:#333333;}
-#generic-tabs ul#tabs li.active a i {color:#85b8cb;}
+#generic-tabs ul#tabs li.active a i {color:#6da768;}
 
 #generic-tabs .tab-content{ background:#FFFFFF; padding:3em 2em;}
 #generic-tabs .tab-content h1 {margin-top:0;}
@@ -309,17 +314,17 @@ p a{color:#27ae60; text-decoration:none;}
           @endif
         </div>
         <div class="info">
-          <p class="cant">{{"@".$freelancer[0]->username}} </p>
-          <p class="cant" id="department">{{$freelancer[0]->major}} Department</p>
+          <h5 class="cant">{{"@".$freelancer[0]->username}} </h5>
+          <h5 class="cant" id="department">{{$freelancer[0]->major}} Department</h5>
              @if ($freelancer[0]->review)
-               <p class="cant">{{$freelancer[0]->review}} reviews</p>
+               <h5 class="cant">{{$freelancer[0]->review}} reviews</h5>
                @for ($i=0; $i < $freelancer[0]->rating/$freelancer[0]->review; $i++)
                  <i class="fa fa-star"></i>
                @endfor
               @else
-                <p>No reviews</p>
+               <!--  <p>No reviews</p> -->
              @endif
-                <p class="cant">Member since: {{date_format(date_create($freelancer[0]->created_at), "d-m-Y")}}</p>
+                <h5 class="cant">Member since: {{date_format(date_create($freelancer[0]->created_at), "d-m-Y")}}</h5>
         </div>
       <section id="generic-tabs">
 
@@ -417,7 +422,7 @@ p a{color:#27ae60; text-decoration:none;}
 
         <div id="third-tab" class="tab-content animated fadeIn">
           @if ($reviews->isEmpty())
-            <h4>No reviews.</h4>
+             <h5 style="color:#c6c4c4; text-align: center;">No reviews.</h5>
           @else
             @foreach ($reviews as $review)
                 @for ($i=0; $i < $review->rating; $i++)

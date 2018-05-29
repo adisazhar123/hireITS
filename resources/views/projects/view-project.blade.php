@@ -5,6 +5,10 @@
 @section('style')
 
   <style media="screen">
+
+  body {
+  background : url("https://cdn.shopify.com/s/files/1/0153/0623/products/Bead_Board_Wallpaper_in_White_by_York_Wallcoverings_c9f50134-b90a-4d8c-aae3-75328c6a804e_large.jpg?v=1450293667");
+}
     .project-time{
       height: auto  ;
       background-color: white;
@@ -69,20 +73,19 @@
       top: 20%;
     }
 
-    .title{
-      min-height:100px;
-      background-color: #0087E0;
-      position: relative;
-      margin-bottom: 20px;
-     }
+     .title{
+    margin-top: -250px;
+    text-align: center;
+    font-weight: bold;
+  }
 
-    .title h3{
+/*    .title h3{
       padding-top: 30px;
       font-weight: bold;
       color: white;
       font-size: 35px;
 
-    }
+    }*/
 
     .fa-star{
       color: #FFAA2A;
@@ -97,9 +100,39 @@
     }
 
 
+    .backround{
+  padding-top: 300px;
+}
 
+.project-time strong{
+  color : #f39c12;
+}
 
+.alert-success {
+    background-color: #6da768;
+    text-align: center;
+}
 
+.btn-glamour {
+  background-color: #EA5059 !important;
+    color: white !important;
+}
+
+.btn-glamour:hover {
+  background-color: #e23838 !important;
+}
+         .btn-primary {
+    color: #fff;
+    background-color: #f1c40f;
+    border-color: #f1c40f;
+
+}
+
+.btn-primary:hover {
+    color: #fff;
+    background-color: #f39c12;
+    border-color: #f39c12;
+}
 
   </style>
 
@@ -110,12 +143,16 @@
 @section('content')
 
 
+    <div class="backround">
 
+  </div>
   <div class="title">
     <div class="container">
-      <h3>{{$job[0]->name}}</h3>
+       <h1>{{$job[0]->name}} Project</h1>
+      <br><br>
     </div>
   </div>
+
   <div class="container">
     <div class="row">
       <div class="col-md-12">
@@ -131,25 +168,25 @@
 
       </div>
       <div class="col-md-12">
-        <div class="project-time">
+        <div class="project-time" style="text-align: center;">
           <div class="row">
-            <div class="col-md-2">
-              <h4>Bids</h4>
+            <div class="col-md-1">
+              <h5>Bids</h5>
               <strong>{{count($bids)}}</strong>
             </div>
-            <div class="col-md-2">
-              <h4>Average bid price</h4>
+            <div class="col-md-3">
+              <h5>Average Bid Price</h5>
               <strong> {{number_format($avg_price, 2)}}</strong>
             </div>
             <div class="col-md-2">
-              <h4>Project budget</h4>
+              <h5>Project Budget</h5>
               <strong>
 
                 ${{number_format($job[0]->price_max,2)}}
               </strong>
             </div>
             <div class="col-md-2" style="float: right">
-              <h4>Days left</h4>
+              <h5>Days Left</h5>
               <strong>
                 @php
                   $now = date_create(date("d-m-Y"));
@@ -168,7 +205,7 @@
 
                 @else
                   <div class="alert alert-success">
-                    You are bidding on this project.
+                    You are bidding on this project
                   </div>
                 @endif
               @endif
@@ -209,6 +246,7 @@
                 <i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i>
               </div>
               <div class="project-skills">
+                <br>
                 <strong>Skills required</strong>
                 <br>
                 @foreach ($skills as $skill)
@@ -216,13 +254,13 @@
 
                 @endforeach <br><br>
                 @if ($job[0]->active)
-                  Active: Yes
+                  <strong>Active :</strong><strong style="color:#6da768"> Yes</strong>
                 @else
-                  Active: No
+                  <strong>Active :</strong><strong style="color:#dd3535"> No</strong>
                 @endif <br>
                 @if ($job[0]->completed)
-                  Completed: Yes
-                @else Completed: No
+                  <strong>Completed :</strong><strong style="color:#6da768"> Yes</strong>
+                @else <strong>Completed :</strong><strong style="color:#dd3535"> No</strong>
                 @endif
               </div>
 
@@ -292,7 +330,7 @@
       <div class="col-md-12">
         <div class="bidders">
           <div class="bidders-header">
-            <h3>Freelancers bidding</h3>
+            <h3>Freelancers Bidding</h3>
           </div>
 
           @php
@@ -304,7 +342,7 @@
             <div class="bidders-body">
                 <div class="card bid">
                     <div class="card-body">
-                      No bids
+                      <h5 style="color:#c6c4c4; text-align: center;">No bids.</h5>
                     </div>
                   </div>
                 </div>
@@ -322,7 +360,7 @@
                             @endphp
                           @endforeach
                           @if (!$counter[$i])
-                            <img class="img-fluid" src="{{asset('img/avatar.png')}}"/>
+                            <img class="img-fluid" src="{{asset('https://www.shareicon.net/data/2016/09/01/822711_user_512x512.png')}}"/>
                           @endif
                         </div>
                         <div class="col-md-5">
@@ -395,7 +433,7 @@
                                 {{ csrf_field() }}
                                 {{method_field('delete')}}
                                 <input type="hidden" name="bid_id" value="{{$bid->bid_id}}">
-                                <button id="cancel-bid" class="btn btn-glamour" type="submit" name="button">Cancel bid</button>
+                                <button id="cancel-bid" class="btn btn-glamour" type="submit" name="button">Cancel Bid</button>
                               </form>
                           @endif
                         </div>

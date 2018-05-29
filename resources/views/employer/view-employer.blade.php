@@ -5,6 +5,10 @@
 @section('style')
 <style media="screen">
 
+.main-container{
+  max-height: 60vh !important;
+}
+
 /*Box sizing stuff*/
 * { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box;}
 /*Font styels*/
@@ -52,21 +56,23 @@ p a{color:#27ae60; text-decoration:none;}
       margin-left: auto;
       margin-right: auto;
       height: 224.467px;
-      width: 300px;
+     /* width: 300px;*/
 
       }
 
-			.info{
-				margin-top: 25px;
-        text-align: center;
-			}
+  .info{
+    margin-top: 25px;
+    text-align: center;
+  }
 
-      .info p{
-      margin-top: 10px;
-      line-height: 10px;
-      color: black;
-      font-size: 18px;
-    }
+  .info p{
+    margin-top: 10px;
+    text-align: center;
+    line-height: 10px;
+    color: black;
+    font-size: 25px;
+  }
+
 
 
 
@@ -125,7 +131,7 @@ p a{color:#27ae60; text-decoration:none;}
         cursor: pointer;
       }
 
-      .profile-pic:hover .text2{
+      .profile-pic .text2{
         opacity: 1;
       }
 
@@ -193,18 +199,17 @@ p a{color:#27ae60; text-decoration:none;}
         width: 100%;
 
       }
-
+/*
       #upload{
-        opacity: 0.6;
-				margin-left: -50px;
-      }
+        background-color: rgba(0,0,0,0);
+      }*/
 
 
 
 #wrapper{ max-width: 800px; width:100%; margin:0 auto;}
 #generic-tabs{
   width:100%; padding:20px;
-	margin-top: 80px;
+	margin-top: 30px;
 }
 
 #first-tab,#second-tab,#third-tab{
@@ -222,9 +227,9 @@ p a{color:#27ae60; text-decoration:none;}
 #generic-tabs ul#tabs li a { text-align:center; display:block; font-size: 1.2em; text-decoration: none; padding: 1.2em 1em; line-height: 16px; color:#BBBBBB;}
 
 /*Active tab styles*/
-#generic-tabs ul#tabs li.active {background:#FFFFFF; border-top:4px solid #3d82ab;}
+#generic-tabs ul#tabs li.active {background:#FFFFFF; border-top:4px solid #f39c12;}
 #generic-tabs ul#tabs li.active a { color:#333333;}
-#generic-tabs ul#tabs li.active a i {color:#85b8cb;}
+#generic-tabs ul#tabs li.active a i {color:#6da768;}
 
 /*Tab content styles*/
 
@@ -348,15 +353,15 @@ p a{color:#27ae60; text-decoration:none;}
 
             </div>
             <div class="info animated bounceInUp">
-              <p class="cant">{{"@".$employer[0]->username}} </p>
-  						<p class="cant">Member since: {{date_format(date_create($employer[0]->created_at),"d/m/Y")}}</p>
+              <h5 class="cant">{{"@".$employer[0]->username}} </h5>
+  						<h5 class="cant">Member since: {{date_format(date_create($employer[0]->created_at),"d/m/Y")}}</h5>
               @if ($employer[0]->review)
-                <p class="cant">{{$employer[0]->review}} reviews</p>
+                <h5 class="cant">{{$employer[0]->review}} reviews</h5>
                 @for ($i=0; $i < $employer[0]->rating/$employer[0]->review; $i++)
                   <i class="fa fa-star"></i>
                 @endfor
                @else
-                 <p>No reviews</p>
+                 <!-- <p>No reviews</p> -->
               @endif
             </div>
           <section id="generic-tabs">
@@ -398,7 +403,7 @@ p a{color:#27ae60; text-decoration:none;}
             </div>
             <div id="second-tab" class="tab-content animated fadeIn">
               @if ($reviews->isEmpty())
-                <h4>No reviews.</h4>
+                 <h5 style="color:#c6c4c4; text-align: center;">No reviews.</h5>
               @else
                 @foreach ($reviews as $review)
                     @for ($i=0; $i < $review->rating; $i++)

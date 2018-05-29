@@ -4,7 +4,9 @@
 
 @section('style')
 <style media="screen">
-
+.main-container{
+  max-height: 60vh !important;
+}
 /*Box sizing stuff*/
 * { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box;}
 /*Font styels*/
@@ -40,21 +42,23 @@ p a{color:#27ae60; text-decoration:none;}
       margin-left: auto;
       margin-right: auto;
       height: 224.467px;
-      width: 300px;
+      /*width: 300px;*/
 
       }
 
-      .info p{
-      margin-top: 10px;
-      text-align: center;
-      line-height: 10px;
-      color: black;
-      font-size: 18px;
-    }
+  .info{
+    margin-top: 25px;
+    text-align: center;
+  }
 
-    .info{
-      text-align: center;
-    }
+  .info p{
+    margin-top: 10px;
+    text-align: center;
+    line-height: 10px;
+    color: black;
+    font-size: 25px;
+  }
+
 
     .skills{
       border-radius: 5px;
@@ -84,15 +88,33 @@ p a{color:#27ae60; text-decoration:none;}
         }
 
         .edit-portfolio{
-          margin-top: -43px;
+          margin-top: -46px;
           display: none;
           width: auto;
+          display: block;
+       /*   font-size: 2em;*/
+          padding: -50px;
+          background-color: #f0ad4e;
+          color : #fff;
         }
 
+          .btn-primary {
+    color: #fff;
+    background-color: #f1c40f;
+    border-color: #f1c40f;
+
+}
+
+.btn-primary:hover {
+    color: #fff;
+    background-color: #f39c12;
+    border-color: #f39c12;
+}
+/*
         .portfolio:hover .edit-portfolio{
-          display: block;
+          
           animation: fade;
-        }
+        }*/
         .card-img-top{
           height: 250px;
           width: 100%;
@@ -289,7 +311,7 @@ p a{color:#27ae60; text-decoration:none;}
       }
 
       #upload{
-        opacity: 0.6;
+       background-color: rgba(0,0,0,0);
       }
 
       .skills .card{
@@ -300,7 +322,7 @@ p a{color:#27ae60; text-decoration:none;}
 #wrapper{ max-width: 800px; width:100%; margin:0 auto;}
 #generic-tabs{
   width:100%; padding:20px;
-  height: 100%;
+  margin-top: 30px;
 }
 
 #first-tab,#second-tab,#third-tab{
@@ -318,9 +340,9 @@ p a{color:#27ae60; text-decoration:none;}
 #generic-tabs ul#tabs li a { text-align:center; display:block; font-size: 1.2em; text-decoration: none; padding: 1.2em 1em; line-height: 16px; color:#BBBBBB;}
 
 /*Active tab styles*/
-#generic-tabs ul#tabs li.active {background:#FFFFFF; border-top:4px solid #3d82ab;}
+#generic-tabs ul#tabs li.active {background:#FFFFFF; border-top:4px solid #f39c12;}
 #generic-tabs ul#tabs li.active a { color:#333333;}
-#generic-tabs ul#tabs li.active a i {color:#85b8cb;}
+#generic-tabs ul#tabs li.active a i {color:#6da768;}
 
 /*Tab content styles*/
 
@@ -470,23 +492,23 @@ p a{color:#27ae60; text-decoration:none;}
             @endif
             <div class="profile-pic  bounceInDown">
               @if ($pf->isEmpty())
-                <img class="rounded" src="{{asset('img/avatar.png')}}" alt="profile_pic12">
+                <img class="rounded" src="{{asset('https://www.shareicon.net/data/2016/09/01/822711_user_512x512.png')}}" alt="profile_pic12">
                 @else
                   <img class="rounded" src="data:{{$pf[0]->img_type}};base64,{{base64_encode( $pf[0]->name )}}" alt="profile_pic">
               @endif
 
-                <form action="#" enctype="multipart/form-data" id="upload-dp">
+                <form action="#" enctype="multipart/form-data" id="upload-dp" style="text-align: center;">
                   {{ csrf_field() }}
                     <input type="file" id="my_file" name="image"/>
-                    <i class="fa fa-wrench" id="file_selector" style="font-size:60px;"></i>
-                    <button id="upload" class="btn btn-default" type="submit" name="button">upload profile pic: </button>
+                    <i class="fa fa-wrench" id="file_selector" style="font-size:30px;"></i>
+                    <button id="upload" class="btn btn-default" type="submit" name="button">Upload profile picture</button>
                  </form>
 
             </div>
             <div class="info  bounceInUp">
-                <p class="cant">{{"@".Auth::user()->username}} </p>
-                <p class="cant" id="department">{{$freelancer->major}} Department</p>
-                <p class="cant">{{$freelancer->jobs_completed}} jobs completed</p>
+                <h5 class="cant">{{"@".Auth::user()->username}} </h5>
+                <h5 class="cant" id="department">{{$freelancer->major}} Department</h5>
+                <h5 class="cant">{{$freelancer->jobs_completed}} jobs completed</h5>
 
                 @if ($freelancer->review)
                   <p class="cant">{{$freelancer->review}} reviews</p>
@@ -494,17 +516,17 @@ p a{color:#27ae60; text-decoration:none;}
                     <i class="fa fa-star"></i>
                   @endfor
                 @else
-                  <p>No reviews.</p>
+                 <!--  <p>No reviews.</p> -->
                 @endif
 
-                      <p class="cant">Member since: {{date_format(Auth::user()->created_at,"d/m/Y")}}</p>
+                      <h5 class="cant">Member since: {{date_format(Auth::user()->created_at,"d/m/Y")}}</h5>
                     </div>
           <section id="generic-tabs">
 
 
             <ul id="tabs">
                 <li>
-                    <a title="About" href="#first-tab"><i class="fa fa-home"></i> About</a>
+                    <a title="About" href="#first-tab"><i class="fa fa-home"></i> About Me</a>
                 </li>
                 <li>
                     <a title="Portfolio" href="#second-tab"><i class="fa fa-picture-o"></i> Portfolio</a>
@@ -623,14 +645,14 @@ p a{color:#27ae60; text-decoration:none;}
 
             </div>
 
-            <div id="second-tab" class="tab-content portfolio">
+            <div id="second-tab" class="tab-content portfolio" style="text-align: center;">
               @if (!$portfolios->count())
-                      <p>No portfolio</p>
-                      <button class="btn btn-default float-right new-port edit-portfolio" style="width: auto" type="button" name="button">Add new portfolio</button>
+                      <h5 style="color:#c6c4c4; text-align: center;">No portfolio.</h5>
+                      <button class="btn btn-default new-port edit-portfolio" style="width: auto; display: inline-block;" type="button" name="button">Add new portfolio</button>
 
                     @else
-                      @if ($portfolios->count()<6)
-                        <button class="btn btn-default float-right new-port edit-portfolio" style="width: auto" type="button" name="button">Add new portfolio</button>
+                      @if ($portfolios->count() < 6)
+                        <button class="btn btn-default new-port edit-portfolio" style="width: auto; display: inline-block;" type="button" name="button">Add new portfolio</button>
                       @endif
 
                       <div class="row">
@@ -692,7 +714,7 @@ p a{color:#27ae60; text-decoration:none;}
 
             <div id="third-tab" class="tab-content  fadeIn">
                 @if ($reviews->isEmpty())
-                  <p>No review</p>
+                  <h5 style="color:#c6c4c4; text-align: center;">No reviews.</h5>
                 @else
                   @foreach ($reviews as $review)
                       @for ($i=0; $i < $review->rating; $i++)
