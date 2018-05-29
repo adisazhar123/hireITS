@@ -18,6 +18,12 @@
       <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
 
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker.min.css">
+    @else
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,300i,400,400i,700,700i" rel="stylesheet">
+    <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{asset('assets/font-awesome-4.7.0/css/font-awesome.min.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/css/animate/animate.min.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
     @endif
 
     @yield('head')
@@ -315,12 +321,31 @@ footer .container2{
   </script>
   <script src="{{asset('js/superfish.min.js')}}"></script>
   <script src="{{asset('js/main.js')}}"></script>
+  <script src="{{asset('assets/js/jquery/jquery.min.js')}}"></script>
+    <script src="{{asset('assets/js/popper/popper.min.js')}}"></script>
+    <script src="{{asset('assets/js/bootstrap/bootstrap.min.js')}}"></script>
+    <script src="{{asset('assets/js/wow/wow.min.js')}}"></script>
+    <script src="{{asset('assets/js/owl-carousel/owl.carousel.min.js')}}"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="{{asset('assets/js/jquery-easing/jquery.easing.min.js')}}"></script> 
+    <script src="{{asset('assets/js/custom.js')}}"></script> 
 
 
   @if (!isset($homepage))
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.min.js"></script>
      <script src="{{asset('js/jquery.magnific-popup.min.js')}}"></script>
      <script src="{{asset('js/owl.carousel.min.js')}}"></script>
+  @else
+  	<script src="{{asset('assets/js/jquery/jquery.min.js')}}"></script>
+    <script src="{{asset('assets/js/popper/popper.min.js')}}"></script>
+    <script src="{{asset('assets/js/bootstrap/bootstrap.min.js')}}"></script>
+    <script src="{{asset('assets/js/wow/wow.min.js')}}"></script>
+    <script src="{{asset('assets/js/owl-carousel/owl.carousel.min.js')}}"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="{{asset('assets/js/jquery-easing/jquery.easing.min.js')}}"></script> 
+    <script src="{{asset('assets/js/custom.js')}}"></script> 
   @endif
 
   @yield('script')

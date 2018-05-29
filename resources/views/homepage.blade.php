@@ -20,10 +20,10 @@
   -moz-perspective: 1800px;
   perspective: 1800px;
   position: relative;
-  top: 15em;
-  margin: 0 auto;
-  margin-top: -134px;
+  top: 12em;
+  margin-left: 800px;
   width: 425px;
+  float : left;
 }
 
 .laptop_a {
@@ -473,6 +473,41 @@ i {
     color : white;
 }
 
+.section1{
+	width : 100%;
+	height : 600px;
+	padding-top : 15px;
+}
+
+.judul{
+	font-size : 36px;
+	text-align : center ;
+	color : #f39c12;
+	font-weight : bold;
+}
+
+.box-container{
+	width : 100%;
+	height : 400px;
+}
+
+.boxes{
+	width : 1/3;
+	height : 400px;
+}
+
+.garis{
+	width : 100px;
+	height : 10px;
+	background-color: #f1c40f ;
+	margin : auto;
+
+}
+
+body{
+	background-color:#f9f9ff;
+}
+
 </style>
 @endsection
 
@@ -492,26 +527,25 @@ i {
 
 @section('content')
 
-  <!-- <div class="backgg animated fadeInUpBig">
+  <div class="backgg animated fadeInUpBig">
     	<div class="laptop">
   		<div class="laptop_a laptop_def">
   			<div class="front">
-          <iframe width="400" height="225" src="https://www.youtube.com/embed/6RSmq2qV1bg" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+  				<iframe width="400" height="225" src="https://www.youtube.com/embed/6RSmq2qV1bg?rel=0&amp;showinfo=0&amp;start=2" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
   			</div>
   			<div class="back"></div>
   			<div class="top"></div>
   		</div>
   		<div class="bottom"></div>
   	</div>
-    <div class="container">
-
+    <!--<div class="container">
 
       <h2><span class = "shadow-text">What's hireITS?</span></h2>
       <h4><span class = "shadow-text">hireITS is a website used as an intermediary for its student who want to make money. In this website the students will be associated to the employer who need their skills and abilities.</span></h4>
-    </div>
-  </div> -->
+    </div>-->
+  </div>
 
-  <div class="howto animated fadeInDownBig">
+  <div class="howto animated fadeInDownBig wow fadeInUp" data-wow-delay="0.2s">
     <div class="container">
       <h2>How to use hireITS?</h2>
     	<div class="">
@@ -525,55 +559,100 @@ i {
           </div>
         </div>
         <div class="row">
-          <div class="col-lg-4 aa">
-            <div class="single-cat d-flex flex-column" style="text-align: center">
-              <a href="#" class="hb-sm-margin mx-auto d-block"><span class="hb hb-md inv hb-facebook-inv"><span class="lnr lnr-users"></span></span></a>
-              <h4 class="mb-20" style="margin-top: 23px;">Sign Up</h4>
-              <p>Post your projects so freelancers will be able to browse.</p>
-
+          <div class="col-md-4 aa">
+            <div class="square">
+            	<h3>Sign Up</h3>
+              <img src="followers.png" alt="" width="170">
+              <p>Apply for a legitible account to start.</p>
             </div>
           </div>
-
-          <div class="col-lg-4 maker">
-            <div class="single-cat d-flex flex-column" style="text-align: center">
-              <a href="#" class="hb-sm-margin mx-auto d-block"><span class="hb hb-md inv hb-facebook-inv"><span class="lnr lnr-map"></span></span></a>
-              <h4 class="mb-20" style="margin-top: 23px;">Post</h4>
-              <p>Post your projects so freelancers will be able to browse.</p>
-
+          <div class="col-md-4 maker" >
+            <div class="square">
+            	<h3>Post</h3>
+              	<img src="invoice.png" alt="" width="170">
+              	<p>Post your projects so freelancers will be able to browse.</p>
             </div>
           </div>
-
-          <div class="col-lg-4 seeker" style="display:none">
-            <div class="single-cat d-flex flex-column" style="text-align: center">
-              <a href="#" class="hb-sm-margin mx-auto d-block"><span class="hb hb-md inv hb-facebook-inv"><span class="lnr lnr-select"></span></span></a>
-              <h4 class="mb-20" style="margin-top: 23px;">Search</h4>
+          <div class="col-md-4 seeker" style="display:none">
+            <div class="square">
+            	<h3>Search</h3>
+            	<img class="fa fa-search" aria-hidden="true" src="search.png" alt="" width="170">
               <p>Browse freely through many projects available accustomed to your likings.</p>
-
             </div>
           </div>
-
-          <div class="col-lg-4 aa">
-            <div class="single-cat d-flex flex-column" style="text-align: center">
-              <a href="#" class="hb-sm-margin mx-auto d-block"><span class="hb hb-md inv hb-facebook-inv"><span class="lnr lnr-bubble"></span></span></a>
-              <h4 class="mb-20" style="margin-top: 23px;">Discuss</h4>
+          <div class="col-md-4 aa">
+            <div class="square">
+            	<h3>Discuss</h3>
+              <img src="chat.png" alt="" width="170">
               <p>Negotiate bids, ideas and requirements with end user.</p>
-
             </div>
           </div>
-
       </div>
     </div>
 
   </div>
 
+	<section id="about" class="about section1" style="background-color:white; height : 650px">
+          <div class="col-md-12">
+            <h1 class="wow fadeInUp judul">Our Capturing Market Sectors</h1>
+            <div class="heading-border"></div>
+            <p class="wow fadeInUp" data-wow-delay="0.4s" style="text-align:center; font-size : 18px; margin : 10px 0px 30px 0px;">Who are in extremely love with eco friendly system..</p>
+          </div>  
+      <!-- About right side withBG parallax -->
+        <div class="row box-container"> 
+          <div class="col-md-4 boxes">
+            <div class="about-content-box wow fadeInUp" data-wow-delay="0.3s">
+              <div class="single-service ">
+						<div class="thumb ">
+							<img src="https://decidigital.com/wp-content/uploads/2017/06/Responsive-Design.jpg" alt=" " style="width : 350px; height : 180px; text-align : center ;margin-left:30px">
+						</div>
+						<h4 style="text-align:center">Web Application</h4>
+						<p>
+							Our students are highly capable to build top notch dynamic and responsive web applications to support industry needs.
+						</p>
+					</div>
+            </div>
+          </div> 
+          <div class="col-md-4 boxes">
+            <div class="about-content-box wow fadeInUp" data-wow-delay="0.5s">
+              <div class="single-service ">
+						<div class="thumb ">
+							<img src="https://thumbs.dreamstime.com/b/engineering-architecture-drawings-1994275.jpg" alt=" " style="width : 350px; height : 180px; text-align : center ;margin-left:30px">
+						</div>
+						<h4 style="text-align:center">Architecture and design</h4>
+						<p>
+              Our students work within a given set of parameters to solve complex design problems.  A good architect approaches this task with enthusiasm and preference to exceed expectations
+              which is evident in ITS.
+						</p>
+					</div>
+            </div>
+          </div> 
+          <div class="col-md-4 boxes">
+            <div class="about-content-box wow fadeInUp" data-wow-delay="0.7s">
+              <div class="single-service ">
+						<div class="thumb ">
+							<img src="https://i.ytimg.com/vi/s9inYNPStNw/maxresdefault.jpg" alt=" " style="width : 350px; height : 180px; text-align : center ;margin-left:30px">
+						</div>
+						<h4 style="text-align:center">3D modelling</h4>
+						<p>
+							inappropriate behavior is often laughed off as “boys will be boys,” women face higher conduct women face higher conduct.
+						</p>
+					</div>
+            </div>
+          </div> 
+        </div> 
+           
+    </section> 
 
-	<!-- Start service Area -->
+	<!-- Start service Area 
 	<section class="service-area section-gap " id="service ">
 		<div class="container ">
 			<div class="row justify-content-center ">
 				<div class="col-md-12 pb-30 header-text text-center ">
 					<h1 class="mb-10 ">Our Capturing Market Sectors</h1>
-
+					<p>
+						Who are in extremely love with eco friendly system..
+					</p>
 				</div>
 			</div>
 			<div class="row ">
@@ -618,11 +697,11 @@ i {
 
 	<!-- Start faq Area -->
 	<section class="faq-area section-gap relative ">
-		<div class="overlay overlay-bg "></div>
+		<div class="overlay-bg "></div>
 		<div class="container ">
 			<div class="row justify-content-center align-items-center ">
-				<div class="col-lg-3 col-md-6 ">
-					<div class="single-faq ">
+				<div class="col-md-3 col-sm-6 desc-comp-offer wow fadeInUp" data-wow-delay="0.2s">
+	              <div class="single-faq ">
 						<div class="circle ">
 							<div class="inner "></div>
 						</div>
@@ -631,9 +710,9 @@ i {
 							Projects Completed
 						</p>
 					</div>
-				</div>
-				<div class="col-lg-3 col-md-6 ">
-					<div class="single-faq ">
+	            </div>  
+	            <div class="col-md-3 col-sm-6 desc-comp-offer wow fadeInUp" data-wow-delay="0.2s">
+	              <div class="single-faq ">
 						<div class="circle ">
 							<div class="inner "></div>
 						</div>
@@ -642,9 +721,9 @@ i {
 							Total Users
 						</p>
 					</div>
-				</div>
-				<div class="col-lg-3 col-md-6 ">
-					<div class="single-faq ">
+	            </div>  
+	            <div class="col-md-3 col-sm-6 desc-comp-offer wow fadeInUp" data-wow-delay="0.2s">
+	              	<div class="single-faq ">
 						<div class="circle ">
 							<div class="inner "></div>
 						</div>
@@ -653,21 +732,64 @@ i {
 							Happy Clients
 						</p>
 					</div>
-				</div>
+	            </div>  
 			</div>
 		</div>
 	</section>
+
+	<section id="story" style="background-color:#f9f9ff; height : 500px">
+        <div class="section1" >
+            <div class="col-md-12">
+              <h1 class="wow fadeInUp judul">Why choose hireITS?</h1>
+              <div class="garis" data-wow-delay="0.1s"></div> 
+            </div>
+          <div class="box-container" style="margin-top : 30px">
+          <div class="row">
+            <div class="col-md-4 col-sm-6 wow fadeInUp boxes" data-wow-delay="0.1s"> 
+                  <div class="single-cat d-flex flex-column" style="padding-right : 30px; padding-left : 30px">
+    					<a href="#" class="hb-sm-margin mx-auto d-block"><span class="hb hb-md inv hb-facebook-inv"><span class="lnr lnr-magic-wand"></span></span></a>
+    					<h4 class="mb-20" style="margin-top: 23px;text-align:center">Easy and profitable</h4>
+    					<p>
+                  Theres just more and more people who are skillfull but cannot find the right platform to turn that skill into money. Well we have it here for you ITS students!
+    					</p>
+    				</div>
+            </div>
+            <div class="col-md-4 col-sm-6 wow fadeInUp boxes" data-wow-delay="0.3s"> 
+                  <div class="single-cat d-flex flex-column">
+    					<a href="#" class="hb-sm-margin mx-auto d-block"><span class="hb hb-md inv hb-facebook-inv"><span class="lnr lnr-rocket"></span></span></a>
+    					<h4 class="mb-20" style="margin-top: 23px;text-align:center">Competitiveness</h4>
+    					<p>
+                  We strongly believe our platform is a foundation to gather companies/ individuals with students, to expose competition exists everywhere and gets tougher by time.
+                  Our hope is that it will incentify students to become proactive in wanting to find out more in any aspects.
+    					</p>
+    			  </div>
+              </div>
+            <div class="col-md-4 col-sm-6 wow fadeInUp boxes" data-wow-delay="0.5s"> 
+                  <div class="single-cat d-flex flex-column">
+    						<a href="#" class="hb-sm-margin mx-auto d-block"><span class="hb hb-md inv hb-facebook-inv"><span class="lnr lnr-bug"></span></span></a>
+    						<h4 class="mb-20" style="margin-top: 23px;text-align:center">It holds democracy values</h4>
+    						<p>
+                  What more do you hate when a system is centric to a specific user? HireITS facilitates employers to rate freelancers and vice-versa.
+    						</p>
+    					</div>
+            </div>                        
+          </div>
+        </div> 
+        </div>  
+        <div class="container-fluid">
+        </div>  
+         
+    </section>
 	<!-- End faq Area -->
 
 
-    	<!-- Start cat Area -->
+    	<!-- Start cat Area 
     	<section class="cat-area section-gap" id="feature">
     		<div class="container">
     			<div class="row">
             <div class="col-md-12 pb-30 header-text text-center ">
               <h1 class="mb-10 ">Why choose hireITS?</h1>
-            </div>
-            <div class="col-lg-4">
+            </div>    				<div class="col-lg-4">
     					<div class="single-cat d-flex flex-column">
     						<a href="#" class="hb-sm-margin mx-auto d-block"><span class="hb hb-md inv hb-facebook-inv"><span class="lnr lnr-magic-wand"></span></span></a>
     						<h4 class="mb-20" style="margin-top: 23px;">Easy and profitable</h4>
@@ -701,7 +823,76 @@ i {
     	</section>
     	<!-- End cat Area -->
 
-	<!-- Start feedback Area -->
+    <section id="story" style="background-color : white; height : 520px"> 
+       <div class="container-fluid section1">
+          <div class="row" >
+            <div class="col-md-6" data-wow-delay="0.2s">
+              <div class="story-himg" >
+                <img src="image-3.jpg" class="img-fluid" alt="" style="margin-left:20px; margin-top : 10px;">
+              </div>
+            </div>
+            <div class="col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+              <div class="service-h-desc">
+                <h3 class = "judul" style="text-align:left">Enjoy our Client's Feedback</h3>
+                <div class="garis" style="margin-left:1px; height : 5px; margin-bottom : 30px"></div>  
+              <div class="service-h-tab"> 
+                <div class="col-lg-6 feedback-right ">
+					<div class="active-review-carusel ">
+						<div class="single-feedback-carusel ">
+							<div class="title d-flex flex-row ">
+								<h4 class="pb-10 ">Modista Garsia</h4>
+								<div class="star ">
+									<span class="fa fa-star checked "></span>
+									<span class="fa fa-star checked "></span>
+									<span class="fa fa-star checked "></span>
+									<span class="fa fa-star "></span>
+									<span class="fa fa-star "></span>
+								</div>
+							</div>
+							<p>
+								There was time when I want to make money and that's when my friend introduce me to this website. At first I doubt it will have benfits for me, but turn out that this website is very good. I even can buy my favourite anime figure.
+							</p>
+						</div>
+						<div class="single-feedback-carusel ">
+							<div class="title d-flex flex-row ">
+								<h4 class="pb-10 ">Ghifaroza R. </h4>
+								<div class="star ">
+									<span class="fa fa-star checked "></span>
+									<span class="fa fa-star checked "></span>
+									<span class="fa fa-star checked "></span>
+									<span class="fa fa-star checked "></span>
+									<span class="fa fa-star "></span>
+								</div>
+							</div>
+							<p>
+								At first, I tried using this website because I felt that my skills will be wasted if its not used to make money. So, when I tried this website, the result is beyond what I expected. I have many connections and I myself, able to live with my own money.
+							</p>
+						</div>
+						<div class="single-feedback-carusel ">
+							<div class="title d-flex flex-row ">
+								<h4 class="pb-10 ">Adistya Azhar</h4>
+								<div class="star ">
+									<span class="fa fa-star checked "></span>
+									<span class="fa fa-star checked "></span>
+									<span class="fa fa-star checked "></span>
+									<span class="fa fa-star checked "></span>
+									<span class="fa fa-star checked "></span>
+								</div>
+							</div>
+							<p>
+								It's great to be able to work here. Not only you can make money yourself, you will also gain experience. There's also chance for students who have graduated to work through this website. In conclusion, use this website, there's no maybe.
+							</p>
+						</div>
+					</div>
+				</div>
+              </div>
+              </div>
+            </div>
+          </div>
+        </div>  
+    </section>
+
+	<!-- Start feedback Area
 	<section class="feedback-area section-gap relative " id="feedback ">
 		<div class="overlay overlay-bg "></div>
 		<div class="container ">
@@ -774,11 +965,12 @@ i {
 
 
 	<!-- Start blog Area -->
-	<section class="blog-area section-gap " id="blog ">
-		<div class="container ">
+	<section class="blog-area" id="blog " style="background-color:#f9f9ff">
+		<div class="container wow fadeInUp" data-wow-delay="0.3s">
 			<div class="row justify-content-center ">
 				<div class="col-md-12 pb-30 header-text ">
-					<h1>Latest posts from our Showcase</h1>
+					<h1 class = "judul" style="margin-top:10px">Latest posts from our Showcase</h1>
+					<div class = "garis"></div>
 				</div>
 			</div>
 			<div class="row ">
