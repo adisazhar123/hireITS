@@ -325,7 +325,7 @@ body {
     var desc =   quill.root.innerHTML
     $("#description").val(desc)
 
-    if($("#price1").val() > $("#price2").val()){
+    if(parseInt($("#price1").val()) > parseInt($("#price2").val())){
       alertify.error("Minimum budget has to be lower than maximum budget.")
       return false;
     }
