@@ -492,7 +492,7 @@ i {
 
 @section('content')
 
-  <div class="backgg animated fadeInUpBig">
+  <!-- <div class="backgg animated fadeInUpBig">
     	<div class="laptop">
   		<div class="laptop_a laptop_def">
   			<div class="front">
@@ -505,10 +505,11 @@ i {
   	</div>
     <div class="container">
 
+
       <h2><span class = "shadow-text">What's hireITS?</span></h2>
       <h4><span class = "shadow-text">hireITS is a website used as an intermediary for its student who want to make money. In this website the students will be associated to the employer who need their skills and abilities.</span></h4>
     </div>
-  </div>
+  </div> -->
 
   <div class="howto animated fadeInDownBig">
     <div class="container">
