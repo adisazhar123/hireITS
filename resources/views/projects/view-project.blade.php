@@ -243,7 +243,13 @@
                 <strong>About the employer</strong><br>
                 <a href="{{route('view.employer', $job[0]->employer->username)}}">{{$job[0]->employer->username}}</a>
                 <br>
-                <i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i>
+                @if ($job[0]->employer->rating)
+                  @for ($i=0; $i < $job[0]->employer->rating/$job[0]->employer->review; $i++)
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                  @endfor
+                @else
+                  No rating
+                @endif
               </div>
               <div class="project-skills">
                 <br>
