@@ -362,10 +362,10 @@ p a{color:#27ae60; text-decoration:none;}
 
             </div>
             <div class="info">
-              <p class="cant">{{"@".Auth::user()->username}} </p>
-  						<p class="cant">Member since: {{date_format(Auth::user()->created_at,"d/m/Y")}}</p>
+              <h5 class="cant">{{"@".Auth::user()->username}} </h5>
+  						<h5 class="cant">Member since: {{date_format(Auth::user()->created_at,"d/m/Y")}}</h5>
               @if ($employer->review)
-                <p class="cant">{{$employer->review}} reviews</p>
+                <h5 class="cant">{{$employer->review}} reviews</h5>
                 @for ($i=0; $i < $employer->rating/$employer->review; $i++)
                   <i class="fa fa-star"></i>
                 @endfor
@@ -374,8 +374,6 @@ p a{color:#27ae60; text-decoration:none;}
               @endif
             </div>
           <section id="generic-tabs">
-
-
             <ul id="tabs">
                 <li>
                     <a title="About" href="#first-tab"><i class="fa fa-home"></i> About Me</a>
