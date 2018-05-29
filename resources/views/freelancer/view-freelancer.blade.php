@@ -133,6 +133,18 @@ p a{color:#27ae60; text-decoration:none;}
         width: 100%;
       }
 
+        .btn-primary {
+    color: #fff;
+    background-color: #f39c12;
+    border-color: #f39c12;
+}
+
+  .btn-primary:hover {
+    color: #fff;
+    background-color: #f39c12;
+    border-color: #f39c12;
+}
+
       .text{
         transition: .5s ease;
         opacity: 0;
@@ -314,9 +326,9 @@ p a{color:#27ae60; text-decoration:none;}
           @endif
         </div>
         <div class="info">
-          <p class="cant">{{"@".$freelancer[0]->username}} </p>
-          <p class="cant" id="department">{{$freelancer[0]->major}} Department</p>
-          <p class="cant">{{$freelancer[0]->jobs_completed}} jobs completed</p>
+          <h5 class="cant">{{"@".$freelancer[0]->username}} </h5>
+          <h5 class="cant" id="department">{{$freelancer[0]->major}} Department</h5>
+          <h5 class="cant">{{$freelancer[0]->jobs_completed}} jobs completed</h5>
 
              @if ($freelancer[0]->review)
                <h5 class="cant">{{$freelancer[0]->review}} reviews</h5>
@@ -383,8 +395,8 @@ p a{color:#27ae60; text-decoration:none;}
             </div>
           </div>
 
-          <div class="hire-me">
-            <a href="{{route('post.project.page')}}?q=project+for+{{$freelancer[0]->username}}" class="btn btn-middle">Hire Me</a>
+          <div class="hire-me" style="text-align: center;">
+            <a href="{{route('post.project.page')}}?q=project+for+{{$freelancer[0]->username}}" class="btn btn-primary">Hire Me</a>
           </div>
         </div>
 
