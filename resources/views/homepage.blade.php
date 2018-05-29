@@ -350,7 +350,7 @@
 .backgg {
   position: relative;
   /*//background-image: url(http://blog.visme.co/wp-content/uploads/2017/07/50-Beautiful-and-Minimalist-Presentation-Backgrounds-08.jpg);*/
-  background-image: url(https://d39l2hkdp2esp1.cloudfront.net/img/photo/104388/104388_00_2x.jpg?20160418013135);
+  background-image: url('back.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   height: 700px;
@@ -538,11 +538,12 @@ body{
   		</div>
   		<div class="bottom"></div>
   	</div>
-    <!--<div class="container">
+    <div class="container">
 
-      <h2><span class = "shadow-text">What's hireITS?</span></h2>
-      <h4><span class = "shadow-text">hireITS is a website used as an intermediary for its student who want to make money. In this website the students will be associated to the employer who need their skills and abilities.</span></h4>
-    </div>-->
+      <h2 style="text-align:left; font-size : 36px"><span class = "shadow-text">What's hireITS?</span></h2>
+      <div class = "garis" style="margin-left:1px"></div>
+      <h4 style="text-align:left"><span class = "shadow-text">hireITS is a website used as an intermediary for its student <br />who want to make money. In this website the students will be <br />associated to the employer who need their skills<br /> and abilities.</span></h4>
+    </div>
   </div>
 
   <div class="howto animated fadeInDownBig wow fadeInUp" data-wow-delay="0.2s">
@@ -826,7 +827,7 @@ body{
     <section id="story" style="background-color : white; height : 520px"> 
        <div class="container-fluid section1">
           <div class="row" >
-            <div class="col-md-6" data-wow-delay="0.2s">
+            <div class="col-md-6 wow fadeInUp" data-wow-delay="0.2s">
               <div class="story-himg" >
                 <img src="image-3.jpg" class="img-fluid" alt="" style="margin-left:20px; margin-top : 10px;">
               </div>
