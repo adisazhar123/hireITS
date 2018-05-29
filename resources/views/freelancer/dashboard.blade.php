@@ -445,7 +445,7 @@ tr{
 
           </div>
           <div class="form-group" style="text-align:center">
-            <button type="submit" class="btn btn-success" name="button">Send to employer</button>
+            <button type="submit" class="btn btn-middle" name="button">Send to employer</button>
 
           </div>
           <input type="hidden" id="job_id" name="job_id" value="">
@@ -516,7 +516,7 @@ tr{
           <div class="form-group">
             <textarea name="comment" required id="comment" class="form-control" rows="8" cols="80"></textarea>
           </div>
-          <button type="submit" class="btn btn-exodus" name="button" style="width: 100%">Submit</button>
+          <button type="submit" class="btn btn-middle" name="button" style="width: 100%">Submit</button>
         </form>
       </div>
       <div class="modal-footer">

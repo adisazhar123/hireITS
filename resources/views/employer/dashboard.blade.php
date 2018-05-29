@@ -287,7 +287,7 @@ tr{
                      <th scope="row">{{$ni++}}</th>
                      <td><a href="/projects/{{$project->slug}}">{{$project->name}}</a></td>
                      <td>{{date_format(date_create($project->deadline), "d-m-Y")}}</td>
-                     <td><button class="btn btn-info mr-3 update-progress" job-id="{{$project->job_id}}">Update Progress</button><button job-id="{{$project->job_id}}" class="btn btn-warning view-history mr-3">View History</button><button class="btn btn-primary pay-freelancer" freelancer-id="{{$project->won_by_id}}" job-id="{{$project->job_id}}">Pay freelancer</button></td>
+                     <td><button class="btn btn-middle mr-3 update-progress" job-id="{{$project->job_id}}">Update Progress</button><button job-id="{{$project->job_id}}" class="btn btn-warning view-history mr-3">View History</button><button class="btn btn-middle pay-freelancer" freelancer-id="{{$project->won_by_id}}" job-id="{{$project->job_id}}">Pay Freelancer</button></td>
                    </tr>
                  @endforeach
 
@@ -363,7 +363,7 @@ tr{
             </div>
           </div>
           <div class="form-group" style="text-align:center; margin-top : 5px;">
-            <button type="submit" class="btn btn-success" name="button">Send to freelancer</button>
+            <button type="submit" class="btn btn-middle" name="button">Send to freelancer</button>
 
           </div>
           <input type="hidden" id="job_id" name="job_id" value="">
@@ -446,7 +446,7 @@ tr{
         <div class="form-group">
           <textarea name="comment" required id="comment" class="form-control" rows="8" cols="80"></textarea>
         </div>
-        <button class="btn btn-exodus" type="submit" name="button">Submit</button>
+        <button class="btn btn-middle" type="submit" name="button" style="width: 100%">Submit</button>
       </form>
     </div>
     <div class="modal-footer">
