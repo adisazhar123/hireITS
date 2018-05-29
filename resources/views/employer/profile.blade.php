@@ -362,8 +362,8 @@ p a{color:#27ae60; text-decoration:none;}
 
             </div>
             <div class="info">
-              <p class="cant">{{"@".Auth::user()->username}} </p>
-  						<p class="cant">Member since: {{date_format(Auth::user()->created_at,"d/m/Y")}}</p>
+              <h5 class="cant">{{"@".Auth::user()->username}} </h5>
+  						<h5 class="cant">Member since: {{date_format(Auth::user()->created_at,"d/m/Y")}}</h5>
               @if ($employer->review)
                 <p class="cant">{{$employer->review}} reviews</p>
                 @for ($i=0; $i < $employer->rating/$employer->review; $i++)
