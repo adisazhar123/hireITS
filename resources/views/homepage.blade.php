@@ -27,7 +27,7 @@
   perspective: 1800px;
   position: relative;
   top: 12em;
-  margin-left: 800px;
+  margin-left: 1200px;
   width: 425px;
   float : left;
 }
