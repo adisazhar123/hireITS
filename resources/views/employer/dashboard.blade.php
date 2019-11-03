@@ -400,6 +400,7 @@ tr{
       </div>
     </div>
   </div>
+
   <div class="modal payment animated fadeIn" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -410,11 +411,33 @@ tr{
         </button>
       </div>
       <div class="modal-body">
-        <h4>All payment is done through paypal.</h4>
-        <p>PayPal lets you quickly and securely send and receive money for goods, services and more. At PayPal, your financial security is our highest priority. We use the latest anti-fraud technology to help make sure your transactions are safer and you’re 100% protected against unauthorized payments sent from your account.</p>
         <div class="warning">
-
         </div>
+        <form action="{{ url('make/payment') }}" method="post" enctype="multipart/form-data">
+          <input type="hidden" name="_token" value="{{csrf_token()}}">
+          <input type="hidden" name="jobId">
+          <div class="form-group">
+            <label for="">Account Name</label>
+            <input type="text" name="accountName" class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="">Account Number</label>
+            <input type="text" name="accountNumber" class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="">Bank Account</label>
+            <input type="text" name="bankAccount" class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="">Time of Transfer</label>
+            <input type="text" name="timeTransfer" id="" class="form-control">
+          </div>
+          <div class="form-group">
+            <input type="file" name="transferProof" id="" class="form-control">
+          </div>
+          <button type="submit" class="btn btn-success">Pay Now</button>
+        </form>
+
         <div class="details">
 
         </div>
@@ -426,6 +449,8 @@ tr{
     </div>
   </div>
 </div>
+
+
 <div class="modal rate animated fadeIn" tabindex="-1" role="dialog">
 <div class="modal-dialog" role="document">
   <div class="modal-content">
@@ -581,15 +606,16 @@ tr{
       success: function(data){
         $(".payment .warning").html("");
         if(!data[1])
-          $(".payment .warning").html("<div class='alert alert-danger'>This user hasn't set up their paypal account.</div>");
+          $(".payment .warning").html("<div class='alert alert-danger'>This user hasn't set up their payment account.</div>");
         $(".payment .details").html("<p><strong>You have $"+ data[0] + " due to pay.</strong></p>")
+        $("input[name='jobId']").val(job_id);
         $('.payment').modal('show')
       },
       error: function(){
         alertify.error("System error. Please contact technical support.")
       }
-    })
-  })
+    });
+  });
 
   $(document).on('click', '.rate-freelancer', function(){
     $("#rate_to_id").val($(this).attr('freelancer-id'))
@@ -655,51 +681,51 @@ tr{
 </script>
 
 <script>
-  paypal.Button.render({
-        env: 'sandbox',
-        client: {
-            sandbox:    'AXQng1S57K1sm5SMXOdmlnKC_Yy72kVz4Ot4jvZK64wGIOWoxO-YwJMjBX5bNaEA6qFZE9McM0sB6iXz'
-        },
-        commit: true,
+  {{--paypal.Button.render({--}}
+  {{--      env: 'sandbox',--}}
+  {{--      client: {--}}
+  {{--          sandbox:    'AXQng1S57K1sm5SMXOdmlnKC_Yy72kVz4Ot4jvZK64wGIOWoxO-YwJMjBX5bNaEA6qFZE9McM0sB6iXz'--}}
+  {{--      },--}}
+  {{--      commit: true,--}}
 
-        payment: function(data, actions) {
-          var CREATE_PAYMENT_URL = '{{route('create')}}';
-          return paypal.request({
-              method: 'post',
-              url: CREATE_PAYMENT_URL,
-              headers: {
-                  'x-csrf-token': $('meta[name="csrf-token"]').attr('content')
-              },
-              data: {freelancer_id: freelancer_id, id:id}
-          }).then(function(data) {
-              return data.id;
-          });
+  {{--      payment: function(data, actions) {--}}
+  {{--        var CREATE_PAYMENT_URL = '{{route('create')}}';--}}
+  {{--        return paypal.request({--}}
+  {{--            method: 'post',--}}
+  {{--            url: CREATE_PAYMENT_URL,--}}
+  {{--            headers: {--}}
+  {{--                'x-csrf-token': $('meta[name="csrf-token"]').attr('content')--}}
+  {{--            },--}}
+  {{--            data: {freelancer_id: freelancer_id, id:id}--}}
+  {{--        }).then(function(data) {--}}
+  {{--            return data.id;--}}
+  {{--        });--}}
 
-        },
-        onAuthorize: function(data) {
-        var EXECUTE_PAYMENT_URL ='{{route('execute')}}';
+  {{--      },--}}
+  {{--      onAuthorize: function(data) {--}}
+  {{--      var EXECUTE_PAYMENT_URL ='{{route('execute')}}';--}}
 
 
-        paypal.request.post(EXECUTE_PAYMENT_URL,
-          { paymentID: data.paymentID, payerID: data.payerID, freelancer_id:freelancer_id, id: id},
-          {headers:
-            {'x-csrf-token': $('meta[name="csrf-token"]').attr('content')}
-          })
-          .then(function(data) {
-            alertify.success('Payment successful!');
-            console.log(data)
-            window.location.reload(true);
-        })
-        .catch(function(err) {
-          alertify.error(err);
-      });
-    },
+  {{--      paypal.request.post(EXECUTE_PAYMENT_URL,--}}
+  {{--        { paymentID: data.paymentID, payerID: data.payerID, freelancer_id:freelancer_id, id: id},--}}
+  {{--        {headers:--}}
+  {{--          {'x-csrf-token': $('meta[name="csrf-token"]').attr('content')}--}}
+  {{--        })--}}
+  {{--        .then(function(data) {--}}
+  {{--          alertify.success('Payment successful!');--}}
+  {{--          console.log(data)--}}
+  {{--          window.location.reload(true);--}}
+  {{--      })--}}
+  {{--      .catch(function(err) {--}}
+  {{--        alertify.error(err);--}}
+  {{--    });--}}
+  {{--  },--}}
 
-    onCancel: function(data, actions) {
-      alertify.error('Payment canceled!');
-    }
+  {{--  onCancel: function(data, actions) {--}}
+  {{--    alertify.error('Payment canceled!');--}}
+  {{--  }--}}
 
-    }, '#paypal-button-container');
+  {{--  }, '#paypal-button-container');--}}
 
 
     $(document).on('mousemove', function(e){

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\PaymentProof;
 use Illuminate\Http\Request;
 use PayPal\Api\ChargeModel;
 use PayPal\Api\Currency;
@@ -290,5 +291,39 @@ public static function getById($paymentId, $apiContext = null){
 
         \Session::put('error', 'Payment failed');
         return Redirect::route('index');
+    }
+
+    public function makePayment(Request $request)
+    {
+        $path = null;
+
+        if ($request->hasFile('transferProof')) {
+            $path = $request->file('transferProof')->store('public/payments');
+            $path = str_replace("public","", $path);
+        }
+
+        PaymentProof::create([
+            'account_name' => $request->accountName,
+            'account_number' => $request->accountNumber,
+            'bank_account' => $request->bankAccount,
+            'time_of_transfer' => $request->timeTransfer,
+            'transfer_proof_path' => $path,
+            'job_id' => $request->jobId
+        ]);
+
+        $job = Job::find($request->jobId);
+        $job->complete = 1;
+        $job->active = 0;
+
+        $job->save();
+
+        return redirect()->back()->with('success', 'Freelancer has been paid successfully!');
+    }
+
+    public function getPaymentProof($jobId)
+    {
+        $payment = PaymentProof::where('job_id', $jobId)->first();
+
+        return response()->json($payment);
     }
 }

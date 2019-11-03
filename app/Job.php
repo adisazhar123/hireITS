@@ -8,6 +8,7 @@ class Job extends Model
 {
   protected $table = "job";
   protected $primaryKey = "job_id";
+
   public $timestamps = false;
 
   public function bid(){

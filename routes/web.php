@@ -85,3 +85,6 @@ Route::get('status', 'PaymentController@getPaymentStatus')->name('status');
 Route::post('create', 'PaymentController@getCheckout')->name('create');
 Route::post('execute', 'PaymentController@getDone')->name('execute');
 Route::post('cancel', 'PaymentController@getCancel')->name('cancel');
+Route::post('make/payment', 'PaymentController@makePayment');
+
+Route::get('jobs/{jobId}/payments', 'PaymentController@getPaymentProof');

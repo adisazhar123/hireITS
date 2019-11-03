@@ -166,7 +166,8 @@ class EmployerController extends Controller
   }
 
   public function dashboard(){
-    $my_projects = Job::where('active', 1)->where('complete', 0)->get();
+    $my_projects = Job::where('active', 1)->where('complete', 0)
+                    ->where('employer_id', Auth::user()->id)->get();
 
     $ongoing_projects = DB::table('won_by')
           ->join('job', 'won_by.job_id', '=', 'job.job_id')

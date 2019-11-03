@@ -379,7 +379,7 @@ body {
 <div class="container yes">
   <div class="row" style="text-align: center !important; padding-top: 100px;">
     <div class="col-md-12"  >
-      <div class="row1">
+      <div class="row">
         @if (!count($showcases))
           <h5 style="color:#c6c4c4">No showcase found.</h5>
         @else

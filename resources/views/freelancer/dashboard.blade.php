@@ -336,9 +336,9 @@ tr{
                      <th scope="row">{{$he++}}</th>
                      <td><a href="/projects/{{$project->slug}}">{{$project->name}}</a></td>
                      @if ($project->has_review == 3 || $project->has_review == 2)
-                       <td><button job-id="{{$project->job_id}}" class="btn btn-middle view-history mr-3 mb-2">View History</button><button class="btn btn-june mr-3 mb-2"><!-- <i class="fa fa-check-square-o paid" aria-hidden="true">  -->Payment received<!-- </i> --></button><button class="btn btn-june mb-2"><!-- <i class="fa fa-check-square-o paid" aria-hidden="true">  -->Employer Rated<!--  </i> --></button></td>
+                       <td><button job-id="{{$project->job_id}}" class="btn btn-middle view-history mr-3 mb-2">View History</button><button class="btn btn-june mr-3 mb-2"><!-- <i class="fa fa-check-square-o paid" aria-hidden="true">  -->Payment received<!-- </i> --></button><button class="btn btn-june mb-2"><!-- <i class="fa fa-check-square-o paid" aria-hidden="true">  -->Employer Rated<!--  </i> --></button> <button class="btn btn-info viewPayment" job-id="{{$project->job_id}}">View Payment</button> </td>
                      @else
-                       <td><button job-id="{{$project->job_id}}" class="btn btn-middle view-history mr-3 mb-2">View History</button><button class="btn btn-june mr-3 mb-2"><!-- <i class="fa fa-check-square-o paid" aria-hidden="true">  -->Payment received<!-- </i> --></button><button job-id="{{$project->job_id}}" employer-id="{{$project->employer_id}}" class="btn btn-middle rate-employer mb-2">Rate employer</button></td>
+                       <td><button job-id="{{$project->job_id}}" class="btn btn-middle view-history mr-3 mb-2">View History</button><button class="btn btn-june mr-3 mb-2"><!-- <i class="fa fa-check-square-o paid" aria-hidden="true">  -->Payment received<!-- </i> --></button><button job-id="{{$project->job_id}}" employer-id="{{$project->employer_id}}" class="btn btn-middle rate-employer mb-2">Rate employer</button> <button class="btn btn-info viewPayment" job-id="{{$project->job_id}}">View Payment</button> </td>
                      @endif
                    </tr>
                  @endforeach
@@ -579,6 +579,57 @@ tr{
   </div>
 </div>
 </div>
+
+
+  <div class="modal payment animated fadeIn" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Payment</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="warning">
+          </div>
+          <form action="{{ url('make/payment') }}" method="post" enctype="multipart/form-data">
+            <input type="hidden" name="_token" value="{{csrf_token()}}">
+            <input type="hidden" name="jobId">
+            <div class="form-group">
+              <label for="">Account Name</label>
+              <input type="text" name="accountName" class="form-control" readonly>
+            </div>
+            <div class="form-group">
+              <label for="">Account Number</label>
+              <input type="text" name="accountNumber" class="form-control" readonly>
+            </div>
+            <div class="form-group">
+              <label for="">Bank Account</label>
+              <input type="text" name="bankAccount" class="form-control" readonly>
+            </div>
+            <div class="form-group">
+              <label for="">Time of Transfer</label>
+              <input type="text" name="timeTransfer" id="" class="form-control" readonly>
+            </div>
+            <div class="form-group">
+              <img src="" alt="" class="transferProof" width="470px">
+            </div>
+          </form>
+
+          <div class="details">
+
+          </div>
+        </div>
+        <div class="modal-footer">
+          Click on the checkout button to reward your freelancer for their hardwork.
+          <div id="paypal-button-container"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
 @endsection
 
 @section('script')
@@ -766,7 +817,27 @@ tr{
     for(var i=0; i<skills.length; i++)
       mySkills.push(skills[i].id)
 
-
 });
+
+  $(".viewPayment").click(async function () {
+    const jobId = $(this).attr('job-id');
+
+    const res = await $.ajax({
+      url: '{{url('jobs')}}' + '/' + jobId + '/payments',
+      method: 'get'
+    });
+
+    $("input[name='accountName']").val(res.account_name);
+    $("input[name='accountNumber']").val(res.account_number);
+    $("input[name='bankAccount']").val(res.bank_account);
+    $("input[name='timeTransfer']").val(res.time_of_transfer)
+    $(".transferProof").attr('src', '{{ url('storage') }}' + res.transfer_proof_path);
+
+    $(".modal.payment").modal('show');
+
+    // console.log(res);
+
+  });
+
 </script>
 @endsection

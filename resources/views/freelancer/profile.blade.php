@@ -582,9 +582,9 @@ p a{color:#27ae60; text-decoration:none;}
 
                            <div class="input-group inputt  fadeIn">
                                  <div class="input-group-prepend">
-                                   <span class="input-group-text"><i class="fa fa-paypal" aria-hidden="true"></i></span>
+                                   <span class="input-group-text"><i class="fa fa-money" aria-hidden="true"></i></span>
                                  </div>
-                                 <input type="email" class="form-control" name="paypal" id="paypal" placeholder="if you want to be paid, fill in a valid paypal email" value="">
+                             <input type="text" class="form-control" name="paypal" id="paypal" placeholder="if you want to be paid, fill in a valid bank account number" value="">
                             </div>
                             <div class="input-group inputt  fadeIn">
                                   <div class="input-group-prepend">
